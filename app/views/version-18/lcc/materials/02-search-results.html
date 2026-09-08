@@ -7,6 +7,9 @@
 {% endblock %}
 {% block content %}
 
+{% set resultsSearchTerm = data['searchOFF_Operation_VALUE'] or data['searchOFF_Defendant_VALUE'] or data['searchOFF_URN_VALUE'] %}
+{% set isUrnResultsSearch = data['searchOFF'] == 'URN' or (data['searchOFF_URN_VALUE'] and not data['searchOFF_Operation_VALUE'] and not data['searchOFF_Defendant_VALUE']) %}
+
 <link href="/public/stylesheets/filtering.css" media="screen" rel="stylesheet" type="text/css" />
 
 <div class="govuk-grid-row search-results MVP" id="search-journey" style="display: block !important;">
@@ -601,24 +604,18 @@
                 </div>
             </fieldset>
         </form>
-        {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
-            <p class="search_headline"><strong>4</strong> cases found in <strong>{{ data['searchOFF_Operation_AREA'] }}</strong>. Select <strong>view</strong> to transfer files and folders or <strong>connect</strong> to setup storage locations.</p>
-        {% elseif data['searchOFF_Operation_VALUE'] == 'Thunderstruck' or data['searchOFF_Operation_VALUE'] == 'thunderstruck' %}
-            <p class="search_headline"><strong>4</strong> cases found in <strong>{{ data['searchOFF_Operation_AREA'] }}</strong>. Select <strong>view</strong> to transfer files and folders or <strong>connect</strong> to setup storage locations.</p>
-        {% elseif data['searchOFF_Defendant_VALUE'] == 'Thunderstruck' or data['searchOFF_Defendant_VALUE'] == 'thunderstruck' %}
-            <p class="search_headline"><strong>4</strong> cases found in <strong>{{ data['searchOFF_Defendant_AREA'] }}</strong>. Select <strong>view</strong> to transfer files and folders or <strong>connect</strong> to setup storage locations.</p>
-        {% elseif data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
-            <p class="search_headline"><strong>4</strong> cases found in <strong>{{ data['searchOFF_Defendant_AREA'] }}</strong>. Select <strong>view</strong> to transfer files and folders or <strong>connect</strong> to setup storage locations.</p>
+        {% if isUrnResultsSearch %}
+            <p class="search_headline"><strong>1</strong> case found for <strong>{{ data['searchOFF_URN_VALUE'] }}</strong>. Select <strong>connect</strong> to set up storage locations.</p>
         {% elseif data['searchOFF_Operation_VALUE'] %}
-            <p class="search_headline">There are <strong>no cases</strong> matching the operation name in <strong>{{ data['searchOFF_Operation_AREA'] }}</strong>.</p>
+            <p class="search_headline"><strong>4</strong> cases found in <strong>{{ data['searchOFF_Operation_AREA'] }}</strong>. Select <strong>view</strong> to transfer files and folders or <strong>connect</strong> to setup storage locations.</p>
         {% elseif data['searchOFF_Defendant_VALUE'] %}
-            <p class="search_headline">There are <strong>no cases</strong> matching the defendant last name in <strong>{{ data['searchOFF_Defendant_AREA'] }}</strong>.</p>
+            <p class="search_headline"><strong>4</strong> cases found in <strong>{{ data['searchOFF_Defendant_AREA'] }}</strong>. Select <strong>view</strong> to transfer files and folders or <strong>connect</strong> to setup storage locations.</p>
         {% endif %}
     </div>
 
     <div class="govuk-grid-column-full">
 
-        {% if data['searchOFF_Operation_VALUE'] == 'Thunderstruck' or data['searchOFF_Operation_VALUE'] == 'thunderstruck' or data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' or data['searchOFF_Defendant_VALUE'] == 'Thunderstruck' or data['searchOFF_Defendant_VALUE'] == 'thunderstruck' or data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+        {% if resultsSearchTerm %}
             <table class="govuk-table search_results_page">
                 <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
@@ -632,6 +629,25 @@
                     </tr>
                 </thead>
                 <tbody class="govuk-table__body">
+
+                    {% if isUrnResultsSearch %}
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell">Case {{ data['searchOFF_URN_VALUE'] }}</td>
+                        <td class="govuk-table__cell">{{ data['searchOFF_URN_VALUE'] }}</td>
+                        <td class="govuk-table__cell">N/A</td>
+                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Inactive</strong></td>
+                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Inactive</strong></td>
+                        <td class="govuk-table__cell">--</td>
+                        <td class="govuk-table__cell">
+                            <form method="post" action="04A-egress-files">
+                                <input name="searchOFF" type="hidden" value="URN">
+                                <input name="searchOFF_URN_VALUE" type="hidden" value="{{ data['searchOFF_URN_VALUE'] }}">
+                                <input name="mvp_Case_4" type="hidden" value="true">
+                                <button type="submit" class="govuk-button govuk-button--secondary">Connect</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% else %}
 
                     <!-- RESULT 1 - START -->
                     <tr class="govuk-table__row">
@@ -808,6 +824,7 @@
                         </td>
                     </tr>
                     <!-- RESULT 4 - END -->
+                    {% endif %}
                 </tbody>
             </table>
         {% else %}

@@ -193,7 +193,7 @@
                     <div style="clear: both; display: block; margin-top: 4px; margin-bottom: 10px;">
                         <p class="govuk-body-s" style="margin: 0; color: #484949;">{{ entry.dateLabel }} by {{ entry.byEmail }}</p>
                     </div>
-                    {% if entry.description %}
+                    {% if entry.description and not isPartialCopyOrMove %}
                     <p class="hods-timeline__description">{{ entry.description }}</p>
                     {% endif %}
                     {% if entry.sourceLines and (entry.sourceLines | length > 0) %}
@@ -211,27 +211,6 @@
                     </div>
                     {% endif %}
                     {% if isPartialCopyOrMove %}
-                    <p class="govuk-body govuk-!-margin-bottom-2">
-                        {% if (entry.conflictListItems | length) == 1 %}
-                        {% if isPartialMove %}
-                        1 item could not be moved.
-                        {% else %}
-                        1 item could not be copied.
-                        {% endif %}
-                        {% else %}
-                        {% if isPartialMove %}
-                        {{ entry.conflictListItems | length }} items could not be moved.
-                        {% else %}
-                        {{ entry.conflictListItems | length }} items could not be copied.
-                        {% endif %}
-                        {% endif %}
-                    </p>
-                    <ul class="govuk-list govuk-list--bullet">
-                        {% for itemName in entry.conflictListItems %}
-                        <li>{{ itemName }}</li>
-                        {% endfor %}
-                    </ul>
-                    <hr class="govuk-section-break govuk-section-break--visible govuk-!-margin-bottom-4 materials-activity-partial-copy-divider">
                     <p class="govuk-body govuk-!-margin-bottom-2">
                         {% if (entry.listItems | length) == 1 %}
                         {% if isPartialMove %}
@@ -256,11 +235,41 @@
                             <span class="govuk-details__summary-text">Show copied items</span>
                             {% endif %}
                         </summary>
-                        <div class="govuk-details__text">
+                        <div class="govuk-details__text" style="margin-bottom: 0; display: flow-root; padding-top: 2px; padding-bottom: 2px;">
                             {{ renderActivityTree(entry.previewTree) }}
                         </div>
                     </details>
                     {% endif %}
+                    <p class="govuk-body govuk-!-margin-bottom-2">
+                        {% if (entry.conflictListItems | length) == 1 %}
+                        {% if isPartialMove %}
+                        1 item could not be moved.
+                        {% else %}
+                        1 item could not be copied.
+                        {% endif %}
+                        {% else %}
+                        {% if isPartialMove %}
+                        {{ entry.conflictListItems | length }} items could not be moved.
+                        {% else %}
+                        {{ entry.conflictListItems | length }} items could not be copied.
+                        {% endif %}
+                        {% endif %}
+                    </p>
+                    <details class="govuk-details govuk-!-margin-bottom-2 materials-activity-details">
+                        <summary class="govuk-details__summary materials-activity-details__summary">
+                            <span class="govuk-details__summary-text">
+                                <span class="materials-activity-details__label--view">View items</span>
+                                <span class="materials-activity-details__label--hide">Hide items</span>
+                            </span>
+                        </summary>
+                        <div class="govuk-details__text" style="margin-bottom: 0; display: flow-root; padding-top: 2px; padding-bottom: 2px;">
+                            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+                                {% for itemName in entry.conflictListItems %}
+                                <li>{{ itemName }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </details>
                     {% endif %}
                     {% if not isPartialCopyOrMove and entry.listItems and (entry.listItems | length > 0) %}
                     {% set useTree = entry.previewTree and (entry.previewTree | length > 0) %}

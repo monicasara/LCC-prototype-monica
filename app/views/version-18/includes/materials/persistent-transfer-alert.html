@@ -1,0 +1,94 @@
+{% if data.transferEgressRetryFailedAlert %}
+<style>
+    .transfer-retry-failed-alert {
+        box-sizing: border-box;
+        position: relative;
+        width: 75%;
+        padding: 20px;
+        border: 5px solid #f47738;
+        background: #ffffff;
+        color: #0b0c0c;
+    }
+
+    .transfer-retry-failed-alert .govuk-tag {
+        margin-bottom: 15px;
+    }
+
+    .transfer-retry-failed-alert .moj-alert__heading {
+        margin: 0 0 20px;
+        font-family: "GDS Transport", arial, sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.25;
+    }
+
+    .transfer-retry-failed-alert__close-form {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        margin: 0;
+    }
+
+    .transfer-retry-failed-alert__close {
+        padding: 2px 0;
+        border: 0;
+        background: transparent;
+        color: #1d70b8;
+        cursor: pointer;
+        font-family: "GDS Transport", arial, sans-serif;
+        font-size: 19px;
+        line-height: 1.3;
+        text-decoration: underline;
+    }
+
+    .transfer-retry-failed-alert__close:hover {
+        color: #003078;
+        text-decoration-thickness: 3px;
+    }
+
+    .transfer-retry-failed-alert__close:focus {
+        outline: 3px solid transparent;
+        background: #ffdd00;
+        box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
+    }
+
+    @media (max-width: 40.0525em) {
+        .transfer-retry-failed-alert {
+            width: 100%;
+        }
+    }
+</style>
+
+<div role="alert"
+    class="moj-alert moj-alert--warning moj-alert--with-heading transfer-retry-failed-alert govuk-!-margin-top-4 govuk-!-margin-bottom-4"
+    aria-label="Warning: The files could not be transferred">
+    <div class="moj-alert__content">
+        <form class="transfer-retry-failed-alert__close-form" method="post" action="/version-18/lcc/materials/dismiss-transfer-retry-alert">
+            <button class="transfer-retry-failed-alert__close" type="submit">Close</button>
+        </form>
+        <h2 class="moj-alert__heading">Some files could not be transferred</h2>
+        <p class="govuk-body govuk-!-margin-top-4">
+            You can try to transfer the failed files again or contact the product team for support.
+        </p>
+
+        {% if data.transferEgressRetryItems and (data.transferEgressRetryItems | length) > 0 %}
+        <details class="govuk-details govuk-!-margin-bottom-2" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">View files</span>
+            </summary>
+            <div class="govuk-details__text">
+                <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+                    {% for itemName in data.transferEgressRetryItems %}
+                    <li>{{ itemName }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </details>
+        {% endif %}
+
+        <p class="govuk-body govuk-!-margin-bottom-0">
+            <a class="govuk-link" href="/version-18/lcc/materials/transfer-materials?transferView=egress&amp;transferEgressFolderId=2&amp;retryFailedTransfer=1">Transfer the failed files again</a>
+        </p>
+    </div>
+</div>
+{% endif %}

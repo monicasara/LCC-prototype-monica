@@ -65,8 +65,8 @@
         <h2 class="moj-alert__heading">There is a problem transferring files</h2>
 
         <p class="govuk-body govuk-!-margin-top-4 transfer-conflict-message">
-            Some files could not be transfered.
-            <a class="govuk-link" href="/version-18/lcc/materials/transfer-materials?transferView=egress&amp;transferEgressFolderId=2">Try the transfer again</a>.
+            Some files could not be transferred. Other items were transferred successfully.
+            <a class="govuk-link" href="/version-18/lcc/materials/transfer-materials?transferView=egress&amp;transferEgressFolderId=2&amp;retryFailedTransfer=1">Try to transfer the failed items again</a>.
         </p>
 
         <details class="govuk-details govuk-!-margin-bottom-0" data-module="govuk-details">
@@ -74,6 +74,14 @@
                 <span class="govuk-details__summary-text">View items</span>
             </summary>
             <div class="govuk-details__text">
+                <p class="govuk-body govuk-!-margin-bottom-2"><strong>Items transferred successfully</strong></p>
+                <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0 transfer-success-items">
+                    {% for itemName in data.transferEgressList %}
+                    <li>{{ itemName }}</li>
+                    {% endfor %}
+                </ul>
+
+                <p class="govuk-body govuk-!-margin-top-4 govuk-!-margin-bottom-2"><strong>Files that could not be transferred</strong></p>
                 <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0 transfer-conflict-items">
                     {% for itemName in data.transferEgressConflictItems %}
                     <li>{{ itemName }}</li>
@@ -83,7 +91,7 @@
         </details>
 
         <p class="govuk-body govuk-!-margin-top-2 govuk-!-margin-bottom-0">
-            <a class="govuk-link" href="/version-18/lcc/materials/transfer-materials?transferView=egress&amp;transferEgressFolderId=2">Try the transfer again</a>
+            <a class="govuk-link" href="/version-18/lcc/materials/transfer-materials?transferView=egress&amp;transferEgressFolderId=2&amp;retryFailedTransfer=1">Try to transfer the failed items again</a>
         </p>
 
     </div>
