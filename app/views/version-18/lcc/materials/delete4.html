@@ -1,0 +1,166 @@
+{% extends "version-18/lcc/materials/delete.html" %}
+
+{% block pageTitle %}
+Delete files or folders – {{ serviceName }} – Prototype
+{% endblock %}
+
+{% block deleteItemsPreview %}
+<style>
+     #delete-pagination .govuk-pagination__item--current .govuk-pagination__link,
+     #delete-pagination .govuk-pagination__item--current .govuk-pagination__link:link,
+     #delete-pagination .govuk-pagination__item--current .govuk-pagination__link:visited,
+     #delete-pagination .govuk-pagination__item--current .govuk-pagination__link:hover,
+     #delete-pagination .govuk-pagination__item--current .govuk-pagination__link:focus,
+     #delete-pagination .govuk-pagination__item--current .govuk-pagination__link:active,
+     #delete-pagination .govuk-pagination__item--current a.govuk-link {
+          color: #ffffff !important;
+          text-decoration: none !important;
+     }
+</style>
+
+{% macro renderPaginatedDeleteItems(nodes, prefix='') %}
+     {% for node in nodes %}
+          {% set itemPath = prefix ~ (' > ' if prefix else '') ~ node.name %}
+          <li class="delete-paginated-item" hidden>
+               {% if node.isFolder %}
+               <span class="icon-new folder"></span>
+               <strong>{{ itemPath }} ({% if node.itemCount == 0 %}empty{% else %}{{ node.itemCount }} item{{ 's' if node.itemCount != 1 else '' }}{% endif %})</strong>
+               {% else %}
+               {{ node.name }}
+               {% endif %}
+          </li>
+          {% if node.children and (node.children | length) > 0 %}
+               {{ renderPaginatedDeleteItems(node.children, itemPath) }}
+          {% endif %}
+     {% endfor %}
+{% endmacro %}
+
+{% if data.deleteItemsPreviewTree and (data.deleteItemsPreviewTree | length > 0) %}
+<details class="govuk-details govuk-!-margin-top-4 govuk-!-margin-bottom-4" data-module="govuk-details">
+     <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+               View {{ data.deleteItemsCount }} item{{ 's' if data.deleteItemsCount != 1 else '' }} to be deleted
+          </span>
+     </summary>
+     <div class="govuk-details__text">
+          <div id="delete-paginated-list" data-page-size="20">
+               <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-3 govuk-!-margin-bottom-4">
+                    {{ renderPaginatedDeleteItems(data.deleteItemsPreviewTree) }}
+               </ul>
+
+               <nav id="delete-pagination" class="govuk-pagination govuk-!-margin-bottom-2" aria-label="Items to be deleted pagination" hidden>
+                    <div class="govuk-pagination__prev">
+                         <a class="govuk-link govuk-pagination__link" href="#delete-paginated-list" rel="prev">
+                              <span class="govuk-pagination__link-title">Previous</span>
+                         </a>
+                    </div>
+                    <ul class="govuk-pagination__list"></ul>
+                    <div class="govuk-pagination__next">
+                         <a class="govuk-link govuk-pagination__link" href="#delete-paginated-list" rel="next">
+                              <span class="govuk-pagination__link-title">Next</span>
+                         </a>
+                    </div>
+               </nav>
+               <p id="delete-pagination-status" class="govuk-visually-hidden" aria-live="polite"></p>
+          </div>
+     </div>
+</details>
+
+<script>
+     document.addEventListener('DOMContentLoaded', function () {
+          var container = document.getElementById('delete-paginated-list');
+          if (!container) return;
+
+          var items = Array.prototype.slice.call(container.querySelectorAll('.delete-paginated-item'));
+          var pageSize = Number(container.getAttribute('data-page-size')) || 20;
+          var pageCount = Math.ceil(items.length / pageSize);
+          var currentPage = 1;
+          var pagination = document.getElementById('delete-pagination');
+          var pageList = pagination.querySelector('.govuk-pagination__list');
+          var previous = pagination.querySelector('.govuk-pagination__prev');
+          var next = pagination.querySelector('.govuk-pagination__next');
+          var status = document.getElementById('delete-pagination-status');
+
+          function pageNumbers() {
+               if (pageCount <= 7) return Array.from({ length: pageCount }, function (_, index) { return index + 1; });
+               var jumpPages = [
+                    1,
+                    2,
+                    Math.round(pageCount * 0.5),
+                    currentPage - 1,
+                    currentPage,
+                    currentPage + 1,
+                    pageCount - 1,
+                    pageCount
+               ].filter(function (page) {
+                    return page >= 1 && page <= pageCount;
+               });
+               var uniquePages = jumpPages.filter(function (page, index) {
+                    return jumpPages.indexOf(page) === index;
+               }).sort(function (first, second) {
+                    return first - second;
+               });
+               var pages = [];
+
+               uniquePages.forEach(function (page, index) {
+                    if (index > 0 && page - uniquePages[index - 1] > 1) {
+                         pages.push('ellipsis-' + index);
+                    }
+                    pages.push(page);
+               });
+
+               return pages;
+          }
+
+          function renderPagination() {
+               pageList.innerHTML = '';
+               pageNumbers().forEach(function (page) {
+                    var listItem = document.createElement('li');
+                    if (typeof page !== 'number') {
+                         listItem.className = 'govuk-pagination__item govuk-pagination__item--ellipses';
+                         listItem.textContent = '\u22ef';
+                    } else {
+                         listItem.className = 'govuk-pagination__item' + (page === currentPage ? ' govuk-pagination__item--current' : '');
+                         var link = document.createElement('a');
+                         link.className = 'govuk-link govuk-pagination__link';
+                         link.href = '#delete-paginated-list';
+                         link.textContent = page;
+                         link.setAttribute('aria-label', 'Page ' + page);
+                         if (page === currentPage) link.setAttribute('aria-current', 'page');
+                         link.addEventListener('click', function (event) {
+                              event.preventDefault();
+                              showPage(page);
+                         });
+                         listItem.appendChild(link);
+                    }
+                    pageList.appendChild(listItem);
+               });
+               previous.hidden = currentPage === 1;
+               next.hidden = currentPage === pageCount;
+          }
+
+          function showPage(page) {
+               currentPage = page;
+               var firstItem = (page - 1) * pageSize;
+               items.forEach(function (item, index) {
+                    item.hidden = index < firstItem || index >= firstItem + pageSize;
+               });
+               renderPagination();
+               status.textContent = 'Showing page ' + currentPage + ' of ' + pageCount;
+          }
+
+          previous.querySelector('a').addEventListener('click', function (event) {
+               event.preventDefault();
+               if (currentPage > 1) showPage(currentPage - 1);
+          });
+          next.querySelector('a').addEventListener('click', function (event) {
+               event.preventDefault();
+               if (currentPage < pageCount) showPage(currentPage + 1);
+          });
+
+          pagination.hidden = pageCount <= 1;
+          showPage(1);
+     });
+</script>
+{% endif %}
+{% endblock %}

@@ -659,7 +659,9 @@
                                         </button>
 
                                         <form id="discardForm" method="post"
-                                            action="/version-18/lcc/materials/delete">
+                                            action="/version-18/lcc/materials/delete?variant={{ data.deleteVariant | default('large') }}">
+                                            <input name="delete_variant" type="hidden"
+                                                value="{{ data.deleteVariant | default('large') }}">
                                             <input id="material_selected" name="material_selected" type="hidden"
                                                 value="">
                                             <button id="discardButton" class="govuk-button govuk-button--disabled"
@@ -1165,7 +1167,9 @@
                             </button>
 
                             <form id="discardForm" method="post"
-                                action="/version-18/lcc/materials/delete">
+                                action="/version-18/lcc/materials/delete?variant={{ data.deleteVariant | default('large') }}">
+                                <input name="delete_variant" type="hidden"
+                                    value="{{ data.deleteVariant | default('large') }}">
                                 <input id="material_selected" name="material_selected" type="hidden"
                                     value="">
                                 <button id="discardButton" class="govuk-button govuk-button--disabled"

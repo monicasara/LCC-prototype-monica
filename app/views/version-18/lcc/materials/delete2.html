@@ -15,67 +15,65 @@ Delete documents – {{ serviceName }} – Prototype
 <div class="govuk-width-container">
 
      <style>
-          .delete-items-details__summary {
-               list-style: none;
+          .delete-folder-tree {
+               margin-bottom: 30px;
+               margin-top: 20px;
           }
 
-          .delete-items-details__summary::-webkit-details-marker {
-               display: none;
+          .delete-folder-tree .folder-box,
+          .delete-folder-tree .folder-box *,
+          .delete-folder-tree .folder-name,
+          .delete-folder-tree .icon-new {
+               cursor: default !important;
           }
 
-          .delete-items-details__summary::before {
-               content: "\25BC";
-               color: #1d70b8;
-               display: inline-block;
-               margin-right: 10px;
+          .delete-folder-tree .folder-box {
+               border: 0;
+               box-shadow: none;
           }
 
-          .delete-items-details[open] .delete-items-details__summary::before {
-               content: "\25B2";
-          }
-
-          .delete-items-details__label--hide {
-               display: none;
-          }
-
-          .delete-items-details[open] .delete-items-details__label--view {
-               display: none;
-          }
-
-          .delete-items-details[open] .delete-items-details__label--hide {
-               display: inline;
+          .delete-folder-tree .folder-box:hover {
+               background: #ffffff;
+               border-color: transparent;
           }
      </style>
 
-     {% macro renderDeleteTreeItems(nodes, prefix='') %}
+     {% macro renderDeleteNodes(nodes, isRoot=true) %}
+     <ul class="{{ 'folder-tree' if isRoot else 'folder-children-list' }}">
           {% for node in nodes %}
                {% if node.isFolder %}
-                    {% if node.renamedTo %}
-                         {% set folderLabel = node.name ~ ' → ' ~ node.renamedTo %}
-                    {% else %}
-                         {% set folderLabel = node.name %}
+               <li class="folder-node" data-folder-id="{{ node.id }}" data-folder-name="{{ node.name }}">
+                    <div class="folder-row">
+                         {% if node.children and node.children.length %}
+                         <button type="button" class="folder-toggle" aria-expanded="false" aria-label="Expand {{ node.name }}">+</button>
+                         {% else %}
+                         <span class="folder-toggle placeholder"></span>
+                         {% endif %}
+
+                         <span class="folder-box">
+                              <span class="icon-new folder"></span>
+                              <span class="folder-name">{{ node.name }} ({% if node.itemCount == 0 %}empty{% else %}{{ node.itemCount }} item{{ 's' if node.itemCount != 1 else '' }}{% endif %})</span>
+                         </span>
+                    </div>
+
+                    {% if node.children and node.children.length %}
+                    <div class="folder-children" hidden>
+                         {{ renderDeleteNodes(node.children, false) }}
+                    </div>
                     {% endif %}
-                    {% if prefix %}
-                         {% set folderPath = prefix ~ ' > ' ~ folderLabel %}
-                    {% else %}
-                         {% set folderPath = folderLabel %}
-                    {% endif %}
-                    <li style="list-style: none; margin-left: -1em; margin-bottom: 6px;">
-                         <span class="icon-new folder"></span>
-                         <strong>{{ folderPath }}</strong>
-                    </li>
-                    {% if node.children and (node.children | length) > 0 %}
-                         {{ renderDeleteTreeItems(node.children, folderPath) }}
-                    {% endif %}
+               </li>
                {% else %}
-                    <li>{{ node.name }}</li>
+               <li class="folder-node">
+                    <div class="folder-row">
+                         <span class="folder-toggle placeholder"></span>
+                         <span class="folder-box">
+                              <span class="icon-new file"></span>
+                              <span class="folder-name">{{ node.name }}</span>
+                         </span>
+                    </div>
+               </li>
                {% endif %}
           {% endfor %}
-     {% endmacro %}
-
-     {% macro renderDeleteTree(nodes) %}
-     <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-3 govuk-!-margin-bottom-4">
-          {{ renderDeleteTreeItems(nodes) }}
      </ul>
      {% endmacro %}
 
@@ -87,21 +85,17 @@ Delete documents – {{ serviceName }} – Prototype
 
      <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">
-               <form novalidate method="post" action="/version-18/lcc/materials/discard-material?variant={{ data.deleteVariant | default('regular') }}">
+               <form novalidate method="post" action="/version-18/lcc/materials/discard-material?variant={{ data.deleteVariant | default('tree') }}">
                     <input type="hidden" name="material_selected" value="{{ data['material_selected'] }}">
-                    <input type="hidden" name="delete_variant" value="{{ data.deleteVariant | default('regular') }}">
+                    <input type="hidden" name="delete_variant" value="{{ data.deleteVariant | default('tree') }}">
 
                     {% if data.deleteChoiceError %}
                     <div class="govuk-error-summary" data-module="govuk-error-summary">
                          <div role="alert">
-                              <h2 class="govuk-error-summary__title">
-                                   There is a problem
-                              </h2>
+                              <h2 class="govuk-error-summary__title">There is a problem</h2>
                               <div class="govuk-error-summary__body">
                                    <ul class="govuk-list govuk-error-summary__list">
-                                        <li>
-                                             <a href="#delete-choice">{{ data.deleteChoiceError }}</a>
-                                        </li>
+                                        <li><a href="#delete-choice">{{ data.deleteChoiceError }}</a></li>
                                    </ul>
                               </div>
                          </div>
@@ -119,31 +113,27 @@ Delete documents – {{ serviceName }} – Prototype
                               <p class="govuk-body">If the file or folder is shared, other users will no longer be able
                                    to access it.</p>
 
-                              {% block deleteItemsPreview %}
                               {% if data.deleteItemsPreviewTree and (data.deleteItemsPreviewTree | length > 0) %}
-                              {% if data.deleteItemsCount > 5 %}
-                              <details class="govuk-details govuk-!-margin-bottom-4 delete-items-details">
-                                   <summary class="govuk-details__summary delete-items-details__summary">
-                                        <span class="govuk-details__summary-text" style="font-size: 17px;">
-                                             <span class="delete-items-details__label--view">View items</span>
-                                             <span class="delete-items-details__label--hide">Hide items</span>
+                              <details class="govuk-details govuk-!-margin-top-4 govuk-!-margin-bottom-4" data-module="govuk-details">
+                                   <summary class="govuk-details__summary">
+                                        <span class="govuk-details__summary-text">
+                                             View {{ data.deleteItemsCount }} item{{ 's' if data.deleteItemsCount != 1 else '' }} to be deleted
                                         </span>
                                    </summary>
-                                   <div class="govuk-details__text" style="margin-bottom: 0; display: flow-root; padding-top: 2px; padding-bottom: 2px;">
-                                        {{ renderDeleteTree(data.deleteItemsPreviewTree) }}
+                                   <div class="govuk-details__text">
+                                        <div class="delete-folder-tree" aria-label="Files and folders selected for deletion">
+                                             {{ renderDeleteNodes(data.deleteItemsPreviewTree) }}
+                                        </div>
                                    </div>
                               </details>
-                              {% else %}
-                              {{ renderDeleteTree(data.deleteItemsPreviewTree) }}
                               {% endif %}
-                              {% endif %}
-                              {% endblock %}
 
                               {% if data.deleteChoiceError %}
                               <p id="delete-choice-error" class="govuk-error-message">
                                    <span class="govuk-visually-hidden">Error:</span> {{ data.deleteChoiceError }}
                               </p>
                               {% endif %}
+
                               <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-top-6">Are you sure you want to permanently delete these items?</p>
 
                               <div class="govuk-radios" data-module="govuk-radios">

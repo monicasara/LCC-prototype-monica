@@ -8,6 +8,19 @@
 {% endblock %}
 {% block content %}
 
+{% set sharedDriveConnectAction = '/version-18/lcc/materials/05A-p-drive-files-connected' if connectionJourney == 'materials' else '/version-18/lcc/register-case/11-shared-drive-files-connected' %}
+{% set connectionCaseName = data['connectionCaseSearchTerm'] or data['searchOFF_Operation_VALUE'] or data['searchOFF_Defendant_VALUE'] or data['searchOFF_URN_VALUE'] or data['operationName'] %}
+
+{% if connectionJourney == 'materials' %}
+<style>
+    .drive-connect-location-crumb[hidden],
+    .drive-connect-division-crumb[hidden],
+    .drive-connect-case-type-crumb[hidden] {
+        display: none !important;
+    }
+</style>
+{% endif %}
+
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
             <h2 class="govuk-heading-l govuk-!-margin-bottom-0" style="">Connect a Shared Drive folder to this case</h2>
@@ -44,11 +57,19 @@
             <!-- NAV - START -->
             <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
                 <ol class="govuk-breadcrumbs__list">
+                    {% if connectionJourney == 'materials' %}
+                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link drive-connect-home" href="#">Shared Drive</a></li>
+                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link drive-connect-folders" href="#">Folders</a></li>
+                    <li class="govuk-breadcrumbs__list-item drive-connect-location-crumb" hidden><a class="govuk-breadcrumbs__link" href="#"></a></li>
+                    <li class="govuk-breadcrumbs__list-item drive-connect-division-crumb" hidden><a class="govuk-breadcrumbs__link" href="#"></a></li>
+                    <li class="govuk-breadcrumbs__list-item drive-connect-case-type-crumb" hidden><span></span></li>
+                    {% else %}
                     <li class="govuk-breadcrumbs__list-item pdrive_nav_1 pdrive_nav_items"><a class="govuk-breadcrumbs__link pdrive_nav_1" href="#">Shared Drive</a></li>
                     <li class="govuk-breadcrumbs__list-item pdrive_nav_2 pdrive_nav_items"><a class="govuk-breadcrumbs__link pdrive_nav_2" href="#">Division</a></li>
                     <li class="govuk-breadcrumbs__list-item pdrive_nav_3 pdrive_nav_items"><a class="govuk-breadcrumbs__link selected pdrive_nav_3" href="#">Cases</a></li>
                     <li class="govuk-breadcrumbs__list-item pdrive_nav_4 pdrive_nav_items"><a class="govuk-breadcrumbs__link pdrive_nav_4" href="#">Live cases</a></li>
                     <li class="govuk-breadcrumbs__list-item pdrive_nav_5 pdrive_nav_items"><a class="govuk-breadcrumbs__link pdrive_nav_5" href="#"><span class="folder_name"></span></a></li>
+                    {% endif %}
                 </ol>
             </nav>    
             <!-- NAV - END -->
@@ -62,6 +83,50 @@
                     </tr>
                 </thead>
                 <tbody class="govuk-table__body">
+
+                    {% if connectionJourney == 'materials' %}
+                    <tr class="govuk-table__row drive-connect-stage drive-connect-stage--locations">
+                        <td class="govuk-table__cell" colspan="2"><span class="icon-new folder"></span><a href="#" class="govuk-link--no-visited-state drive-connect-location" data-location="york">York CTD Cases</a></td>
+                    </tr>
+                    <tr class="govuk-table__row drive-connect-stage drive-connect-stage--locations">
+                        <td class="govuk-table__cell" colspan="2"><span class="icon-new folder"></span><a href="#" class="govuk-link--no-visited-state drive-connect-location" data-location="manchester">Manchester Cases</a></td>
+                    </tr>
+
+                    <tr class="govuk-table__row drive-connect-stage drive-connect-stage--divisions" data-location="york" hidden>
+                        <td class="govuk-table__cell" colspan="2"><span class="icon-new folder"></span><a href="#" class="govuk-link--no-visited-state drive-connect-division">International London</a></td>
+                    </tr>
+                    <tr class="govuk-table__row drive-connect-stage drive-connect-stage--divisions" data-location="york" hidden>
+                        <td class="govuk-table__cell" colspan="2"><span class="icon-new folder"></span><a href="#" class="govuk-link--no-visited-state drive-connect-division">South East Regional and Wales</a></td>
+                    </tr>
+                    <tr class="govuk-table__row drive-connect-stage drive-connect-stage--divisions" data-location="manchester" hidden>
+                        <td class="govuk-table__cell" colspan="2"><span class="icon-new folder"></span><a href="#" class="govuk-link--no-visited-state drive-connect-division">International London</a></td>
+                    </tr>
+                    <tr class="govuk-table__row drive-connect-stage drive-connect-stage--divisions" data-location="manchester" hidden>
+                        <td class="govuk-table__cell" colspan="2"><span class="icon-new folder"></span><a href="#" class="govuk-link--no-visited-state drive-connect-division">South East Regional and Wales</a></td>
+                    </tr>
+
+                    {% for folder in data['sharedDriveFolders'] %}
+                        {% if folder.folder and folder.level == 1 %}
+                            <tr class="govuk-table__row drive-connect-stage drive-connect-stage--case-types" hidden>
+                                <td class="govuk-table__cell" colspan="2"><span class="icon-new folder"></span><a href="#" class="govuk-link--no-visited-state drive-connect-case-type" data-folder-id="{{ folder.id }}">{{ folder.name }}</a></td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% for folder in data['sharedDriveFolders'] %}
+                        {% if folder.folder and folder.level == 2 %}
+                            <tr class="govuk-table__row drive-connect-stage drive-connect-stage--cases" data-parent-id="{{ folder.parentId }}" hidden>
+                                <td class="govuk-table__cell govuk-!-text-align-left">
+                                    <form method="post" action="{{ sharedDriveConnectAction }}">
+                                        <input name="pdrive_file_link" type="hidden" value="{% if folder.id == 2003 %}{% if connectionCaseName %}{{ connectionCaseName }}{% else %}{{ folder.name }}{% endif %} {% if data['caseUrn'] %}{{ data['caseUrn'] }}{% elif data['URN1'] %}{{ data['URN1'] }}{{ data['URN2'] }}{{ data['URN3'] }}{{ data['URN4'] }}{% else %}87AA6543226{% endif %}{% else %}{{ folder.name }}{% endif %}">
+                                        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
+                                    </form>
+                                </td>
+                                <td class="govuk-table__cell"><span class="icon-new folder"></span>{% if folder.id == 2003 %}{% if connectionCaseName %}{{ connectionCaseName }}{% else %}{{ folder.name }}{% endif %} {% if data['caseUrn'] %}{{ data['caseUrn'] }}{% elif data['URN1'] %}{{ data['URN1'] }}{{ data['URN2'] }}{{ data['URN3'] }}{{ data['URN4'] }}{% else %}87AA6543226{% endif %}{% else %}{{ folder.name }}{% endif %}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    {% else %}
 
                     <!-- ////////////////////////////////////////////////////// STAGE 3 - START ////////////////////////////////////////////////////// -->
                     {% for folder in data['sharedDriveFolders'] %}
@@ -78,12 +143,12 @@
                         {% if folder.folder and folder.level == 2 %}
                             <tr class="govuk-table__row pdrive_stage_4 pdrive_items">
                                 <td class="govuk-table__cell govuk-!-text-align-left">
-                                    <form method="post" action="/version-18/lcc/register-case/11-shared-drive-files-connected" id="">
-                                        <input id="pdrive_file_link_{{ folder.id }}" name="pdrive_file_link" type="text" value="{% if folder.id == 2003 %}{% if data['operationName'] %}{{ data['operationName'] }}{% else %}{{ folder.name }}{% endif %} {% if data['caseUrn'] %}{{ data['caseUrn'] }}{% elif data['URN1'] %}{{ data['URN1'] }}{{ data['URN2'] }}{{ data['URN3'] }}{{ data['URN4'] }}{% else %}87AA6543226{% endif %}{% else %}{{ folder.name }}{% endif %}" style="display: none;">
+                                    <form method="post" action="{{ sharedDriveConnectAction }}" id="">
+                                        <input id="pdrive_file_link_{{ folder.id }}" name="pdrive_file_link" type="text" value="{% if folder.id == 2003 %}{% if connectionCaseName %}{{ connectionCaseName }}{% else %}{{ folder.name }}{% endif %} {% if data['caseUrn'] %}{{ data['caseUrn'] }}{% elif data['URN1'] %}{{ data['URN1'] }}{{ data['URN2'] }}{{ data['URN3'] }}{{ data['URN4'] }}{% else %}87AA6543226{% endif %}{% else %}{{ folder.name }}{% endif %}" style="display: none;">
                                         <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
                                     </form>
                                 </td>
-                                <td class="govuk-table__cell"><span class="icon-new folder"></span><a href="#" class="govuk-link--no-visited-state operation_name pdrive_stage_4 pdrive_items">{% if folder.id == 2003 %}{% if data['operationName'] %}{{ data['operationName'] }}{% else %}{{ folder.name }}{% endif %} {% if data['caseUrn'] %}{{ data['caseUrn'] }}{% elif data['URN1'] %}{{ data['URN1'] }}{{ data['URN2'] }}{{ data['URN3'] }}{{ data['URN4'] }}{% else %}87AA6543226{% endif %}{% else %}{{ folder.name }}{% endif %}</a></td>
+                                <td class="govuk-table__cell"><span class="icon-new folder"></span><a href="#" class="govuk-link--no-visited-state operation_name pdrive_stage_4 pdrive_items">{% if folder.id == 2003 %}{% if connectionCaseName %}{{ connectionCaseName }}{% else %}{{ folder.name }}{% endif %} {% if data['caseUrn'] %}{{ data['caseUrn'] }}{% elif data['URN1'] %}{{ data['URN1'] }}{{ data['URN2'] }}{{ data['URN3'] }}{{ data['URN4'] }}{% else %}87AA6543226{% endif %}{% else %}{{ folder.name }}{% endif %}</a></td>
                             </tr>
                         {% endif %}
                     {% endfor %}
@@ -93,7 +158,7 @@
                     <!-- FOLDER 1 - START --> 
                     <tr class="govuk-table__row pdrive_stage_5 pdrive_items">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/11-shared-drive-files-connected" id="">  
+                            <form method="post" action="{{ sharedDriveConnectAction }}" id="">
                                 <input id="pdrive_file_link_18" name="pdrive_file_link" type="text" value="1. Case Management" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
                             </form>                            
@@ -106,7 +171,7 @@
                     <!-- FOLDER 2 - START --> 
                     <tr class="govuk-table__row pdrive_stage_5 pdrive_items">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/11-shared-drive-files-connected" id="">  
+                            <form method="post" action="{{ sharedDriveConnectAction }}" id="">
                                 <input id="pdrive_file_link_19" name="pdrive_file_link" type="text" value="2. Conference Hearing Notes" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
                             </form>                            
@@ -119,7 +184,7 @@
                     <!-- FOLDER 3 - START --> 
                     <tr class="govuk-table__row pdrive_stage_5 pdrive_items">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/11-shared-drive-files-connected" id="">  
+                            <form method="post" action="{{ sharedDriveConnectAction }}" id="">
                                 <input id="pdrive_file_link_20" name="pdrive_file_link" type="text" value="3. Experts" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
                             </form>                            
@@ -132,7 +197,7 @@
                     <!-- FOLDER 4 - START --> 
                     <tr class="govuk-table__row pdrive_stage_5 pdrive_items">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/11-shared-drive-files-connected" id="">  
+                            <form method="post" action="{{ sharedDriveConnectAction }}" id="">
                                 <input id="pdrive_file_link_21" name="pdrive_file_link" type="text" value="4. Counsel" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
                             </form>                            
@@ -145,7 +210,7 @@
                     <!-- FOLDER 5 - START --> 
                     <tr class="govuk-table__row pdrive_stage_5 pdrive_items">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/11-shared-drive-files-connected" id="">  
+                            <form method="post" action="{{ sharedDriveConnectAction }}" id="">
                                 <input id="pdrive_file_link_22" name="pdrive_file_link" type="text" value="5. Correspondence" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
                             </form>                            
@@ -158,7 +223,7 @@
                     <!-- FOLDER 6 - START --> 
                     <tr class="govuk-table__row pdrive_stage_5 pdrive_items">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/11-shared-drive-files-connected" id="">  
+                            <form method="post" action="{{ sharedDriveConnectAction }}" id="">
                                 <input id="pdrive_file_link_23" name="pdrive_file_link" type="text" value="6. Disclosuree" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
                             </form>                            
@@ -171,7 +236,7 @@
                     <!-- FOLDER 7 - START --> 
                     <tr class="govuk-table__row pdrive_stage_5 pdrive_items">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/11-shared-drive-files-connected" id="">  
+                            <form method="post" action="{{ sharedDriveConnectAction }}" id="">
                                 <input id="pdrive_file_link_24" name="pdrive_file_link" type="text" value="7. Finance" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
                             </form>                            
@@ -184,7 +249,7 @@
                     <!-- FOLDER 8 - START --> 
                     <tr class="govuk-table__row pdrive_stage_5 pdrive_items">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/11-shared-drive-files-connected" id="">  
+                            <form method="post" action="{{ sharedDriveConnectAction }}" id="">
                                 <input id="pdrive_file_link_25" name="pdrive_file_link" type="text" value="8. Lawyer Working copies" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
                             </form>                            
@@ -197,7 +262,7 @@
                     <!-- FOLDER 9 - START --> 
                     <tr class="govuk-table__row pdrive_stage_5 pdrive_items">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/11-shared-drive-files-connected" id="">  
+                            <form method="post" action="{{ sharedDriveConnectAction }}" id="">
                                 <input id="pdrive_file_link_26" name="pdrive_file_link" type="text" value="9. PO Working copies" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
                             </form>                            
@@ -210,7 +275,7 @@
                     <!-- FOLDER 10 - START --> 
                     <tr class="govuk-table__row pdrive_stage_5 pdrive_items">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/11-shared-drive-files-connected" id="">  
+                            <form method="post" action="{{ sharedDriveConnectAction }}" id="">
                                 <input id="pdrive_file_link_27" name="pdrive_file_link" type="text" value="10. Police" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
                             </form>                            
@@ -223,7 +288,7 @@
                     <!-- FOLDER 11 - START --> 
                     <tr class="govuk-table__row pdrive_stage_5 pdrive_items">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/11-shared-drive-files-connected" id="">  
+                            <form method="post" action="{{ sharedDriveConnectAction }}" id="">
                                 <input id="pdrive_file_link_28" name="pdrive_file_link" type="text" value="11. Media" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
                             </form>                            
@@ -236,7 +301,7 @@
                     <!-- FOLDER 12 - START --> 
                     <tr class="govuk-table__row pdrive_stage_5 pdrive_items">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/11-shared-drive-files-connected" id="">  
+                            <form method="post" action="{{ sharedDriveConnectAction }}" id="">
                                 <input id="pdrive_file_link_29" name="pdrive_file_link" type="text" value="12. Victims & Witnesses" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
                             </form>                            
@@ -249,7 +314,7 @@
                     <!-- FOLDER 13 - START --> 
                     <tr class="govuk-table__row pdrive_stage_5 pdrive_items">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/11-shared-drive-files-connected" id="">  
+                            <form method="post" action="{{ sharedDriveConnectAction }}" id="">
                                 <input id="pdrive_file_link_30" name="pdrive_file_link" type="text" value="13. DCS" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
                             </form>                            
@@ -262,7 +327,7 @@
                     <!-- FOLDER 14 - START --> 
                     <tr class="govuk-table__row pdrive_stage_5 pdrive_items">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/11-shared-drive-files-connected" id="">  
+                            <form method="post" action="{{ sharedDriveConnectAction }}" id="">
                                 <input id="pdrive_file_link_31" name="pdrive_file_link" type="text" value="14. Mags Ct" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
                             </form>                            
@@ -275,7 +340,7 @@
                     <!-- FOLDER 15 - START --> 
                     <tr class="govuk-table__row pdrive_stage_5 pdrive_items">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/11-shared-drive-files-connected" id="">  
+                            <form method="post" action="{{ sharedDriveConnectAction }}" id="">
                                 <input id="pdrive_file_link_32" name="pdrive_file_link" type="text" value="15. IDPC" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none; white-space: nowrap;">Connect</button>
                             </form>                            
@@ -286,6 +351,8 @@
                     <!-- FOLDER 15 - END --> 
                     <!-- ////////////////////////////////////////////////////// STAGE 5 - START ////////////////////////////////////////////////////// -->
 
+                    {% endif %}
+
                 </tbody>
             </table>
 
@@ -295,6 +362,84 @@
                     if (pdriveTable && typeof SortableTable !== 'undefined') {
                         new SortableTable(pdriveTable);
                     }
+
+                    {% if connectionJourney == 'materials' %}
+                    var stages = Array.prototype.slice.call(document.querySelectorAll('.drive-connect-stage'));
+                    var locationCrumb = document.querySelector('.drive-connect-location-crumb');
+                    var divisionCrumb = document.querySelector('.drive-connect-division-crumb');
+                    var caseTypeCrumb = document.querySelector('.drive-connect-case-type-crumb');
+                    var selectedLocation = '';
+
+                    function showStage(className) {
+                        stages.forEach(function (row) {
+                            row.hidden = !row.classList.contains(className);
+                        });
+                    }
+
+                    function showLocations(event) {
+                        if (event) event.preventDefault();
+                        showStage('drive-connect-stage--locations');
+                        locationCrumb.hidden = true;
+                        divisionCrumb.hidden = true;
+                        caseTypeCrumb.hidden = true;
+                    }
+
+                    document.querySelector('.drive-connect-home').addEventListener('click', showLocations);
+                    document.querySelector('.drive-connect-folders').addEventListener('click', showLocations);
+
+                    document.querySelectorAll('.drive-connect-location').forEach(function (link) {
+                        link.addEventListener('click', function (event) {
+                            event.preventDefault();
+                            selectedLocation = link.getAttribute('data-location');
+                            stages.forEach(function (row) {
+                                row.hidden = !row.classList.contains('drive-connect-stage--divisions') || row.getAttribute('data-location') !== selectedLocation;
+                            });
+                            locationCrumb.querySelector('a').textContent = link.textContent;
+                            locationCrumb.hidden = false;
+                            divisionCrumb.hidden = true;
+                            caseTypeCrumb.hidden = true;
+                        });
+                    });
+
+                    locationCrumb.querySelector('a').addEventListener('click', function (event) {
+                        event.preventDefault();
+                        stages.forEach(function (row) {
+                            row.hidden = !row.classList.contains('drive-connect-stage--divisions') || row.getAttribute('data-location') !== selectedLocation;
+                        });
+                        divisionCrumb.hidden = true;
+                        caseTypeCrumb.hidden = true;
+                    });
+
+                    document.querySelectorAll('.drive-connect-division').forEach(function (link) {
+                        link.addEventListener('click', function (event) {
+                            event.preventDefault();
+                            showStage('drive-connect-stage--case-types');
+                            divisionCrumb.querySelector('a').textContent = link.textContent;
+                            divisionCrumb.hidden = false;
+                            caseTypeCrumb.hidden = true;
+                        });
+                    });
+
+                    divisionCrumb.querySelector('a').addEventListener('click', function (event) {
+                        event.preventDefault();
+                        showStage('drive-connect-stage--case-types');
+                        caseTypeCrumb.hidden = true;
+                    });
+
+                    document.querySelectorAll('.drive-connect-case-type').forEach(function (link) {
+                        link.addEventListener('click', function (event) {
+                            event.preventDefault();
+                            var folderId = link.getAttribute('data-folder-id');
+                            stages.forEach(function (row) {
+                                row.hidden = !row.classList.contains('drive-connect-stage--cases') || row.getAttribute('data-parent-id') !== folderId;
+                            });
+                            caseTypeCrumb.querySelector('span').textContent = link.textContent;
+                            caseTypeCrumb.hidden = false;
+                        });
+                    });
+
+                    showLocations();
+                    {% endif %}
                 });
             </script>
 

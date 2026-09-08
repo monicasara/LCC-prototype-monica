@@ -2089,57 +2089,16 @@ router.post('/lcc/register-case/case-details-placeholder', function (req, res) {
 })
 
 
+router.get('/lcc/materials/04A-create-or-link-folders', function (req, res) {
+    res.redirect('/version-18/lcc/materials/04A-egress-files')
+})
+
 router.post('/lcc/materials/04A-create-or-link-folders', function (req, res) {
     req.session.data.newEgressFolder = 0
-    req.session.data.existingEgressFolder = 0
     req.session.data.newDriveFolder = 0
-    req.session.data.existingDriveFolder = 0
-    req.session.data.egress_file_link = ''
-    req.session.data.pdrive_file_link = ''
-
-    if (req.body['egress-folders'] != undefined) {
-        if (req.body['egress-folder-options'] === 'Create new Egress folders') {
-            req.session.data.newEgressFolder = 1
-            req.session.data.existingEgressFolder = 0
-            setRegisterCaseTimestamp(req.session.data, 'registerCaseEgressCreatedAt')
-        }
-        else if (req.body['egress-folder-options'] === 'Connect Egress folders') {
-            req.session.data.existingEgressFolder = 1
-            req.session.data.newEgressFolder = 0
-        }
-    }
-
-    if (req.body['shared-drive-folders'] != undefined) {
-        if (req.body['shared-drive-folder-options'] === 'Create new Shared Drive folders') {
-            req.session.data.newDriveFolder = 1
-            req.session.data.existingDriveFolder = 0
-        }
-        else if (req.body['shared-drive-folder-options'] === 'Connect Shared Drive folders') {
-            req.session.data.existingDriveFolder = 1
-            req.session.data.newDriveFolder = 0
-        }
-    }
-
-    if (req.session.data.existingEgressFolder === 1) {
-        res.redirect('/version-18/lcc/materials/04A-egress-files')
-    }
-
-    else if (req.session.data.existingDriveFolder === 1) {
-        res.redirect('/version-18/lcc/materials/05A-p-drive-files')
-    }
-
-    else if (req.session.data.newDriveFolder === 1) {
-        res.redirect('/version-18/lcc/materials/05A-create-shared-drive-folder')
-    }
-
-    else if (req.session.data.newEgressFolder === 1) {
-        res.redirect('/version-18/lcc/register-case/12-check-answers')
-    }
-
-    else {
-        res.redirect('/version-18/lcc/register-case/12-check-answers')
-    }
-
+    req.session.data.existingEgressFolder = 1
+    req.session.data.existingDriveFolder = 1
+    res.redirect('/version-18/lcc/materials/04A-egress-files')
 })
 
 router.post('/lcc/materials/05A-create-shared-drive-folder', function (req, res) {
@@ -2148,22 +2107,66 @@ router.post('/lcc/materials/05A-create-shared-drive-folder', function (req, res)
     res.redirect('/version-18/lcc/register-case/12-check-answers')
 })
 
+router.get('/lcc/materials/04A-egress-files', function (req, res) {
+    const searchedCaseName = req.query.searchOFF_EGRESS_VALUE || req.query.searchOFF_Operation_VALUE || req.query.searchOFF_Defendant_VALUE || req.query.searchOFF_URN_VALUE || req.session.data.searchOFF_Operation_VALUE || req.session.data.searchOFF_Defendant_VALUE || req.session.data.searchOFF_URN_VALUE
+    if (searchedCaseName) req.session.data.connectionCaseSearchTerm = searchedCaseName
+    if (req.query.searchOFF_URN_VALUE || req.query.searchOFF === 'URN') {
+        req.session.data.connectionSearchType = 'urn'
+    }
+    else if (req.query.searchOFF_Operation_VALUE || req.query.searchOFF === 'Operation name') {
+        req.session.data.connectionSearchType = 'operation'
+    }
+    else if (req.query.searchOFF_Defendant_VALUE || req.query.searchOFF === 'Defendant surname') {
+        req.session.data.connectionSearchType = 'defendant'
+    }
+    res.render('version-18/lcc/materials/connect-egress', {
+        connectionJourney: 'materials'
+    })
+})
+
+router.post('/lcc/materials/04A-egress-files', function (req, res) {
+    const searchedCaseName = req.body.searchOFF_Operation_VALUE || req.body.searchOFF_Defendant_VALUE || req.body.searchOFF_URN_VALUE || req.session.data.searchOFF_Operation_VALUE || req.session.data.searchOFF_Defendant_VALUE || req.session.data.searchOFF_URN_VALUE
+    if (searchedCaseName) req.session.data.connectionCaseSearchTerm = searchedCaseName
+    if (req.body.searchOFF_URN_VALUE || req.body.searchOFF === 'URN') {
+        req.session.data.connectionSearchType = 'urn'
+    }
+    else if (req.body.searchOFF_Operation_VALUE || req.body.searchOFF === 'Operation name') {
+        req.session.data.connectionSearchType = 'operation'
+    }
+    else if (req.body.searchOFF_Defendant_VALUE || req.body.searchOFF === 'Defendant surname') {
+        req.session.data.connectionSearchType = 'defendant'
+    }
+    res.render('version-18/lcc/materials/connect-egress', {
+        connectionJourney: 'materials'
+    })
+})
+
+router.get('/lcc/materials/05A-p-drive-files', function (req, res) {
+    res.render('version-18/lcc/materials/connect-shared-drive', {
+        connectionJourney: 'materials'
+    })
+})
+
+router.post('/lcc/materials/05A-p-drive-files', function (req, res) {
+    res.render('version-18/lcc/materials/connect-shared-drive', {
+        connectionJourney: 'materials'
+    })
+})
+
 router.post('/lcc/materials/04A-egress-files-connected', function (req, res) {
+    req.session.data.egress_file_link = req.body.egress_file_link
+    req.session.data.existingEgressFolder = 1
+    req.session.data.offCMS_Egress_files_V2 = 'Yes'
     setRegisterCaseTimestamp(req.session.data, 'registerCaseEgressLinkedAt')
-    if (req.session.data.newDriveFolder === 1) {
-        res.redirect('/version-18/lcc/materials/05A-create-shared-drive-folder')
-    }
-    else if (req.session.data.existingDriveFolder === 1) {
-        res.redirect('/version-18/lcc/materials/05A-p-drive-files')
-    }
-    else {
-        res.redirect('/version-18/lcc/register-case/12-check-answers')
-    }
+    res.redirect('/version-18/lcc/materials/05A-p-drive-files')
 })
 
 router.post('/lcc/materials/05A-p-drive-files-connected', function (req, res) {
+    req.session.data.pdrive_file_link = req.body.pdrive_file_link
+    req.session.data.existingDriveFolder = 1
+    req.session.data.offCMS_PDrive_files_V2 = 'Yes'
     setRegisterCaseTimestamp(req.session.data, 'registerCaseSharedDriveLinkedAt')
-    res.redirect('/version-18/lcc/register-case/12-check-answers')
+    res.redirect('/version-18/lcc/materials/03-case-overview?activeTab=tab-1-content')
 })
 
 router.post('/lcc/materials/05A-create-shared-drive-folder', function (req, res) {
@@ -2542,7 +2545,11 @@ function renderCaseOverviewPage(pageView, activeTab) {
     const materials = data.materials || [];
     const pageSizeOptions = [20, 50, 100];
     const validTransferViews = ['egress', 'shared-drive'];
+    const validDeleteVariants = ['regular', 'tree', 'large', 'paginated'];
     req.session.data.activeTab = activeTab;
+    if (validDeleteVariants.includes(req.query.deleteVariant)) {
+        req.session.data.deleteVariant = req.query.deleteVariant;
+    }
     if (validTransferViews.includes(req.query.transferView)) {
         req.session.data.transferView = req.query.transferView;
     }
@@ -3332,44 +3339,32 @@ router.post('/version-18/lcc/materials/case-overview', function (req, res) {
 
 
 router.post('/lcc/materials/delete', function (req, res) {
+    const data = req.session.data;
+    const materials = data.materials || [];
     const selected = req.body.material_selected
         ? [...new Set(req.body.material_selected.split(',').map(s => s.trim()).filter(Boolean))]
         : [];
+    const validDeleteVariants = ['regular', 'tree', 'large', 'paginated'];
+    const requestedDeleteVariant = req.body.delete_variant || req.query.variant;
+    const deleteVariant = validDeleteVariants.includes(requestedDeleteVariant) ? requestedDeleteVariant : 'large';
+    req.session.data.deleteVariant = deleteVariant;
+    const preview = deleteVariant === 'large' || deleteVariant === 'paginated'
+        ? { tree: buildLargeDeleteScenarioTree() }
+        : buildDeleteSelectionPreview(materials, selected);
+    const deleteView = {
+        regular: 'delete',
+        tree: 'delete2',
+        large: 'delete3',
+        paginated: 'delete4'
+    }[deleteVariant];
 
-    const data = req.session.data;
-    const materials = data.materials || [];
-    const toRemove = new Set(selected.map(String));
-
-    const byParent = new Map();
-    materials.forEach(m => {
-        const p = m.parentId ?? null;
-        if (!byParent.has(String(p))) byParent.set(String(p), []);
-        byParent.get(String(p)).push(String(m.id));
-    });
-
-    const stack = [...toRemove];
-    while (stack.length) {
-        const id = stack.pop();
-        const kids = byParent.get(String(id)) || [];
-        kids.forEach(kid => {
-            if (!toRemove.has(kid)) {
-                toRemove.add(kid);
-                stack.push(kid);
-            }
-        });
-    }
-
-    const removedItems = materials.filter(m => toRemove.has(String(m.id)));
-    const deleteRootIds = [...new Set(removedItems
-        .filter(item => !toRemove.has(String(item.parentId)))
-        .map(item => String(item.id)))];
-
-    res.render('version-18/lcc/materials/delete', {
+    res.render(`version-18/lcc/materials/${deleteView}`, {
         data: {
             ...data,
             material_selected: req.body.material_selected || '',
-            deleteItemsPreviewTree: buildPreviewTree(materials, deleteRootIds),
-            deleteItemsCount: removedItems.length
+            deleteVariant,
+            deleteItemsPreviewTree: preview.tree,
+            deleteItemsCount: countPreviewTreeItems(preview.tree)
         }
     });
 });
@@ -3381,13 +3376,18 @@ router.post('/lcc/materials/discard-material', function (req, res) {
         : [];
 
     const deleteChoice = (req.body['delete-choice'] || '').trim();
+    const validDeleteVariants = ['regular', 'tree', 'large', 'paginated'];
+    const requestedDeleteVariant = req.body.delete_variant || req.query.variant || req.session.data.deleteVariant;
+    const deleteVariant = validDeleteVariants.includes(requestedDeleteVariant) ? requestedDeleteVariant : 'large';
+    req.session.data.deleteVariant = deleteVariant;
+    const overviewUrl = `/version-18/lcc/materials/03-case-overview?deleteVariant=${deleteVariant}`;
     const reason = req.body.discarding_material;
 
     const materials = req.session.data.materials || [];
 
     // If nothing selected, just go back safely.
     if (!selected.length) {
-        return res.redirect('/version-18/lcc/materials/03-case-overview');
+        return res.redirect(overviewUrl);
     }
 
     // Build parent -> children map.
@@ -3398,40 +3398,32 @@ router.post('/lcc/materials/discard-material', function (req, res) {
         byParent.get(String(p)).push(String(m.id));
     });
 
-    // Build preview tree from the current selection for rerender/error state.
-    const selectedSet = new Set(selected.map(String));
-    const selectedStack = [...selectedSet];
-    while (selectedStack.length) {
-        const id = selectedStack.pop();
-        const kids = byParent.get(String(id)) || [];
-        kids.forEach(kid => {
-            if (!selectedSet.has(kid)) {
-                selectedSet.add(kid);
-                selectedStack.push(kid);
-            }
-        });
-    }
-
-    const selectedItems = materials.filter(m => selectedSet.has(String(m.id)));
-    const selectedRootIds = [...new Set(selectedItems
-        .filter(item => !selectedSet.has(String(item.parentId)))
-        .map(item => String(item.id)))];
-
     if (!deleteChoice) {
-        return res.render('version-18/lcc/materials/delete', {
+        const preview = deleteVariant === 'large' || deleteVariant === 'paginated'
+            ? { tree: buildLargeDeleteScenarioTree() }
+            : buildDeleteSelectionPreview(materials, selected);
+        const deleteView = {
+            regular: 'delete',
+            tree: 'delete2',
+            large: 'delete3',
+            paginated: 'delete4'
+        }[deleteVariant];
+
+        return res.render(`version-18/lcc/materials/${deleteView}`, {
             data: {
                 ...req.session.data,
                 ...req.body,
                 material_selected: req.body.material_selected || '',
-                deleteItemsPreviewTree: buildPreviewTree(materials, selectedRootIds),
-                deleteItemsCount: selectedItems.length,
+                deleteVariant,
+                deleteItemsPreviewTree: preview.tree,
+                deleteItemsCount: countPreviewTreeItems(preview.tree),
                 deleteChoiceError: 'Select whether you want to delete these items'
             }
         });
     }
 
     if (deleteChoice === 'No') {
-        return res.redirect('/version-18/lcc/materials/03-case-overview');
+        return res.redirect(overviewUrl);
     }
 
     // If folders should remove descendants too, expand IDs.
@@ -3485,7 +3477,7 @@ router.post('/lcc/materials/discard-material', function (req, res) {
         date: new Date().toISOString()
     };
 
-    res.redirect('/version-18/lcc/materials/03-case-overview');
+    res.redirect(overviewUrl);
 });
 
 
@@ -3846,13 +3838,19 @@ function buildPreviewTree(materials, rootIds, nameOverrides = {}, includeDescend
             ? materials
                 .filter(m => String(m.parentId) === String(item.id))
                 .map(buildNode)
+                .sort((first, second) => Number(second.isFolder) - Number(first.isFolder))
             : [];
+
+        const itemCount = children.reduce((total, child) => {
+            return total + 1 + (child.isFolder ? child.itemCount : 0);
+        }, 0);
 
         return {
             id: item.id,
             name: override && typeof override === 'object' ? override.name : (override || item.name),
             isFolder: !!item.folder,
             isBold: !!item.folder && boldFolders,
+            itemCount: item.folder ? itemCount : 0,
             renamedTo: override && typeof override === 'object' ? override.renamedTo : null,
             children
         };
@@ -3862,6 +3860,179 @@ function buildPreviewTree(materials, rootIds, nameOverrides = {}, includeDescend
         .map(id => byId[String(id)])
         .filter(Boolean)
         .map(buildNode);
+}
+
+function buildDeleteSelectionPreview(materials, selectedIds) {
+    const selectedSet = new Set(selectedIds.map(String));
+    const byParent = new Map();
+
+    materials.forEach(item => {
+        const parentId = String(item.parentId ?? null);
+        if (!byParent.has(parentId)) byParent.set(parentId, []);
+        byParent.get(parentId).push(String(item.id));
+    });
+
+    const stack = [...selectedSet];
+    while (stack.length) {
+        const id = stack.pop();
+        (byParent.get(String(id)) || []).forEach(childId => {
+            if (!selectedSet.has(childId)) {
+                selectedSet.add(childId);
+                stack.push(childId);
+            }
+        });
+    }
+
+    const selectedItems = materials.filter(item => selectedSet.has(String(item.id)));
+    const rootIds = selectedItems
+        .filter(item => !selectedSet.has(String(item.parentId)))
+        .map(item => String(item.id));
+
+    return { tree: buildPreviewTree(materials, [...new Set(rootIds)]) };
+}
+
+// Large, made-up folder structure used by the delete3 high-volume prototype.
+function buildLargeDeleteScenarioTree() {
+    const sectionNames = [
+        '1. Case management',
+        '2. Conference and hearing notes',
+        '3. Experts',
+        '4. Counsel',
+        '5. Correspondence',
+        '6. Disclosure',
+        '7. Finance',
+        '8. Lawyer working copies',
+        '9. Prosecution working copies',
+        '10. Police material',
+        '11. Media',
+        '12. Victims and witnesses',
+        '13. Digital case system',
+        '14. Magistrates court',
+        '15. Initial details of the prosecution case',
+        '16. Forensics',
+        '17. Exhibits',
+        '18. Defence material',
+        '19. Court orders',
+        '20. Archive'
+    ];
+    const fileTypes = ['Statement', 'Exhibit', 'Report', 'Interview', 'Schedule'];
+
+    function makeFolder(id, name, children) {
+        const orderedChildren = [...children].sort((first, second) => {
+            return Number(second.isFolder) - Number(first.isFolder);
+        });
+        const itemCount = orderedChildren.reduce((total, child) => {
+            return total + 1 + (child.isFolder ? child.itemCount : 0);
+        }, 0);
+
+        return { id, name, isFolder: true, itemCount, children: orderedChildren };
+    }
+
+    function makeDeepFolderBranch(idPrefix, folderNames, files) {
+        return folderNames.reduceRight((child, folderName, folderIndex) => {
+            const children = Array.isArray(child) ? child : [child];
+            return makeFolder(`${idPrefix}-deep-${folderIndex}`, folderName, children);
+        }, files);
+    }
+
+    return sectionNames.map((sectionName, sectionIndex) => {
+        // Include a few empty first-tier folders in the high-volume scenario.
+        if ([5, 9, 12, 15, 18, 19].includes(sectionIndex)) {
+            return makeFolder(`delete3-${sectionIndex}`, sectionName, []);
+        }
+
+        const batchCount = 5 + ((sectionIndex * 7) % 8);
+        const batches = Array.from({ length: batchCount }, (_, batchIndex) => {
+            const evidenceFolderCount = 3 + ((sectionIndex * 5 + batchIndex * 3) % 9);
+            const evidenceFolders = Array.from({ length: evidenceFolderCount }, (_, folderIndex) => {
+                const sequence = String((sectionIndex * 100) + (batchIndex * 10) + folderIndex + 1).padStart(4, '0');
+                const folderId = `delete3-${sectionIndex}-${batchIndex}-${folderIndex}`;
+                const fileType = fileTypes[(sectionIndex + batchIndex + folderIndex) % fileTypes.length];
+                const fileCount = 1 + ((sectionIndex * 3 + batchIndex * 5 + folderIndex * 7) % 8);
+                const files = Array.from({ length: fileCount }, (_, fileIndex) => {
+                    const versions = ['original', 'working-copy', 'signed', 'reviewed', 'final', 'supplement'];
+
+                    return {
+                        id: `${folderId}-${fileIndex}`,
+                        name: `${fileType}_${sequence}_${versions[fileIndex % versions.length]}_${fileIndex + 1}`,
+                        isFolder: false,
+                        itemCount: 0,
+                        children: []
+                    };
+                });
+
+                if (sectionIndex === 0 && batchIndex === 0 && folderIndex === 0) {
+                    const deepBranch = makeDeepFolderBranch(folderId, [
+                        'Initial review',
+                        'Evidence assessment',
+                        'Disclosure review',
+                        'Senior review',
+                        'Final approval'
+                    ], files);
+
+                    return makeFolder(folderId, `Material group ${sequence}`, [deepBranch]);
+                }
+
+                if (sectionIndex === 2 && batchIndex === 0 && folderIndex === 0) {
+                    const deepBranch = makeDeepFolderBranch(folderId, [
+                        'Expert evidence',
+                        'Medical evidence',
+                        'Consultant reports',
+                        'Quality assurance',
+                        'Approved reports'
+                    ], files);
+
+                    return makeFolder(folderId, `Material group ${sequence}`, [deepBranch]);
+                }
+
+                return makeFolder(folderId, `Material group ${sequence}`, files);
+            });
+
+            const batchChildren = [];
+            evidenceFolders.forEach((evidenceFolder, evidenceFolderIndex) => {
+                batchChildren.push(evidenceFolder);
+
+                if (evidenceFolderIndex % 2 === 0) {
+                    batchChildren.push({
+                        id: `delete3-${sectionIndex}-${batchIndex}-loose-${evidenceFolderIndex}`,
+                        name: `Batch_${String(batchIndex + 1).padStart(2, '0')}_index_${evidenceFolderIndex + 1}`,
+                        isFolder: false,
+                        itemCount: 0,
+                        children: []
+                    });
+                }
+            });
+
+            return makeFolder(
+                `delete3-${sectionIndex}-${batchIndex}`,
+                `Batch ${String(batchIndex + 1).padStart(2, '0')}`,
+                batchChildren
+            );
+        });
+
+        const sectionChildren = [];
+        batches.forEach((batch, batchIndex) => {
+            sectionChildren.push(batch);
+
+            if (batchIndex % 3 === 0) {
+                sectionChildren.push({
+                    id: `delete3-${sectionIndex}-section-file-${batchIndex}`,
+                    name: `Section_${String(sectionIndex + 1).padStart(2, '0')}_case-note_${batchIndex + 1}`,
+                    isFolder: false,
+                    itemCount: 0,
+                    children: []
+                });
+            }
+        });
+
+        return makeFolder(`delete3-${sectionIndex}`, sectionName, sectionChildren);
+    });
+}
+
+function countPreviewTreeItems(nodes) {
+    return nodes.reduce((total, node) => {
+        return total + 1 + (node.isFolder ? node.itemCount : 0);
+    }, 0);
 }
 
 function getTransferEgressDescendants(transferEgress, parentId) {

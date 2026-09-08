@@ -8,9 +8,12 @@
 {% endblock %}
 {% block content %}
 
-{% set egressSearchTerm = data['searchOFF_EGRESS_VALUE'] or data['operationName'] or 'Thundercat' %}
+{% set egressSearchAction = '/version-18/lcc/materials/04A-egress-files' if connectionJourney == 'materials' else '10-egress-files' %}
+{% set egressConnectAction = '/version-18/lcc/materials/04A-egress-files-connected' if connectionJourney == 'materials' else '/version-18/lcc/register-case/10-egress-files-connected' %}
+{% set egressSearchTerm = data['searchOFF_EGRESS_VALUE'] or data['connectionCaseSearchTerm'] or data['searchOFF_Operation_VALUE'] or data['searchOFF_Defendant_VALUE'] or data['searchOFF_URN_VALUE'] or data['operationName'] or '' %}
 {% set egressCaseUrn = data['caseUrn'] or (data['URN1'] ~ data['URN2'] ~ data['URN3'] ~ data['URN4'] if data['URN1'] else '87AA6543226') %}
-{% set egressExactMatchName = egressSearchTerm ~ ' ' ~ egressCaseUrn %}
+{% set isUrnConnectionSearch = connectionJourney == 'materials' and data['connectionSearchType'] == 'urn' %}
+{% set egressExactMatchName = egressSearchTerm if isUrnConnectionSearch else egressSearchTerm ~ ' ' ~ egressCaseUrn %}
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -24,7 +27,7 @@
                 Search for the Egress case you want to link.
             </div>
  -->
-            <form method="get" action="10-egress-files" class="confirm_egress_search">
+            <form method="get" action="{{ egressSearchAction }}" class="confirm_egress_search">
                 <fieldset>
                     <div class="govuk-form-group">
                         <label class="govuk-label govuk-label--s" for="searchOFF_EGRESS_VALUE">Search</label>
@@ -32,8 +35,13 @@
                         <button type="submit" class="govuk-button govuk-!-margin-bottom-0" style="margin-left: 10px;">Search</button>
                     </div>
                     <p class="search_headline">
+                        {% if isUrnConnectionSearch %}
+                        <span class="line_1">1 case found for <strong>{{ egressSearchTerm }}</strong></span>
+                        <span class="line_2">There is <strong>1 case</strong> available to connect on Egress.</span>
+                        {% else %}
                         <span class="line_1">4 cases found for <strong>{{ egressSearchTerm }}</strong></span>
                         <span class="line_2">There are <strong>20 folders</strong> on Egress.</span>
+                        {% endif %}
                     </p>
                 </fieldset> 
             </form>
@@ -48,10 +56,23 @@
                 </thead>
                 <tbody class="govuk-table__body">
 
+                    {% if isUrnConnectionSearch %}
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-!-text-align-left">
+                            <form method="post" action="{{ egressConnectAction }}">
+                                <input name="egress_file_link" type="hidden" value="{{ egressExactMatchName }}">
+                                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Connect</button>
+                            </form>
+                        </td>
+                        <td class="govuk-table__cell">{{ egressExactMatchName }}</td>
+                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Available to connect</strong></td>
+                    </tr>
+                    {% else %}
+
                     <!-- CASE 1 - START --> 
                     <tr class="govuk-table__row hidden_row">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/10-egress-files-connected" id="">  
+                            <form method="post" action="{{ egressConnectAction }}" id="">
                                 <input id="egress_file_link_1" name="egress_file_link" type="text" value="Barbarossa 12AB3456724" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Connect</button>
                             </form>                            
@@ -68,7 +89,7 @@
                     <!-- CASE 2 - START --> 
                     <tr class="govuk-table__row hidden_row">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/10-egress-files-connected" id="">  
+                            <form method="post" action="{{ egressConnectAction }}" id="">
                                 <input id="egress_file_link_2" name="egress_file_link" type="text" value="Beastmaster 45CD9081123" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Connect</button>
                             </form>                            
@@ -99,7 +120,7 @@
                     <!-- CASE 5 - START --> 
                     <tr class="govuk-table__row hidden_row">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/10-egress-files-connected" id="">  
+                            <form method="post" action="{{ egressConnectAction }}" id="">
                                 <input id="egress_file_link_5" name="egress_file_link" type="text" value="Crescent Wind 09GH1846522" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Connect</button>
                             </form>                            
@@ -128,7 +149,7 @@
                     <!-- CASE 7 - START --> 
                     <tr class="govuk-table__row hidden_row">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/10-egress-files-connected" id="">  
+                            <form method="post" action="{{ egressConnectAction }}" id="">
                                 <input id="egress_file_link_7" name="egress_file_link" type="text" value="Enduring Freedom 18LM5593023" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Connect</button>
                             </form>                            
@@ -157,7 +178,7 @@
                     <!-- CASE 9 - START --> 
                     <tr class="govuk-table__row hidden_row">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/10-egress-files-connected" id="">  
+                            <form method="post" action="{{ egressConnectAction }}" id="">
                                 <input id="egress_file_link_9" name="egress_file_link" type="text" value="Game of Thrones 24QR6901322" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Connect</button>
                             </form>                            
@@ -174,7 +195,7 @@
                     <!-- CASE 10 - START --> 
                     <tr class="govuk-table__row hidden_row">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/10-egress-files-connected" id="">  
+                            <form method="post" action="{{ egressConnectAction }}" id="">
                                 <input id="egress_file_link_10" name="egress_file_link" type="text" value="Groundhog day 57ST2364824" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Connect</button>
                             </form>                            
@@ -191,7 +212,7 @@
                     <!-- CASE 11 - START --> 
                     <tr class="govuk-table__row hidden_row">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/10-egress-files-connected" id="">  
+                            <form method="post" action="{{ egressConnectAction }}" id="">
                                 <input id="egress_file_link_11" name="egress_file_link" type="text" value="Mincemeat 82UV1055923" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Connect</button>
                             </form>                            
@@ -208,7 +229,7 @@
                     <!-- CASE 1 - START --> 
                     <tr class="govuk-table__row hidden_row">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/10-egress-files-connected" id="">  
+                            <form method="post" action="{{ egressConnectAction }}" id="">
                                 <input id="egress_file_link_12" name="egress_file_link" type="text" value="Overlord 39WX7482125" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Connect</button>
                             </form>                            
@@ -237,7 +258,7 @@
                     <!-- CASE 14 - START --> 
                     <tr class="govuk-table__row"> 
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/10-egress-files-connected" id="">  
+                            <form method="post" action="{{ egressConnectAction }}" id="">
                                 <input id="egress_file_link_14" name="egress_file_link" type="text" value="{{ egressExactMatchName }}" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Connect</button>
                             </form>                            
@@ -253,8 +274,8 @@
                     <tr class="govuk-table__row"> 
                         <td class="govuk-table__cell govuk-!-text-align-left">
                             {% if data['createCaseStarted'] == 'true' %}
-                                <form method="post" action="/version-18/lcc/register-case/10-egress-files-connected" id=""> 
-                                    <input id="egress_file_link_15" name="egress_file_link" type="text" value="{{ egressSearchTerm }} office 55AA1189023" style="display: none;">
+                                <form method="post" action="{{ egressConnectAction }}" id="">
+                                <input id="egress_file_link_15" name="egress_file_link" type="text" value="{{ egressSearchTerm }} office 55AA1189023" style="display: none;">
                                     <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Connect</button>
                                 </form>
                             {% endif %}
@@ -274,8 +295,8 @@
                     <tr class="govuk-table__row">
                         <td class="govuk-table__cell govuk-!-text-align-left">
                             {% if data['createCaseStarted'] == 'true' or data['offCMS_Egress_files'] != 'Yes' %}
-                                <form method="post" action="/version-18/lcc/register-case/10-egress-files-connected" id="">  
-                                    <input id="egress_file_link_16" name="egress_file_link" type="text" value="{{ egressSearchTerm }} traffic 68BB3374522" style="display: none;">
+                                <form method="post" action="{{ egressConnectAction }}" id="">
+                                <input id="egress_file_link_16" name="egress_file_link" type="text" value="{{ egressSearchTerm }} traffic 68BB3374522" style="display: none;">
                                     <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Connect</button>
                                 </form>
                             {% endif %}
@@ -299,8 +320,8 @@
                     <tr class="govuk-table__row">
                         <td class="govuk-table__cell govuk-!-text-align-left">
                             {% if data['offCMS_Egress_files_V2'] != 'Yes' %}
-                                <form method="post" action="/version-18/lcc/register-case/10-egress-files-connected" id="">  
-                                    <input id="egress_file_link_3" name="egress_file_link" type="text" value="Captain {{ egressSearchTerm }} 27CC9067321" style="display: none;">
+                                <form method="post" action="{{ egressConnectAction }}" id="">
+                                <input id="egress_file_link_3" name="egress_file_link" type="text" value="Captain {{ egressSearchTerm }} 27CC9067321" style="display: none;">
                                     <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Connect</button>
                                 </form>
                             {% endif %}
@@ -343,7 +364,7 @@
                     <!-- CASE 19 - START --> 
                     <tr class="govuk-table__row hidden_row">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/10-egress-files-connected" id="">  
+                            <form method="post" action="{{ egressConnectAction }}" id="">
                                 <input id="egress_file_link_19" name="egress_file_link" type="text" value="Vittles 78FF2196622" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Connect</button>
                             </form>                            
@@ -360,7 +381,7 @@
                     <!-- CASE 20 - START --> 
                     <tr class="govuk-table__row hidden_row">
                         <td class="govuk-table__cell govuk-!-text-align-left">
-                            <form method="post" action="/version-18/lcc/register-case/10-egress-files-connected" id="">  
+                            <form method="post" action="{{ egressConnectAction }}" id="">
                                 <input id="egress_file_link_20" name="egress_file_link" type="text" value="Wrath of God 05GG8841023" style="display: none;">
                                 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Connect</button>
                             </form>                            
@@ -373,6 +394,8 @@
                         
                     </tr>
                     <!-- CASE 20 - END --> 
+
+                    {% endif %}
 
                 </tbody>
             </table>
