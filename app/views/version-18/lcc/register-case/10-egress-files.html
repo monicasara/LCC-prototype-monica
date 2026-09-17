@@ -10,6 +10,7 @@
 
 {% set egressSearchAction = '/version-18/lcc/materials/04A-egress-files' if connectionJourney == 'materials' else '10-egress-files' %}
 {% set egressConnectAction = '/version-18/lcc/materials/04A-egress-files-connected' if connectionJourney == 'materials' else '/version-18/lcc/register-case/10-egress-files-connected' %}
+{% set egressAlreadyConnectedLabel = 'Connected to Bluealley 82AA1234525' if connectionJourney == 'materials' else 'Connected to another case' %}
 {% set egressSearchTerm = data['searchOFF_EGRESS_VALUE'] or data['connectionCaseSearchTerm'] or data['searchOFF_Operation_VALUE'] or data['searchOFF_Defendant_VALUE'] or data['searchOFF_URN_VALUE'] or data['operationName'] or '' %}
 {% set egressCaseUrn = data['caseUrn'] or (data['URN1'] ~ data['URN2'] ~ data['URN3'] ~ data['URN4'] if data['URN1'] else '87AA6543226') %}
 {% set isUrnConnectionSearch = connectionJourney == 'materials' and data['connectionSearchType'] == 'urn' %}
@@ -112,7 +113,7 @@
                             <!--<span class="icon-new folder"></span>-->
                             <span class="operation_name">Chopper Harris 31EF7720425</span>
                         </td>
-                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Connected to another case</strong></td>
+                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">{{ egressAlreadyConnectedLabel }}</strong></td>
                         
                     </tr>
                     <!-- CASE 4 - END --> 
@@ -141,7 +142,7 @@
                             <!--<span class="icon-new folder"></span>-->
                             <span class="operation_name">Desert Storm 66JK4309824</span>
                         </td>
-                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Connected to another case</strong></td>
+                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">{{ egressAlreadyConnectedLabel }}</strong></td>
                         
                     </tr>
                     <!-- CASE 6 - END --> 
@@ -170,7 +171,7 @@
                             <!--<span class="icon-new folder"></span>-->
                             <span class="operation_name">Enduring Peace 73NP8147725</span>
                         </td>
-                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Connected to another case</strong></td>
+                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">{{ egressAlreadyConnectedLabel }}</strong></td>
                         
                     </tr>
                     <!-- CASE 8 - END --> 
@@ -250,7 +251,7 @@
                             <!--<span class="icon-new folder"></span>-->
                             <span class="operation_name">Red Dawn 14YZ5028624</span>
                         </td>
-                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Connected to another case</strong></td>
+                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">{{ egressAlreadyConnectedLabel }}</strong></td>
                         
                     </tr>
                     <!-- CASE 13 - END --> 
@@ -286,7 +287,7 @@
                         {% if data['createCaseStarted'] == 'true' %}
                             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Available to connect</strong></td>
                         {% else %}
-                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Connected to another case</strong></td>
+                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">{{ egressAlreadyConnectedLabel }}</strong></td>
                         {% endif %}
                     </tr>
                     <!-- CASE 15 - END --> 
@@ -308,7 +309,7 @@
                             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Available to connect</strong></td>
                         {% else %}
                             {% if data['offCMS_Egress_files'] == 'Yes' %}
-                                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Connected to another case</strong></td>
+                                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">{{ egressAlreadyConnectedLabel }}</strong></td>
                             {% else %}
                                 <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Available to connect</strong></td>
                             {% endif %}
@@ -330,7 +331,7 @@
                             Captain {{ egressSearchTerm }} 27CC9067321
                         </td> 
                         {% if data['offCMS_Egress_files_V2'] == 'Yes' %}
-                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Connected to another case</strong></td>
+                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">{{ egressAlreadyConnectedLabel }}</strong></td>
                         {% else %}
                             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Available to connect</strong></td>
                         {% endif %}
@@ -344,7 +345,7 @@
                             <!--<span class="icon-new folder"></span>-->
                             <span class="operation_name">Top Gun 61DD4835125</span>
                         </td>
-                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Connected to another case</strong></td>
+                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">{{ egressAlreadyConnectedLabel }}</strong></td>
                         
                     </tr>
                     <!-- CASE 17 - END --> 
@@ -356,7 +357,7 @@
                             <!--<span class="icon-new folder"></span>-->
                             <span class="operation_name">Urgent Fury 33EE7201424</span>
                         </td>
-                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Connected to another case</strong></td>
+                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">{{ egressAlreadyConnectedLabel }}</strong></td>
                         
                     </tr>
                     <!-- CASE 18 - END --> 
