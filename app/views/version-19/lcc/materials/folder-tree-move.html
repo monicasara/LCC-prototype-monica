@@ -1,0 +1,97 @@
+{% extends "layoutCPS-NEW-INDEX.html" %}
+
+{% block pageTitle %}
+  Folder tree – {{ serviceName }} – Prototype
+{% endblock %}
+
+{% block header %}
+  {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Choose a Shared Drive folder</h1>
+<p class="govuk-body">
+  You are moving {{ data.moveSelectedCount }} item{{ 's' if data.moveSelectedCount != 1 else '' }}.
+</p>
+<!-- {% if data.moveSelectedNames and data.moveSelectedNames.length %}
+  <ul class="govuk-list govuk-list--bullet">
+    {% for name in data.moveSelectedNames %}
+      <li>{{ name }}</li>
+    {% endfor %}
+  </ul>
+{% endif %} -->
+<!-- <p class="govuk-body govuk-!-margin-bottom-2">You are moveing 4 items.</p> -->
+<p class="govuk-body">Select the Shared Drive folder you want to move them into.</p>
+
+{% macro renderNodes(nodes, isRoot=true) %}
+  <ul class="{{ 'folder-tree' if isRoot else 'folder-children-list' }}">
+    {% for node in nodes %}
+      <li class="folder-node" data-folder-id="{{ node.id }}" data-folder-name="{{ node.name }}">
+        <div class="folder-row">
+          {% if node.children and node.children.length %}
+            <button type="button" class="folder-toggle" aria-expanded="false">+</button>
+          {% else %}
+            <span class="folder-toggle placeholder"></span>
+          {% endif %}
+
+          <button type="button" class="folder-box folder-select">
+            <!-- <span class="folder-icon">📁</span> -->
+            <span class="icon-new folder"></span>
+            <span class="folder-name">{{ node.name }}</span>
+          </button>
+        </div>
+
+        {% if node.children and node.children.length %}
+          <div class="folder-children" hidden>
+            {{ renderNodes(node.children, false) }}
+          </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<ul class="folder-tree">
+  <li class="folder-node folder-node--root">
+    <div class="folder-row">
+      <button type="button" class="folder-toggle" aria-expanded="{{ 'true' if isRoot else 'false' }}">
+        {{ '−' if isRoot else '+' }}
+      </button>
+
+      <span class="folder-box folder-box--root" aria-label="Shared Drive: Thundercat">
+        <!-- <span class="folder-icon">📁</span> -->
+         <!-- <span class="icon-new folder"></span> -->
+        <span class="folder-name">Shared Drive: Thundercat</span>
+      </span>
+    </div>
+
+    <div class="folder-children">
+      {{ renderNodes(folderTree or [], true) }}
+    </div>
+  </li>
+</ul>
+
+
+<form action="/version-19/lcc/materials/move-material" method="post">
+  <input type="hidden" name="destinationFolder" id="destinationFolder" value="">
+  <div class="govuk-button-group govuk-!-margin-top-6">
+    <button class="govuk-button" type="submit" id="moveFolderButton">Move</button>
+    <a class="govuk-link" href="03-case-overview">Cancel</a>
+  </div>
+</form>
+
+<!-- <form action="/version-19/lcc/materials/move-material" method="post">
+  <div class="govuk-button-group govuk-!-margin-top-6">
+        <button class="govuk-button" data-module="govuk-button" type="submit" id="moveButton">Move</button>
+        <a class="govuk-link" href="03-case-overview">Cancel</a>
+  </div>
+</form> -->
+
+
+
+{% endblock %}

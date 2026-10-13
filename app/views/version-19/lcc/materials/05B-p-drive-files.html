@@ -1,0 +1,73 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+{% block beforeContent %}
+    <a class="govuk-back-link" href="javascript:history.back()">Back</a>
+    {% include "../../includes/off-system-MVP/modalConfirmation-Egress.html" %}
+{% endblock %}
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+            <!-- {% if data['createCaseStarted'] == 'true' and data['newCase_ExistingSharedDrive_YesNo'] == 'Yes' %}
+                <form method="post" action="" id="createCaseStarted_SD">  
+            {% else %}
+                <form method="post" action="" id="confirm_prdive_transfer">  
+            {% endif %} -->
+            <form method="get" action="/version-19/lcc/register-case/08-check-answers" id="">
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset" aria-describedby="offCMS_Egress_files-hint">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"><h1 class="govuk-fieldset__heading">Confirm folder link</h1></legend>
+                        <legend class="govuk-fieldset__legend">Are you sure you want to link "{{ data['pdrive_file_link'] }}" network Shared Drive folder to the case?</legend>
+                        <div id="offCMS_Egress_files-hint" class="govuk-hint">Once linked, this folder can be used to transfer files. You can update the linked folder later if needed.</div>
+                        {% if data['mvp_Case_1'] == 'true' %}
+                            <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="offCMS_PDrive_files_V3_Yes" name="offCMS_PDrive_files_V3" type="radio" value="Yes">
+                                    <label class="govuk-label govuk-radios__label" for="offCMS_PDrive_files_V3_Yes">Yes</label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="offCMS_PDrive_files_V3_No" name="offCMS_PDrive_files_V3" type="radio" value="No">
+                                    <label class="govuk-label govuk-radios__label" for="offCMS_PDrive_files_V3_No">No</label>
+                                </div>
+                            </div>
+                        {% elseif data['mvp_Case_4'] == 'true' %}
+                            <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="offCMS_PDrive_files_V2_Yes" name="offCMS_PDrive_files_V2" type="radio" value="Yes">
+                                    <label class="govuk-label govuk-radios__label" for="offCMS_PDrive_files_V2_Yes">Yes</label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="offCMS_PDrive_files_V2_No" name="offCMS_PDrive_files_V2" type="radio" value="No">
+                                    <label class="govuk-label govuk-radios__label" for="offCMS_PDrive_files_V2_No">No</label>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="offCMS_PDrive_files_Yes" name="offCMS_PDrive_files" type="radio" value="Yes">
+                                    <label class="govuk-label govuk-radios__label" for="offCMS_PDrive_files_Yes">Yes</label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="offCMS_PDrive_files_No" name="offCMS_PDrive_files" type="radio" value="No">
+                                    <label class="govuk-label govuk-radios__label" for="offCMS_PDrive_files_No">No</label>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </fieldset>
+                </div>
+
+                {% include "../../includes/buttons.html" %}
+                
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

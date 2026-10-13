@@ -1,0 +1,67 @@
+<!-- ///////////////////////////////// TAB 1 - CONTENT - START ///////////////////////////////// -->
+<div class="tab-manage-materials-page">
+
+    <style>
+        .tab-manage-materials-page .transfer-partial-alert {
+            box-sizing: border-box;
+            width: 75%;
+            padding: 20px;
+            border: 5px solid #f47738;
+            background: #ffffff;
+            color: #0b0c0c;
+        }
+
+        .tab-manage-materials-page .transfer-partial-alert .govuk-tag {
+            margin-bottom: 15px;
+        }
+
+        .tab-manage-materials-page .transfer-partial-alert .moj-alert__heading {
+            margin: 0 0 20px;
+            font-family: "GDS Transport", arial, sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.25;
+        }
+
+        .tab-manage-materials-page .transfer-partial-alert .transfer-conflict-message {
+            margin-bottom: 10px;
+        }
+
+        .tab-manage-materials-page .transfer-partial-alert .transfer-conflict-items li {
+            margin-bottom: 10px;
+            padding: 0;
+            line-height: 1.4;
+        }
+
+        .tab-manage-materials-page .transfer-partial-alert .transfer-conflict-items li:last-child,
+        .tab-manage-materials-page .transfer-partial-alert .transfer-conflict-actions li:last-child {
+            margin-bottom: 0;
+        }
+
+        .tab-manage-materials-page .transfer-partial-alert .transfer-conflict-actions li {
+            margin: 0 !important;
+            padding: 0 !important;
+            line-height: 1.25;
+        }
+
+        .tab-manage-materials-page .transfer-partial-alert .moj-alert__content > :last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 40.0525em) {
+            .tab-manage-materials-page .transfer-partial-alert {
+                width: 100%;
+            }
+        }
+    </style>
+
+    {% set transferView = data.transferView | default('egress') %}
+
+    {% if transferView == 'shared-drive' %}
+        {% include "./tab-transfer-shared-drive.html" %}
+    {% else %}
+        {% include "./tab-transfer-egress.html" %}
+    {% endif %}
+
+</div>
+<!-- ///////////////////////////////// TAB 1 - CONTENT - END ///////////////////////////////// -->

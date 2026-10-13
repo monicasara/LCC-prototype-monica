@@ -1,0 +1,200 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row" id="create-case-journey">
+
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+            {% if errorList and errorList.length %}
+            <div class="govuk-error-summary" data-module="govuk-error-summary">
+                <div role="alert">
+                    <h2 class="govuk-error-summary__title">
+                        There is a problem
+                    </h2>
+                    <div class="govuk-error-summary__body">
+                        <ul class="govuk-list govuk-error-summary__list">
+                            {% for error in errorList %}
+                            <li>
+                                <a href="{{ error.href }}">{{ error.text }}</a>
+                                {% if error.skipHref and error.skipText %}
+                                <div class="govuk-!-margin-top-3">
+                                    <a class="govuk-link" style="font-weight: normal;" href="{{ error.skipHref }}">{{ error.skipText }}</a>
+                                </div>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <form method="post" action="/version-19/lcc/register-case/03-suspect-details-ethnicity">  
+
+                <fieldset class="govuk-fieldset">
+
+                <div class="govuk-form-group{% if errors and errors.ethnicity %} govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <h1 class="govuk-fieldset__heading">
+                        What is <span class="uppercase">{{ data['suspect-person-last-name'] }}</span>, {{ data['suspect-person-first-name'] }}'s ethnicity?
+                    </h1>
+                    </legend>
+                    {% if errors and errors.ethnicity %}
+                    <span id="ethnicity-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> {{ errors.ethnicity }}
+                    </span>
+                    {% endif %}
+                    <div class="govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-ns" name="ethnicity" type="radio" value="Not stated, NS" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'Not stated, NS' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-ns">
+                            Not stated, NS
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-w1" name="ethnicity" type="radio" value="British, W1" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'British, W1' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-w1">
+                            British, W1
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-w2" name="ethnicity" type="radio" value="Irish, W2" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'Irish, W2' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-w2">
+                            Irish, W2
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-w3" name="ethnicity" type="radio" value="Gypsy or Irish Traveller, W3" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'Gypsy or Irish Traveller, W3' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-w3">
+                            Gypsy or Irish Traveller, W3
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-w9" name="ethnicity" type="radio" value="Any other white background, W9" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'Any other white background, W9' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-w9">
+                            Any other White background, W9
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-m1" name="ethnicity" type="radio" value="White and Black Caribbean, M1" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'White and Black Caribbean, M1' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-m1">
+                            White and Black Caribbean, M1
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-m2" name="ethnicity" type="radio" value="White and Black African, M2" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'White and Black African, M2' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-m2">
+                            White and Black African, M2
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-m3" name="ethnicity" type="radio" value="White and Asian, M3" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'White and Asian, M3' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-m3">
+                            White and Asian, M3
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-m9" name="ethnicity" type="radio" value="Any other mixed background, M9" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'Any other mixed background, M9' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-m9">
+                            Any other Mixed background, M9
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-a1" name="ethnicity" type="radio" value="India, A1" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'India, A1' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-a1">
+                            Indian, A1
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-a2" name="ethnicity" type="radio" value="Pakistani, A2" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'Pakistani, A2' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-a2">
+                            Pakistani, A2
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-a3" name="ethnicity" type="radio" value="Bangledeshi, A3" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'Bangledeshi, A3' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-a3">
+                            Bangledeshi, A3
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-a4" name="ethnicity" type="radio" value="Chinese, A4" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'Chinese, A4' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-a4">
+                            Chinese, A4
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-a9" name="ethnicity" type="radio" value="Any other Asian background, A9" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'Any other Asian background, A9' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-a9">
+                            Any other Asian background, A9
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-b1" name="ethnicity" type="radio" value="Caribbean, B1" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'Caribbean, B1' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-b1">
+                            Caribbean, B1
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-b2" name="ethnicity" type="radio" value="African, B2" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'African, B2' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-b2">
+                            African, B2
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-b9" name="ethnicity" type="radio" value="Any other Black background, B9" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'Any other Black background, B9' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-b9">
+                            Any other Black, African or Caribbean background, B9
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-o2" name="ethnicity" type="radio" value="Arab, O2" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'Arab, O2' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-o2">
+                            Arab, O2
+                        </label>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ethnicity-o9" name="ethnicity" type="radio" value="Any other ethnic group, O9" {% if data['suspectEthnicity'][data['suspectDetailsCount']] == 'Any other ethnic group, O9' %}checked{% endif %} {% if errors and errors.ethnicity %}aria-describedby="ethnicity-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="ethnicity-o9">
+                            Any other ethnic group, O9
+                        </label>
+                        </div>
+                </fieldset>
+                </div>
+
+                {% include "../../includes/buttons.html" %}
+
+            </form>
+
+        </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+</div>
+
+{% endblock %}

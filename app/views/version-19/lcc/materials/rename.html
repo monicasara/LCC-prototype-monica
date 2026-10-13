@@ -1,0 +1,63 @@
+{% extends "layoutCPS-OFF-V11.html" %}
+
+{% block pageTitle %}
+Rename a file or folder – {{ serviceName }} – Prototype
+{% endblock %}
+
+{% block header %}
+{% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+
+
+{% extends "layoutCPS-NEW-INDEX.html" %}
+
+{% block beforeContent %}
+<a href="javascript:history.back()" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">Rename document or folder</h1>
+
+    <form method="post" action="/version-19/lcc/materials/rename" novalidate>
+
+      <input type="hidden" name="id" value="{{ item.id }}">
+
+      {% if error %}
+      <div class="govuk-error-summary" role="alert">
+        <h2 class="govuk-error-summary__title">There is a problem</h2>
+        <ul class="govuk-error-summary__list">
+          <li><a href="#newName">{{ error }}</a></li>
+        </ul>
+      </div>
+      {% endif %}
+
+      <div class="govuk-form-group {% if error %}govuk-form-group--error{% endif %}">
+        <label class="govuk-label govuk-label--s" for="newName">
+          New document or folder name
+        </label>
+
+        {% if error %}
+        <p class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> {{ error }}
+        </p>
+        {% endif %}
+
+        <input class="govuk-input govuk-input--width-20" id="newName" name="newName" type="text"
+          value="{{ item.name }}">
+      </div>
+
+      <div class="govuk-button-group">
+        <button class="govuk-button" data-module="govuk-button" type="submit">Save name</button>
+        <a class="govuk-link" href="03-case-overview">Cancel</a>
+      </div>
+
+
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,91 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="redactionModalHistory">
+
+    <div class="das-cookie-banner" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-modal-dialogue__header">
+                <button aria-label="Close modal dialogue" class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeModalHistory()">×</button>
+            </div>
+
+            <!-- //////////////////////////////// REDACTION LOG - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="redaction-history">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                {% if data['searchURN'] %}
+                                    <h1 class="govuk-heading-l">{{ data['searchURN'] }}/1</h1>
+                                {% else %}
+                                    <h1 class="govuk-heading-l">45AA209820/1</h1>
+                                {% endif %}                        
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sub-header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h2 class="govuk-heading-m">
+                                    <div class="wrapper">
+                                        <span class="icon document">Document type</span>MG 11 - <strong>Redaction history details</strong>
+                                    </div>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="redaction-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full table-wrapper">
+
+                                <table class="govuk-table">
+                                    <thead class="govuk-table__head">
+                                        <tr class="govuk-table__row">
+                                            <th scope="col" class="govuk-table__header">Area / Division</th>
+                                            <th scope="col" class="govuk-table__header">Unit</th>
+                                            <th scope="col" class="govuk-table__header">Investigating agency</th>
+                                            <th scope="col" class="govuk-table__header">Returned to investigating agency</th>
+                                            <th scope="col" class="govuk-table__header">Charge status</th>
+                                            <th scope="col" class="govuk-table__header">Redaction type</th>
+                                            <th scope="col" class="govuk-table__header">Missed redaction</th>
+                                            <th scope="col" class="govuk-table__header">Notes</th>
+                                            <th scope="col" class="govuk-table__header">Author</th>
+                                            <th scope="col" class="govuk-table__header">Created date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="govuk-table__body">
+                                        <tr class="govuk-table__row">
+                                            <td class="govuk-table__cell">CPS Direct</td>
+                                            <td class="govuk-table__cell">Magistrates Court</td>
+                                            <td class="govuk-table__cell">Surrey Police</td>
+                                            <td class="govuk-table__cell">Yes</td>
+                                            <td class="govuk-table__cell">Pre-charge</td>
+                                            <td class="govuk-table__cell">Unredacted</td>
+                                            <td class="govuk-table__cell">NHS Number</td>
+                                            <td class="govuk-table__cell">The police missed the redaction of the NUS number and cannot be used in court</td>
+                                            <td class="govuk-table__cell">Dwight Shroot</td>
+                                            <td class="govuk-table__cell">30/08/2023<br>14:34</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full cta-group">
+                                <button class="govuk-button govuk-button--secondary" data-module="govuk-button" type="button" onclick="closeModalHistory()" data-module="govuk-button">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>

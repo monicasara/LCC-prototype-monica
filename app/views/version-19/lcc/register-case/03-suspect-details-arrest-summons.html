@@ -1,0 +1,60 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row" id="create-case-journey">
+
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+
+            {% if arrestSummonsError %}
+            <div class="govuk-error-summary" data-module="govuk-error-summary">
+                <div role="alert">
+                    <h2 class="govuk-error-summary__title">
+                        There is a problem
+                    </h2>
+                    <div class="govuk-error-summary__body">
+                        <ul class="govuk-list govuk-error-summary__list">
+                            <li>
+                                <a href="#arrest-summons">{{ arrestSummonsError }}</a>
+                                <div class="govuk-!-margin-top-3">
+                                    <a class="govuk-link" style="font-weight: normal;" href="/version-19/lcc/register-case/03-suspect-details-arrest-summons-unknown">I do not have the Arrest Summons Number</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-6">What is the Arrest Summons Number (ASN)?</h1>
+
+
+            <form method="post" action="/version-19/lcc/register-case/03-suspect-details-arrest-summons">  
+
+                <fieldset class="govuk-fieldset">
+
+                    <div class="govuk-form-group{% if arrestSummonsError %} govuk-form-group--error{% endif %}">
+                        {% if arrestSummonsError %}
+                        <p id="arrest-summons-error" class="govuk-error-message govuk-!-margin-bottom-2"><span class="govuk-visually-hidden">Error:</span> {{ arrestSummonsError }}</p>
+                        {% endif %}
+                        <input class="govuk-input govuk-input--width-20{% if arrestSummonsError %} govuk-input--error{% endif %}" id="arrest-summons" name="arrest-summons" type="text" value="{% if data['suspectArrestSummons'][data['suspectDetailsCount']] != 'Arrest summons' %}{{ data['suspectArrestSummons'][data['suspectDetailsCount']] }}{% endif %}" {% if arrestSummonsError %}aria-describedby="arrest-summons-error"{% endif %}>
+                    </div>
+
+                </fieldset>
+
+                {% include "../../includes/buttons.html" %}
+            </form>
+        </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+</div>
+
+{% endblock %}

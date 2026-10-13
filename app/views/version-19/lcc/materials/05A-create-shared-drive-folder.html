@@ -1,0 +1,76 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+{% block beforeContent %}
+    <a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h2 class="govuk-heading-l govuk-!-margin-bottom-0">Choose where to create the Shared Drive folder</h2>
+
+        <div class="govuk-inset-text">
+            Select the Shared Drive location where the new folder will be created. You will only see locations that you have permission to use.
+        </div>
+
+        <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+            <ol class="govuk-breadcrumbs__list">
+                <li class="govuk-breadcrumbs__list-item pdrive_nav_1 pdrive_nav_items"><a class="govuk-breadcrumbs__link pdrive_nav_1" href="#">Shared Drive</a></li>
+                <li class="govuk-breadcrumbs__list-item pdrive_nav_2 pdrive_nav_items"><a class="govuk-breadcrumbs__link pdrive_nav_2" href="#">Division</a></li>
+                <li class="govuk-breadcrumbs__list-item pdrive_nav_3 pdrive_nav_items"><a class="govuk-breadcrumbs__link selected pdrive_nav_3" href="#">Cases</a></li>
+                <li class="govuk-breadcrumbs__list-item pdrive_nav_4 pdrive_nav_items"><a class="govuk-breadcrumbs__link pdrive_nav_4" href="#">Live cases</a></li>
+            </ol>
+        </nav>
+
+        <table class="govuk-table" id="pdrive-create-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header" width="10%"></th>
+                    <th scope="col" class="govuk-table__header" width="90%"><button type="button" class="govuk-button" data-module="govuk-button">Folder name</button></th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                {% for folder in data['sharedDriveFolders'] %}
+                    {% if folder.folder and folder.level == 1 %}
+                        <tr class="govuk-table__row pdrive_stage_3 pdrive_items">
+                            <td class="govuk-table__cell govuk-!-text-align-left">
+                                <form method="post" action="/version-19/lcc/materials/05A-create-shared-drive-folder" id="">
+                                    <input id="shared-drive-template-{{ folder.id }}" name="shared-drive-template" type="text" value="{{ folder.name }}" style="display: none;">
+                                    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Create</button>
+                                </form>
+                            </td>
+                            <td class="govuk-table__cell"><span class="icon-new folder"></span><a href="#" class="govuk-link--no-visited-state operation_name pdrive_stage_3 pdrive_items">{{ folder.name }}</a></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+
+                {% for folder in data['sharedDriveFolders'] %}
+                    {% if folder.folder and folder.level == 2 and folder.id != 2003 %}
+                        <tr class="govuk-table__row pdrive_stage_4 pdrive_items">
+                            <td class="govuk-table__cell govuk-!-text-align-left">
+                                <form method="post" action="/version-19/lcc/materials/05A-create-shared-drive-folder" id="">
+                                    <input id="shared-drive-template-{{ folder.id }}" name="shared-drive-template" type="text" value="{% if folder.id == 2003 %}{% if data['operationName'] %}{{ data['operationName'] }}{% else %}{{ folder.name }}{% endif %} {% if data['caseUrn'] %}{{ data['caseUrn'] }}{% elif data['URN1'] %}{{ data['URN1'] }}{{ data['URN2'] }}{{ data['URN3'] }}{{ data['URN4'] }}{% else %}87AA6543226{% endif %}{% else %}{{ folder.name }}{% endif %}" style="display: none;">
+                                    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="float: none;">Create</button>
+                                </form>
+                            </td>
+                            <td class="govuk-table__cell"><span class="icon-new folder"></span><a href="#" class="govuk-link--no-visited-state operation_name pdrive_stage_4 pdrive_items">{% if folder.id == 2003 %}{% if data['operationName'] %}{{ data['operationName'] }}{% else %}{{ folder.name }}{% endif %} {% if data['caseUrn'] %}{{ data['caseUrn'] }}{% elif data['URN1'] %}{{ data['URN1'] }}{{ data['URN2'] }}{{ data['URN3'] }}{{ data['URN4'] }}{% else %}87AA6543226{% endif %}{% else %}{{ folder.name }}{% endif %}</a></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <script>
+            window.addEventListener('load', function () {
+                var pdriveCreateTable = document.getElementById('pdrive-create-table');
+                if (pdriveCreateTable && typeof SortableTable !== 'undefined') {
+                    new SortableTable(pdriveCreateTable);
+                }
+            });
+        </script>
+    </div>
+</div>
+
+{% endblock %}

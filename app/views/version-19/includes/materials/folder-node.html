@@ -1,0 +1,35 @@
+{% set children = [] %}
+
+{% for m in materials %}
+  {% if m.folder and m.parentId == node.id %}
+    {% set _ = children.push(m) %}
+  {% endif %}
+{% endfor %}
+
+<li class="folder-node">
+  <div class="folder-row">
+
+    {% if children.length %}
+      <button type="button"
+              class="folder-toggle"
+              aria-expanded="false">+</button>
+    {% else %}
+      <span class="folder-toggle placeholder"></span>
+    {% endif %}
+
+    <span class="folder-box">
+      <span class="folder-icon">📁</span>
+      <span class="folder-name">{{ node.name }}</span>
+    </span>
+
+  </div>
+
+  {% if children.length %}
+    <ul class="folder-children" hidden>
+      {% for child in children %}
+        {% set node = child %}
+        {% include "ur-apr-2026/materials/includes/materials/folder-node.html" %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</li>

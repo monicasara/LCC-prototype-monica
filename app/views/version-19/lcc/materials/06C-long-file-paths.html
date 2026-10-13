@@ -1,0 +1,124 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+{% block beforeContent %}
+    {% include "../../includes/off-system-MVP/modalConfirmation-Egress.html" %}
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+    </div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-2" id="homepage-journey">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="wrapper main-cotent">
+
+            <form method="post" action="06A-long-file-paths" id="">  
+                {% if data['long_file_path_structure_1'] == 'true' %}
+                    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">Rename folder structure</h1>
+                    <p>The current folder path is too long. To complete the transfer, reduce the number of characters by changing the folder names below.</p>
+                    <p class="govuk-!-margin-bottom-2">Current folder path:</p>
+                    <div class="url-text small_text govuk-!-margin-bottom-6">
+                        P:/RCTCaseData/Special Crime and Counter Terrorism Division/SCD - London/CASES/LIVE/Op Dumper Truck/<strong>10. Police/Pre-Charge/26.03.2025-from Egress/Witness Statements/Statements batch 1234/Witnesses/BLOGGS Jane</strong>
+                    </div>
+                    <p class="govuk-!-margin-bottom-2">Change to:</p>
+                    <div class="govuk-form-group govuk-!-margin-bottom-5">
+                        <label class="govuk-label" for="structure_1_level_1">Folder 1</label>
+                        <input class="govuk-input govuk-input--width-20" id="structure_1_level_1" name="structure_1_level_1" type="text" value="10. Police">
+                    </div>
+                    <div class="govuk-inset-text">
+                        <div class="govuk-form-group govuk-!-margin-bottom-5 ">
+                            <label class="govuk-label" for="structure_1_level_2">Sub folder 2</label>
+                            <input class="govuk-input govuk-input--width-20" id="structure_1_level_2" name="structure_1_level_2" type="text" value="Pre-Charge">
+                        </div>
+                        <div class="govuk-form-group govuk-!-margin-bottom-5">
+                            <label class="govuk-label" for="structure_1_level_3">Sub folder 3</label>
+                            <input class="govuk-input govuk-input--width-20" id="structure_1_level_3" name="structure_1_level_3" type="text" value="26.03.2025-from Egress">
+                        </div>
+                        <div class="govuk-form-group govuk-!-margin-bottom-5">
+                            <label class="govuk-label" for="structure_1_level_4">Sub folder 4</label>
+                            <input class="govuk-input govuk-input--width-20" id="structure_1_level_4" name="structure_1_level_4" type="text" value="Witness Statements">
+                        </div>
+                        <div class="govuk-form-group govuk-!-margin-bottom-5">
+                            <label class="govuk-label" for="structure_1_level_5">Sub folder 5</label>
+                            <input class="govuk-input govuk-input--width-20" id="structure_1_level_5" name="structure_1_level_5" type="text" value="Statements batch 1234">
+                        </div>
+                        <div class="govuk-form-group govuk-!-margin-bottom-5">
+                            <label class="govuk-label" for="structure_1_level_6">Sub folder 6</label>
+                            <input class="govuk-input govuk-input--width-20" id="structure_1_level_6" name="structure_1_level_6" type="text" value="Witnesses">
+                        </div>
+                        <div class="govuk-form-group govuk-!-margin-bottom-0">
+                            <label class="govuk-label" for="structure_1_level_7">Sub folder 7</label>
+                            <input class="govuk-input govuk-input--width-20" id="structure_1_level_7" name="structure_1_level_7" type="text" value="BLOGGS Jane">
+                        </div>
+                    </div>
+
+                    <p class="govuk-!-margin-bottom-2">Folder path length: <strong class="govuk-tag govuk-tag--red"><strong class="total_character_number">294</strong> characters</strong></p>
+                    <p class="govuk-!-margin-bottom-9">You must reduce this to 260 characters or fewer.</p>
+
+                    <div class="govuk-form-group">
+                        <input id="structure_1_COMPLETED" name="structure_1_COMPLETED" type="text" value="true" style="display: none;">
+                        <button id="structure_1_COMPLETED_Button" type="submit" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled govuk-!-margin-bottom-0" data-module="govuk-button">Continue</button>
+                        <button type="submit" class="non-button" data-module="govuk-button" style="margin-left:0.75em;">Cancel</button>
+                    </div>
+                {% elseif data['long_file_path_structure_2'] == 'true' %}
+                    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">Rename folder structure</h1>
+                    <p>The current folder path is too long. To complete the transfer, reduce the number of characters by changing the folder names below.</p>
+                    <p class="govuk-!-margin-bottom-2">Current folder path:</p>
+                    <div class="url-text small_text govuk-!-margin-bottom-6">
+                        P:/RCTCaseData/Special Crime and Counter Terrorism Division/SCD - London/CASES/LIVE/Op Dumper Truck/<strong>10. Police/Pre-Charge/26.03.2025-from Egress/Evidence/Videos 1234/Surveillance/Video Surveillance</strong>
+                    </div>
+                    <p class="govuk-!-margin-bottom-2">Change to:</p>
+                    <div class="govuk-form-group govuk-!-margin-bottom-5">
+                        <label class="govuk-label" for="structure_2_level_1">Folder 1</label>
+                        <input class="govuk-input govuk-input--width-20" id="structure_2_level_1" name="structure_2_level_1" type="text" value="10. Police">
+                    </div>
+                    <div class="govuk-inset-text">
+                        <div class="govuk-form-group govuk-!-margin-bottom-5 ">
+                            <label class="govuk-label" for="structure_2_level_2">Sub folder 2</label>
+                            <input class="govuk-input govuk-input--width-20" id="structure_2_level_2" name="structure_2_level_2" type="text" value="Pre-Charge">
+                        </div>
+                        <div class="govuk-form-group govuk-!-margin-bottom-5">
+                            <label class="govuk-label" for="structure_2_level_3">Sub folder 3</label>
+                            <input class="govuk-input govuk-input--width-20" id="structure_2_level_3" name="structure_2_level_3" type="text" value="26.03.2025-from Egress">
+                        </div>
+                        <div class="govuk-form-group govuk-!-margin-bottom-5">
+                            <label class="govuk-label" for="structure_2_level_4">Sub folder 4</label>
+                            <input class="govuk-input govuk-input--width-20" id="structure_2_level_4" name="structure_2_level_4" type="text" value="Evidence">
+                        </div>
+                        <div class="govuk-form-group govuk-!-margin-bottom-5">
+                            <label class="govuk-label" for="structure_2_level_5">Sub folder 5</label>
+                            <input class="govuk-input govuk-input--width-20" id="structure_2_level_5" name="structure_2_level_5" type="text" value="Videos 1234">
+                        </div>
+                        <div class="govuk-form-group govuk-!-margin-bottom-5">
+                            <label class="govuk-label" for="structure_2_level_6">Sub folder 6</label>
+                            <input class="govuk-input govuk-input--width-20" id="structure_2_level_6" name="structure_2_level_6" type="text" value="Surveillance">
+                        </div>
+                        <div class="govuk-form-group govuk-!-margin-bottom-0">
+                            <label class="govuk-label" for="structure_2_level_7">Sub folder 7</label>
+                            <input class="govuk-input govuk-input--width-20" id="structure_2_level_7" name="structure_2_level_7" type="text" value="Video Surveillance">
+                        </div>
+                    </div>
+
+                    <p class="govuk-!-margin-bottom-2">Folder path length: <strong class="govuk-tag govuk-tag--red"><strong class="total_character_number">283</strong> characters</strong></p>
+                    <p class="govuk-!-margin-bottom-9">You must reduce this to 260 characters or fewer.</p>
+
+                    <div class="govuk-form-group">
+                        <input id="structure_2_COMPLETED" name="structure_2_COMPLETED" type="text" value="true" style="display: none;">
+                        <button id="structure_2_COMPLETED_Button" type="submit" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled govuk-!-margin-bottom-0" data-module="govuk-button">Continue</button>
+                        <button type="submit" class="non-button" data-module="govuk-button" style="margin-left:0.75em;">Cancel</button>
+                    </div>
+                {% endif %}
+
+            </form>
+            <p><br></p>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,193 @@
+<div class="notifications-panel-wrapper-STICKY">
+    <a href="#" class="notifications-STICKY">
+        <span class="alert-button"></span>
+        <span class="notifications-number-STICKY">1</span> 
+        <span class="visuallyhidden tooltiptext">Case updates</span>
+    </a>
+    <div class="notifications-panel-STICKY">
+        <div class="updates">
+            <span>Last updated:</span> <span id="date-stamp">####</span>
+        </div>
+
+        <h2 class="govuk-heading-s">Outstanding tasks</h2>
+
+        <!-- TASK 1 - START -->
+        <div class="task-alert one">
+            <div class="wrapper">
+                <span class="govuk-tag govuk-tag--red">Due Today</span>
+                <br>
+                <p class="openMe">
+                    Check new communications:
+                    <br>
+                    <a href="" class="show-case task-item-1" data-doc="defendants.pdf" data-document="22" onclick="return updateDocument(), topFunction()" data-page="1">Asset Rec 1</a>
+                    <br>
+                    <span id="">Assigned to: <strong>user_name_1983</strong></span>
+                </p>
+            </div>
+            <div class="wrapper clear">
+                <a class="govuk-button govuk-button--secondary clear-task" onclick="return markTaskAsComplete()"><span class="govuk-visually-hidden"> Task</span> Complete</a>
+            </div>
+        </div>
+        <!-- TASK 1 - END -->
+
+        <p class="no-tasks">This case has no outstanding tasks</p>
+
+        <h2 class="govuk-heading-s">Complete tasks</h2>
+
+        <!-- TASK 1 - START -->
+        <div class="task-alert one completed">
+            <div class="wrapper">
+                <span class="govuk-tag govuk-tag--green">Completed</span>
+                <br>
+                <p class="openMe">
+                    Check new communications:
+                    <br>
+                    <a href="" class="show-case task-item-1" data-doc="defendants.pdf" data-document="22" onclick="return updateDocument(), topFunction()" data-page="1">Asset Rec 1</a>
+                    <br>
+                    <span id="">Completed by: <strong>user_name_1983</strong>, <span id="task-date-stamp-2">####</span></span>
+                </p>
+            </div>
+        </div>
+        <!-- TASK 1 - END -->
+
+        <!-- TASK 2 - START -->
+        <div class="task-alert two completed">
+            <div class="wrapper">
+                <span class="govuk-tag govuk-tag--green">Completed</span>
+                <br>
+                <p class="">
+                    28 Day PCD Review:
+                    <br>
+                    <a href="" class="show-case task-item-2">View 28 Day PCD Review</a>
+                    <br>
+                    <span id="">Completed by: <strong>user_name_1983</strong>, Friday 21/05/2024 12:14pm</span>
+                </p>
+            </div>
+        </div>
+        <!-- TASK 2 - END -->
+
+        <h2 class="govuk-heading-s">Document updates</h2>
+
+        <p class="text-holder">There are no new document updates</p>
+
+        <!-- ALERT 6 - UPDATED - START -->
+        <div class="case-alert six">
+            <div class="wrapper">
+                <span class="govuk-tag govuk-tag--red">Discarded</span>
+                <br>
+                <p class="">
+                    <a class="date-stamp-DOC6" onclick="return openDiscardedModel(), topFunction()">UNUSED_6 DA CHECKLIST MCLOVE</a>
+                    <br>
+                    Unused materials - Document Discarded
+                    <br>
+                    <span id="date-stamp-DOC12">####</span>
+                </p>
+            </div>
+            <div class="wrapper clear">
+                <a class="govuk-button govuk-button--secondary clear-notification">Clear <span class="govuk-visually-hidden"> update</span></a>
+            </div>
+        </div>
+        <!-- ALERT 6 - UPDATED - END -->
+
+        <!-- ALERT 5 - NEW - START -->
+        <div class="case-alert five">
+            <div class="wrapper">
+                <span class="govuk-tag govuk-tag--green">New</span>
+                <br>
+                <p class="openMe">
+                    <a href="" class="show-case date-stamp-DOC5" data-doc="MG11_Shelagh_MCLOVE_retraction.pdf" data-document="12" onclick="return updateDocument(), topFunction()" data-page="1">MG11 Shelagh MCLOVE retraction</a>
+                    <br>
+                    Statements - New document
+                    <br>
+                    <span id="date-stamp-DOC11">####</span>
+                </p>
+            </div>
+            <div class="wrapper clear">
+                <a class="govuk-button govuk-button--secondary clear-notification">Clear <span class="govuk-visually-hidden"> update</span></a>
+            </div>
+        </div>
+        <!-- ALERT 5 - NEW - END -->
+
+        <!-- ALERT 4 - UPDATED - START -->
+        <div class="case-alert four">
+            <div class="wrapper">
+                <span class="govuk-tag govuk-tag--orange">Updated</span>
+                <br>
+                <p class="openMe">
+                    <a href="" class="show-case date-stamp-DOC4" data-doc="MG06_10june.pdf" data-document="6" onclick="return updateDocument(), topFunction()" data-page="3">MG06 10 june</a>
+                    <br>
+                    Case overview - Updated document
+                    <br>
+                    <span id="date-stamp-DOC10">####</span>
+                </p>
+            </div>
+            <div class="wrapper clear">
+                <a class="govuk-button govuk-button--secondary clear-notification">Clear <span class="govuk-visually-hidden"> update</span></a>
+            </div>
+        </div>
+        <!-- ALERT 4 - UPDATED - END -->
+
+        <!-- ALERT 3 - UPDATED - START -->
+        <div class="case-alert three">
+            <div class="wrapper">
+                <span class="govuk-tag govuk-tag--purple">Reclassified</span>
+                <br>
+                <p class="openMe">
+                    <a href="" class="show-case date-stamp-DOC3" data-doc="MG05MCLOVE.pdf" data-document="4" onclick="return updateDocument(), topFunction()" data-page="4">MG05 MCLOVE</a>
+                    <br>
+                    Case overview - Updated document
+                    <br>
+                    <span id="date-stamp-DOC9">####</span>
+                </p>
+            </div>
+            <div class="wrapper clear">
+                <a class="govuk-button govuk-button--secondary clear-notification">Clear <span class="govuk-visually-hidden"> update</span></a>
+            </div>
+        </div>
+        <!-- ALERT 3 - UPDATED - END -->
+
+        <!-- ALERT 2 - NEW - START -->
+        <div class="case-alert two">
+            <div class="wrapper">
+                <span class="govuk-tag govuk-tag--green">New</span>
+                <br>
+                <p class="openMe">
+                    <a href="" class="show-case date-stamp-DOC2" data-doc="PRE_CONS_D.pdf" data-document="2" onclick="return topFunction()" data-page="6">PRE CONS D</a>
+                    <br>
+                    Defendant - New document
+                    <br>
+                    <span id="date-stamp-DOC8">####</span>
+                </p>
+            </div>
+            <div class="wrapper clear">
+                <a class="govuk-button govuk-button--secondary clear-notification">Clear <span class="govuk-visually-hidden"> update</span></a>
+            </div>
+        </div>
+        <!-- ALERT 2 - NEW - END -->
+
+        <!-- ALERT 1 - FAILED - START -->
+        <div class="case-alert one">
+            <div class="wrapper">
+                <span class="govuk-tag govuk-tag--red">Failed</span>
+                <br>
+                <p>
+                    <a href="#group3-doc6" class="date-stamp-DOC1">MG11 Geoff MCLOVE</a>
+                    <br>
+                    Statements - Failed to load
+                    <br>
+                    <span id="date-stamp-DOC7">####</span>
+                </p>
+            </div>
+            <div class="wrapper clear">
+                <a class="govuk-button govuk-button--secondary clear-notification">Clear <span class="govuk-visually-hidden"> update</span></a>
+            </div>
+        </div>
+        <!-- ALERT 1 - FAILED - END -->
+
+        <div class="clear-all">
+            <a class="govuk-link clear-all-notifications" href="#">Clear all updates</a>
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,47 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+
+<div class="govuk-grid-row" id="create-case-journey">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+            <form method="post" action="/version-19/lcc/register-case/03-remove-suspect">  
+
+                <h1 class="govuk-heading-l">
+
+                    Are you sure you want to remove 
+                    {% if data['suspectType'][data['removeSuspectId']] == 'Person' %}
+                    <span class="uppercase">{{data['suspectLastName'][data['removeSuspectId']]}}</span>, {{data['suspectFirstName'][data['removeSuspectId']]}}
+                    {% else %}
+                    {{data['suspectCompanyName'][data['removeSuspectId']]}}
+                    {% endif %}    
+                    ?
+                </h1>
+
+                <p class="govuk-body">This will permanently remove all the details you've entered including any linked charges.</p>
+                <p class="govuk-body">You will not be able to restore them.</p>
+
+                <div class="govuk-button-group govuk-!-margin-top-6">
+                    <button class="govuk-button" data-module="govuk-button" name="submit-button" value="remove">
+                        Remove suspect
+                    </button>                    
+                    <a class="govuk-link" href="03B-suspect-summary">Cancel</a>
+                        Cancel
+                    </button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+</div>
+
+{% endblock %}

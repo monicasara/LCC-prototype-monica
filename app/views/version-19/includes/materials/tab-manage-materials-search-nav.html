@@ -1,0 +1,586 @@
+<div class="govuk-grid-row">
+
+    <h2 class="govuk-heading-m govuk-!-margin-left-3 govuk-!-margin-top-0 govuk-!-margin-bottom-4">
+        Manage materials on the Shared Drive
+    </h2>
+
+    <p class="govuk-body govuk-!-margin-left-3 govuk-!-margin-bottom-6">
+        You can add, rename or remove materials and folders. You can also
+        <a class="govuk-link">manage materials and folders on Egress</a>.
+    </p>
+
+</div>
+
+<!-- {# ===========================
+   SEARCH (NEW - UNDER INTRO)
+   =========================== #}
+
+<div class="govuk-grid-row govuk-!-margin-right-3 govuk-!-margin-bottom-4">
+  <div class="
+    govuk-grid-column-one-half
+    govuk-grid-column-one-half-from-tablet
+    govuk-grid-column-full-from-mobile
+  ">
+
+    <form method="post" action="/ur-apr-2026/B-off-system-MVP/materials-search" class="materials-search-form" novalidate>
+      <div class="govuk-form-group govuk-!-margin-bottom-2">
+        <label class="govuk-label govuk-!-font-weight-bold" for="materialsSearch">
+          Search materials
+        </label>
+
+        <div class="govuk-hint govuk-!-margin-bottom-2">
+          Search by file or folder name
+        </div>
+
+        <div class="govuk-input__wrapper">
+          <input class="govuk-input"
+                 id="materialsSearch"
+                 name="filtersSearch"
+                 type="search"
+                 value="{{ data.filtersSearch | default('') }}"
+                 autocomplete="off">
+
+          <button class="govuk-button govuk-!-margin-bottom-0" type="submit" data-module="govuk-button">
+            Search
+          </button>
+
+          {% if data.filtersSearch and data.filtersSearch | trim | length > 0 %}
+            <a class="govuk-link govuk-!-margin-left-3"
+               href="/ur-apr-2026/B-off-system-MVP/clear-search">
+              Clear search
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div> -->
+
+<!-- <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+        <a class="govuk-link govuk-!-margin-bottom-9 govuk-!-margin-top-0" id="toggle_filter_Materials" href="#"
+            style="text-align:right;">
+            Show filters >>
+        </a>
+    </div>
+</div> -->
+
+<div class="govuk-grid-row govuk-!-margin-top-2">
+
+
+    <!-- MAIN COLUMN -->
+    <div class="govuk-!-margin-left-3"id="materials_column_2">
+    <!-- <div class="govuk-grid-column-three-quarters" id="materials_column_2"> -->
+
+        <!-- BREADCRUMBS -->
+        <div class="govuk-grid-row">
+            <nav class="govuk-breadcrumbs govuk-!-margin-left-3" aria-label="Breadcrumb">
+                <ol class="govuk-breadcrumbs__list">
+
+                    {% for crumb in breadcrumbs %}
+                    <li class="govuk-breadcrumbs__list-item">
+
+                        {% if crumb.id == data.folderId %}
+                        {{ crumb.name }}
+                        {% else %}
+                        <form method="post" action="/ur-apr-2026/B-off-system-MVP/case-overview-folder"
+                            style="display:inline;">
+                            <input type="hidden" name="folderId" value="{{ crumb.id }}">
+                            <input type="hidden" name="folderName" value="{{ crumb.name }}">
+                            <button type="submit" class="govuk-breadcrumbs__link breadcrumb-button">
+                                {{ crumb.name }}
+                            </button>
+                        </form>
+                        {% endif %}
+
+                    </li>
+                    {% endfor %}
+
+                </ol>
+            </nav>
+        </div>
+
+        {% if data.materialsMode %}
+        <!-- Copy /Move mode active -->
+        <div class="govuk-grid-column-two-thirds">
+            <div class="govuk-inset-text govuk-!-margin-top-2 govuk-!-margin-bottom-4">
+                <!-- <ul class="govuk-list">
+                    <li class="govuk-!-margin-bottom-0 govuk-!-margin-top-0">Use the breadcrumb to {{ data.materialsMode }} your files to a folder above.</li>
+                    <li class="govuk-!-margin-bottom-0 govuk-!-margin-top-0">Select a folder name to {{ data.materialsMode }} them to a folder below.</li> -->
+
+                {% if data.folderId != 0 %}
+                <p class="govuk-body govuk-!-margin-bottom-1">Use the breadcrumb to {{ data.materialsMode }} your files
+                    to a folder above.</p>
+                <p class="govuk-body">Select a folder name to {{ data.materialsMode }} them to a folder below.</p>
+                {% else %}
+                <p class="govuk-body govuk-!-margin-bottom-1">Select a folder name to {{ data.materialsMode }} your
+                    files to a folder below.</p>
+                {% endif %}
+
+
+                {% if data.materialsMode == "copy" %}
+                <span class="govuk-!-margin-top-1">Select
+                    <form method="post" action="/ur-apr-2026/B-off-system-MVP/{{ data.materialsMode }}-material"
+                        class="inline-action-form">
+                        <input type="hidden" name="selected_ids" value="{{ data.materialsSelected }}">
+                        <input type="hidden" name="destinationFolder" value="{{ item.id }}">
+                        <button
+                            class="govuk-link govuk-link--no-visited-state suspect govuk-!-margin-bottom-1 govuk-!-margin-top-1">
+                            Home
+                        </button>
+                    </form>
+                    to {{ data.materialsMode }} your files to the home folder.
+                </span>
+
+                {% elseif data.materialsMode == "move" %}
+                {% set showHomeOption = false %}
+                {% for m in data.materials %}
+                {% if (m.id | string) in data.materialsSelected and m.parentId != 0 %}
+                {% set showHomeOption = true %}
+                {% endif %}
+                {% endfor %}
+                {% if showHomeOption %}
+                <!-- <li class="govuk-!-margin-bottom-0 govuk-!-margin-top-0">Select -->
+                <span class="govuk-!-margin-top-1">Select
+                    <form method="post" action="/ur-apr-2026/B-off-system-MVP/{{ data.materialsMode }}-material"
+                        class="inline-action-form">
+                        <input type="hidden" name="selected_ids" value="{{ data.materialsSelected }}">
+                        <input type="hidden" name="destinationFolder" value="{{ item.id }}">
+                        <button
+                            class="govuk-link govuk-link--no-visited-state suspect govuk-!-margin-bottom-1 govuk-!-margin-top-1">
+                            Home
+                        </button>
+                    </form>
+                    to {{ data.materialsMode }} your files to the home folder.
+                </span>
+                <!-- </li> -->
+                {% endif %}
+                {% endif %}
+                <!-- </ul> -->
+
+                <p class="govuk-body govuk-!-margin-bottom-1">
+                <form method="post" action="/ur-apr-2026/B-off-system-MVP/set-materials-mode" style="display:inline;">
+                    <input type="hidden" name="mode" value="">
+                    <input type="hidden" name="selected_ids" value="">
+                    <button type="submit" class="govuk-link govuk-link--no-visited-state suspect govuk-!-margin-top-2">
+                        Cancel {{ data.materialsMode }}.
+                    </button>
+                </form>
+                </p>
+
+            </div>
+        </div>
+        {% endif %}
+
+
+        <!-- ACTION BUTTONS -->
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
+
+                <div class="info_wrapper govuk-!-margin-top-3 govuk-!-margin-bottom-6">
+
+                <div class="actions_holder">
+                <div class="govuk-button-group materials-actions-row">
+
+                    <!-- Actions on selection (your MOJ menu) -->
+                    <div class="moj-button-menu">
+                    <button type="button" id="show_Materials_Actions"
+                        class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                        Actions on selection
+                        <svg width="11" height="5" viewBox="0 0 11 5" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
+                        </svg>
+                    </button>
+
+                    <div class="hidden_buttons" id="materials_Actions">
+                        <!-- keep all your forms/buttons exactly as you have them -->
+                    </div>
+                    </div>
+
+                    <!-- New folder -->
+                    <button type="button"
+                    class="govuk-button govuk-button--secondary"
+                    onclick="window.location.href='/ur-apr-2026/B-off-system-MVP/new-folder';">
+                    New folder
+                    </button>
+
+                    <!-- Search (details, but button-styled summary) -->
+
+                        <form method="post" action="/ur-apr-2026/B-off-system-MVP/materials-search"
+                        class="materials-search-form" novalidate>
+
+                        <div class="govuk-form-group govuk-!-margin-bottom-2">
+                            <label class="govuk-label govuk-!-font-weight-bold" for="materialsSearch">
+                            Search materials
+                            </label>
+
+                            <div class="govuk-input__wrapper">
+                            <input class="govuk-input"
+                                id="materialsSearch"
+                                name="filtersSearch"
+                                type="search"
+                                value="{{ data.filtersSearch | default('') }}"
+                                autocomplete="off">
+
+                            <button class="govuk-button govuk-!-margin-bottom-0" type="submit" data-module="govuk-button">
+                                Search
+                            </button>
+
+                            {% if data.filtersSearch and data.filtersSearch | trim | length > 0 %}
+                                <a class="govuk-link govuk-!-margin-left-3" href="/ur-apr-2026/B-off-system-MVP/clear-search">
+                                Clear search
+                                </a>
+                            {% endif %}
+                            </div>
+                        </div>
+                        </form>
+
+                </div>
+                </div>         
+
+
+                <form id="bulkActionForm" method="post" action="/ur-apr-2026/B-off-system-MVP/materials-action"
+                    class="govuk-!-display-none">
+                    <input type="hidden" name="action" id="bulkActionType" value="">
+                    <input type="hidden" name="selectedId" id="bulkSelectedId" value="">
+                    <input type="hidden" name="selectedName" id="bulkSelectedName" value="">
+                    <input type="hidden" name="selectedIsFolder" id="bulkSelectedIsFolder" value="">
+                </form>
+
+            </div>
+        </div>
+
+        <!-- Success banner -->
+        {% macro renderTree(nodes) %}
+        <ul class="govuk-list govuk-list--bullet">
+            {% for node in nodes %}
+
+            {% if node.isFolder %}
+            <li class="no-bullet" style="list-style-type:none; margin-left:-1em;">
+
+                <span class="icon-new folder"></span>
+                <strong>{{ node.name }}</strong>
+
+                {% if node.children and (node.children | length) > 0 %}
+                {{ renderTree(node.children) }}
+                {% endif %}
+            </li>
+
+            {% else %}
+            <li>
+                {{ node.name }}
+            </li>
+            {% endif %}
+
+            {% endfor %}
+        </ul>
+        {% endmacro %}
+
+        {% if copySuccess %}
+        <div class="govuk-notification-banner govuk-notification-banner--success materials-notification--white"
+            role="alert" data-module="govuk-notification-banner">
+            <div class="govuk-notification-banner__header">
+                <h2 class="govuk-notification-banner__title">Success</h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+                <h3 class="govuk-notification-banner__heading">
+                    The materials have been copied
+                </h3>
+
+                {% if copyDestinationName %}
+                <p class="govuk-body">
+                    They are in:
+                    <strong>{{ copyDestinationName }}</strong>
+                </p>
+                {% else %}
+                <p class="govuk-body">
+                    They are in:
+                    <strong>Shared Drive: Thundercat</strong>
+                </p>
+                {% endif %}
+
+                {% if copyPreviewTree and (copyPreviewTree | length) > 0 %}
+                <details class="govuk-details govuk-!-margin-top-2" data-module="govuk-details">
+                    <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                            Show copied materials
+                        </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                        {{ renderTree(copyPreviewTree) }}
+                    </div>
+                </details>
+                {% endif %}
+            </div>
+        </div>
+
+        {% elseif moveSuccess %}
+        <div class="govuk-notification-banner govuk-notification-banner--success materials-notification--white"
+            role="alert" data-module="govuk-notification-banner">
+            <div class="govuk-notification-banner__header">
+                <h2 class="govuk-notification-banner__title">Success</h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+                <h3 class="govuk-notification-banner__heading">
+                    The materials have been moved
+                </h3>
+
+                {% if moveDestinationName %}
+                <p class="govuk-body">
+                    They are in:
+                    <strong>{{ moveDestinationName }}</strong>
+                </p>
+                {% else %}
+                <p class="govuk-body">
+                    They are in:
+                    <strong>Shared Drive: Thundercat</strong>
+                </p>
+                {% endif %}
+
+                {% if movePreviewTree and (movePreviewTree | length) > 0 %}
+                <details class="govuk-details govuk-!-margin-top-2" data-module="govuk-details">
+                    <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                            Show moved materials
+                        </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                        {{ renderTree(movePreviewTree) }}
+                    </div>
+                </details>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- <p style="color:red;">
+            DEBUG: filtersSearch="{{ data.filtersSearch }}", flag="{{ data.flag }}", grouped="{{ data.groupedSearchResults | length }}"
+        </p> -->
+
+        <!-- SEARCH MODES -->
+        {% set searchTerm = data.filtersSearch %}
+        <!-- {{ searchTerm }}
+        {% set insideFolderSearch = (data.flag == "1") %} -->
+
+        {% if searchTerm and searchTerm | trim | length > 0 %}
+        {% include "../materials/materials-search-grouped.html" %}
+
+        {% else %}
+
+
+
+        <!-- MAIN TABLE -->
+        <table class="govuk-table sortable" id="materials_table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row material-row" data-id="{{ item.id }}" {% if item.folder %}data-folder="true"
+                    {% else %}data-folder="false" {% endif %}>
+
+                    <th scope="col" class="govuk-table__header">
+                        {% if data.materialsMode != "copy" and data.materialsMode != "move" %}
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input js-select-all" id="materials_documents_ALL"
+                                    type="checkbox" value="ALL">
+                                <input type="hidden" name="destinationFolder" value="{{ item.id }}">
+
+                                <label class="govuk-label govuk-checkboxes__label"
+                                    for="materials_documents_ALL"></label>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </th>
+
+                    <th scope="col" class="govuk-table__header">
+                        <button class="govuk-button" data-module="govuk-button">
+                            File or folder
+                        </button>
+                    </th>
+
+                    <th scope="col" class="govuk-table__header">
+                        <button class="govuk-button" data-module="govuk-button">Last updated</button>
+                    </th>
+
+                    <th scope="col" class="govuk-table__header">
+                        <button class="govuk-button" data-module="govuk-button">Status</button>
+                    </th>
+
+                    <th scope="col" class="govuk-table__header"></th>
+
+                </tr>
+            </thead>
+
+            <!-- Children rendering from helper -->
+            <tbody class="govuk-table__body">
+
+                {% for item in children %}
+                {% if item.folder %}
+                {# =============== FOLDER ROW =============== #}
+
+                <tr class="govuk-table__row material-row" data-id="{{ item.id }}" {% if item.folder %}data-folder="true"
+                    {% else %}data-folder="false" {% endif %}>
+
+                    <!-- Checkbox -->
+                    <td class="govuk-table__cell">
+                        {% if data.materialsMode != "copy" and data.materialsMode != "move" %}
+                        <div class="govuk-checkboxes govuk-checkboxes--small">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input js-material-checkbox" id="select_{{ item.id }}"
+                                    type="checkbox" name="materials_document" value="{{ item.id }}"
+                                    data-name="{{ item.name }}" data-folder="true">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_{{ item.id }}"></label>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </td>
+
+                    <!-- Folder title (clickable) -->
+                    <td class="govuk-table__cell title_column">
+                        <div class="folder-inline-wrapper">
+
+                            {# COPY / MOVE BUTTON - only show when mode active #}
+                            {% if item.folder and data.materialsMode and ((item.id | string) not in
+                            data.materialsSelected) %}
+
+                            {% if data.materialsMode == "copy" %}
+                            <form method="post" action="/ur-apr-2026/B-off-system-MVP/copy-material"
+                                class="inline-action-form">
+                                <input type="hidden" name="selected_ids" value="{{ data.materialsSelected }}">
+                                <input type="hidden" name="destinationFolder" value="{{ item.id }}">
+                                <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0">
+                                    Copy to
+                                </button>
+                            </form>
+
+                            {% elseif data.materialsMode == "move" %}
+                            <form method="post" action="/ur-apr-2026/B-off-system-MVP/move-material"
+                                class="inline-action-form">
+                                <input type="hidden" name="selected_ids" value="{{ data.materialsSelected }}">
+                                <input type="hidden" name="destinationFolder" value="{{ item.id }}">
+                                <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0">
+                                    Move to
+                                </button>
+                            </form>
+                            {% endif %}
+
+                            {% endif %}
+
+                            <form method="post" action="/ur-apr-2026/B-off-system-MVP/case-overview-folder">
+                                <input type="hidden" name="folderId" value="{{ item.id }}">
+                                <input type="hidden" name="folderName" value="{{ item.name }}">
+                                <button type="submit"
+                                    class="govuk-link govuk-link--no-visited-state govuk-button--link">
+                                    <span class="icon-new folder"></span>
+                                    {{ item.name }}
+
+                                    {% if flashRenamedId and (item.id | string) == flashRenamedId %}
+                                    <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-1">Renamed</strong>
+                                    {% endif %}
+                                    {% if flashNewFolderId and (item.id | string) == flashNewFolderId %}
+                                    <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-1">New folder</strong>
+                                    {% endif %}
+
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+
+                    <!-- Last updated (optional for folders) -->
+                    <td class="govuk-table__cell numeric">
+                        {{ item.date or "" }}
+                    </td>
+
+                    <!-- Status (usually blank or basic tag for folders) -->
+                    <td class="govuk-table__cell">
+                        {% if item.status %}
+                        <strong class="govuk-tag govuk-tag--grey">{{ item.status }}</strong>
+                        {% endif %}
+                    </td>
+
+                    <!-- Copy / Move here action -->
+                    <td class="govuk-table__cell materials-action-cell">
+                    </td>
+                </tr>
+
+                {% else %}
+                {# =============== FILE ROW =============== #}
+                <tr class="govuk-table__row material-row" data-id="{{ item.id }}" {% if item.folder %}data-folder="true"
+                    {% else %}data-folder="false" {% endif %}>
+
+                    <!-- Checkbox -->
+                    <td class="govuk-table__cell">
+                        {% if data.materialsMode != "copy" and data.materialsMode != "move" %}
+                        <div class="govuk-checkboxes govuk-checkboxes--small">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input js-material-checkbox" id="select_{{ item.id }}"
+                                    type="checkbox" name="materials_document" value="{{ item.id }}"
+                                    data-name="{{ item.name }}" data-folder="false">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_{{ item.id }}"></label>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </td>
+                    <!-- File title -->
+                    <td class="govuk-table__cell title_column">
+                        <div class="openMe">
+                            {{ item.name }}
+                            {% if flashRenamedId and (item.id | string) == flashRenamedId %}
+                            <strong class="govuk-tag govuk-tag--green">Renamed</strong>
+                            {% endif %}
+                            
+                        </div>
+                    </td>
+
+                    <!-- Date -->
+                    <td class="govuk-table__cell numeric">
+                        {{ item.date }}
+                    </td>
+
+                    <!-- Status -->
+                    <td class="govuk-table__cell">
+                        {% if item.status %}
+                        {% if item.status == 'None' %}
+                        <strong class="govuk-tag govuk-tag--grey">{{ item.status }}</strong>
+                        {% elseif item.status == 'Used' %}
+                        <strong class="govuk-tag govuk-tag--blue">{{ item.status }}</strong>
+                        {% else %}
+                        <strong class="govuk-tag govuk-tag--yellow">{{ item.status }}</strong>
+                        {% endif %}
+                        {% endif %}
+                    </td>
+
+                    <!-- Preview for files -->
+                    <td class="govuk-table__cell toggle-panel">
+                        <button type="button" class="govuk-button show_material_actions show-case"
+                            data-id="{{ item.id }}" data-doc="{{ item.previewLink }}">
+                            Preview <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                    </td>
+                </tr>
+
+                {% endif %}
+
+                {# Preview row only for files #}
+                <tr class="govuk-table__row hidden_row" data-row_id="{{ item.id }}">
+                    <td colspan="5">
+                        {% if not item.folder %}
+                        <div class="document_holder">
+                            <embed src="{{ item.previewLink }}">
+                        </div>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+        {% endif %}
+
+        <p class="no_results">
+            <strong>No results</strong> found in materials
+        </p>
+
+    </div>
+</div>
+
+<!-- ///////////////////////////////// TAB 2 - CONTENT - END ///////////////////////////////// -->

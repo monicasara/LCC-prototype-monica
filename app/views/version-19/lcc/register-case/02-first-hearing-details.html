@@ -1,0 +1,152 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+{% set firstHearingDateValue = data['firstHearingDate'] %}
+{% if firstHearingDateValue and '/' in firstHearingDateValue %}
+    {% set firstHearingDateParts = firstHearingDateValue.split('/') %}
+    {% if firstHearingDateParts.length == 3 %}
+        {% set firstHearingDay = firstHearingDateParts[0] | int %}
+        {% set firstHearingMonth = firstHearingDateParts[1] | int %}
+        {% set firstHearingDateValue = firstHearingDateParts[2] + '-' + ('0' if firstHearingMonth < 10 else '') + firstHearingMonth + '-' + ('0' if firstHearingDay < 10 else '') + firstHearingDay %}
+    {% endif %}
+{% endif %}
+
+<style>
+    .create-case-hearing-date-input {
+        max-width: 20ex;
+    }
+
+    .create-case-hearing-date-native {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+        width: 1px;
+        height: 1px;
+    }
+</style>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+            <form action="/version-19/lcc/register-case/02-first-hearing-details" method="post" novalidate>
+
+                <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <h1 class="govuk-fieldset__heading">
+                        Do you have details of the first hearing?
+                    </h1>
+                    </legend>
+                    <div class="govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="first-hearing-yes" name="first-hearing-details" type="radio" value="Yes" data-aria-controls="first-hearing-controls" {% if data['firstHearingDetailsYesNo'] === 'Yes' %}checked {% endif %}>
+                            <label class="govuk-label govuk-radios__label" for="first-hearing-yes">
+                            Yes
+                            </label>
+                        </div>
+                        
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="first-hearing-controls">
+                            <div class="govuk-form-group">
+                            <label class="govuk-label govuk-!-font-weight-bold" for="court-location">
+                                Court location
+                            </label>
+                            <input class="govuk-input govuk-!-width-one-third" id="docType-LCCCourt" name="court-location" type="text" spellcheck="false" autocomplete="text"value="{{ data['courtLocation'] }}">
+                            </div>
+
+                            <div class="create-case-hearing-date">
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-!-font-weight-bold" for="newCase_FirstHearing_Date">Date</label>
+                                    <div id="newCase_FirstHearing_Date-hint" class="govuk-hint">For example, 17/05/2024</div>
+                                    <div class="date_range_wrapper create_case">
+                                        <input class="govuk-input moj-js-datepicker-input create-case-hearing-date-input" id="newCase_FirstHearing_Date" name="newCase_FirstHearing_Date" type="text" autocomplete="off" value="{{ data['firstHearingDate'] }}">
+                                        <input class="create-case-hearing-date-native" id="newCase_FirstHearing_Date_native" type="date" value="{{ firstHearingDateValue }}" tabindex="-1" aria-hidden="true">
+                                        <button class="moj-datepicker__toggle" id="newCase_FirstHearing_Date_toggle" type="button" aria-label="Choose date">
+                                            <span class="govuk-visually-hidden">Choose date</span>
+                                            <svg width="32" height="24" focusable="false" class="moj-datepicker-icon" aria-hidden="true" role="img" viewBox="0 0 22 22">
+                                                <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16.1333 2.93333H5.86668V4.4C5.86668 5.21002 5.21003 5.86667 4.40002 5.86667C3.59 5.86667 2.93335 5.21002 2.93335 4.4V2.93333H2C0.895431 2.93333 0 3.82877 0 4.93334V19.2667C0 20.3712 0.89543 21.2667 2 21.2667H20C21.1046 21.2667 22 20.3712 22 19.2667V4.93333C22 3.82876 21.1046 2.93333 20 2.93333H19.0667V4.4C19.0667 5.21002 18.41 5.86667 17.6 5.86667C16.79 5.86667 16.1333 5.21002 16.1333 4.4V2.93333ZM20.5333 8.06667H1.46665V18.8C1.46665 19.3523 1.91436 19.8 2.46665 19.8H19.5333C20.0856 19.8 20.5333 19.3523 20.5333 18.8V8.06667Z"></path>
+                                                <rect x="3.66669" width="1.46667" height="5.13333" rx="0.733333" fill="currentColor"></rect>
+                                                <rect x="16.8667" width="1.46667" height="5.13333" rx="0.733333" fill="currentColor"></rect>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="first-hearing-no" name="first-hearing-details" type="radio" value="No" data-aria-controls="conditional-contact-2" {% if not data['firstHearingDetailsYesNo'] === 'No' %}checked{% endif %}>
+                            <label class="govuk-label govuk-radios__label" for="first-hearing-no">
+                                No
+                            </label>
+                        </div>
+                        
+                    </div>
+                </fieldset>
+                </div>
+
+                {% include "../../includes/buttons.html" %}
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+  (function () {
+    const textInput = document.getElementById('newCase_FirstHearing_Date');
+    const nativeInput = document.getElementById('newCase_FirstHearing_Date_native');
+    const toggle = document.getElementById('newCase_FirstHearing_Date_toggle');
+
+    if (!textInput || !nativeInput || !toggle) return;
+
+    function formatDate(value) {
+      if (!value || !value.includes('-')) return '';
+      const parts = value.split('-');
+      if (parts.length !== 3) return '';
+      return Number(parts[2]) + '/' + parts[1] + '/' + parts[0];
+    }
+
+    function normaliseDate(value) {
+      if (!value || !value.includes('/')) return '';
+      const parts = value.split('/');
+      if (parts.length !== 3) return '';
+      const day = String(Number(parts[0])).padStart(2, '0');
+      const month = String(Number(parts[1])).padStart(2, '0');
+      const year = parts[2];
+      if (!day || !month || !year) return '';
+      return year + '-' + month + '-' + day;
+    }
+
+    toggle.addEventListener('click', function () {
+      const parsedValue = normaliseDate(textInput.value.trim());
+      if (parsedValue) {
+        nativeInput.value = parsedValue;
+      }
+
+      if (typeof nativeInput.showPicker === 'function') {
+        nativeInput.showPicker();
+      } else {
+        nativeInput.focus();
+        nativeInput.click();
+      }
+    });
+
+    nativeInput.addEventListener('change', function () {
+      const formatted = formatDate(nativeInput.value);
+      if (formatted) {
+        textInput.value = formatted;
+      }
+    });
+  })();
+</script>
+{% endblock %}

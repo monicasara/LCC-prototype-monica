@@ -1,0 +1,74 @@
+{% extends "layoutCPS-OFF-V11.html" %}
+
+{% block pageTitle %}
+  Create a new folder – {{ serviceName }} – Prototype
+{% endblock %}
+
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+     {% set currentFolder = data['currentFolder'] %}
+
+    <h1 class="govuk-heading-l">Create a new folder</h1>
+
+    <form method="post">
+
+      <input type="hidden" name="currentFolder" value="{{ data['currentFolder'] }}">
+      <input type="hidden" name="parentFolder" value="{{ data['folderId'] }}">
+
+      {% if currentFolder %}
+        <p class="govuk-body">
+          New folder will be created in:
+          <strong>
+               {{ data['folderName']}}
+            <!-- {{ (data.materials | selectattr('id', 'equalto', currentFolder | int) | first).name }} -->
+          </strong>
+        </p>
+      {% endif %}
+
+      {% if error %}
+        <div class="govuk-error-summary" role="alert" tabindex="-1">
+          <h2 class="govuk-error-summary__title">There is a problem</h2>
+          <ul class="govuk-error-summary__list">
+            <li><a href="#newFolderName">{{ error }}</a></li>
+          </ul>
+        </div>
+      {% endif %}
+
+      <div class="govuk-form-group {% if error %}govuk-form-group--error{% endif %}">
+        <label class="govuk-label govuk-label--m" for="newFolderName">Folder name</label>
+
+        {% if error %}
+          <p class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> {{ error }}
+          </p>
+        {% endif %}
+
+        <input class="govuk-input govuk-input--width-20" id="newFolderName" name="newFolderName" type="text">
+      </div>
+
+     <div class="govuk-button-group govuk-!-margin-top-6">
+          <button class="govuk-button" data-module="govuk-button" name="submit-button" value="continue">
+               Create folder
+          </button>
+          
+          <a class="govuk-link" href="03-case-overview">Cancel</a>
+
+          Cancel
+          </button>
+     </div>
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

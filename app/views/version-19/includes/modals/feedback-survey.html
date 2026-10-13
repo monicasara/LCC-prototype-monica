@@ -1,0 +1,209 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="openFeedbackSurveyModal">
+
+    <div class="das-cookie-banner small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-modal-dialogue__header">
+                <button aria-label="Close modal dialogue" class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeFeedbackSurveyModal()">×</button>
+            </div>
+
+            <!-- //////////////////////////////// REDACTION LOG - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="feedbackSurvey">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-l">
+                                    Casework App feedback                    
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="redaction-wrapper">
+                        <form method="" action="">
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full">
+
+                                    <p></p>
+                                    <div class="govuk-inset-text">
+                                        Please tell us why you're unhappy with the Casework app it will only take you less that 5 minutes.
+                                    </div>
+                                    <p></p>
+
+                                    <!-- ////// FORM ITEM 1 - START ////// -->
+                                    <div class="govuk-form-group">
+                                        <fieldset class="govuk-fieldset">
+                                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                                <h1 class="govuk-fieldset__heading">What is your job role?</h1>
+                                            </legend>
+                                            <div class="govuk-radios govuk-radios--small govuk-radios--inline" data-module="govuk-radios">
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Job-Legal" name="feedbackSurvey-Job" type="radio" value="Legal Profession">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Job-Legal">Legal Profession</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Job-Operation" name="feedbackSurvey-Job" type="radio" value="Operational Delivery">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Job-Operation">Operational Delivery</label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <!-- ////// FORM ITEM 1 - END ////// -->
+
+                                    <!-- ////// FORM ITEM 2 - START ////// -->
+                                    <div class="govuk-form-group">
+                                        <fieldset class="govuk-fieldset">
+                                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                                <h1 class="govuk-fieldset__heading">How many times did you use the Casework App in the last week?</h1>
+                                            </legend>
+                                            <div class="govuk-radios govuk-radios--small govuk-radios--inline" data-module="govuk-radios">
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Time-1-2" name="feedbackSurvey-Time" type="radio" value="1-2 times">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Time-1-2">1-2 times</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Time-3-4" name="feedbackSurvey-Time" type="radio" value="3-4 times">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Time-3-4">3-4 times</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Time-5" name="feedbackSurvey-Time" type="radio" value="5+ times">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Time-5">5+ times</label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <!-- ////// FORM ITEM 2 - END ////// -->
+
+                                    <!-- ////// FORM ITEM 3 - START ////// -->
+                                    <div class="govuk-form-group">
+                                        <fieldset class="govuk-fieldset">
+                                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                                <h1 class="govuk-fieldset__heading">How likely is it that you would recommend the Casework App to a colleague?</h1>
+                                            </legend>
+                                            <div class="govuk-radios govuk-radios--small govuk-radios--inline" data-module="govuk-radios">
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Recommend-Very" name="feedbackSurvey-Recommend" type="radio" value="Very likely">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Recommend-Very">Very likely</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Recommend-Likely" name="feedbackSurvey-Recommend" type="radio" value="Likely">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Recommend-Likely">Likely</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Recommend-Neither" name="feedbackSurvey-Recommend" type="radio" value="Neither likely nor unlikely">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Recommend-Neither">Neither likely nor unlikely</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Recommend-Unlikely" name="feedbackSurvey-Recommend" type="radio" value="Unlikely">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Recommend-Unlikely">Unlikely</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Recommend-Very-Unlikely" name="feedbackSurvey-Recommend" type="radio" value="Very unlikely">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Recommend-Very-Unlikely">Very unlikely</label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <!-- ////// FORM ITEM 3 - END ////// -->
+
+                                    <!-- ////// FORM ITEM 4 - START ////// -->
+                                    <div class="govuk-form-group">
+                                        <fieldset class="govuk-fieldset">
+                                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                                <h1 class="govuk-fieldset__heading">How easy is it to use the Casework App?</h1>
+                                            </legend>
+                                            <div class="govuk-radios govuk-radios--small govuk-radios--inline" data-module="govuk-radios">
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Easy-Very" name="feedbackSurvey-Easy" type="radio" value="Very easy">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Easy-Very">Very easy</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Easy-Easy" name="feedbackSurvey-Easy" type="radio" value="Easy">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Easy-Easy">Easy</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Easy-Neither" name="feedbackSurvey-Easy" type="radio" value="Neither easy nor difficult">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Easy-Neither">Neither easy nor difficult</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Easy-Difficult" name="feedbackSurvey-Easy" type="radio" value="Difficult">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Easy-Difficult">Difficult</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="feedbackSurvey-Easy-Very-Difficult" name="feedbackSurvey-Easy" type="radio" value="Very difficult">
+                                                    <label class="govuk-label govuk-radios__label" for="feedbackSurvey-Easy-Very-Difficult">Very difficult</label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <!-- ////// FORM ITEM 4 - END ////// -->
+
+                                    <!-- ////// FORM ITEM 5 - START ////// -->
+                                    <div class="govuk-form-group">
+                                        <h1 class="govuk-label-wrapper">
+                                            <label class="govuk-label govuk-label--s" for="feedbackSurvey-Best">What did you like best about the Casework App?</label>
+                                        </h1>
+                                        <textarea class="govuk-textarea" id="feedbackSurvey-Best" name="feedbackSurvey-Best" rows="5" aria-describedby="feedbackSurvey-Best-hint"></textarea>
+                                    </div>
+                                    <!-- ////// FORM ITEM 5 - END ////// -->
+
+                                    <!-- ////// FORM ITEM 6 - START ////// -->
+                                    <div class="govuk-form-group">
+                                        <h1 class="govuk-label-wrapper">
+                                            <label class="govuk-label govuk-label--s" for="feedbackSurvey-Least">What did you like least about the Casework App?</label>
+                                        </h1>
+                                        <textarea class="govuk-textarea" id="feedbackSurvey-Least" name="feedbackSurvey-Least" rows="5" aria-describedby="feedbackSurvey-Least-hint"></textarea>
+                                    </div>
+                                    <!-- ////// FORM ITEM 6 - END ////// -->
+
+                                    <!-- ////// FORM ITEM 7 - START ////// -->
+                                    <div class="govuk-form-group">
+                                        <h1 class="govuk-label-wrapper">
+                                            <label class="govuk-label govuk-label--s" for="feedbackSurvey-Change">What would you change about the Casework App?</label>
+                                        </h1>
+                                        <textarea class="govuk-textarea" id="feedbackSurvey-Change" name="feedbackSurvey-Change" rows="5" aria-describedby="feedbackSurvey-Change-hint"></textarea>
+                                    </div>
+                                    <!-- ////// FORM ITEM 7 - END ////// -->
+
+                                    <!-- ////// FORM ITEM 8 - START ////// -->
+                                    <div class="govuk-form-group">
+                                        <h1 class="govuk-label-wrapper">
+                                            <label class="govuk-label govuk-label--s" for="feedbackSurvey-Comments">Let us know any other comments</label>
+                                        </h1>
+                                        <textarea class="govuk-textarea" id="feedbackSurvey-Comments" name="feedbackSurvey-Comments" rows="5" aria-describedby="feedbackSurvey-Comments-hint"></textarea>
+                                    </div>
+                                    <!-- ////// FORM ITEM 8 - END ////// -->
+
+                                </div>
+                            </div>
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full">
+                                    <div class="govuk-inset-text">
+                                        <h2 class="govuk-heading-s">Thank you</h2>
+                                        <p>Your feedback will help us improve your Casework app experience, we will not ask you again for another 6 months</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full cta-group">
+                                    <button id="reportProblem-button" class="govuk-button" data-module="govuk-button" type="button" onClick="closeFeedbackSurveyModal()">Finish survey</button>
+                                    <button class="non-button" data-module="govuk-button" type="button" onClick="closeFeedbackSurveyModal()">Close</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>

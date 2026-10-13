@@ -1,0 +1,93 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+{% block beforeContent %}
+    {% include "../../includes/off-system-MVP/modalConfirmation-Egress.html" %}
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+    </div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-2" id="homepage-journey">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="wrapper main-cotent">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-7" style="">File already in use</h1>
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-4" style="">File in use by another user</h2>
+            <!-- <div class="govuk-inset-text"> -->
+                <p>A file with the same name already exists and is in use by somone else.</p>
+            <!-- </div> -->
+
+            <form method="post" action="03-case-overview#file_locked_COMPLETED" id="submit_failed_files">  
+
+                <!-- SECTION - 1 - START -->
+                <div class="url-text file_structure">
+                    {% if data['searchOFF_Operation_VALUE'] == 'Dumper Truck' or data['searchOFF_Operation_VALUE'] == 'Dumper truck'  or data['searchOFF_Operation_VALUE'] == 'dumper truck'  or data['searchOFF_Operation_VALUE'] == 'Dumpertruck' %}
+                        <div><span class="icon-new folder small"></span> {{ data['searchOFF_Operation_VALUE'] }}</div>
+                    {% elseif data['searchOFF_Defendant_VALUE'] == 'Dumper Truck' or data['searchOFF_Defendant_VALUE'] == 'Dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'Dumpertruck' %}
+                        <div><span class="icon-new folder small"></span> {{ data['searchOFF_Defendant_VALUE'] }}</div>
+                    {% elseif data['searchOFF_URN_VALUE'] %}
+                        <div><span class="icon-new folder small"></span> Dumper Truck</div>
+                    {% else %}
+                        <div><span class="icon-new folder small"></span> Thunderstruck</div>
+                    {% endif %}
+                </div>
+                <div class="file_container govuk-!-margin-bottom-6">
+                    <table class="govuk-table" id="">
+                        <tbody class="govuk-table__body">
+
+                            <tr class="govuk-table__row hidden_row">
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> mg11_BLAYNEE.pdf
+                                </td>
+                                <td class="govuk-table__cell" width="30%;"><strong class="govuk-tag govuk-tag--yellow" style="float: right;">File in use</strong></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- SECTION - 1 - END -->
+
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s"><h1 class="govuk-fieldset__heading">What would you like to do?</h1></legend>
+                        <div class="govuk-radios  govuk-radios--inline" data-module="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="file_locked_transfer__Overwrite" name="file_locked_transfer" type="radio" value="Try again">
+                                <label class="govuk-label govuk-radios__label" for="file_locked_transfer__Overwrite">Try again</label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="file_locked_transfer__Ignore_files" name="file_locked_transfer" type="radio" value="Ignore files">
+                                <label class="govuk-label govuk-radios__label" for="file_locked_transfer__Ignore_files">Ignore file</label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="file_locked_transfer__Duplicate_files" name="file_locked_transfer" type="radio" value="Duplicate files">
+                                <label class="govuk-label govuk-radios__label" for="file_locked_transfer__Duplicate_files">Duplicate file</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="govuk-warning-text  govuk-!-margin-bottom-6" id="file_locked_transfer__Warning">
+                    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                    <strong class="govuk-warning-text__text">
+                        <span class="govuk-visually-hidden">Warning</span>
+                        We duplicate all files and prefix the new items with "_V2", so "duplicate_document.pdf" becomes "duplicate_document_V2.pdf"
+                    </strong>
+                </div>
+
+                <!-- <input id="duplicate_files_COMPLETED_V2" name="duplicate_files_COMPLETED_V2" type="text" value="true" style="display: none;"> -->
+                <button id="" type="submit" aria-disabled="false" class="govuk-button govuk-!-margin-bottom-6" data-module="govuk-button">Continue</button>
+                
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

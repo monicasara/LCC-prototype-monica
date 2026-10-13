@@ -1,0 +1,220 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <div class="gov-pages">
+            <style>
+                .create-case-heading-with-tag {
+                    align-items: center;
+                    column-gap: 12px;
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+
+                .create-case-heading-with-tag__text {
+                    display: inline-block;
+                }
+
+                .create-case-heading-with-tag .govuk-tag {
+                    margin-top: 4px;
+                }
+            </style>
+            <h1 class="govuk-heading-l create-case-heading-with-tag"><span class="create-case-heading-with-tag__text">Add a charge for {% if data['suspectCompanyName'][data['currentSuspectId']] %}{{ data['suspectCompanyName'][data['currentSuspectId']] }}{% else %}<span class="uppercase">{{data['suspectLastName'][data['currentSuspectId']]}}</span>, {{data['suspectFirstName'][data['currentSuspectId']]}}{% endif %}</span>{% if isYouthSuspect(data['currentSuspectId']) %}<strong class="govuk-tag">Youth</strong>{% endif %}</h1>
+
+            <form method="post" action="/version-19/lcc/register-case/04-charges-offence-search">  
+                <fieldset class="govuk-fieldset">
+                    <div class="govuk-form-group govuk-!-margin-bottom-3">
+                    <label class="govuk-label govuk-!-font-weight-bold" for="event-name">
+                        Search for offence
+                    </label>
+                    <div id="changedName-hint" class="govuk-hint">
+                        You can search by part of a CJS code, statute or by offence keyword
+                    </div>
+
+                    <input class="govuk-input govuk-input--width-30" id="search-terms" name="charge-search" type="text" value="{{ data['chargeSearch']}}">
+                    <button type="submit" class="govuk-button" data-module="govuk-button">
+                        Search
+                    </button>
+                    </div>
+                </fieldset>
+            </form>
+            <form method="post" action="/version-19/lcc/register-case/04-charges-offence-search-results">
+                <div class="charges-results-table-wrap">
+                <span class="govuk-label">{{ data['currentResultsId'].length }} results for <strong>{{data['chargeSearch']}}</strong></span>
+                <hr>
+
+                <style>
+                    .inline-row {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;       /* spacing between label and select */
+                        flex-wrap: wrap;   /* allows stacking on very small screens */
+                    }
+                    .inline-row label { margin: 0; }
+                    .inline-row select { width: auto; min-width: 10rem; }
+                    @media (max-width: 420px) {
+                    .inline-row { gap: 0.25rem; }
+                    }
+
+                    .govuk-pagination__item--current .govuk-pagination__link,
+                    .govuk-pagination__item--current .govuk-pagination__link:link,
+                    .govuk-pagination__item--current .govuk-pagination__link:visited,
+                    .govuk-pagination__item--current .govuk-pagination__link:hover,
+                    .govuk-pagination__item--current .govuk-pagination__link:focus,
+                    .govuk-pagination__item--current a.govuk-link {
+                        color: #ffffff !important;
+                        text-decoration: none !important;
+                    }
+
+                    .charges-results-table {
+                        width: auto;
+                    }
+
+                    .charges-results-table-wrap {
+                        display: inline-block;
+                    }
+
+                    .charges-results-table__actions {
+                        width: 5rem;
+                    }
+
+                    .charges-results-table__code {
+                        min-width: 8rem;
+                        white-space: nowrap;
+                    }
+
+                    .charges-results-table__description {
+                        max-width: 24rem;
+                    }
+
+                    .charges-results-table__statute {
+                        max-width: 27rem;
+                    }
+
+                    .charges-results-table__dates {
+                        width: 11rem;
+                        white-space: nowrap;
+                    }
+                </style>
+
+                <div class="govuk-form-group govuk-!-margin-bottom-6">
+                    <div class="inline-row">
+                        <label class="govuk-label" for="results-per-page">Display</label>
+                        <select class="govuk-select" id="results-per-page" name="results-per-page">
+                        <option value="20" selected>20 results per page</option>
+                        <option value="50">50 results per page</option>
+                        <option value="100">100 results per page</option>
+                        </select>
+                    </div>
+                </div>        
+                
+                <!-- <table class="govuk-table govuk-!-margin-bottom-9" id="sortable-table">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header govuk-!-font-weight-bold sortable" data-sort="string">CJS Code</th>
+                    <th scope="col" class="govuk-table__header govuk-!-font-weight-bold sortable govuk-!-width-one-third" data-sort="string">Description</th>
+                    <th scope="col" class="govuk-table__header govuk-!-font-weight-bold govuk-!-width-one-quarter" data-sort="string">Statute name and section</th>
+                    <th scope="col" class="govuk-table__header govuk-!-font-weight-bold" style="width:20%" data-sort="date">Effective dates</th>
+                    <th scope="col" class="govuk-table__header govuk-!-font-weight-bold govuk-!-width-one-eight" data-sort="date">Effective to date</th>
+                    <th scope="col" class="govuk-table__header govuk-!-font-weight-bold govuk-table__header--numeric" style="width:10%">Actions</th>
+                    </tr>
+                </thead> -->
+
+                <table class="govuk-table charges-results-table">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header charges-results-table__actions">Actions</th>
+                    <th scope="col" class="govuk-table__header charges-results-table__code">CJS code</th>
+                    <th scope="col" class="govuk-table__header charges-results-table__description">Description</th>
+                    <th scope="col" class="govuk-table__header charges-results-table__statute">Statute name and section</th>
+                    <th scope="col" class="govuk-table__header charges-results-table__dates">Effective dates</th>
+                    <!-- <th scope="col" class="govuk-table__header">Effective to date</th> -->
+                    <!-- <th scope="col" class="govuk-table__header govuk-!-width-one-eight">CJS code</th>
+                    <th scope="col" class="govuk-table__header govuk-!-width-one-third">Description</th>
+                    <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Statute name and section</th>
+                    <th scope="col" class="govuk-table__header govuk-!-width-one-eight">Effective from date</th>
+                    <th scope="col" class="govuk-table__header govuk-!-width-one-eight">Effective to date</th>
+                    <th scope="col" class="govuk-table__header govuk-!-width-one-eight govuk-table__header--numeric">Actions</th> -->
+                    </tr> 
+                </thead>
+                <tbody class="govuk-table__body">
+                    {% for id in data['currentResultsId'] %}            
+                        <tr class="govuk-table__row">
+                        <td class="govuk-table__cell charges-results-table__actions">
+                            <form action="/version-19/lcc/register-case/04-charges-offence-search-results" method="post" novalidate>
+                                <input type="hidden" name="add-charge" value="{{ id }}">
+                                <button class="govuk-link govuk-link--no-visited-state suspect" type="submit">Add</button>
+                            </form>
+                        </td>
+                        <td class="govuk-table__cell charges-results-table__code">{{ data['currentResultsChargeCode'][id]}}</th>
+                        <td class="govuk-table__cell charges-results-table__description">
+                            {{ data['currentResultsChargeDescription'][id]}}
+                            {% if data['currentResultsToDate'][id] %}
+                            <div class="govuk-warning-text">
+                                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                                <strong class="govuk-warning-text__text">
+                                    <span class="govuk-visually-hidden">Warning</span>
+                                    Repealed
+                                </strong>
+                            </div>
+                            {% endif %}
+                        </td>
+                        <td class="govuk-table__cell charges-results-table__statute">
+                            {{ data['currentResultsStatute'][id]}}
+                            <br>{{ data['currentResultsSection'][id]}}
+                        </td>
+                        <td class="govuk-table__cell charges-results-table__dates">
+                            From {{ data['currentResultsFromDate'][id]}}
+                            {% if data['currentResultsToDate'][id] %}<br> to {{data['currentResultsToDate'][id]}} {% endif %}
+                        </td>
+                        <!-- <td class="govuk-table__cell">{{ data['resultsToDate'][id]}}</td> -->
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+                </div>
+
+                {% if data['currentResultsId'].length > 20 %}
+                <nav class="govuk-pagination" aria-label="Pagination">
+                    <ul class="govuk-pagination__list">
+                        <li class="govuk-pagination__item govuk-pagination__item--current">
+                        <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1" aria-current="page">
+                            1
+                        </a>
+                        </li>
+                        <li class="govuk-pagination__item">
+                        <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2">
+                            2
+                        </a>
+                        </li>
+                        <!-- <li class="govuk-pagination__item">
+                        <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3">
+                            3
+                        </a>
+                        </li> -->
+                    </ul>
+                    <div class="govuk-pagination__next">
+                        <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+                        <span class="govuk-pagination__link-title">
+                            Next<span class="govuk-visually-hidden"> page</span>
+                        </span>
+                        <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                            <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                        </svg>
+                        </a>
+                    </div>
+                </nav>
+                {% endif %}
+            </form>  
+        </div>    
+    </div>
+</div>
+
+{% endblock %}

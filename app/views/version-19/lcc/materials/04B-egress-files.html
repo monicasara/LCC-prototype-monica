@@ -1,0 +1,71 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+{% block beforeContent %}
+    <a class="govuk-back-link" href="javascript:history.back()">Back</a>
+    {% include "../../includes/off-system-MVP/modalConfirmation-Egress.html" %}
+{% endblock %}
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+            {% if data['existingDriveFolder'] === 1 %}
+                <form method="post" action="05A-p-drive-files" id="">  
+            {% elseif data['newDriveFolder'] === 1 %}
+                <form method="post" action="05A-create-shared-drive-folder" id="">  
+            {% else %}
+                <form method="post" action="03-case-overview" id="">  
+            {% endif %}
+
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset" aria-describedby="offCMS_Egress_files-hint">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"><h1 class="govuk-fieldset__heading">Confirm folder link</h1></legend>
+
+                        {% if data['createCaseStarted'] == 'true' %}
+                            <legend class="govuk-fieldset__legend">Are you sure you want to link the Egress folder "{{ data['egress_file_link'] }}" to the case?</legend>
+                            <div id="offCMS_Egress_files-hint" class="govuk-hint">Once linked, this folder can be used to transfer files. You can update this later if needed.</div>
+                        {% else %}
+                            <legend class="govuk-fieldset__legend">Are you sure you want to link "{{ data['egress_file_link'] }}" Egress folder to the case?</legend>
+                            <div id="offCMS_Egress_files-hint" class="govuk-hint">Once linked, this folder will be used for transferring files related to the case. You can update the linked folder later if needed.</div>
+                        {% endif %}
+
+                        {% if data['mvp_Case_2'] == 'true' or data['createCaseStarted'] == 'true' %}
+                            <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="offCMS_Egress_files_Yes" name="offCMS_Egress_files" type="radio" value="Yes">
+                                    <label class="govuk-label govuk-radios__label" for="offCMS_Egress_files_Yes">Yes</label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="offCMS_Egress_files_No" name="offCMS_Egress_files" type="radio" value="No">
+                                    <label class="govuk-label govuk-radios__label" for="offCMS_Egress_files_No">No</label>
+                                </div>
+                            </div>
+                        {% elseif data['mvp_Case_4'] == 'true' %}
+                            <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="offCMS_Egress_files_V2_Yes" name="offCMS_Egress_files_V2" type="radio" value="Yes">
+                                    <label class="govuk-label govuk-radios__label" for="offCMS_Egress_files_V2_Yes">Yes</label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="offCMS_Egress_files_V2_No" name="offCMS_Egress_files_V2" type="radio" value="No">
+                                    <label class="govuk-label govuk-radios__label" for="offCMS_Egress_files_V2_No">No</label>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                    </fieldset>
+                </div>
+
+                {% include "../../includes/buttons.html" %}
+                
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

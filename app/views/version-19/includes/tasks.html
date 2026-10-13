@@ -1,0 +1,67 @@
+<div class="tasks-panel-wrapper">
+    <a href="#" class="tasks"><span class="tasks-button alert"></span><span class="tasks-number alert">1</span> Tasks</a>
+    <div class="tasks-panel">
+        <div class="updates">
+            <span>Last updated:</span> <span id="task-date-stamp-1">####</span>
+        </div>
+
+        <h2 class="govuk-heading-s">Outstanding tasks</h2>
+
+        <!-- TASK 1 - START -->
+        <div class="task-alert one">
+            <div class="wrapper">
+                <span class="govuk-tag govuk-tag--red">Due Today</span>
+                <br>
+                <p class="openMe">
+                    Check new communications:
+                    <br>
+                    <a href="" class="show-case task-item-1" data-doc="defendants.pdf" data-document="22" onclick="return updateDocument(), topFunction()" data-page="1">Asset Rec 1</a>
+                    <br>
+                    <span id="">Assigned to: <strong>user_name_1983</strong></span>
+                </p>
+            </div>
+            <div class="wrapper clear">
+                <a class="govuk-button govuk-button--secondary clear-task" onclick="return markTaskAsComplete()"><span class="govuk-visually-hidden"> Task</span> Complete</a>
+            </div>
+        </div>
+        <!-- TASK 1 - END -->
+
+        <p class="no-tasks">This case has no outstanding tasks</p>
+
+        <h2 class="govuk-heading-s">Complete tasks</h2>
+
+        <!-- TASK 1 - START -->
+        <div class="task-alert one completed">
+            <div class="wrapper">
+                <span class="govuk-tag govuk-tag--green">Completed</span>
+                <br>
+                <p class="openMe">
+                    Check new communications:
+                    <br>
+                    <a href="" class="show-case task-item-1" data-doc="defendants.pdf" data-document="22" onclick="return updateDocument(), topFunction()" data-page="1">Asset Rec 1</a>
+                    <br>
+                    <span id="">Completed by: <strong>user_name_1983</strong>, <span id="task-date-stamp-2">####</span></span>
+                </p>
+            </div>
+        </div>
+        <!-- TASK 1 - END -->
+
+        <!-- TASK 2 - START -->
+        <div class="task-alert two completed">
+            <div class="wrapper">
+                <span class="govuk-tag govuk-tag--green">Completed</span>
+                <br>
+                <p class="">
+                    28 Day PCD Review:
+                    <br>
+                    <a href="" class="show-case task-item-2">View 28 Day PCD Review</a>
+                    <br>
+                    <span id="">Completed by: <strong>user_name_1983</strong>, Friday 21/05/2024 12:14pm</span>
+                </p>
+            </div>
+        </div>
+        <!-- TASK 2 - END -->
+
+    </div>
+</div>
+

@@ -1,0 +1,230 @@
+{% extends "layoutCPS-NEW-INDEX.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+{% set hasPersonName = data['suspectFirstName'][data['editSuspect']] and data['suspectLastName'][data['editSuspect']] %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% if data['editSuspect'] == 999 %}
+      <form action="/version-19/lcc/register-case/04A-add-suspect" method="post" novalidate>
+    {% else %}
+      <form action="/version-19/lcc/register-case/04-edit-suspect" method="post" novalidate>
+    {% endif %}
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <!-- <span class="govuk-caption-l">Suspect {% if data['editSuspect'] == 999 %} {{data['suspectCount'] + 1}} {% else %} {{data['editSuspect']}} {% endif %}</span> -->
+            <h1 class="govuk-fieldset__heading">
+              Add suspect {% if data['editSuspect'] == 999 %} {{data['suspectCount'] + 1}} {% else %} {{data['displaySuspect']}} {% endif %}
+            </h1>
+          </legend>
+          <!-- <div id="contact-hint" class="govuk-hint">
+            Suspect 1
+          </div> -->
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="suspect-type-person" name="suspect-type" type="radio" value="Person" data-aria-controls="suspect-type-person-details" {% if data['suspectType'][data['editSuspect']] == 'Person' or hasPersonName %} checked {% endif %}>
+              <label class="govuk-label govuk-radios__label" for="suspect-type-person">
+                Person
+              </label>
+            </div>
+            <div class="govuk-radios__conditional{% if data['suspectType'][data['editSuspect']] != 'Person' and not hasPersonName %} govuk-radios__conditional--hidden{% endif %}" id="suspect-type-person-details">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="suspect-type-person-first-name">
+                  First name
+                </label>
+                <input class="govuk-input govuk-!-width-one-third" id="suspect-person-first-name" name="suspect-person-first-name" type="text" spellcheck="false" autocomplete="text" value="{{ data['suspectFirstName'][data['editSuspect']]}}">
+              </div>
+              
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="suspect-person-last-name">
+                  Last name
+                </label>
+                <input class="govuk-input govuk-!-width-one-third" id="suspect-person-last-name" name="suspect-person-last-name" type="text" spellcheck="false" autocomplete="text" value="{{ data['suspectLastName'][data['editSuspect']]}}">
+              </div>
+
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" role="group" aria-describedby="date-of-birth-hint">
+                  <label class="govuk-label govuk-!-font-weight-bold" for="suspect-person-last-name">
+                    Date of birth
+                  </label>
+                  <div id="date-of-birth-hint" class="govuk-hint">
+                    For example, 27 3 2007
+                  </div>
+                  <div class="govuk-date-input" id="date-of-birth">
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="date-of-birth-day">
+                          Day
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-birth-day" name="date-of-birth-day" type="text" inputmode="numeric" value="{{ data['suspectDayBirth'][data['editSuspect']]}}">
+                      </div>
+                    </div>
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="date-of-birth-month">
+                          Month
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-birth-month" name="date-of-birth-month" type="number" inputmode="numeric" value="{{ data['suspectMonthBirth'][data['editSuspect']]}}">
+                      </div>
+                    </div>
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="date-of-birth-year">
+                          Year
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-of-birth-year" name="date-of-birth-year" type="number" inputmode="numeric" value="{{ data['suspectYearBirth'][data['editSuspect']]}}">
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              <!-- <div class="moj-datepicker" data-module="moj-date-picker">
+                  <div class="govuk-form-group">
+                      <label class="govuk-label" for="newCase_FirstHearing_Date">Date of birth</label>
+                      <div id="newCase_FirstHearing_Date-hint" class="govuk-hint">For example, 17/5/2024.</div>
+                      <div class="date_range_wrapper create_case">
+                          <input class="govuk-input moj-js-datepicker-input govuk-input--width-10" id="newCase_FirstHearing_Date" name="suspect-date-of-birth" type="text" aria-describedby="date-hint" autocomplete="off" value="{{ data['suspectDOB'][data['editSuspect']]}}">
+                          <button class="moj-datepicker__toggle moj-js-datepicker-toggle" type="button" aria-haspopup="dialog" aria-controls="datepicker-date" aria-expanded="true">
+                              <span class="govuk-visually-hidden">Choose date</span>
+                              <svg width="32" height="24" focusable="false" class="moj-datepicker-icon" aria-hidden="true" role="img" viewBox="0 0 22 22">
+                                  <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16.1333 2.93333H5.86668V4.4C5.86668 5.21002 5.21003 5.86667 4.40002 5.86667C3.59 5.86667 2.93335 5.21002 2.93335 4.4V2.93333H2C0.895431 2.93333 0 3.82877 0 4.93334V19.2667C0 20.3712 0.89543 21.2667 2 21.2667H20C21.1046 21.2667 22 20.3712 22 19.2667V4.93333C22 3.82876 21.1046 2.93333 20 2.93333H19.0667V4.4C19.0667 5.21002 18.41 5.86667 17.6 5.86667C16.79 5.86667 16.1333 5.21002 16.1333 4.4V2.93333ZM20.5333 8.06667H1.46665V18.8C1.46665 19.3523 1.91436 19.8 2.46665 19.8H19.5333C20.0856 19.8 20.5333 19.3523 20.5333 18.8V8.06667Z"></path>
+                                  <rect x="3.66669" width="1.46667" height="5.13333" rx="0.733333" fill="currentColor"></rect>
+                                  <rect x="16.8667" width="1.46667" height="5.13333" rx="0.733333" fill="currentColor"></rect>
+                              </svg>
+                          </button>
+                      </div>
+                      <img src="../../../../public/images/date_picker.png" alt="Date picker" class="create_case_date_picker">
+                  </div>
+              </div>                                 -->
+
+              <!-- <div class="govuk-form-group">
+              <label class="govuk-label" for="suspect-person-last-name">
+                Suspect date of birth
+              </label>
+              <div id="date-of-birth-hint" class="govuk-hint">
+                For example, 27 3 2007
+              </div>
+              <div class="govuk-date-input" id="date-of-birth">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-of-birth-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-birth-day" name="date-of-birth-day" type="text" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-of-birth-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-of-birth-month" name="date-of-birth-month" type="text" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-of-birth-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-of-birth-year" name="date-of-birth-year" type="text" inputmode="numeric">
+                  </div>
+                </div>
+              </div> -->
+
+            </div>
+
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="suspect-type-company" name="suspect-type" type="radio" value="Company" data-aria-controls="suspect-type-company-details" {% if data['suspectType'][data['editSuspect']] == 'Company' %} checked {% endif %}>
+              <label class="govuk-label govuk-radios__label" for="suspect-type-company">
+                Company
+              </label>
+            </div>
+            <div class="govuk-radios__conditional{% if data['suspectType'][data['editSuspect']] != 'Company' %} govuk-radios__conditional--hidden{% endif %}" id="suspect-type-company-details">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="suspect-company-name">
+                  Company name
+                </label>
+                <input class="govuk-input govuk-!-width-one-third" id="suspect-company-name" name="suspect-company-name" type="text" autocomplete="text" value="{{ data['suspectCompanyName'][data['id']]}}">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <input type="hidden" name="id" value="{{ data['suspectId'][data['id']]}}">
+        <input type="hidden" name="update" value="{{data['id']}}">
+
+      </div>
+
+
+      <button type="submit" class="govuk-button">Continue</button>
+      <button type="button" onclick="location.href='03A-suspect-summary';" class="non-button margin-left" id="">Cancel</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+  (function () {
+    var radios = document.querySelectorAll('input[name="suspect-type"][data-aria-controls]')
+    var personRadio = document.getElementById('suspect-type-person')
+    var companyRadio = document.getElementById('suspect-type-company')
+    var firstNameInput = document.getElementById('suspect-person-first-name')
+    var lastNameInput = document.getElementById('suspect-person-last-name')
+    var companyNameInput = document.getElementById('suspect-company-name')
+
+    function hasValue (input) {
+      return input && input.value.trim() !== ''
+    }
+
+    function updateSuspectTypePanels () {
+      if (hasValue(firstNameInput) && hasValue(lastNameInput) && personRadio) {
+        personRadio.checked = true
+      } else if (hasValue(companyNameInput) && companyRadio) {
+        companyRadio.checked = true
+      }
+
+      radios.forEach(function (radio) {
+        var panel = document.getElementById(radio.getAttribute('data-aria-controls'))
+
+        if (!panel) {
+          return
+        }
+
+        if (radio.checked) {
+          panel.removeAttribute('hidden')
+          panel.classList.remove('govuk-radios__conditional--hidden')
+          panel.style.display = ''
+        } else {
+          panel.setAttribute('hidden', 'hidden')
+          panel.classList.add('govuk-radios__conditional--hidden')
+          panel.style.display = 'none'
+        }
+      })
+    }
+
+    radios.forEach(function (radio) {
+      radio.addEventListener('change', updateSuspectTypePanels)
+    })
+
+    document.addEventListener('DOMContentLoaded', updateSuspectTypePanels)
+    window.addEventListener('pageshow', updateSuspectTypePanels)
+
+    updateSuspectTypePanels()
+    window.setTimeout(updateSuspectTypePanels, 0)
+    window.setTimeout(updateSuspectTypePanels, 100)
+    window.setTimeout(updateSuspectTypePanels, 300)
+  })()
+</script>
+{% endblock %}

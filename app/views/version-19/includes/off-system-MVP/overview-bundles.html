@@ -1,0 +1,32 @@
+<div class="egress_to_shared_drive">
+    <h2 class="govuk-heading-m" id="">Bundles</h2>
+    <p><span class="govuk-caption-m govuk-!-margin-bottom-0" style="display: inline-block;">Last updated <span id="bundles-timestamp"></span></span></p>
+</div>
+
+
+<div class="section-wrapper bundles_holder">
+
+    <section class="order_1" id="egress_container">
+
+        <div class="title-wrapper">
+            <h3 class="govuk-heading-s">Documents</h3>
+        </div>
+        <!-- ////////////////////////////// DOCUMENTS - START ////////////////////////////// -->
+        {% include "../../includes/off-system-MVP/bundles-files.html" %}
+        <!-- ////////////////////////////// DOCUMENTS - START ////////////////////////////// -->
+
+    </section>
+
+    <section class="order_2" id="shared_drive_container">
+
+        <div class="title-wrapper">
+            <h3 class="govuk-heading-s">Initial Details Pros Case</h3>
+        </div>
+
+        <!-- ////////////////////////////// ACCORDIONS - START ////////////////////////////// -->
+        {% include "../../includes/off-system-MVP/bundles-destination.html" %}
+        <!-- ////////////////////////////// ACCORDIONS - END ////////////////////////////// -->
+
+    </section>
+
+</div>

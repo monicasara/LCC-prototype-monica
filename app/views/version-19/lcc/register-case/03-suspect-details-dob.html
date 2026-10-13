@@ -1,0 +1,111 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row" id="create-case-journey">
+
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+            {% if errorList and errorList.length %}
+            <div class="govuk-error-summary" data-module="govuk-error-summary">
+                <div role="alert">
+                    <h2 class="govuk-error-summary__title">
+                        There is a problem
+                    </h2>
+                    <div class="govuk-error-summary__body">
+                        <ul class="govuk-list govuk-error-summary__list">
+                            {% for error in errorList %}
+                            <li>
+                                <a href="{{ error.href }}">{{ error.text }}</a>
+                                {% if error.text == "Enter the date of birth" %}
+                                <div class="govuk-!-margin-top-3">
+                                    <a class="govuk-link" style="font-weight: normal;" href="/version-19/lcc/register-case/03-suspect-details-dob-unknown">I do not have the date of birth</a>
+                                </div>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <form method="post" action="/version-19/lcc/register-case/03-suspect-details-dob">  
+
+                <!-- ***** Date of birth ***** -->
+                <div class="govuk-form-group{% if errors and (errors.dateOfBirth or errors.day or errors.month or errors.year) %} govuk-form-group--error{% endif %}">
+                    <fieldset class="govuk-fieldset" role="group" aria-describedby="date-of-birth-hint{% if errors and (errors.dateOfBirth or errors.day or errors.month or errors.year) %} date-of-birth-error{% endif %}">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-fieldset__heading">
+                            What is <span class="uppercase">{{ data['suspect-person-last-name'] }}</span>, {{ data['suspect-person-first-name'] }}'s date of birth?
+                        </h1>
+                        </legend>
+                        <div id="date-of-birth-hint" class="govuk-hint">
+                        For example, 27 3 2007
+                        </div>
+                        {% if errors and errors.dateOfBirth %}
+                        <span id="date-of-birth-error" class="govuk-error-message">
+                            <span class="govuk-visually-hidden">Error:</span> {{ errors.dateOfBirth }}
+                        </span>
+                        {% endif %}
+                        <div class="govuk-date-input" id="date-of-birth">
+                            <div class="govuk-date-input__item">
+                                <div class="govuk-form-group{% if errors and errors.day %} govuk-form-group--error{% endif %}">
+                                <label class="govuk-label govuk-date-input__label" for="date-of-birth-day">
+                                    Day
+                                </label>
+                                {% if errors and errors.day %}
+                                <span id="date-of-birth-day-error" class="govuk-error-message">
+                                    <span class="govuk-visually-hidden">Error:</span> {{ errors.day }}
+                                </span>
+                                {% endif %}
+                                <input class="govuk-input govuk-date-input__input govuk-input--width-2{% if errors and errors.day %} govuk-input--error{% endif %}" id="date-of-birth-day" name="date-of-birth-day" type="text" inputmode="numeric" value="{{ data['suspectDayBirth'][data['suspectDetailsCount']]}}" {% if errors and (errors.dateOfBirth or errors.day) %}aria-describedby="{% if errors.day %}date-of-birth-day-error{% else %}date-of-birth-error{% endif %}"{% endif %}>
+                                </div>
+                            </div>
+                            <div class="govuk-date-input__item">
+                                <div class="govuk-form-group{% if errors and errors.month %} govuk-form-group--error{% endif %}">
+                                <label class="govuk-label govuk-date-input__label" for="date-of-birth-month">
+                                    Month
+                                </label>
+                                {% if errors and errors.month %}
+                                <span id="date-of-birth-month-error" class="govuk-error-message">
+                                    <span class="govuk-visually-hidden">Error:</span> {{ errors.month }}
+                                </span>
+                                {% endif %}
+                                <input class="govuk-input govuk-date-input__input govuk-input--width-2{% if errors and errors.month %} govuk-input--error{% endif %}" id="date-of-birth-month" name="date-of-birth-month" type="text" inputmode="numeric" value="{{ data['suspectMonthBirth'][data['suspectDetailsCount']]}}" {% if errors and (errors.dateOfBirth or errors.month) %}aria-describedby="{% if errors.month %}date-of-birth-month-error{% else %}date-of-birth-error{% endif %}"{% endif %}>
+                                </div>
+                            </div>
+                            <div class="govuk-date-input__item">
+                                <div class="govuk-form-group{% if errors and errors.year %} govuk-form-group--error{% endif %}">
+                                <label class="govuk-label govuk-date-input__label" for="date-of-birth-year">
+                                    Year
+                                </label>
+                                {% if errors and errors.year %}
+                                <span id="date-of-birth-year-error" class="govuk-error-message">
+                                    <span class="govuk-visually-hidden">Error:</span> {{ errors.year }}
+                                </span>
+                                {% endif %}
+                                <input class="govuk-input govuk-date-input__input govuk-input--width-4{% if errors and errors.year %} govuk-input--error{% endif %}" id="date-of-birth-year" name="date-of-birth-year" type="text" inputmode="numeric" value="{{ data['suspectYearBirth'][data['suspectDetailsCount']]}}" {% if errors and (errors.dateOfBirth or errors.year) %}aria-describedby="{% if errors.year %}date-of-birth-year-error{% else %}date-of-birth-error{% endif %}"{% endif %}>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                {% include "../../includes/buttons.html" %}
+
+            </form>
+
+        </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,463 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+{% block beforeContent %}
+    {% include "../../includes/off-system-MVP/modalConfirmation-PDrive.html" %} 
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+    </div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-2" id="homepage-journey">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="wrapper main-cotent">
+            {% if data['mvp_Case_1'] == 'true' %}
+                {% if data['searchOFF_URN'] == 'Thunder' or data['searchOFF_URN'] == 'thunder' %}
+                    <h2 class="govuk-heading-xl govuk-!-margin-bottom-0" style="">Link <span class="operation_name">{{ data['searchOFF_URN'] }}struck</span> case to the Shared Drive</h2>
+                {% else %}
+                    <h2 class="govuk-heading-xl govuk-!-margin-bottom-0" style="">Link <span class="operation_name">{{ data['searchOFF_URN'] }}</span> case to the Shared Drive</h2>
+                {% endif %}
+            {% elseif data['mvp_Case_3'] == 'true' %}
+                {% if data['searchOFF_URN'] == 'Thunder' or data['searchOFF_URN'] == 'thunder' %}
+                    <h2 class="govuk-heading-xl govuk-!-margin-bottom-0" style="">Link <span class="operation_name">{{ data['searchOFF_URN'] }}struck Office</span> case to the Shared Drive</h2>
+                {% else %}
+                    <h2 class="govuk-heading-xl govuk-!-margin-bottom-0" style="">Link <span class="operation_name">{{ data['searchOFF_URN'] }} Office</span> case to the Shared Drive</h2>
+                {% endif %}
+            {% elseif data['mvp_Case_4'] == 'true' %}
+                {% if data['searchOFF_URN'] == 'Thunder' or data['searchOFF_URN'] == 'thunder' %}
+                    <h2 class="govuk-heading-xl govuk-!-margin-bottom-0" style="">Link <span class="operation_name">Captain {{ data['searchOFF_URN'] }}struck</span> case to the Shared Drive</h2>
+                {% else %}
+                    <h2 class="govuk-heading-xl govuk-!-margin-bottom-0" style="">Link <span class="operation_name">Captain {{ data['searchOFF_URN'] }}</span> case to the Shared Drive</h2>
+                {% endif %}
+            {% endif %}
+
+            <div class="my-cases-filter govuk-!-margin-bottom-8">
+                <p class="total"><span class="govuk-caption-m">Last updated <span id="my-cases-timestamp">today 12:04pm</span></span></p>
+            </div>
+
+            <div class="govuk-inset-text">Select the folder that contains the case material</div>       
+
+            <!-- FOLDER 3 - START -->
+            <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Public (P:)</a></li>
+                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">RCTCaseData</a></li>
+                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">SCCTD</a></li>
+                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Live cases</a></li>
+                </ol>
+            </nav>            
+
+            <table class="govuk-table" id="pdrive-table">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button" onClick="return sortTable();">Folder name</button></th>
+                        <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button" onClick="return sortTable();">Date created</button></th>
+                        <th scope="col" class="govuk-table__header" width="15%"></th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+
+                    <!-- CASE 1 - START --> 
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header"><span class="icon-new folder"></span><a href="#" class="operation_name">Barbarossa</a></th>
+                        <td class="govuk-table__cell">24/01/2019</td>
+                        <td class="govuk-table__cell">
+                            <form method="get" action="03-case-overview" id="">  
+                                <input id="egress_file_link_1" name="egress_file_link_1" type="text" value="true" style="display: none;">
+                                <button type="button" class="pdrive_link_files">Link folder</button>
+                            </form>                            
+                        </td>
+                    </tr>
+                    <!-- CASE 1 - END --> 
+
+                    <!-- CASE 2 - START --> 
+                    {% if data['offCMS_PDrive_files_V2'] %}
+
+                    {% else %}
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">
+                                <span class="icon-new folder"></span>
+                                {% if data['searchOFF_URN'] == 'Thunder' or data['searchOFF_URN'] == 'thunder' %}
+                                    <a href="#" class="operation_name">Captain {{ data['searchOFF_URN'] }}struck</strong>
+                                {% else %}
+                                    <a href="#" class="operation_name">Captain {{ data['searchOFF_URN'] }}</strong>
+                                {% endif %}                            
+                            </th>
+                            <td class="govuk-table__cell">18/08/2024</td>
+                            <td class="govuk-table__cell">
+                                <form method="get" action="" id="">  
+                                    <input id="egress_file_link_2" name="egress_file_link_2" type="text" value="true" style="display: none;">
+                                    <button type="button" class="pdrive_link_files">Link folder</button>
+                                </form>                            
+                            </td>
+                        </tr>
+                    {% endif %}
+                    <!-- CASE 2 - END --> 
+
+                    <!-- CASE 3 - START --> 
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            <span class="icon-new folder"></span>
+                            <a href="#" class="operation_name">Chopper Harris</strong>
+                        </th>
+                        <td class="govuk-table__cell">01/03/2023</td>
+                        <td class="govuk-table__cell">
+                            <form method="get" action="03-case-overview" id="">  
+                                <input id="egress_file_link_3" name="egress_file_link_3" type="text" value="true" style="display: none;">
+                                <button type="button" class="pdrive_link_files">Link folder</button>
+                            </form>                            
+                        </td>
+                    </tr>
+                    <!-- CASE 3 - END --> 
+
+                    <!-- CASE 4 - START --> 
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            <span class="icon-new folder"></span>
+                            <a href="#" class="operation_name">Crescent Wind</strong>
+                        </th>
+                        <td class="govuk-table__cell">15/03/2024</td>
+                        <td class="govuk-table__cell">
+                            <form method="get" action="03-case-overview" id="">  
+                                <input id="egress_file_link_4" name="egress_file_link_4" type="text" value="true" style="display: none;">
+                                <button type="button" class="pdrive_link_files">Link folder</button>
+                            </form>                            
+                        </td>
+                    </tr>
+                    <!-- CASE 4 - END --> 
+
+                    <!-- CASE 5 - START --> 
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            <span class="icon-new folder"></span>
+                            <a href="#" class="operation_name">Desert Storm</strong>
+                        </th>
+                        <td class="govuk-table__cell">04/01/2017</td>
+                        <td class="govuk-table__cell">
+                            <form method="get" action="03-case-overview" id="">  
+                                <input id="egress_file_link_5" name="egress_file_link_5" type="text" value="true" style="display: none;">
+                                <button type="button" class="pdrive_link_files">Link folder</button>
+                            </form>                            
+                        </td>
+                    </tr>
+                    <!-- CASE 5 - END --> 
+
+                    <!-- CASE 6 - START --> 
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            <span class="icon-new folder"></span>
+                            <a href="#" class="operation_name">Enduring Freedom</strong>
+                        </th>
+                        <td class="govuk-table__cell"><span class="govuk-caption-m">67894572/19</span></td>
+                        <td class="govuk-table__cell">24/06/2019</td>
+                        <!-- <td class="govuk-table__cell">9,658</td> -->
+                        <td class="govuk-table__cell">
+                            <form method="get" action="03-case-overview" id="">  
+                                <input id="egress_file_link_6" name="egress_file_link_6" type="text" value="true" style="display: none;">
+                                <button type="button" class="pdrive_link_files">Link folder</button>
+                            </form>                            
+                        </td>
+                    </tr>
+                    <!-- CASE 6 - END --> 
+
+                    <!-- CASE 7 - START --> 
+                    <tr class="govuk-table__row">
+<!--                         <td class="govuk-table__cell">
+                            <div class="govuk-form-group">
+                                <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="egress_file_link_7" name="egress_file_link" type="radio" value="Game of Thrones">
+                                        <label class="govuk-label govuk-radios__label" for="egress_file_link_7">Game of Thrones</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+ -->                        
+                        <th scope="row" class="govuk-table__header">
+                            <span class="icon-new folder"></span>
+                            <a href="#" class="operation_name">Game of Thrones</strong>
+                        </th>
+                        <td class="govuk-table__cell"><span class="govuk-caption-m">120720952/24</span></td>
+                        <td class="govuk-table__cell">08/08/2024</td>
+                        <!-- <td class="govuk-table__cell">684</td> -->
+                        <td class="govuk-table__cell">
+                            <form method="get" action="03-case-overview" id="">  
+                                <input id="egress_file_link_7" name="egress_file_link_7" type="text" value="true" style="display: none;">
+                                <button type="button" class="pdrive_link_files">Link folder</button>
+                            </form>                            
+                        </td>
+                    </tr>
+                    <!-- CASE 7 - END --> 
+
+                    <!-- CASE 8 - START --> 
+                    <tr class="govuk-table__row">
+<!--                         <td class="govuk-table__cell">
+                            <div class="govuk-form-group">
+                                <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="egress_file_link_8" name="egress_file_link" type="radio" value="Groundhog day">
+                                        <label class="govuk-label govuk-radios__label" for="egress_file_link_8">Select Groundhog day</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+ -->                        
+                        <th scope="row" class="govuk-table__header">
+                            <span class="icon-new folder"></span>
+                            <a href="#" class="operation_name">Groundhog day</strong>
+                        </th>
+                        <td class="govuk-table__cell"><span class="govuk-caption-m">920620952/24</span></td>
+                        <td class="govuk-table__cell">21/09/2024</td>
+                        <!-- <td class="govuk-table__cell">150</td> -->
+                        <td class="govuk-table__cell">
+                            <form method="get" action="03-case-overview" id="">  
+                                <input id="egress_file_link_8" name="egress_file_link_8" type="text" value="true" style="display: none;">
+                                <button type="button" class="pdrive_link_files">Link folder</button>
+                            </form>                            
+                        </td>
+                    </tr>
+                    <!-- CASE 8 - END --> 
+
+                    <!-- CASE 9 - START --> 
+                    <tr class="govuk-table__row">
+<!--                         <td class="govuk-table__cell">
+                            <div class="govuk-form-group">
+                                <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="egress_file_link_9" name="egress_file_link" type="radio" value="Mincemeat">
+                                        <label class="govuk-label govuk-radios__label" for="egress_file_link_9">Mincemeat</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+ -->                        
+                        <th scope="row" class="govuk-table__header">
+                            <span class="icon-new folder"></span>
+                            <a href="#" class="operation_name">Mincemeat</strong>
+                        </th>
+                        <td class="govuk-table__cell"><span class="govuk-caption-m">587869848/21</span></td>
+                        <td class="govuk-table__cell">25/12/2021</td>
+                        <!-- <td class="govuk-table__cell">689</td> -->
+                        <td class="govuk-table__cell">
+                            <form method="get" action="03-case-overview" id="">  
+                                <input id="egress_file_link_9" name="egress_file_link_9" type="text" value="true" style="display: none;">
+                                <button type="button" class="pdrive_link_files">Link folder</button>
+                            </form>                            
+                        </td>
+                    </tr>
+                    <!-- CASE 9 - END --> 
+
+                    <!-- CASE 10 - START --> 
+                    <tr class="govuk-table__row">
+<!--                         <td class="govuk-table__cell">
+                            <div class="govuk-form-group">
+                                <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="egress_file_link_10" name="egress_file_link" type="radio" value="Overlord">
+                                        <label class="govuk-label govuk-radios__label" for="egress_file_link_10">Overlord</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+ -->                        
+                        <th scope="row" class="govuk-table__header">
+                            <span class="icon-new folder"></span>
+                            <a href="#" class="operation_name">Overlord</strong>
+                        </th>
+                        <td class="govuk-table__cell"><span class="govuk-caption-m">840320999/19</span></td>
+                        <td class="govuk-table__cell">28/10/2019</td>
+                        <!-- <td class="govuk-table__cell">261</td> -->
+                        <td class="govuk-table__cell">
+                            <form method="get" action="03-case-overview" id="">  
+                                <input id="egress_file_link_10" name="egress_file_link_10" type="text" value="true" style="display: none;">
+                                <button type="button" class="pdrive_link_files">Link folder</button>
+                            </form>                            
+                        </td>
+                    </tr>
+                    <!-- CASE 10 - END --> 
+
+                    <!-- CASE 11 - START --> 
+                    {% if data['edit_Thunderstruck'] %}
+                        <tr class="govuk-table__row">
+    <!--                         <td class="govuk-table__cell">
+                                <div class="govuk-form-group">
+                                    <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                        <div class="govuk-radios__item">
+                                            {% if data['searchOFF_URN'] == 'Thunder' or data['searchOFF_URN'] == 'thunder' %}
+                                                <input class="govuk-radios__input" id="egress_file_link_11" name="egress_file_link" type="radio" value="{{ data['searchOFF_URN'] }}struck Office">
+                                                <label class="govuk-label govuk-radios__label" for="egress_file_link_11">Select {{ data['searchOFF_URN'] }}struck Office</label>
+                                            {% else %}
+                                                <input class="govuk-radios__input" id="egress_file_link_11" name="egress_file_link" type="radio" value="{{ data['searchOFF_URN'] }} Office">
+                                                <label class="govuk-label govuk-radios__label" for="egress_file_link_11">Select {{ data['searchOFF_URN'] }} Office</label>
+                                            {% endif %}                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+     -->                        
+                            <th scope="row" class="govuk-table__header">
+                                <span class="icon-new folder"></span>
+                                {% if data['searchOFF_URN'] == 'Thunder' or data['searchOFF_URN'] == 'thunder' %}
+                                    <a href="#" class="operation_name">{{ data['searchOFF_URN'] }}struck</strong>
+                                {% else %}
+                                    <a href="#" class="operation_name">{{ data['searchOFF_URN'] }}</strong>
+                                {% endif %}                            
+                            </th>
+                            <td class="govuk-table__cell"><span class="govuk-caption-m">45AA209820/21</span></td>
+                            <td class="govuk-table__cell">08/08/2021</td>
+                            <!-- <td class="govuk-table__cell">6,152</td> -->
+                            <td class="govuk-table__cell">
+                                <form method="get" action="" id="">  
+                                    <input id="egress_file_link_11" name="egress_file_link_11" type="text" value="true" style="display: none;">
+                                    <button type="button" class="pdrive_link_files">Link folder</button>
+                                </form>                            
+                            </td>
+                        </tr>
+                    {% else %}
+
+                    {% endif %}
+                    <!-- CASE 11 - END --> 
+
+                    <!-- CASE 12 - START --> 
+                    {% if data['offCMS_PDrive_files'] %}
+
+                    {% else %}
+                        <tr class="govuk-table__row">
+    <!--                         <td class="govuk-table__cell">
+                                <div class="govuk-form-group">
+                                    <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                        <div class="govuk-radios__item">
+                                            {% if data['searchOFF_URN'] == 'Thunder' or data['searchOFF_URN'] == 'thunder' %}
+                                                <input class="govuk-radios__input" id="egress_file_link_11" name="egress_file_link" type="radio" value="{{ data['searchOFF_URN'] }}struck Office">
+                                                <label class="govuk-label govuk-radios__label" for="egress_file_link_11">Select {{ data['searchOFF_URN'] }}struck Office</label>
+                                            {% else %}
+                                                <input class="govuk-radios__input" id="egress_file_link_11" name="egress_file_link" type="radio" value="{{ data['searchOFF_URN'] }} Office">
+                                                <label class="govuk-label govuk-radios__label" for="egress_file_link_11">Select {{ data['searchOFF_URN'] }} Office</label>
+                                            {% endif %}                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+     -->                        
+                            <th scope="row" class="govuk-table__header">
+                                <span class="icon-new folder"></span>
+                                {% if data['searchOFF_URN'] == 'Thunder' or data['searchOFF_URN'] == 'thunder' %}
+                                    <a href="#" class="operation_name">{{ data['searchOFF_URN'] }}struck Office</strong>
+                                {% else %}
+                                    <a href="#" class="operation_name">{{ data['searchOFF_URN'] }} Office</strong>
+                                {% endif %}                            
+                            </th>
+                            <td class="govuk-table__cell"><span class="govuk-caption-m">64GB245761/24</span></td>
+                            <td class="govuk-table__cell">17/07/2024</td>
+                            <!-- <td class="govuk-table__cell">6,152</td> -->
+                            <td class="govuk-table__cell">
+                                <form method="get" action="" id="">  
+                                    <input id="egress_file_link_11" name="egress_file_link_11" type="text" value="true" style="display: none;">
+                                    <button type="button" class="pdrive_link_files">Link folder</button>
+                                </form>                            
+                            </td>
+                        </tr>
+                    {% endif %}
+                    <!-- CASE 12 - END --> 
+
+                    <!-- CASE 13 - START --> 
+                    <tr class="govuk-table__row">
+<!--                         <td class="govuk-table__cell">
+                            <div class="govuk-form-group">
+                                <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="egress_file_link_12" name="egress_file_link" type="radio" value="Urgent Fury">
+                                        <label class="govuk-label govuk-radios__label" for="egress_file_link_12">Urgent Fury</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+ -->                        
+                        <th scope="row" class="govuk-table__header">
+                            <span class="icon-new folder"></span>
+                            <a href="#" class="operation_name">Urgent Fury</strong>
+                        </th>
+                        <td class="govuk-table__cell"><span class="govuk-caption-m">687954726/25</span></td>
+                        <td class="govuk-table__cell">01/02/2025</td>
+                        <!-- <td class="govuk-table__cell">6</td> -->
+                        <td class="govuk-table__cell">
+                            <form method="get" action="03-case-overview" id="">  
+                                <input id="egress_file_link_12" name="egress_file_link_12" type="text" value="true" style="display: none;">
+                                <button type="button" class="pdrive_link_files">Link folder</button>
+                            </form>                            
+                        </td>
+                    </tr>
+                    <!-- CASE 13 - END --> 
+
+                    <!-- CASE 14 - START --> 
+                    <tr class="govuk-table__row">
+<!--                         <td class="govuk-table__cell">
+                            <div class="govuk-form-group">
+                                <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="egress_file_link_13" name="egress_file_link" type="radio" value="Vittles">
+                                        <label class="govuk-label govuk-radios__label" for="egress_file_link_13">Vittles</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+ -->                        
+                        <th scope="row" class="govuk-table__header">
+                            <span class="icon-new folder"></span>
+                            <a href="#" class="operation_name">Vittles</strong>
+                        </th>
+                        <td class="govuk-table__cell"><span class="govuk-caption-m">986425733/25</span></td>
+                        <td class="govuk-table__cell">05/01/2025</td>
+                        <!-- <td class="govuk-table__cell">15</td> -->
+                        <td class="govuk-table__cell">
+                            <form method="get" action="03-case-overview" id="">  
+                                <input id="egress_file_link_13" name="egress_file_link_13" type="text" value="true" style="display: none;">
+                                <button type="button" class="pdrive_link_files">Link folder</button>
+                            </form>                            
+                        </td>
+                    </tr>
+                    <!-- CASE 14 - END --> 
+
+                    <!-- CASE 15 - START --> 
+                    <tr class="govuk-table__row">
+<!--                         <td class="govuk-table__cell">
+                            <div class="govuk-form-group">
+                                <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="egress_file_link_14" name="egress_file_link" type="radio" value="Wrath of God">
+                                        <label class="govuk-label govuk-radios__label" for="egress_file_link_14">Wrath of God</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+ -->                        
+                        <th scope="row" class="govuk-table__header">
+                            <span class="icon-new folder"></span>
+                            <a href="#" class="operation_name">Wrath of God</strong>
+                        </th>
+                        <td class="govuk-table__cell"><span class="govuk-caption-m">689745123/03</span></td>
+                        <td class="govuk-table__cell">04/04/2003</td>
+                        <!-- <td class="govuk-table__cell">250,643</td> -->
+                        <td class="govuk-table__cell">
+                            <form method="get" action="03-case-overview" id="">  
+                                <input id="egress_file_link_14" name="egress_file_link_14" type="text" value="true" style="display: none;">
+                                <button type="button" class="pdrive_link_files">Link folder</button>
+                            </form>                            
+                        </td>
+                    </tr>
+                    <!-- CASE 15 - END --> 
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="confirmMoveFiles">
+
+    <div class="das-cookie-banner x-small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <!-- //////////////////////////////// REDACTION LOG - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="feedback">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <!-- MOVE - START -->
+                    <div class="header-wrapper move_content_show">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-m">Move folders/files</h1>
+                                 <!-- to: <span class="move_folder_name">folder name</span>  -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- MOVE - END -->
+
+                    <div class="redaction-wrapper">
+
+                        <div class="govuk-grid-row">
+
+                            <div class="govuk-grid-column-full">
+
+                                <p></p>
+
+                                <p>You are about to move the following folders:</p>
+
+                                <ul class="govuk-list govuk-list--bullet" id="folders_to_be_moved">
+                                </ul>
+
+                                <!-- ////// FORM ITEM 1 - START ////// -->
+                                <div class="govuk-form-group" style="padding:0; margin:0;">
+                                    <fieldset class="govuk-fieldset">
+                                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="move_Folder_Confirmation" name="move_Folder_Confirmation" type="checkbox" value="Confirm">
+                                                <label class="govuk-label govuk-checkboxes__label" for="move_Folder_Confirmation">
+                                                    I confirm I want to <strong class="move_content_show">move <span class="folders_number">#</span> folders</strong> 
+                                                    to <strong class="move_folder_name">folder name</strong>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <!-- ////// FORM ITEM 1 - END ////// -->
+
+                            </div>
+
+                        </div>
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full cta-group">
+                                <button id="confirm-Move_Folders" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled" data-module="govuk-button" type="button">Move folders</button>
+                                <button class="non-button" data-module="govuk-button" type="button" onclick="closeConfirmMoveFiles()">Cancel</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,117 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="MaterialsTransfer_2_Modal">
+
+    <div class="das-cookie-banner small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-modal-dialogue__header">
+                <button aria-label="Close modal dialogue" class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeSortMaterials2()">×</button>
+            </div>
+
+            <div class="govuk-grid-row" id="">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-m">Import witness and suspect data from egress</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="redaction-wrapper modal-wrapper">
+                        <form method="5-case-overview#materialsTab" action="get">
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full">
+                                    <p></p>
+
+                                    <p>We have found the following data in the files on egress, would you like to transfer the data?</p>
+
+                                    <div class="govuk-form-group  govuk-!-margin-bottom-6">
+                                        <fieldset class="govuk-fieldset">
+                                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                                <h1 class="govuk-fieldset__heading">Suspect data</h1>
+                                            </legend>
+                                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="transfer_Folder_Suspect_1" name="transfer_Folder_SuspectData" type="checkbox" value="CHAVEZ, Zahra">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="transfer_Folder_Suspect_1">CHAVEZ, Zahra</label>
+                                                </div>
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="transfer_Folder_Suspect_2" name="transfer_Folder_SuspectData" type="checkbox" value="FRANCIS, Emily">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="transfer_Folder_Suspect_2">FRANCIS, Emily</label>
+                                                </div>
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="transfer_Folder_Suspect_3" name="transfer_Folder_SuspectData" type="checkbox" value="CARTER, Charlie">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="transfer_Folder_Suspect_3">CARTER, Charlie</label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="govuk-form-group">
+                                        <fieldset class="govuk-fieldset">
+                                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                                <h1 class="govuk-fieldset__heading">Witness data</h1>
+                                            </legend>
+                                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="transfer_Folder_Witness_1" name="transfer_Folder_WitnessData" type="checkbox" value="JENKINS, Naomi">
+                                                    <label class="govuk-label govuk-checkboxes__label padding-bottom-0" for="transfer_Folder_Witness_1">JENKINS, Naomi</label>
+                                                    <div id="transfer_Folder_Witness_1-hint" class="govuk-hint govuk-checkboxes__hint">
+                                                        This witness has 2 statements
+                                                    </div>
+                                                </div>
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="transfer_Folder_Witness_2" name="transfer_Folder_WitnessData" type="checkbox" value="PALMER, Henry">
+                                                    <label class="govuk-label govuk-checkboxes__label padding-bottom-0" for="transfer_Folder_Witness_2">PALMER, Henry</label>
+                                                    <div id="transfer_Folder_Witness_1-hint" class="govuk-hint govuk-checkboxes__hint">
+                                                        This witness has 1 statement
+                                                    </div>
+                                                </div>
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="transfer_Folder_Witness_3" name="transfer_Folder_WitnessData" type="checkbox" value="BLAKE, Robert">
+                                                    <label class="govuk-label govuk-checkboxes__label padding-bottom-0" for="transfer_Folder_Witness_3">BLAKE, Robert</label>
+                                                    <div id="transfer_Folder_Witness_1-hint" class="govuk-hint govuk-checkboxes__hint">
+                                                        This witness has 3 statements
+                                                    </div>
+                                                </div>
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="transfer_Folder_Witness_4" name="transfer_Folder_WitnessData" type="checkbox" value="SIMMONS, James">
+                                                    <label class="govuk-label govuk-checkboxes__label padding-bottom-0" for="transfer_Folder_Witness_4">SIMMONS, James</label>
+                                                    <div id="transfer_Folder_Witness_1-hint" class="govuk-hint govuk-checkboxes__hint">
+                                                        This witness has 1 statement
+                                                    </div>
+                                                </div>
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="transfer_Folder_Witness_5" name="transfer_Folder_WitnessData" type="checkbox" value="WALL, Daisy">
+                                                    <label class="govuk-label govuk-checkboxes__label padding-bottom-0" for="transfer_Folder_Witness_5">WALL, Daisy</label>
+                                                    <div id="transfer_Folder_Witness_1-hint" class="govuk-hint govuk-checkboxes__hint">
+                                                        This witness has 1 statement
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full cta-group">
+                                    <button class="govuk-button" id="finish_Transfer" data-module="govuk-button" type="button" onclick="return closeSortMaterials2();">Continue</button>
+                                    <button class="non-button" data-module="govuk-button" type="button" onclick="return closeSortMaterials2();">Close</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

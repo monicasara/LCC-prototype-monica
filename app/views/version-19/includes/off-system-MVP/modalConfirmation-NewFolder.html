@@ -1,0 +1,51 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="newFolder">
+
+    <div class="das-cookie-banner x-small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <!-- //////////////////////////////// REDACTION LOG - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="feedback">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-m">Create new folder</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="NewFolder_FORM" action="" method="post" class="redaction-wrapper">
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <p></p>
+
+                                <div class="govuk-form-group" id="New_Folder_Group" style="padding:0; width: 100%;">
+                                    <label class="govuk-label" for="shared_drive_NewFolder">What is the name of the new folder?</label>
+                                    <p id="shared_drive_NewFolder-error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> This folder already exists in the Shared Drive</p>
+                                    <input class="govuk-input" id="shared_drive_NewFolder" name="shared_drive_NewFolder" type="text">
+                                </div>                                
+
+                            </div>
+
+                        </div>
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full cta-group">
+                                <button id="confirm-NewFolder-ERROR" aria-disabled="false" class="govuk-button"  data-module="govuk-button" type="button">Continue</button>
+                                <button id="confirm-NewFolder" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled"  data-module="govuk-button" type="submit">Continue</button>
+                                <button class="non-button" data-module="govuk-button" type="button" onclick="closeNewSharedDriveFolder()">Cancel</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>

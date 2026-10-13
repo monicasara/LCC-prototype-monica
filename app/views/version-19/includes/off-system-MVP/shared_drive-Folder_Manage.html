@@ -1,0 +1,685 @@
+<!-- ////////////////////////////////////////////// SEOCID MATERIALS - SECTION 1 - START ////////////////////////////////////////////// -->
+<div class="loading" id="loading_materials_move">
+    <div>
+        <div class="hods-loading-spinner">
+            <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+        </div>
+        <p>Loading documents from the Shared Drive...</p>
+    </div>
+</div>
+
+<div id="manage_SD_section_1">
+
+    <div class="permissions create_a_new_folder">
+        <button type="button" class="govuk-button govuk-button--secondary  govuk-!-margin-bottom-4" onclick="return newSharedDriveFolder();">Create new folder</button>
+    </div>
+
+    <table class="govuk-table transfer-table sortable" id="shared_drive_Manage-table">
+
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_all_manage_SD_Folder_1" name="select_all_manage_SD_Folder_1" type="checkbox" value="Select all folders">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_all_manage_SD_Folder_1">Select all</label>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+                <th scope="col" class="govuk-table__header num"><button class="govuk-button" data-module="govuk-button">File or folder</button></th>
+                <!-- <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">Type</button></th> -->
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">Last modified date</button></th>
+                <th scope="col" class="govuk-table__header num"><button class="govuk-button" data-module="govuk-button">Size</button></th>
+                <th scope="col" class="govuk-table__header"></th>
+            </tr>
+        </thead>
+
+        <tbody class="govuk-table__body">
+
+            <!-- FOLDER 1 - START -->
+            <tr class="govuk-table__row materials_row_1">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1A" name="select_manage_SD_Folder_1" type="checkbox" value="Case_Management">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1A">1. Case Management</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">1. Case Management</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">1. Case Management</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- FOLDER 1  - END -->
+
+            <!-- FOLDER 2 - START -->
+            <tr class="govuk-table__row materials_row_2">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1B" name="select_manage_SD_Folder_1" type="checkbox" value="Conference_Hearing_Notes">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1B">2. Conference Hearing Notes</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">2. Conference Hearing Notes</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">2. Conference Hearing Notes</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li> 
+                                <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- FOLDER 2  - END -->
+
+            <!-- FOLDER 3 - START -->
+            <tr class="govuk-table__row materials_row_3">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1C" name="select_manage_SD_Folder_1" type="checkbox" value="3_Experts">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1C">3. Experts</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">3. Experts</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">3. Experts</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- FOLDER 3  - END -->
+
+            <!-- FOLDER 4 - START -->
+            <tr class="govuk-table__row materials_row_4">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1D" name="select_manage_SD_Folder_1" type="checkbox" value="Counsel">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1D">4. Counsel</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">4. Counsel</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">4. Counsel</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- FOLDER 4  - END -->
+
+            <!-- FOLDER 5 - START -->
+            <tr class="govuk-table__row materials_row_5">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1E" name="select_manage_SD_Folder_1" type="checkbox" value="Correspondence">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1E">5. Correspondence</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">5. Correspondence</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">5. Correspondence</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- FOLDER 5  - END -->
+
+            <!-- FOLDER 6 - START -->
+            <tr class="govuk-table__row materials_row_6">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1F" name="select_manage_SD_Folder_1" type="checkbox" value="6. Disclosure">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1F">6. Disclosure</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">6. Disclosure</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">6. Disclosure</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- FOLDER 6  - END -->
+
+            <!-- FOLDER 7 - START -->
+            <tr class="govuk-table__row materials_row_7">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1G" name="select_manage_SD_Folder_1" type="checkbox" value="7. Finance">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1G">7. Finance</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">7. Finance</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">7. Finance</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- FOLDER 7  - END -->
+
+            <!-- FOLDER 8 - START -->
+            <tr class="govuk-table__row materials_row_8">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1H" name="select_manage_SD_Folder_1" type="checkbox" value="8. Lawyer Working copies">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1H">8. Lawyer Working copies</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">8. Lawyer Working copies</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">8. Lawyer Working copies</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- FOLDER 8  - END -->
+
+            <!-- FOLDER 9 - START -->
+            <tr class="govuk-table__row materials_row_9">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1I" name="select_manage_SD_Folder_1" type="checkbox" value="9. PO Working copies">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1I">9. PO Working copies</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">9. PO Working copies</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">9. PO Working copies</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- FOLDER 9  - END -->
+
+            <!-- FOLDER 10 - START -->
+            <tr class="govuk-table__row materials_row_10">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1J" name="select_manage_SD_Folder_1" type="checkbox" value="10. Police">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1J">10. Police</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">10. Police</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">10. Police</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- FOLDER 10 - END -->
+
+            <!-- FOLDER 11 - START -->
+            <tr class="govuk-table__row materials_row_11">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1K" name="select_manage_SD_Folder_1" type="checkbox" value="11. Media">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1K">11. Media</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">11. Media</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">11. Media</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- FOLDER 11 - END -->
+
+            <!-- FOLDER 12 - START -->
+            <tr class="govuk-table__row materials_row_12">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1L" name="select_manage_SD_Folder_1" type="checkbox" value="12. Victims & Witnesses">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1L">12. Victims & Witnesses</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">12. Victims & Witnesses</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">12. Victims & Witnesses</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- FOLDER 12 - END -->
+
+            <!-- FOLDER 13 - START -->
+            <tr class="govuk-table__row materials_row_13">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1M" name="select_manage_SD_Folder_1" type="checkbox" value="13. DCS">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1M">13. DCS</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">13. DCS</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">13. DCS</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- FOLDER 13 - END -->
+
+            <!-- FOLDER 14 - START -->
+            <tr class="govuk-table__row materials_row_14">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1N" name="select_manage_SD_Folder_1" type="checkbox" value="14. Mags Ct">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1N">14. Mags Ct</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">14. Mags Ct</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">14. Mags Ct</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- FOLDER 14 - END -->
+
+            <!-- FOLDER 15 - START -->
+            <tr class="govuk-table__row materials_row_15">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1O" name="select_manage_SD_Folder_1" type="checkbox" value="15. IDPC">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1O">15. IDPC</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">15. IDPC</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">15. IDPC</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- FOLDER 15 - END -->
+
+            {% if data['shared_drive_NewFolder'] %}
+                <!-- NEW FOLDER - START -->
+                <tr class="govuk-table__row materials_row_17 new_row">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-form-group">
+                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1Q" name="select_manage_SD_Folder_1" type="checkbox" value="{{ data['shared_drive_NewFolder'] }}">
+                                    <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1Q">{{ data['shared_drive_NewFolder'] }}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <span class="icon-new folder"></span>
+                        <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">{{ data['shared_drive_NewFolder'] }}</a>
+                        <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">{{ data['shared_drive_NewFolder'] }}</a>
+                        <strong class="govuk-tag govuk-tag--green">New</strong>
+                    </td>
+                    <!-- <td class="govuk-table__cell">File folder</td> -->
+                    <td class="govuk-table__cell">--</td>
+                    <td class="govuk-table__cell">--</td>
+                    <td class="govuk-table__cell">
+                        <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                            <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                            <div class="wrapper">
+                                <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                    <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                    <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                    <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- NEW FOLDER - END -->
+            {% else %}
+
+            {% endif %}
+
+
+            {% if data['createCaseStarted'] == 'true' %}
+
+            {% else %}
+                <!-- FILE 1 - START -->
+                <tr class="govuk-table__row materials_row_16">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-form-group">
+                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1P" name="select_manage_SD_Folder_1" type="checkbox" value="mg11_BLAYNEE.pdf">
+                                    <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1P">mg11_BLAYNEE.pdf</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <span class="icon-new file"></span>
+                        <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">mg11_BLAYNEE.pdf</a>
+                        <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">mg11_BLAYNEE.pdf</a>
+                    </td>
+                    <!-- <td class="govuk-table__cell">PDF</td> -->
+                    <td class="govuk-table__cell">22/08/2024</td>
+                    <td class="govuk-table__cell">50 KB</td>
+                    <td class="govuk-table__cell">
+                        <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                            <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                            <div class="wrapper">
+                                <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                    <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                    <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                    <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- FILE 1 - END -->
+
+                <!-- FILE 2 - START -->
+                <tr class="govuk-table__row materials_row_17">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-form-group">
+                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" id="select_manage_SD_Folder_1Q" name="select_manage_SD_Folder_1" type="checkbox" value="MG11_Joe_BLOGGS.pdf">
+                                    <label class="govuk-label govuk-checkboxes__label" for="select_manage_SD_Folder_1Q">MG11_Joe_BLOGGS.pdf</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <span class="icon-new file"></span>
+                        <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">MG11_Joe_BLOGGS.pdf</a>
+                        <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">MG11_Joe_BLOGGS.pdf</a>
+                    </td>
+                    <!-- <td class="govuk-table__cell">PDF</td> -->
+                    <td class="govuk-table__cell">27/06/2024</td>
+                    <td class="govuk-table__cell">108 KB</td>
+                    <td class="govuk-table__cell">
+                        <div class="moj-button-menu" data-module="moj-button-menu" data-button-text="Actions">
+                            <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                            <div class="wrapper">
+                                <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                    <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                    <li><button type="button" class="moj-button-menu__item move_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="moveFolder();">Move</button></li>
+                                    <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- FILE 2 - END -->
+            {% endif %}
+
+        </tbody>
+    </table>
+
+</div>
+<!-- ////////////////////////////////////////////// SEOCID MATERIALS - SECTION 1 - END ////////////////////////////////////////////// -->

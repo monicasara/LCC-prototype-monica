@@ -1,0 +1,73 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="openRemovePages">
+
+    <div class="das-cookie-banner small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-modal-dialogue__header">
+                <button aria-label="Close modal dialogue" class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeRemovePagesModal()">×</button>
+            </div>
+
+            <!-- //////////////////////////////// NOTES - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="removePages">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-s">
+                                    Remove pages - <span id="document-title-notes" class="document-title-5">Document title</span>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="" action="">
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+
+                                <div class="govuk-form-group">
+                                    <fieldset class="govuk-fieldset">
+                                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                            <h1 class="govuk-fieldset__heading">Select page(s) you want to remove</h1>
+                                        </legend>
+                                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="removePages-Page-1" name="removePages" type="checkbox" value="Page 1">
+                                                <label class="govuk-label govuk-checkboxes__label" for="removePages-Page-1">
+                                                    Witness statement<br> <a href="#" id="page-1">View page (1/3)</a>
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="removePages-Page-2" name="removePages" type="checkbox" value="Page 2">
+                                                <label class="govuk-label govuk-checkboxes__label" for="removePages-Page-2">
+                                                    Witness statement<br> <a href="#" id="page-2">View page (2/3)</a>
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="removePages-Page-3" name="removePages" type="checkbox" value="Page 3">
+                                                <label class="govuk-label govuk-checkboxes__label" for="removePages-Page-3">
+                                                    Back sheet<br> <a href="#" id="page-3">View page (3/3)</a>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <button id="removePages-button" class="govuk-button" data-module="govuk-button" type="button" onClick="return openConfirmRemovePages(), closeRemovePagesModal()">Confirm</button>
+                                <button class="non-button" data-module="govuk-button" type="button" onClick="closeRemovePagesModal()">Cancel</button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>

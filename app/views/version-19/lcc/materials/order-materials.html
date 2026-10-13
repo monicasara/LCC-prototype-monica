@@ -1,0 +1,392 @@
+{% extends "layoutCPS-OFF-V11.html" %}
+
+{% block pageTitle %}
+Rename files or folders – {{ serviceName }} – Prototype
+{% endblock %}
+
+{% block header %}
+{% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+
+
+{% block beforeContent %}
+<a href="javascript:history.back()" class="govuk-back-link">Back</a>
+{% endblock %}
+
+
+{% block content %}
+{% set folderId = folderId | default(data.folderId | default(0)) %}
+{% set breadcrumbs = breadcrumbs | default([]) %}
+
+<div class="govuk-grid-row ur-apr-2026 order-materials-page">
+    <div class="govuk-grid-column-full">
+
+        <h1 class="govuk-heading-l">Order materials for {{ data.folderName }}</h1>
+
+        {% set folderId = data.folderId | default(0) %}
+        {% set meta = (data.orderMeta and data.orderMeta[folderId | string]) %}
+
+        <!-- {% if folderId != 0 %}
+        {% if meta %}
+        <p class="govuk-body govuk-!-margin-left-3">
+            {{ meta.person }} last changed the order of this folder on {{ meta.date }}.
+        </p>
+        {% else %}
+        <p class="govuk-body govuk-!-margin-left-3">
+            This folder has not been ordered yet.
+        </p>
+        {% endif %}
+        {% endif %} -->
+
+        <div class="govuk-inset-text">
+            Add or change numbers in the Order number column to move one item. Select multiple items to move them
+            together while keeping them in the same relative order.
+        </div>
+
+
+        <form method="post" action="/version-19/lcc/materials/order-materials" novalidate>
+            <!-- <p class="govuk-body govuk-!-margin-bottom-7">You are renaming {{ data.renameCount }} {% if data.renameCount == 1 %}item{% else %}items{% endif %}. Changes will apply when you save.</p> -->
+
+
+            <div class="materials-aligned">
+                <div class="materials-toolbar govuk-!-margin-bottom-4">
+                    <div class="materials-toolbar__actions">
+                        <div class="actions_holder">
+                            <div class="moj-button-menu">
+                                <button type="button" id="bulk-order-actions-toggle"
+                                    class="govuk-button govuk-button--secondary govuk-button--disabled js-bulk-order-actions-toggle"
+                                    aria-expanded="false" aria-controls="bulk-order-actions-menu"
+                                    aria-disabled="true" disabled>
+                                    Order materials
+                                    <svg width="11" height="5" viewBox="0 0 11 5"
+                                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
+                                    </svg>
+                                </button>
+
+                                <div class="hidden_buttons js-bulk-order-actions-menu" id="bulk-order-actions-menu" hidden>
+                                    <button class="govuk-button govuk-button--disabled" type="button"
+                                        data-bulk-order-action="specific" disabled>
+                                        Move selected to specific position
+                                    </button>
+                                    <button class="govuk-button govuk-button--disabled" type="button"
+                                        data-bulk-order-action="top" disabled>
+                                        Move selected to the top
+                                    </button>
+                                    <button class="govuk-button govuk-button--disabled" type="button"
+                                        data-bulk-order-action="middle" disabled>
+                                        Move selected to the middle
+                                    </button>
+                                    <button class="govuk-button govuk-button--disabled" type="button"
+                                        data-bulk-order-action="bottom" disabled>
+                                        Move selected to the bottom
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="bulk-order-specific-position" class="govuk-!-margin-bottom-4" hidden>
+                    <div class="govuk-form-group govuk-!-margin-bottom-3">
+                        <label class="govuk-label" for="bulk-order-position">
+                            Move selected items to start at position
+                        </label>
+                        <p id="bulk-order-position-error" class="govuk-error-message" hidden>
+                            <span class="govuk-visually-hidden">Error:</span>
+                            Enter a valid position
+                        </p>
+                        <input class="govuk-input govuk-input--width-3" id="bulk-order-position" type="number"
+                            inputmode="numeric" min="1" aria-describedby="bulk-order-position-error">
+                    </div>
+                    <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0"
+                        id="move-selected-items" type="button">
+                        Move selected items
+                    </button>
+                </div>
+
+                <p id="bulk-order-status" class="govuk-body" aria-live="polite" hidden></p>
+
+                <div class="materials-table-wrapper has-order-gutter">
+
+                    <table class="govuk-table sortable is-order-mode" id="materials_table">
+                        <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header">
+                                    <button type="button"
+                                        class="govuk-link govuk-link--no-visited-state table-sort table-sort--disabled"
+                                        disabled aria-disabled="true">
+                                        Order number
+                                    </button>
+                                </th>
+
+                                <th scope="col" class="govuk-table__header">
+                                    <div class="govuk-checkboxes govuk-checkboxes--small">
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="order-select-all"
+                                                type="checkbox">
+                                            <label class="govuk-label govuk-checkboxes__label"
+                                                for="order-select-all">
+                                                <span class="govuk-visually-hidden">Select all items</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </th>
+
+                                <th scope="col" class="govuk-table__header">
+                                    <button type="button" data-sort="orderName"
+                                        class="govuk-link govuk-link--no-visited-state table-sort">
+                                        Order by file or folder name
+                                    </button>
+                                </th>
+
+                                {# Description and category columns temporarily hidden
+                                <th scope="col" class="govuk-table__header">
+                                    <button type="button"
+                                        class="govuk-link govuk-link--no-visited-state table-sort table-sort--disabled"
+                                        disabled aria-disabled="true">
+                                        Description
+                                    </button>
+                                </th>
+
+
+                                <th scope="col" class="govuk-table__header">
+                                    <button type="button" data-sort="orderCategory"
+                                        class="govuk-link govuk-link--no-visited-state table-sort">
+                                        Order by category
+                                    </button>
+                                </th>
+                                #}
+
+                                <th scope="col" class="govuk-table__header"></th>
+                            </tr>
+
+                        </thead> <!-- Children rendering from helper -->
+
+                        <tbody class="govuk-table__body">
+
+                            {% for item in children %}
+                            {% if item.folder %}
+                            {# =============== FOLDER ROW =============== #}
+
+                            <tr class="govuk-table__row material-row" data-id="{{ item.id }}" {% if item.folder
+                                %}data-folder="true" {% else %}data-folder="false" {% endif %}>
+
+                                <td class="govuk-table__cell order-input-cell">
+                                    <input type="number" class="govuk-input order-input" name="order_{{ item.id }}"
+                                        inputmode="numeric" value="{{ item.order | default(loop.index) }}">
+
+                                </td>
+
+                                <td class="govuk-table__cell">
+                                    <div class="govuk-checkboxes govuk-checkboxes--small">
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input js-order-select"
+                                                id="order-select-{{ item.id }}" type="checkbox"
+                                                {% if (item.id | default('', true) | string) in selectedOrderIds %}checked{% endif %}>
+                                            <label class="govuk-label govuk-checkboxes__label"
+                                                for="order-select-{{ item.id }}">
+                                                <span class="govuk-visually-hidden">Select {{ item.name }}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <!-- Folder title (clickable) -->
+                                <td class="govuk-table__cell title_column">
+                                    <div class="folder-inline-wrapper">
+
+                                        <!-- <form method="get" action="/version-19/lcc/materials/order-materials">
+                                            <input type="hidden" name="folderId" value="{{ item.id }}">
+                                            <input type="hidden" name="folderName" value="{{ item.name }}">
+                                            <button type="submit"
+                                                class="govuk-link govuk-link--no-visited-state govuk-button--link folder-open">
+                                                <span class="icon-new folder"></span>
+                                                {{ item.name }}
+
+                                                {% if data.flashRenamedIds and (item.id | string) in
+                                                data.flashRenamedIds %}
+                                                <strong
+                                                    class="govuk-tag govuk-tag--green govuk-!margin-left-1">Renamed</strong>
+                                                {% endif %}
+                                                {% if flashNewFolderId and (item.id | string) == flashNewFolderId %}
+                                                <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-1">New
+                                                    folder</strong>
+                                                {% endif %}
+
+                                            </button>
+                                        </form> -->
+                                        <button type="submit" form="open-folder-{{ item.id }}"
+                                            class="govuk-link govuk-link--no-visited-state govuk-button--link folder-open">
+                                            <span class="icon-new folder"></span>
+                                            {{ item.name }}
+                                        </button>
+                                        {% for item in children %}
+                                        {% if item.folder %}
+                                        <form id="open-folder-{{ item.id }}" method="get"
+                                            action="/version-19/lcc/materials/order-materials">
+                                            <input type="hidden" name="folderId" value="{{ item.id }}">
+                                            <input type="hidden" name="folderName" value="{{ item.name }}">
+                                        </form>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </td>
+
+                                {# Description and category columns temporarily hidden
+                                <!-- Last updated (optional for folders) -->
+                                <td class="govuk-table__cell description_column">
+                                    {{ item.description or "" }}
+                                </td>
+
+                                <!-- Status (usually blank or basic tag for folders) -->
+                                <td class="govuk-table__cell category_column">
+                                    {{ item.category or "" }}
+                                </td>
+                                #}
+
+                                <!-- Copy / Move here action -->
+                                <td class="govuk-table__cell materials-action-cell">
+                                </td>
+                            </tr>
+
+                            {% else %}
+                            {# =============== FILE ROW =============== #}
+                            <tr class="govuk-table__row material-row" data-id="{{ item.id }}" {% if item.folder
+                                %}data-folder="true" {% else %}data-folder="false" {% endif %}>
+
+                                <td class="govuk-table__cell order-input-cell">
+                                    <input type="number" class="govuk-input order-input" name="order_{{ item.id }}"
+                                        inputmode="numeric" value="{{ item.order | default(loop.index) }}">
+                                </td>
+
+                                <td class="govuk-table__cell">
+                                    <div class="govuk-checkboxes govuk-checkboxes--small">
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input js-order-select"
+                                                id="order-select-{{ item.id }}" type="checkbox"
+                                                {% if (item.id | default('', true) | string) in selectedOrderIds %}checked{% endif %}>
+                                            <label class="govuk-label govuk-checkboxes__label"
+                                                for="order-select-{{ item.id }}">
+                                                <span class="govuk-visually-hidden">Select {{ item.name }}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+
+
+                                <!-- File title -->
+                                <td class="govuk-table__cell title_column">
+                                    <div class="openMe">
+
+                                        <!-- <span class="file-name-and-tags"> -->
+                                        <span class="file-tags">
+                                            <span class="file-name">{{ item.name }}</span>
+
+                                            {% if data.flashRenamedIds and (item.id | string) in data.flashRenamedIds %}
+                                            <strong class="govuk-tag govuk-tag--green">Renamed</strong>
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </td>
+
+                                {# Description and category columns temporarily hidden
+                                <!-- Date -->
+                                <td class="govuk-table__cell">
+                                    {{ item.description or "" }}
+                                </td>
+
+                                <!-- Status -->
+                                <td class="govuk-table__cell">
+                                    {{ item.category or "" }}
+                                </td>
+                                #}
+
+                                <!-- Preview for files -->
+                                <td class="govuk-table__cell toggle-panel">
+                                    <button type="button" class="govuk-button show_material_actions show-case"
+                                        data-id="{{ item.id }}" data-doc="{{ item.previewLink }}">
+                                        Preview <i class="fa-solid fa-chevron-down"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            {% endif %}
+
+                            {# --- preview row goes IMMEDIATELY AFTER the file row --- #}
+                            {% if not item.folder %}
+                            <tr class="govuk-table__row hidden_row sortable-ignore" data-row_id="{{ item.id }}"
+                                style="display:none;">
+                                <td colspan="4">
+                                    <div class="document_holder">
+                                        <embed src="{{ item.previewLink }}">
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            <!-- {# Preview row only for files #}
+                        <tr class="govuk-table__row hidden_row" data-row_id="{{ item.id }}">
+                            <td colspan="4">
+                                <div class="document_holder">
+                                    <embed src="{{ item.previewLink }}">
+                                </div>
+                            </td>
+                        </tr> -->
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="materials-toolbar govuk-!-margin-top-4 govuk-!-margin-bottom-2">
+                    <div class="materials-toolbar__actions">
+                        <div class="actions_holder">
+                            <div class="moj-button-menu">
+                                <button type="button" id="bulk-order-actions-toggle-bottom"
+                                    class="govuk-button govuk-button--secondary govuk-button--disabled js-bulk-order-actions-toggle"
+                                    aria-expanded="false" aria-controls="bulk-order-actions-menu-bottom"
+                                    aria-disabled="true" disabled>
+                                    Order materials
+                                    <svg width="11" height="5" viewBox="0 0 11 5"
+                                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
+                                    </svg>
+                                </button>
+
+                                <div class="hidden_buttons js-bulk-order-actions-menu"
+                                    id="bulk-order-actions-menu-bottom" hidden>
+                                    <button class="govuk-button govuk-button--disabled" type="button"
+                                        data-bulk-order-action="specific" disabled>
+                                        Move selected to specific position
+                                    </button>
+                                    <button class="govuk-button govuk-button--disabled" type="button"
+                                        data-bulk-order-action="top" disabled>
+                                        Move selected to the top
+                                    </button>
+                                    <button class="govuk-button govuk-button--disabled" type="button"
+                                        data-bulk-order-action="middle" disabled>
+                                        Move selected to the middle
+                                    </button>
+                                    <button class="govuk-button govuk-button--disabled" type="button"
+                                        data-bulk-order-action="bottom" disabled>
+                                        Move selected to the bottom
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <input type="hidden" name="folderId" value="{{ folderId }}">
+
+            <div class="govuk-button-group govuk-!-margin-left-3">
+                <button class="govuk-button" data-module="govuk-button" type="submit">Save order</button>
+                <a class="govuk-link" href="03-case-overview">Cancel</a>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

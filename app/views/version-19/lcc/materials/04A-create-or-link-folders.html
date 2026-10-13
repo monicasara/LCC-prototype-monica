@@ -1,0 +1,90 @@
+{% extends "layoutCPS-NEW-INDEX.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="/version-19/lcc/materials/04A-create-or-link-folders" method="post" novalidate>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="folders-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              What do you want to set up?
+            </h1>
+          </legend>
+          <div id="folders-hint" class="govuk-hint">
+            Select all that apply
+          </div>
+          <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="egress-folders" name="egress-folders" type="checkbox" value="Egress folders" data-aria-controls="egress" {% if data['newEgressFolder'] == 1 or data['existingEgressFolder'] == 1 %}checked{% endif %}>
+              <label class="govuk-label govuk-checkboxes__label" for="egress-folders">
+                Egress
+              </label>
+            </div>
+
+            <div class="govuk-checkboxes__conditional {% if data['newEgressFolder'] != 1 and data['existingEgressFolder'] != 1 %}govuk-checkboxes__conditional--hidden{% endif %}" id="egress">
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                  <div class="govuk-radios" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="create-egress" name="egress-folder-options" type="radio" value="Create new Egress folders" {% if data['newEgressFolder'] == 1 %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="create-egress">
+                        Create a new Egress case
+                      </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="connect-egress" name="egress-folder-options" type="radio" value="Connect Egress folders" {% if data['existingEgressFolder'] == 1 %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="connect-egress">
+                        Link Egress
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="shared-drive-folders" name="shared-drive-folders" type="checkbox" value="Shared Drive folders" data-aria-controls="shared-drive" {% if data['newDriveFolder'] == 1 or data['existingDriveFolder'] == 1 %}checked{% endif %}>
+              <label class="govuk-label govuk-checkboxes__label" for="shared-drive-folders">
+                Shared Drive
+              </label>
+            </div>
+            <div class="govuk-checkboxes__conditional {% if data['newDriveFolder'] != 1 and data['existingDriveFolder'] != 1 %}govuk-checkboxes__conditional--hidden{% endif %}" id="shared-drive">
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                  <div class="govuk-radios" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="create-shared-drive" name="shared-drive-folder-options" type="radio" value="Create new Shared Drive folders" {% if data['newDriveFolder'] == 1 %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="create-shared-drive">
+                        Create new Shared Drive folders
+                      </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="connect-shared-drive" name="shared-drive-folder-options" type="radio" value="Connect Shared Drive folders" {% if data['existingDriveFolder'] == 1 %}checked{% endif %}>
+                      <label class="govuk-label govuk-radios__label" for="connect-shared-drive">
+                        Link Shared Drive folders
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+
+          </div>
+        </fieldset>
+      </div>
+      {% include "../../includes/buttons.html" %}
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

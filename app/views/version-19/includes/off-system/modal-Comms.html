@@ -1,0 +1,171 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="commsModal">
+
+    <div class="das-cookie-banner small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-modal-dialogue__header">
+                <button aria-label="Close modal dialogue" class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeCommsModal()">×</button>
+            </div>
+
+            <div class="govuk-grid-row" id="">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                {% if data['comms_Type'] == 'comms_Type_1' %}
+                                    <h1 class="govuk-heading-m" style="">Asset Recovery details - <span id="EA-timestamp-NEW4"></span></h1>
+                                {% elseif data['comms_Type'] == 'comms_Type_2' %}
+                                    <h1 class="govuk-heading-m" style="">Asset Recovery 3rd Party details - <span id="EA-timestamp-NEW4"></span></h1>
+                                {% elseif data['comms_Type'] == 'comms_Type_3' %}
+                                    <h1 class="govuk-heading-m" style="">Complaint - <span id="EA-timestamp-NEW4"></span></h1>
+                                {% elseif data['comms_Type'] == 'comms_Type_4' %}
+                                    <h1 class="govuk-heading-m" style="">Conference with Counsel details - <span id="EA-timestamp-NEW4"></span></h1>
+                                {% elseif data['comms_Type'] == 'comms_Type_5' %}
+                                    <h1 class="govuk-heading-m" style="">Correspondence details - <span id="EA-timestamp-NEW4"></span></h1>
+                                {% elseif data['comms_Type'] == 'comms_Type_6' %}
+                                    <h1 class="govuk-heading-m" style="">Cousel Case Acknowledgement details - <span id="EA-timestamp-NEW4"></span></h1>
+                                {% elseif data['comms_Type'] == 'comms_Type_7' %}
+                                    <h1 class="govuk-heading-m" style="">CPS WCU Communication details - <span id="EA-timestamp-NEW4"></span></h1>
+                                {% elseif data['comms_Type'] == 'comms_Type_8' %}
+                                    <h1 class="govuk-heading-m" style="">Meeting details - <span id="EA-timestamp-NEW4"></span></h1>
+                                {% elseif data['comms_Type'] == 'comms_Type_9' %}
+                                    <h1 class="govuk-heading-m" style="">Other Communication details - <span id="EA-timestamp-NEW4"></span></h1>
+                                {% elseif data['comms_Type'] == 'comms_Type_10' %}
+                                    <h1 class="govuk-heading-m" style="">Physical Media details - <span id="EA-timestamp-NEW4"></span></h1>
+                                {% elseif data['comms_Type'] == 'comms_Type_11' %}
+                                    <h1 class="govuk-heading-m" style="">Record Communication details - <span id="EA-timestamp-NEW4"></span></h1>
+                                {% elseif data['comms_Type'] == 'comms_Type_12' %}
+                                    <h1 class="govuk-heading-xl" style="">Service of ABE details - <span id="EA-timestamp-NEW4"></span></h1>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="redaction-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <p></p>
+
+                                <table class="govuk-table settings-table">
+                                    <tbody class="govuk-table__body">
+                                        
+                                        {% if data['comms_Form_Type'] %}
+                                            <tr class="govuk-table__row">
+                                                <th scope="row" class="govuk-table__header">Type of comms</th>
+                                                <td class="govuk-table__cell">{{ data['comms_Form_Type'] }}</td>
+                                            </tr>
+                                        {% else %}
+
+                                        {% endif %}
+                                        {% if data['comms_Form_With'] %}
+                                            <tr class="govuk-table__row">
+                                                <th scope="row" class="govuk-table__header">Comms with</th>
+                                                <td class="govuk-table__cell">
+                                                    {{ data['comms_Form_With'] }} - 
+                                                    {{ data['comms_Form_With-Counsel-Text'] }}
+                                                    {{ data['comms_Form_With-Court-Text'] }}
+                                                    {{ data['comms_Form_With-Defence-Text'] }}
+                                                    {{ data['comms_Form_With-Police-Text'] }}
+                                                    {{ data['comms_Form_With-WCU-Text'] }}
+                                                    {{ data['comms_Form_With-Other-Text'] }}
+                                                </td>
+                                            </tr>
+                                        {% else %}
+
+                                        {% endif %}
+                                        {% if data['comms_Form_Title'] %}
+                                            <tr class="govuk-table__row">
+                                                {% if data['comms_Type'] == 'comms_Type_11' %}
+                                                    <th scope="row" class="govuk-table__header">Subject</th>
+                                                {% else %}
+                                                    <th scope="row" class="govuk-table__header">Title</th>
+                                                {% endif %}
+                                                <td class="govuk-table__cell">{{ data['comms_Form_Title'] }}</td>
+                                            </tr>
+                                        {% else %}
+
+                                        {% endif %}
+                                        {% if data['comms_Form_Location'] %}
+                                            <tr class="govuk-table__row">
+                                                <th scope="row" class="govuk-table__header">Location</th>
+                                                <td class="govuk-table__cell">{{ data['comms_Form_Location'] }}</td>
+                                            </tr>
+                                        {% else %}
+
+                                        {% endif %}
+                                        {% if data['comms_Form_Duration'] %}
+                                            <tr class="govuk-table__row">
+                                                <th scope="row" class="govuk-table__header">Duration</th>
+                                                <td class="govuk-table__cell">{{ data['comms_Form_Duration'] }}</td>
+                                            </tr>
+                                        {% else %}
+
+                                        {% endif %}
+                                        {% if data['comms_Form_Date-Day'] %}
+                                            <tr class="govuk-table__row">
+                                                <th scope="row" class="govuk-table__header">Date received</th>
+                                                <td class="govuk-table__cell">{{ data['comms_Form_Date-Day'] }}/{{ data['comms_Form_Date-Month'] }}/{{ data['comms_Form_Date-Year'] }}</td>
+                                            </tr>
+                                        {% else %}
+
+                                        {% endif %}
+                                        {% if data['comms_Form_fileUpload'] %}
+                                            <tr class="govuk-table__row">
+                                                <th scope="row" class="govuk-table__header">File upload</th>
+                                                <td class="govuk-table__cell">{{ data['comms_Form_fileUpload'] }}</td>
+                                            </tr>
+                                        {% else %}
+
+                                        {% endif %}
+                                        <tr class="govuk-table__row">
+                                            <th scope="row" class="govuk-table__header">Description</th>
+                                            <td class="govuk-table__cell" id="comms_Form_Description-Text"></td>
+                                        </tr>
+                                        {% if data['comms_Form_commsTask'] %}
+                                            <tr class="govuk-table__row">
+                                                <th scope="row" class="govuk-table__header">Check New Communications</th>
+                                                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Task created</strong></td>
+                                            </tr>
+                                        {% else %}
+
+                                        {% endif %}
+                                        {% if data['comms_Form_markRead'] %}
+                                            <tr class="govuk-table__row">
+                                                <th scope="row" class="govuk-table__header">Mark as read</th>
+                                                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Read</strong></td>
+                                            </tr>
+                                        {% else %}
+
+                                        {% endif %}
+                                        {% if data['comms_Form_phoneCall'] %}
+                                            <tr class="govuk-table__row">
+                                                <th scope="row" class="govuk-table__header">Raise check Phone Call Task</th>
+                                                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Task created</strong></td>
+                                            </tr>
+                                        {% else %}
+
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full cta-group">
+                                <button class="non-button" data-module="govuk-button" type="button" onclick="closeCommsModal()">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

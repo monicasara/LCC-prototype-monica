@@ -1,0 +1,34 @@
+                {% for material in data['materials'] %}
+                    {% if
+                    (not data['filterNew'] or material.new == true or material.new == 'true')
+                    and (
+                        not (data['filterStatusUsed'] or data['filterStatusUnused'] or data['filterStatusNone'])
+                        or material.status in [
+                        data['filterStatusUsed'],
+                        data['filterStatusUnused'],
+                        data['filterStatusNone']
+                        ]
+                    )
+                    and (
+                        not (
+                        data['filterCategoryReview'] or
+                        data['filterCategoryCaseOverview'] or
+                        data['filterCategoryStatements'] or
+                        data['filterCategoryExhibits'] or
+                        data['filterCategoryForensics'] or
+                        data['filterCategoryUnusedMaterial'] or
+                        data['filterCategoryDefendant'] or
+                        data['filterCategoryCourtPreparation']
+                        )
+                        or material.category in [
+                        data['filterCategoryReview'],
+                        data['filterCategoryCaseOverview'],
+                        data['filterCategoryStatements'],
+                        data['filterCategoryExhibits'],
+                        data['filterCategoryForensics'],
+                        data['filterCategoryUnusedMaterial'],
+                        data['filterCategoryDefendant'],
+                        data['filterCategoryCourtPreparation']
+                        ]
+                    )
+                    %}                    

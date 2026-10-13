@@ -1,0 +1,308 @@
+{% extends "layoutCPS-NEW-INDEX.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V5.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row" id="create-case-journey">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="wrapper gov-pages">
+
+            <style>
+                .create-case-heading-with-tag {
+                    align-items: center;
+                    column-gap: 8px;
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+
+                .create-case-heading-with-tag__text {
+                    display: inline-block;
+                }
+
+                .create-case-heading-with-tag .govuk-tag {
+                    margin-top: 2px;
+                }
+            </style>
+
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-5">Add charges</h1>
+            
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-2 create-case-heading-with-tag"><span class="create-case-heading-with-tag__text">{% if data['suspectCompanyName'][data['currentSuspectId']] %}{{ data['suspectCompanyName'][data['currentSuspectId']] }}{% else %}<span class="uppercase">{{data['suspectLastName'][data['currentSuspectId']]}}</span>, {{data['suspectFirstName'][data['currentSuspectId']]}}{% endif %}</span>{% if isYouthSuspect(data['currentSuspectId']) %}<strong class="govuk-tag">Youth</strong>{% endif %}</h2>
+
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-2">{{ data['currentResultsChargeCode'][data['currentChargeId']] }} &ndash; {{ data['currentResultsChargeDescription'][data['currentChargeId']] }}</h2>
+            <hr class=" govuk-!-margin-bottom-6">
+
+            {% if chargeErrors %}
+            <div class="govuk-error-summary" data-module="govuk-error-summary">
+                <div role="alert">
+                    <h2 class="govuk-error-summary__title">
+                        There is a problem
+                    </h2>
+                    <div class="govuk-error-summary__body">
+                        <ul class="govuk-list govuk-error-summary__list">
+                            {% if chargeErrors.offenceDate %}
+                            <li>
+                                <a href="#addCharge_Form_Date-Day">{{ chargeErrors.offenceDate }}</a>
+                            </li>
+                            {% endif %}
+                            {% if chargeErrors.victim %}
+                            <li>
+                                <a href="#newCharge_Victim_Name_Yes">{{ chargeErrors.victim }}</a>
+                            </li>
+                            {% endif %}
+                            {% if chargeErrors.chargedWithAdult %}
+                            <li>
+                                <a href="#charged-with-adult-yes">{{ chargeErrors.chargedWithAdult }}</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- <form method="get" action="04-charges-summary" id="newCase_Form-C4">   -->
+            <form method="post" action="/version-19/lcc/register-case/04-add-charges">  
+
+                <!-- OPTION 1 - START -->
+                <div class="date_range_wrapper">
+                    <div class="govuk-form-group{% if chargeErrors and chargeErrors.offenceDate %} govuk-form-group--error{% endif %}" id="dateRange-Container">
+                        <fieldset class="govuk-fieldset" role="group" aria-describedby="addCharge_Form-hint">
+                            <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">When was the offence?</legend>
+                            {% if chargeErrors and chargeErrors.offenceDate %}
+                            <p id="addCharge_Form_Date-Day-Error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> Enter the date of offence</p>
+                            {% endif %}
+                            <div class="govuk-date-input" id="addCharge_Form_Date">
+                                <div class="govuk-date-input__item">
+                                    <div class="govuk-form-group">
+                                        <label class="govuk-label govuk-date-input__label" for="addCharge_Form_Date-Day">Day</label>
+                                            <input class="govuk-input govuk-date-input__input govuk-input--width-2{% if chargeErrors and chargeErrors.offenceDate %} govuk-input--error{% endif %}" id="addCharge_Form_Date-Day" name="addCharge_Form_Date-Day" type="text" inputmode="numeric" value="{{ data['chargeFromDay'][data['chargeCount']] }}" {% if chargeErrors and chargeErrors.offenceDate %}aria-describedby="addCharge_Form_Date-Day-Error"{% endif %}>
+                                    </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                    <div class="govuk-form-group">
+                                        <label class="govuk-label govuk-date-input__label" for="addCharge_Form_Date-Month">Month</label>
+                                            <input class="govuk-input govuk-date-input__input govuk-input--width-2{% if chargeErrors and chargeErrors.offenceDate %} govuk-input--error{% endif %}" id="addCharge_Form_Date-Month" name="addCharge_Form_Date-Month" type="text" inputmode="numeric" value="{{ data['chargeFromMonth'][data['chargeCount']] }}" {% if chargeErrors and chargeErrors.offenceDate %}aria-describedby="addCharge_Form_Date-Day-Error"{% endif %}>
+                                    </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                    <div class="govuk-form-group">
+                                        <label class="govuk-label govuk-date-input__label" for="addCharge_Form_Date-Year">Year</label>
+                                            <input class="govuk-input govuk-date-input__input govuk-input--width-4{% if chargeErrors and chargeErrors.offenceDate %} govuk-input--error{% endif %}" id="addCharge_Form_Date-Year" name="addCharge_Form_Date-Year" type="text" inputmode="numeric" value="{{ data['chargeFromYear'][data['chargeCount']] }}" {% if chargeErrors and chargeErrors.offenceDate %}aria-describedby="addCharge_Form_Date-Day-Error"{% endif %}>
+                                    </div>
+                                </div>
+                                <button type="button" class="govuk-button datePicker" data-module="govuk-button" onclick="return datePicker();">Date picker</button>
+                                {% if data['addCharge_From_Date-Day_2'] %}
+
+                                {% else %}
+                                    <button type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button" id="dateRangeButton" onclick="return dateRange();">Date range</button>
+                                {% endif %}  
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    {% if data['addCharge_From_Date-Day_2'] %}
+                        <div class="govuk-form-group" id="dateRange-Container_2">
+                    {% else %}
+                        <div class="govuk-form-group" id="dateRange-Container_2" style="display: none;">
+                    {% endif %}  
+                        <fieldset class="govuk-fieldset" role="group" aria-describedby="addCharge_Form-hint">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s"><br></legend>
+                            <div class="govuk-date-input" id="addCharge_Form_Date">
+                                <div class="govuk-date-input__item" id="addCharge_Form_Date--To"><p>to</p></div>
+                                <div class="govuk-date-input__item">
+                                    <div class="govuk-form-group">
+                                        <label class="govuk-label govuk-date-input__label" for="addCharge_Form_Date-Day">Day</label>
+                                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addCharge_Form_Date-Day_2" name="addCharge_Form_Date-Day_2" type="text" inputmode="numeric" value="{{ data['chargeToDay'][data['chargeCount']] }}" >
+                                    </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                    <div class="govuk-form-group">
+                                        <label class="govuk-label govuk-date-input__label" for="addCharge_Form_Date-Month_2">Month</label>
+                                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addCharge_Form_Date-Month_2" name="addCharge_Form_Date-Month_2" type="text" inputmode="numeric" value="{{ data['chargeToMonth'][data['chargeCount']] }}" >
+                                    </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                    <div class="govuk-form-group">
+                                        <label class="govuk-label govuk-date-input__label" for="addCharge_Form_Date-Year_2">Year</label>
+                                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="addCharge_Form_Date-Year_2" name="addCharge_Form_Date-Year_2" type="text" inputmode="numeric" value="{{ data['chargeToYear'][data['chargeCount']] }}">
+                                    </div>
+                                </div>
+                                <button type="button" class="govuk-button datePicker" data-module="govuk-button" onclick="return datePicker2();">Date picker</button>
+                                <button type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button" id="" onclick="return dateSingle();">Single date</button>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <!-- OPTION 1 - END -->
+
+
+                <!-- OPTION 2 - START -->
+                <div class="govuk-form-group{% if chargeErrors and chargeErrors.victim %} govuk-form-group--error{% endif %}">
+                    <fieldset class="govuk-fieldset" aria-describedby="newCharge_Victim-hint">
+                    <label class="govuk-label govuk-!-font-weight-bold">
+                        Is there a victim?
+                    </label>
+                        {% if chargeErrors and chargeErrors.victim %}
+                        <p id="newCharge_Victim_Error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> {{ chargeErrors.victim }}</p>
+                        {% endif %}
+                        <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="newCharge_Victim_Name_Yes" name="newCharge_Victim_YesNo" type="radio" value="Yes" data-aria-controls="conditional-newCharge_Victim_Name" {% if data['chargeVictimYesNo'][data['chargeCount']] == 'Yes' %}checked{% endif %} {% if chargeErrors and chargeErrors.victim %}aria-describedby="newCharge_Victim_Error"{% endif %}>
+                                <label class="govuk-label govuk-radios__label" for="newCharge_Victim_Name_Yes">Yes</label>
+                            </div>
+                            <!-- <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-newCharge_Victim_Name">
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label" for="newCharge_Victim_FirstName">Victim first name</label>
+                                        <input class="govuk-input govuk-input--width-20" id="newCharge_Victim_FirstName" name="newCharge_Victim_FirstName" type="text">
+                                </div> 
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label" for="newCharge_Victim_SurnameName">Victim last name</label>
+                                        <input class="govuk-input govuk-input--width-20" id="newCharge_Victim_SurnameName" name="newCharge_Victim_SurnameName" type="text">
+                                </div>
+                                <div class="govuk-form-group" id="">
+                                    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                                        <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="newCharge_Vulnerable" name="newCharge_Vulnerable" type="checkbox" value="Vulnerable">
+                                            <label class="govuk-label govuk-checkboxes__label" for="newCharge_Vulnerable">The victim is vulnerable</label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="newCharge_Intimidated" name="newCharge_Intimidated" type="checkbox" value="Intimidated" >
+                                            <label class="govuk-label govuk-checkboxes__label" for="newCharge_Intimidated">The victim has been intimidated</label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="charge-victim-witness" name="charge-victim-witness" type="checkbox" value="Witness" checked>
+                                            <label class="govuk-label govuk-checkboxes__label" for="charge-victim-witness">The victim is a witness</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div> -->
+                            <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="newCharge_Victim_Name_No" name="newCharge_Victim_YesNo" type="radio" value="No" {% if data['chargeVictimYesNo'][data['chargeCount']] == 'No' %}checked{% endif %} {% if chargeErrors and chargeErrors.victim %}aria-describedby="newCharge_Victim_Error"{% endif %}>
+                                <label class="govuk-label govuk-radios__label" for="newCharge_Victim_Name_No">No</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>                    
+                <!-- OPTION 2 - END -->
+                
+                <!-- OPTION 3 - START -->
+                <!-- <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset" aria-describedby="offence-address-hint">
+                    <label class="govuk-label govuk-!-font-weight-bold">
+                        Is there an offence location?
+                    </label>
+                        <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="offence-address_Yes" name="offence-address_YesNo" type="radio" value="Yes" data-aria-controls="conditional-offence-address">
+                                <label class="govuk-label govuk-radios__label" for="offence-address_Yes">Yes</label>
+                            </div>
+                            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-offence-address">
+                                <fieldset class="govuk-fieldset">
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label" for="address-line-1">
+                                    Address line 1
+                                    </label>
+                                    <input class="govuk-input govuk-input--width-20" id="address-line-1" name="addressLine1" type="text" autocomplete="address-line1">
+                                </div>
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label" for="address-line-2">
+                                    Address line 2 (optional)
+                                    </label>
+                                    <input class="govuk-input govuk-input--width-20" id="address-line-2" name="addressLine2" type="text" autocomplete="address-line2">
+                                </div>
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label" for="address-town">
+                                    Town or city
+                                    </label>
+                                    <input class="govuk-input govuk-!-width-one-third" id="address-town" name="addressTown" type="text" autocomplete="address-level2">
+                                </div>
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label" for="address-postcode">
+                                    Postcode
+                                    </label>
+                                    <input class="govuk-input govuk-input--width-10" id="address-postcode" name="addressPostcode" type="text" autocomplete="postal-code">
+                                </div>
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label" for="address-country">
+                                    Country
+                                    </label>
+                                    <input class="govuk-input govuk-input--width-20" id="docType-Country" name="docType-Country" type="text" value="{{ data['docType-Country'] }}">                                
+                                </div>
+                                </fieldset>
+                            </div>
+                            <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="offence-address_No" name="offence-address_YesNo" type="radio" value="No" >
+                                <label class="govuk-label govuk-radios__label" for="offence-address_No">No</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>                     -->
+                <!-- OPTION 3 - END -->
+
+                <!-- OPTION 4 - START -->
+                <!-- <div class="govuk-form-group" id="">
+                    <label class="govuk-label govuk-!-font-weight-bold">
+                        Are there any comments?
+                    </label>
+                    <textarea class="govuk-textarea" id="newCharge_Comment" name="newCharge_Comment" rows="2" aria-describedby="newCharge_Comment-hint"></textarea>
+                </div> -->
+                <!-- OPTION 4 - END -->
+
+                <!-- OPTION 4 - START -->
+                {% if isYouthSuspect(data['currentSuspectId']) %}
+                    <div class="govuk-form-group{% if chargeErrors and chargeErrors.chargedWithAdult %} govuk-form-group--error{% endif %}">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                        <h2 class="govuk-fieldset__heading">
+                            Is <span class="uppercase">{{data['suspectLastName'][data['currentSuspectId']]}}</span>, {{data['suspectFirstName'][data['currentSuspectId']]}} charged with an adult?
+                        </h2>
+                        </legend>
+                        {% if chargeErrors and chargeErrors.chargedWithAdult %}
+                        <p id="charged-with-adult-error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> {{ chargeErrors.chargedWithAdult }}</p>
+                        {% endif %}
+                        <div class="govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="charged-with-adult-yes" name="charged-with-adult" type="radio" value="Charged with an adult" {% if data['chargedWithAdult'][data['chargeCount']] == 'Charged with an adult' %}checked{% endif %} {% if chargeErrors and chargeErrors.chargedWithAdult %}aria-describedby="charged-with-adult-error"{% endif %}>
+                            <label class="govuk-label govuk-radios__label" for="charged-with-adult-yes">
+                            Yes
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="charged-with-adult-no" name="charged-with-adult" type="radio" value="No" {% if data['chargedWithAdult'][data['chargeCount']] == 'No' %}checked{% endif %} {% if chargeErrors and chargeErrors.chargedWithAdult %}aria-describedby="charged-with-adult-error"{% endif %}>
+                            <label class="govuk-label govuk-radios__label" for="charged-with-adult-no">
+                            No
+                            </label>
+                        </div>
+                        </div>
+                    </fieldset>
+                    </div>
+
+                    <!-- <div class="govuk-form-group" id="">
+                        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="newCharge_WithAdult" name="newCharge_WithAdult" type="checkbox" value="Charged with an adult">
+                                <label class="govuk-label govuk-checkboxes__label" for="newCharge_WithAdult">Charged with an adult</label>
+                            </div>
+                        </div>
+                    </div> -->
+                {% endif %}  
+                <!-- OPTION 4 - END -->
+
+
+                {% include "../../includes/buttons.html" %}
+
+            </form>
+
+        </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+</div>
+
+{% endblock %}

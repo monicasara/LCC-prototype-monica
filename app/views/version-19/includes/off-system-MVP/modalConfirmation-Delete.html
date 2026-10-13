@@ -1,0 +1,63 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="confirmDeleteFolder">
+
+    <div class="das-cookie-banner x-small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <!-- //////////////////////////////// REDACTION LOG - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="feedback">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-m">Are you sure you want to delete this folder?</h1>
+                                <!-- : <span class="delete_folder_name">folder name</span>  -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="redaction-wrapper">
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <p></p>
+                            </div>
+
+                            <div class="govuk-grid-column-full">
+
+                                <!-- ////// FORM ITEM 1 - START ////// -->
+                                <div class="govuk-form-group">
+                                    <fieldset class="govuk-fieldset">
+                                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="delete_Folder_Confirmation" name="delete_Folder_Confirmation" type="checkbox" value="Confirm">
+                                                <label class="govuk-label govuk-checkboxes__label" for="delete_Folder_Confirmation">
+                                                    Deleting <strong class="delete_folder_name">folder name</strong> will also delete all of it's contents. This action cannot be undone.
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <!-- ////// FORM ITEM 1 - END ////// -->
+
+                            </div>
+
+                        </div>
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full cta-group">
+                                <button id="confirm-DeleteFolder" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled"  data-module="govuk-button" type="submit">Delete folder</button>
+                                <button class="non-button" data-module="govuk-button" type="button" onclick="closeConfirmDeleteFolder()">Cancel</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>

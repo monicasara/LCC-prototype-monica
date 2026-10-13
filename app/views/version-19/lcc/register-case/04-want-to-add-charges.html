@@ -1,0 +1,54 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+
+            <form action="/version-19/lcc/register-case/04-want-to-add-charges" method="post" novalidate>
+
+                <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-fieldset__heading">
+                            Do you want to add charges for {% if data['suspectCount'] > 1 %}any of the suspects? {% else %}the suspect? {% endif %}
+                        </h1>
+                    </legend>
+                    <div class="govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="add-charges-yes" name="add-charges" type="radio" value="Yes" data-aria-controls="add-charges-controls">
+                            <label class="govuk-label govuk-radios__label" for="add-charges-yes">
+                                Yes
+                            </label>
+                        </div>
+                        
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="add-charges-no" name="add-charges" type="radio" value="No" data-aria-controls="conditional-contact-2">
+                            <label class="govuk-label govuk-radios__label" for="add-charges-no">
+                                No
+                            </label>
+                        </div>
+                        
+                    </div>
+                </fieldset>
+                </div>
+
+                {% include "../../includes/buttons.html" %}
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

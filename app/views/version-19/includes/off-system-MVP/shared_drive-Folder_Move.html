@@ -1,0 +1,297 @@
+<!-- ////////////////////////////////////////////// SEOCID MATERIALS - SECTION 1 - START ////////////////////////////////////////////// -->
+<div id="shared_drive_section_1">
+
+    <div class="permissions transfer_Folder_Destination">
+        {% if data['searchOFF_Operation_VALUE'] == 'Dumper Truck' or data['searchOFF_Operation_VALUE'] == 'Dumper truck'  or data['searchOFF_Operation_VALUE'] == 'dumper truck'  or data['searchOFF_Operation_VALUE'] == 'Dumpertruck' %}
+            <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+        {% elseif data['searchOFF_Defendant_VALUE'] == 'Dumper Truck' or data['searchOFF_Defendant_VALUE'] == 'Dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'Dumpertruck' %}
+            <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+        {% elseif data['searchOFF_URN_VALUE'] %}
+            <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Dumper Truck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+        {% elseif data['searchOFF_Operation_VALUE'] %}
+            {% if data['mvp_Case_1'] == 'true' %}
+                {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }}struck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_2'] == 'true' %}
+                {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }}struck Traffic</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }} Traffic</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_3'] == 'true' %}
+                {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }}struck Office</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }} Office</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_4'] == 'true' %}
+                {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Captain {{ data['searchOFF_Operation_VALUE'] }}struck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Captain {{ data['searchOFF_Operation_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% endif %}
+        {% elseif data['searchOFF_Defendant_VALUE'] %}
+            {% if data['mvp_Case_1'] == 'true' %}
+                {% if data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }}struck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_2'] == 'true' %}
+                {% if data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }}struck Traffic</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }} Traffic</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_3'] == 'true' %}
+                {% if data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }}struck Office</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }} Office</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_4'] == 'true' %}
+                {% if data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Captain {{ data['searchOFF_Defendant_VALUE'] }}struck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Captain {{ data['searchOFF_Defendant_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Thunderstruck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+        {% endif %}
+    </div>
+
+    <table class="govuk-table sortable transfer-table" id="shared_drive_move-table">
+
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header num"><button class="govuk-button" data-module="govuk-button">Folder/file name</button></th>
+                <!-- <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">Last modified date</button></th> -->
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button"></button></th>
+            </tr>
+        </thead>
+
+        <tbody class="govuk-table__body">
+
+            <!-- FOLDER 1 - START -->
+            <tr class="govuk-table__row materials_row_1">
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">1. Case Management</a>
+                </td>
+                <!-- <td class="govuk-table__cell">24/06/2024</td> -->
+                <td class="govuk-table__cell">
+                    <button type="button" class="govuk-button govuk-button--secondary move_documents_here moved_to_folder_1" data-module="govuk-button">Move</button>
+                </td>
+            </tr>
+            <!-- FOLDER 1  - END -->
+
+            <!-- FOLDER 2 - START -->
+            <tr class="govuk-table__row materials_row_2">
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">2. Conference Hearing Notes</a>
+                </td>
+                <!-- <td class="govuk-table__cell">08/08/2024</td> -->
+                <td class="govuk-table__cell">
+                    <button type="button" class="govuk-button govuk-button--secondary move_documents_here moved_to_folder_2" data-module="govuk-button">Move</button>
+                </td>
+            </tr>
+            <!-- FOLDER 2  - END -->
+
+            <!-- FOLDER 3 - START -->
+            <tr class="govuk-table__row materials_row_3">
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">3. Experts</a>
+                </td>
+                <!-- <td class="govuk-table__cell">15/03/2024</td> -->
+                <td class="govuk-table__cell">
+                    <button type="button" class="govuk-button govuk-button--secondary move_documents_here moved_to_folder_3" data-module="govuk-button">Move</button>
+                </td>
+            </tr>
+            <!-- FOLDER 3  - END -->
+
+            <!-- FOLDER 4 - START -->
+            <tr class="govuk-table__row materials_row_4">
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">4. Counsel</a>
+                </td>
+                <!-- <td class="govuk-table__cell">01/03/2024</td> -->
+                <td class="govuk-table__cell">
+                    <button type="button" class="govuk-button govuk-button--secondary move_documents_here moved_to_folder_4" data-module="govuk-button">Move</button>
+                </td>
+            </tr>
+            <!-- FOLDER 4  - END -->
+
+            <!-- FOLDER 5 - START -->
+            <tr class="govuk-table__row materials_row_5">
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">5. Correspondence</a>
+                </td>
+                <!-- <td class="govuk-table__cell">21/09/2024</td> -->
+                <td class="govuk-table__cell">
+                    <button type="button" class="govuk-button govuk-button--secondary move_documents_here moved_to_folder_5" data-module="govuk-button">Move</button>
+                </td>
+            </tr>
+            <!-- FOLDER 5  - END -->
+
+            <!-- FOLDER 6 - START -->
+            <tr class="govuk-table__row materials_row_6">
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">6. Disclosure</a>
+                </td>
+                <!-- <td class="govuk-table__cell">28/10/2024</td> -->
+                <td class="govuk-table__cell">
+                    <button type="button" class="govuk-button govuk-button--secondary move_documents_here moved_to_folder_6" data-module="govuk-button">Move</button>
+                </td>
+            </tr>
+            <!-- FOLDER 6  - END -->
+
+            <!-- FOLDER 7 - START -->
+            <tr class="govuk-table__row materials_row_7">
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">7. Finance</a>
+                </td>
+                <!-- <td class="govuk-table__cell">25/06/2024</td> -->
+                <td class="govuk-table__cell">
+                    <button type="button" class="govuk-button govuk-button--secondary move_documents_here moved_to_folder_7" data-module="govuk-button">Move</button>
+                </td>
+            </tr>
+            <!-- FOLDER 7  - END -->
+
+            <!-- FOLDER 8 - START -->
+            <tr class="govuk-table__row materials_row_8">
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">8. Lawyer Working copies</a>
+                </td>
+                <!-- <td class="govuk-table__cell">26/06/2024</td> -->
+                <td class="govuk-table__cell">
+                    <button type="button" class="govuk-button govuk-button--secondary move_documents_here moved_to_folder_8" data-module="govuk-button">Move</button>
+                </td>
+            </tr>
+            <!-- FOLDER 8  - END -->
+
+            <!-- FOLDER 9 - START -->
+            <tr class="govuk-table__row materials_row_9">
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">9. PO Working copies</a>
+                </td>
+                <!-- <td class="govuk-table__cell">17/07/2024</td> -->
+                <td class="govuk-table__cell">
+                    <button type="button" class="govuk-button govuk-button--secondary move_documents_here moved_to_folder_9" data-module="govuk-button">Move</button>
+                </td>
+            </tr>
+            <!-- FOLDER 9  - END -->
+
+            <!-- FOLDER 10 - START -->
+            <tr class="govuk-table__row materials_row_10">
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">10. Police</a>
+                </td>
+                <!-- <td class="govuk-table__cell">24/07/2024</td> -->
+                <td class="govuk-table__cell">
+                    <button type="button" class="govuk-button govuk-button--secondary move_documents_here moved_to_folder_10" data-module="govuk-button">Move</button>
+                </td>
+            </tr>
+            <!-- FOLDER 10 - END -->
+
+            <!-- FOLDER 11 - START -->
+            <tr class="govuk-table__row materials_row_11">
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">11. Media</a>
+                </td>
+                <!-- <td class="govuk-table__cell">08/08/2024</td> -->
+                <td class="govuk-table__cell">
+                    <button type="button" class="govuk-button govuk-button--secondary move_documents_here moved_to_folder_11" data-module="govuk-button">Move</button>
+                </td>
+            </tr>
+            <!-- FOLDER 11 - END -->
+
+            <!-- FOLDER 12 - START -->
+            <tr class="govuk-table__row materials_row_12">
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">12. Victims & Witnesses</a>
+                </td>
+                <!-- <td class="govuk-table__cell">01/02/2024</td> -->
+                <td class="govuk-table__cell">
+                    <button type="button" class="govuk-button govuk-button--secondary move_documents_here moved_to_folder_12" data-module="govuk-button">Move</button>
+                </td>
+            </tr>
+            <!-- FOLDER 12 - END -->
+
+            <!-- FOLDER 13 - START -->
+            <tr class="govuk-table__row materials_row_13">
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">13. DCS</a>
+                </td>
+                <!-- <td class="govuk-table__cell">03/10/2024</td> -->
+                <td class="govuk-table__cell">
+                    <button type="button" class="govuk-button govuk-button--secondary move_documents_here moved_to_folder_13" data-module="govuk-button">Move</button>
+                </td>
+            </tr>
+            <!-- FOLDER 13 - END -->
+
+            <!-- FOLDER 14 - START -->
+            <tr class="govuk-table__row materials_row_14">
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">14. Mags Ct</a>
+                </td>
+                <!-- <td class="govuk-table__cell">21/08/2024</td> -->
+                <td class="govuk-table__cell">
+                    <button type="button" class="govuk-button govuk-button--secondary move_documents_here moved_to_folder_14" data-module="govuk-button">Move</button>
+                </td>
+            </tr>
+            <!-- FOLDER 14 - END -->
+
+            <!-- FOLDER 15 - START -->
+            <tr class="govuk-table__row materials_row_15">
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">15. IDPC</a>
+                </td>
+                <!-- <td class="govuk-table__cell">24/06/2024</td> -->
+                <td class="govuk-table__cell">
+                    <button type="button" class="govuk-button govuk-button--secondary move_documents_here moved_to_folder_15" data-module="govuk-button">Move</button>
+                </td>
+            </tr>
+            <!-- FOLDER 15 - END -->
+
+            {% if data['shared_drive_NewFolder'] %}
+                <!-- NEW FOLDER - START -->
+                <tr class="govuk-table__row materials_row_16 new_row">
+                    <td class="govuk-table__cell">
+                        <span class="icon-new folder"></span>
+                        <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">{{ data['shared_drive_NewFolder'] }}</a>
+                        <strong class="govuk-tag govuk-tag--green">New</strong>
+                    </td>
+                    <!-- <td class="govuk-table__cell">Today</td> -->
+                    <td class="govuk-table__cell">
+                        <button type="button" class="govuk-button govuk-button--secondary move_documents_here moved_to_folder_16" data-module="govuk-button">Move</button>
+                    </td>
+                </tr>
+                <!-- NEW FOLDER - END -->
+            {% else %}
+
+            {% endif %}
+
+        </tbody>
+    </table>
+
+</div>
+<!-- ////////////////////////////////////////////// SEOCID MATERIALS - SECTION 1 - END ////////////////////////////////////////////// -->

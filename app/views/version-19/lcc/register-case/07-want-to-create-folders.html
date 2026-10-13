@@ -1,0 +1,76 @@
+{% extends "layoutCPS-NEW-INDEX.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="/version-19/lcc/register-case/07-want-to-create-folders" method="post" novalidate>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+
+            <h1 class="govuk-fieldset__heading">
+              Do you want to create folders for this case?
+            </h1>
+          </legend>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="want-folders-yes" name="want-folders" type="radio" value="Yes" data-aria-controls="conditional-contact" {% if data['want-folders'] == 'Yes' %}checked{% endif %}>
+              <label class="govuk-label govuk-radios__label" for="want-folders-yes">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                    <label class="govuk-label" for="folders">
+                      What folders do you need to create?
+                    </label>
+                  </legend>
+                  <div class="govuk-hint">
+                    Select all that apply
+                  </div>
+                  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="wanted-egress-folder" name="wanted-egress-folder" type="checkbox" value="Egress folder" {% if data['wanted-egress-folder'] == 'Egress folder' %}checked{% endif %}>
+                      <label class="govuk-label govuk-checkboxes__label" for="wanted-egress-folder">
+                        Egress
+                      </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="wanted-drive-folder" name="wanted-drive-folder" type="checkbox" value="Shared Drive folder" {% if data['wanted-drive-folder'] == 'Shared Drive folder' %}checked{% endif %}>
+                      <label class="govuk-label govuk-checkboxes__label" for="wanted-drive-folder">
+                        Shared Drive
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>                
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="want-folders-no" name="want-folders" type="radio" value="No" {% if data['want-folders'] == 'No' %}checked{% endif %}>
+              <label class="govuk-label govuk-radios__label" for="want-folders-no">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button">Continue</button>
+      <button type="button" onclick="location.href='../../../';" class="non-button margin-left" id="">Cancel</button>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

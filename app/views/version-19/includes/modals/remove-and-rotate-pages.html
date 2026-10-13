@@ -1,0 +1,190 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="openRotatePages">
+
+    <div class="das-cookie-banner small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-modal-dialogue__header">
+                <button aria-label="Close modal dialogue" class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeRotatePagesModal()">×</button>
+            </div>
+
+            <!-- //////////////////////////////// NOTES - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="removePages">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-s">
+                                    Rotate and remove document pages - <span class="document-title-5">Document title</span>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="" action="" class="edit-document">
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+
+                                <div class="govuk-form-group">
+                                    <fieldset class="govuk-fieldset">
+
+                                        <div class="govuk-checkboxes govuk-checkboxes--small remove-and-rotate" data-module="govuk-checkboxes">
+
+                                            <div class="button-wrapper-multiple">
+                                                <p><span class="number-selected">1</span> selected</p>
+                                                <a class="rotate-IMG-left"><span></span> Rotate left</a>
+                                                <a class="rotate-IMG-right"><span></span> Rotate right</a>
+                                                <a class="delete-page delete-multiple-pages" onclick="return countPages(), openRemovePage()"><span></span> Delete</a>
+                                            </div>
+
+                                            <!-- PAGE - 1 - START -->
+                                            <div class="wrapper">
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="editDocument-Page-1" name="editDocument" type="checkbox" value="Page 1">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="editDocument-Page-1">
+                                                        <span class="page-number">Page 1</span> <a href="#" id="page-1-new"> - View page (1/6)</a>
+                                                    </label>
+                                                </div>
+                                                <div class="rotate-wrapper">
+                                                    <div class="image-wrapper">
+                                                        <img src="../../../public/files/rotate/MCLOVE-MG3-page-1.png" alt="MCLOVE MG3 - page 1" class="">
+                                                    </div>
+                                                    <div class="button-wrapper">
+                                                        <a class="rotate-IMG-left"><span></span> Rotate left</a>
+                                                        <a class="rotate-IMG-right"><span></span> Rotate right</a>
+                                                        <a class="delete-page" onclick="return openRemovePage()"><span></span> Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- PAGE - 1 - END -->
+
+                                            <!-- PAGE - 2 - START -->
+                                            <div class="wrapper">
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="editDocument-Page-2" name="editDocument" type="checkbox" value="Page 2">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="editDocument-Page-2">
+                                                        <span class="page-number">Page 2</span> <a href="#" id="page-2-new"> - View page (2/6)</a>
+                                                    </label>
+                                                </div>
+                                                <div class="rotate-wrapper">
+                                                    <div class="image-wrapper">
+                                                        <img src="../../../public/files/rotate/MCLOVE-MG3-page-2.png" alt="MCLOVE MG3 - page 2" class="">
+                                                    </div>
+                                                    <div class="button-wrapper">
+                                                        <a class="rotate-IMG-left"><span></span> Rotate left</a>
+                                                        <a class="rotate-IMG-right"><span></span> Rotate right</a>
+                                                        <a class="delete-page" onclick="return openRemovePage()"><span></span> Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- PAGE - 2 - END -->
+
+                                            <!-- PAGE - 3 - START -->
+                                            <div class="wrapper">
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="editDocument-Page-3" name="editDocument" type="checkbox" value="Page 3">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="editDocument-Page-3">
+                                                        <span class="page-number">Page 3</span> <a href="#" id="page-3-new"> - View page (3/6)</a>
+                                                    </label>
+                                                </div>
+                                                <div class="rotate-wrapper">
+                                                    <div class="image-wrapper">
+                                                        <img src="../../../public/files/rotate/MCLOVE-MG3-page-3.png" alt="MCLOVE MG3 - page 3" class="">
+                                                    </div>
+                                                    <div class="button-wrapper">
+                                                        <a class="rotate-IMG-left"><span></span> Rotate left</a>
+                                                        <a class="rotate-IMG-right"><span></span> Rotate right</a>
+                                                        <a class="delete-page" onclick="return openRemovePage()"><span></span> Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- PAGE - 3 - END -->
+
+                                            <!-- PAGE - 4 - START -->
+                                            <div class="wrapper">
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="editDocument-Page-4" name="editDocument" type="checkbox" value="Page 4">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="editDocument-Page-4">
+                                                        <span class="page-number">Page 4</span> <a href="#" id="page-4-new"> - View page (4/6)</a>
+                                                    </label>
+                                                </div>
+                                                <div class="rotate-wrapper">
+                                                    <div class="image-wrapper">
+                                                        <img src="../../../public/files/rotate/MCLOVE-MG3-page-4.png" alt="MCLOVE MG3 - page 4" class="">
+                                                    </div>
+                                                    <div class="button-wrapper">
+                                                        <a class="rotate-IMG-left"><span></span> Rotate left</a>
+                                                        <a class="rotate-IMG-right"><span></span> Rotate right</a>
+                                                        <a class="delete-page" onclick="return openRemovePage()"><span></span> Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- PAGE - 4 - END -->
+
+                                            <!-- PAGE - 5 - START -->
+                                            <div class="wrapper">
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="editDocument-Page-5" name="editDocument" type="checkbox" value="Page 5">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="editDocument-Page-5">
+                                                        <span class="page-number">Page 5</span> <a href="#" id="page-5-new"> - View page (5/6)</a>
+                                                    </label>
+                                                </div>
+                                                <div class="rotate-wrapper">
+                                                    <div class="image-wrapper">
+                                                        <img src="../../../public/files/rotate/MCLOVE-MG3-page-5.png" alt="MCLOVE MG3 - page 5" class="">
+                                                    </div>
+                                                    <div class="button-wrapper">
+                                                        <a class="rotate-IMG-left"><span></span> Rotate left</a>
+                                                        <a class="rotate-IMG-right"><span></span> Rotate right</a>
+                                                        <a class="delete-page" onclick="return openRemovePage()"><span></span> Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- PAGE - 5 - END -->
+
+                                            <!-- PAGE - 6 - START -->
+                                            <div class="wrapper">
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="editDocument-Page-6" name="editDocument" type="checkbox" value="Page 6">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="editDocument-Page-6">
+                                                        <span class="page-number">Page 6</span> <a href="#" id="page-6-new"> - View page (6/6)</a>
+                                                    </label>
+                                                </div>
+                                                <div class="rotate-wrapper">
+                                                    <div class="image-wrapper">
+                                                        <img src="../../../public/files/rotate/MCLOVE-MG3-page-6.png" alt="MCLOVE MG3 - page 6" class="">
+                                                    </div>
+                                                    <div class="button-wrapper">
+                                                        <a class="rotate-IMG-left"><span></span> Rotate left</a>
+                                                        <a class="rotate-IMG-right"><span></span> Rotate right</a>
+                                                        <a class="delete-page" onclick="return openRemovePage()"><span></span> Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- PAGE - 6 - END -->
+
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="cta-footer">
+                            <button id="removePages-button" class="govuk-button" data-module="govuk-button" type="button" onClick="return openConfirmRemovePages()">Continue</button>
+                            <button class="non-button cancel-rotate" data-module="govuk-button" type="button" onClick="closeRotatePagesModal()">Cancel</button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>

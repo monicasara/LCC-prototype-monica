@@ -1,0 +1,53 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row" id="create-case-journey">
+
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+            <form method="post" action="/version-19/lcc/register-case/03-suspect-details-sdo">  
+
+                <fieldset class="govuk-fieldset">
+
+                <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <h1 class="govuk-fieldset__heading">
+                        Is <span class="uppercase">{{ data['suspect-person-last-name'] }}</span>, {{ data['suspect-person-first-name'] }} a serious dangerous offender (SDO)?
+                    </h1>
+                    </legend>
+                    <div class="govuk-radios" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="sdo-yes" name="sdo" type="radio" value="Yes" {% if data['suspectSDO'][data['suspectDetailsCount']] == 'Yes' %}checked{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="sdo-yes">
+                        Yes
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="sdo-no" name="sdo" type="radio" value="No" {% if data['suspectSDO'][data['suspectDetailsCount']] == 'No' %}checked{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="sdo-no">
+                        No
+                        </label>
+                    </div>
+
+                </fieldset>
+                </div>
+
+                {% include "../../includes/buttons.html" %}
+
+            </form>
+
+        </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+</div>
+
+{% endblock %}

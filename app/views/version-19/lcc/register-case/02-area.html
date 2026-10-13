@@ -1,0 +1,61 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+
+<div class="govuk-grid-row" id="create-case-journey">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+            {% if areaError %}
+            <div class="govuk-error-summary" data-module="govuk-error-summary">
+                <div role="alert">
+                    <h2 class="govuk-error-summary__title">
+                        There is a problem
+                    </h2>
+                    <div class="govuk-error-summary__body">
+                        <ul class="govuk-list govuk-error-summary__list">
+                            <li>
+                                <a href="#docType-Area">{{ areaError }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <form method="post" action="/version-19/lcc/register-case/02-area" id="newCase_Form-A">  
+
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-fieldset__heading">
+                            What is the division or area?
+                        </h1>
+                    </legend>
+
+                    <div class="govuk-form-group{% if areaError %} govuk-form-group--error{% endif %}" id="newCase_Operation_AREA-Value">
+                        <!-- <label class="govuk-label" for="newCase_URN">What is the division or area?</label> -->
+
+                        <!-- <label class="govuk-label" for="newCase_Operation_AREA">Select an area</label> -->
+                        {% if areaError %}
+                        <p id="newCase_Area-error" class="govuk-error-message govuk-!-margin-bottom-2"><span class="govuk-visually-hidden">Error:</span> {{ areaError }}</p>
+                        {% endif %}
+                        <input class="govuk-input govuk-input--width-20{% if areaError %} govuk-input--error{% endif %}" id="docType-Area" name="docType-Area" type="text" value="{{ data['area'] }}" {% if areaError %}aria-describedby="newCase_Area-error"{% endif %}>
+                    </div>
+
+                </fieldset>
+
+                {% include "../../includes/buttons.html" %}
+            </form>
+        </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+</div>
+
+{% endblock %}

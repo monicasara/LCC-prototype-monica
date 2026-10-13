@@ -1,0 +1,75 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="confirmSuggestedRedactions">
+
+    <div class="das-cookie-banner x-small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <!-- //////////////////////////////// REDACTION LOG - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="feedback">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-m">
+                                    Use potential redactions?            
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="redaction-wrapper">
+                        <form method="" action="">
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full">
+                                    <p></p>
+                                </div>
+
+                                <div class="govuk-grid-column-full">
+
+                                    <!-- ////// FORM ITEM 1 - START ////// -->
+                                    <fieldset class="govuk-fieldset">
+
+                                        <div class="govuk-warning-text govuk-!-margin-bottom-2">
+                                            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                                            <strong class="govuk-warning-text__text">
+                                                <span class="govuk-warning-text__assistive">Warning</span>
+                                                Your remaining <span id="confirm-suggested-redactions-number">30</span> potential redactions will also be redacted, if you choose to continue
+                                            </strong>
+                                        </div>
+
+                                        <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                            <legend class="govuk-fieldset__legend">Have you manually checked all selected redactions in the document?</legend>
+                                            <div class="govuk-radios__item">
+                                                <input class="govuk-radios__input" id="suggestedRedactions-Yes" name="suggestedRedactions" type="radio" value="Yes">
+                                                <label class="govuk-label govuk-radios__label" for="suggestedRedactions-Yes">Yes</label>
+                                            </div>
+                                            <div class="govuk-radios__item">
+                                                <input class="govuk-radios__input" id="suggestedRedactions-No" name="suggestedRedactions" type="radio" value="No">
+                                                <label class="govuk-label govuk-radios__label" for="suggestedRedactions-No">No</label>
+                                            </div>                                        
+                                        </div>
+                                    </fieldset>
+                                    <!-- ////// FORM ITEM 1 - END ////// -->
+                                </div>
+
+                            </div>
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full cta-group">
+                                    <button id="confirm-suggested-redactions"  disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled"  data-module="govuk-button" type="button">Continue</button>
+                                    <button class="non-button" data-module="govuk-button" type="button" onclick="closeSuggestedRedactions()">Cancel</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>

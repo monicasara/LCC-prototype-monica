@@ -757,7 +757,7 @@ function refreshOrderGutter(tbody) {
 const reorderedRowHighlightTimers = new WeakMap();
 
 function highlightReorderedRow(row) {
-     if (!window.location.pathname.startsWith('/version-18/')) return;
+     if (!['/version-18/', '/version-19/'].some(path => window.location.pathname.startsWith(path))) return;
 
      const existingTimer = reorderedRowHighlightTimers.get(row);
      if (existingTimer) window.clearTimeout(existingTimer);
@@ -872,7 +872,7 @@ document.addEventListener("click", (e) => {
 }, true);
 
 (function setupBulkOrderControls() {
-     if (!window.location.pathname.startsWith('/version-18/lcc/materials/order-materials')) return;
+     if (!['/version-18/lcc/materials/order-materials', '/version-19/lcc/materials/order-materials'].some(path => window.location.pathname.startsWith(path))) return;
 
      document.addEventListener('DOMContentLoaded', () => {
           const table = document.querySelector('#materials_table.is-order-mode');
@@ -1073,7 +1073,7 @@ document.addEventListener("click", (e) => {
 })();
 
 (function setupMaterialsOptionsMenus() {
-     if (!window.location.pathname.startsWith('/version-18/lcc/materials/')) return;
+     if (!['/version-18/lcc/materials/', '/version-19/lcc/materials/'].some(path => window.location.pathname.startsWith(path))) return;
 
      document.addEventListener('DOMContentLoaded', () => {
           const toggles = Array.from(document.querySelectorAll('.js-materials-options-toggle'));

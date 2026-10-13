@@ -1,0 +1,203 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row" id="create-case-journey">
+
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+
+            <!-- <h1 class="govuk-heading-l govuk-!-margin-top-4 govuk-!-margin-bottom-4" style="">What is the case complexity?</h1> -->
+
+            <!-- <p class="govuk-hint govuk-!-margin-bottom-6">Adding this information is optional. You can continue without adding any details.</p> -->
+
+            <form method="post" action="/version-19/lcc/register-case/05-complexity">  
+
+                <fieldset class="govuk-fieldset">
+
+                <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-fieldset__heading">
+                            What is the case complexity?
+                        </h1>
+                    </legend>
+                    <div class="govuk-radios" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="newCase_Complexity" name="newCase_Complexity" type="radio" value="Basic" {% if data['caseComplexity'] == 'Basic' %} checked {% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="newCase_Complexity">
+                        Basic
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="newCase_Complexity-5" name="newCase_Complexity" type="radio" value="Basic +" {% if data['caseComplexity'] == 'Basic +' %} checked {% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="newCase_Complexity-5">
+                        Basic +
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="newCase_Complexity-2" name="newCase_Complexity" type="radio" value="Standard" {% if data['caseComplexity'] == 'Standard' %} checked {% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="newCase_Complexity-2">
+                        Standard
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="newCase_Complexity-3" name="newCase_Complexity" type="radio" value="High" {% if data['caseComplexity'] == 'High' %} checked {% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="newCase_Complexity-3">
+                        High
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="newCase_Complexity-4" name="newCase_Complexity" type="radio" value="Complex " {% if data['caseComplexity'] == 'Complex' %} checked {% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="newCase_Complexity-4">
+                        Complex
+                        </label>
+                    </div>
+                    <!-- <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="newCase_Complexity-4" name="newCase_Complexity" type="radio" value="Not applicable">
+                        <label class="govuk-label govuk-radios__label" for="newCase_Complexity-4">
+                        Not applicable
+                        </label>
+                    </div> -->
+                    </div>
+                </fieldset>
+                </div>
+<!-- 
+                    <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                        <h2 class="govuk-fieldset__heading">
+                            What is the case weight?
+                        </h2>
+                        </legend>
+                        <div class="govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="newCase_CaseWeight-2" name="newCase_CaseWeight" type="radio" value="Low">
+                            <label class="govuk-label govuk-radios__label" for="newCase_CaseWeight-2">
+                            Low
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="newCase_CaseWeight-3" name="newCase_CaseWeight" type="radio" value="Medium">
+                            <label class="govuk-label govuk-radios__label" for="newCase_CaseWeight-3">
+                            Medium
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="newCase_CaseWeight-4" name="newCase_CaseWeight" type="radio" value="High">
+                            <label class="govuk-label govuk-radios__label" for="newCase_CaseWeight-4">
+                            High
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="newCase_CaseWeight-4" name="newCase_CaseWeight" type="radio" value="Exceptional">
+                            <label class="govuk-label govuk-radios__label" for="newCase_CaseWeight-4">
+                            Exceptional
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="newCase_CaseWeight" name="newCase_CaseWeight" type="radio" value="Not applicable">
+                            <label class="govuk-label govuk-radios__label" for="newCase_CaseWeight">
+                            Not applicable
+                            </label>
+                        </div>
+                        </div>
+                    </fieldset>
+                    </div>                     -->
+
+                    <!-- OPTION 2 - START -->
+                    <!-- <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset" aria-describedby="newCase_CaseWeight-hint">
+                            <legend class="govuk-fieldset__legend">
+                                <h1 class="govuk-fieldset__heading">Do you want to add case weight?</h1>
+                            </legend>
+                            <div class="govuk-radios  govuk-radios--inline" data-module="govuk-radios">
+                                <div class="govuk-radios__item">
+                                    {% if data['newCase_CaseWeight_YesNo'] == 'Yes' %}
+                                        <input class="govuk-radios__input" id="newCase_CaseWeight_Yes" name="newCase_CaseWeight_YesNo" type="radio" value="Yes" data-aria-controls="conditional-newCase_CaseWeight" checked>
+                                    {% else %}
+                                        <input class="govuk-radios__input" id="newCase_CaseWeight_Yes" name="newCase_CaseWeight_YesNo" type="radio" value="Yes" data-aria-controls="conditional-newCase_CaseWeight">
+                                    {% endif %}  
+                                    <label class="govuk-label govuk-radios__label" for="newCase_CaseWeight_Yes">Yes</label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    {% if data['newCase_CaseWeight_YesNo'] == 'No' %}
+                                        <input class="govuk-radios__input" id="newCase_CaseWeight_No" name="newCase_CaseWeight_YesNo" type="radio" value="No" checked>
+                                    {% else %}
+                                        <input class="govuk-radios__input" id="newCase_CaseWeight_No" name="newCase_CaseWeight_YesNo" type="radio" value="No">
+                                    {% endif %}  
+                                    <label class="govuk-label govuk-radios__label" for="newCase_CaseWeight_No">No</label>
+                                </div>
+                                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-newCase_CaseWeight">
+                                    <div class="govuk-form-group">
+                                        <fieldset class="govuk-fieldset" aria-describedby="newCase_CaseWeight-hint">
+                                            <div class="govuk-radios  govuk-radios--inline" data-module="govuk-radios">
+                                                <div class="govuk-radios__item">
+                                                    {% if data['newCase_CaseWeight'] == 'Not applicable' %}
+                                                        <input class="govuk-radios__input" id="newCase_OperationName_NA" name="newCase_CaseWeight" type="radio" value="Not applicable" checked>
+                                                    {% else %}
+                                                        <input class="govuk-radios__input" id="newCase_OperationName_NA" name="newCase_CaseWeight" type="radio" value="Not applicable">
+                                                    {% endif %}
+                                                    <label class="govuk-label govuk-radios__label" for="newCase_OperationName_NA">Not applicable</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    {% if data['newCase_CaseWeight'] == 'Low' %}
+                                                        <input class="govuk-radios__input" id="newCase_OperationName_Low" name="newCase_CaseWeight" type="radio" value="Low" checked>
+                                                    {% else %}
+                                                        <input class="govuk-radios__input" id="newCase_OperationName_Low" name="newCase_CaseWeight" type="radio" value="Low">
+                                                    {% endif %}
+                                                    <label class="govuk-label govuk-radios__label" for="newCase_OperationName_Low">Low</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    {% if data['newCase_CaseWeight'] == 'Medium' %}
+                                                        <input class="govuk-radios__input" id="newCase_OperationName_Medium" name="newCase_CaseWeight" type="radio" value="Medium" checked>
+                                                    {% else %}
+                                                        <input class="govuk-radios__input" id="newCase_OperationName_Medium" name="newCase_CaseWeight" type="radio" value="Medium">
+                                                    {% endif %}
+                                                    <label class="govuk-label govuk-radios__label" for="newCase_OperationName_Medium">Medium</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    {% if data['newCase_CaseWeight'] == 'High' %}
+                                                        <input class="govuk-radios__input" id="newCase_OperationName_High" name="newCase_CaseWeight" type="radio" value="High" checked>
+                                                    {% else %}
+                                                        <input class="govuk-radios__input" id="newCase_OperationName_High" name="newCase_CaseWeight" type="radio" value="High">
+                                                    {% endif %}
+                                                    <label class="govuk-label govuk-radios__label" for="newCase_OperationName_High">High</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    {% if data['newCase_CaseWeight'] == 'Exceptional' %}
+                                                        <input class="govuk-radios__input" id="newCase_OperationName_Exceptional" name="newCase_CaseWeight" type="radio" value="Exceptional" checked>
+                                                    {% else %}
+                                                        <input class="govuk-radios__input" id="newCase_OperationName_Exceptional" name="newCase_CaseWeight" type="radio" value="Exceptional">
+                                                    {% endif %}
+                                                    <label class="govuk-label govuk-radios__label" for="newCase_OperationName_Exceptional">Exceptional</label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>                    
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>                     -->
+                    <!-- OPTION 2 - END -->
+
+                </fieldset>
+
+                <input id="createCase_E_Complete" name="createCase_E_Complete" type="text" value="true" style="display: none;">
+                {% include "../../includes/buttons.html" %}
+
+            </form>
+
+        </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+</div>
+
+{% endblock %}

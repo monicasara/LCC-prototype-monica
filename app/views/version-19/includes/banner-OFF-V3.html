@@ -1,0 +1,360 @@
+<style>
+ main.case-files {padding-top:0 !important}
+
+ #secondary-navigation {
+    margin-bottom: 1em;
+ }
+ #secondary-navigation ul li a {
+    color: #1d70b8;
+    text-decoration: none;
+/*    font-weight: bold;*/
+    font-size: 1.3em;
+}
+#secondary-navigation ul li {
+    box-sizing: border-box;
+/*    height: 3.125rem;*/
+    padding: 0 15px;
+/*    float: left;*/
+/*    line-height: 50px;*/
+    position: relative;
+}
+
+#secondary-navigation ul li.selected:before {
+    display: inline-block;
+    content: '';
+    height: 5px;
+    left: 0;
+    right: 0;
+    background: #1d70b8;
+    position: absolute;
+    bottom: -0.7em;
+}
+
+#secondary-navigation ul li:first-of-type:before {
+    left: 15px;
+}
+
+
+#secondary-navigation ul:first-child {
+     padding-left:0;
+}
+
+#secondary-navigation ul li.current {
+/*    position: absolute;
+    bottom: -5px;
+    display: inline-block;
+    height: 5px;
+    background: #1d70b8;
+    left: 0px;
+    right: 0px;
+    content: " ";*/
+    font-weight:bold;
+}
+
+#global-navigation ul {
+    position: static;
+    left: inherit;
+    right: 0;
+
+}
+
+#global-navigation ul li{
+    z-index: 9999;
+}
+
+
+.classicNav:after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #1d70b8;
+    position: absolute;
+    left: 135px;
+    top: 21px;
+}
+
+#test-nav {
+    float: left;
+    display: inline-block;
+}
+
+#test-nav h1 {
+    position: relative;
+}
+
+#test-nav h1:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: #f3f2f1;
+    left: -1000em;
+    z-index: 1;
+    right: 0;
+}
+
+#test-nav h1:after {
+    position: absolute;
+    content: '';
+    right: -20px;
+    top: 0;
+    bottom: 0;
+    border-left: 20px solid #f3f2f1;
+    border-bottom: 22px solid transparent;
+    border-top: 22px solid transparent;    
+}
+
+/* Hide the dropdown menu by default */
+.dropdown-menu {
+    display: none;
+/*  display: flex;
+    flex-direction: column;*/
+    position: absolute !important;
+    z-index:99;
+    top: 100%;
+    background:#F5F5F5;
+    right: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width:250px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+    border-top: 5px solid #1d70b8;
+
+
+}
+
+.dropdown-menu li  {
+    display:block;
+    padding: 10px 15px;
+    font-weight:400;
+}
+
+.dropdown-menu li a {
+    font-weight:400 !important;
+}
+
+.menu-item.show .classicNav:after {
+    transform: rotate(180deg);
+}
+
+/* Show the dropdown menu when the parent has the .show class */
+.menu-item.show .dropdown-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+</style>
+
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+    var dropdownToggle = document.querySelector('.dropdown-toggle');
+    var dropdownMenu = dropdownToggle.nextElementSibling;
+
+    dropdownToggle.addEventListener('click', function (e) {
+        e.preventDefault(); // Prevent default link behavior
+        var parentMenuItem = dropdownToggle.parentElement;
+        
+        if (parentMenuItem.classList.contains('show')) {
+            parentMenuItem.classList.remove('show');
+        } else {
+            // Close any open dropdowns
+            var openDropdowns = document.querySelectorAll('.menu-item.show');
+            openDropdowns.forEach(function (dropdown) {
+                dropdown.classList.remove('show');
+            });
+            // Open the clicked dropdown
+            parentMenuItem.classList.add('show');
+        }
+    });
+
+    // Close the dropdown menu if clicked outside
+    document.addEventListener('click', function (e) {
+        var isClickInside = dropdownToggle.contains(e.target) || dropdownMenu.contains(e.target);
+        if (!isClickInside) {
+            dropdownToggle.parentElement.classList.remove('show');
+        }
+    });
+});
+</script>
+
+<div class="header-wrapper-height">
+    <header class="govuk-header {{ params.classes if params.classes }}" role="banner" data-module="govuk-header" {%- for attribute, value in params.attributes %} {{attribute}}="{{value}}"{% endfor %}>
+        <div class="govuk-header__container {{ params.containerClasses | default('govuk-width-container') }}">
+            <div style="display:flex">
+                <div class="govuk-header__logo">
+                    <a href="2-homepage" class="govuk-header__link govuk-header__link--homepage">
+                        <span class="govuk-header__logotype">
+                            <span class="govuk-header__logotype-text caseReviewHeader">CPS</span>
+                            <span class="govuk-header__logotype-text caseReviewHeaderSub">Complex case management</span>
+                        </span>
+                    </a>
+                </div>
+
+            {% if data['offCMS_Username'] %}
+                <div class="govuk-header__logo right">
+                    <a href="" class="username">{{ data['offCMS_Username'] }}</a>
+                    <div class="user-settings">
+                        <div class="govuk-form-group">
+                            <fieldset class="govuk-fieldset">
+                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                    <h1 class="govuk-fieldset__heading">Colour scheme</h1>
+                                </legend>
+                                <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="colourScheme__White" name="colourScheme" type="radio" value="White" checked>
+                                        <label class="govuk-label govuk-radios__label" for="colourScheme__White" checked>White</label>
+                                    </div>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="colourScheme__SoftGrey" name="colourScheme" type="radio" value="Soft grey">
+                                        <label class="govuk-label govuk-radios__label" for="colourScheme__SoftGrey">Soft grey</label>
+                                    </div>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="colourScheme__Grey" name="colourScheme" type="radio" value="Grey">
+                                        <label class="govuk-label govuk-radios__label" for="colourScheme__Grey">Grey</label>
+                                    </div>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="colourScheme__Dark" name="colourScheme" type="radio" value="Dark">
+                                        <label class="govuk-label govuk-radios__label" for="colourScheme__Dark">Dark</label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="govuk-form-group">
+                            <fieldset class="govuk-fieldset">
+                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                    <h1 class="govuk-fieldset__heading">Colour overlay</h1>
+                                </legend>
+                                <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="colourOverlay__Pink" name="colourOverlay" type="radio" value="Pink">
+                                        <label class="govuk-label govuk-radios__label" for="colourOverlay__Pink" checked>Pink</label>
+                                    </div>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="colourOverlay__Green" name="colourOverlay" type="radio" value="Green">
+                                        <label class="govuk-label govuk-radios__label" for="colourOverlay__Green">Green</label>
+                                    </div>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="colourOverlay__Blue" name="colourOverlay" type="radio" value="Blue">
+                                        <label class="govuk-label govuk-radios__label" for="colourOverlay__Blue">Blue</label>
+                                    </div>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="colourOverlay__Yellow" name="colourOverlay" type="radio" value="Yellow">
+                                        <label class="govuk-label govuk-radios__label" for="colourOverlay__Yellow">Yellow</label>
+                                    <hr>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="colourOverlay__Remove" name="colourOverlay" type="radio" value="Remove">
+                                        <label class="govuk-label govuk-radios__label" for="colourOverlay__Remove">No colour overlay</label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="govuk-form-group">
+                            <fieldset class="govuk-fieldset">
+                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                    <h1 class="govuk-fieldset__heading">Colour hue</h1>
+                                </legend>
+                                <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="colourHue" name="colourHue" type="checkbox" value="Change colour hue">
+                                        <label class="govuk-label govuk-checkboxes__label" for="colourHue">Change colour hue</label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="govuk-form-group">
+                            <button type="button" class="govuk-button govuk-!-margin-bottom-3" onclick="location.href='../../prototype-admin/clear-data';">Clear data</button>
+                        </div>                
+                    </div>
+                    
+                </div>
+            {% else %}
+
+            {% endif %}
+
+            </div>
+        </div>
+    </header>
+
+    <nav class="cps-bar-wrapper off-cms-journey" id="global-navigation" style="margin-bottom:0">
+        <div class="govuk-width-container">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <ul style="display:flex; width:auto; float: left;" class="">
+                        <li class="homepage"><a href="2-homepage">Home</a></li>
+                        <!-- <li class="search"><a href="13A-search">Search</a></li> -->
+                        <li class="create-case"><a href="4A-create-case">Create a case</a></li>
+                    </ul>
+                    <!-- SEARCH - START -->
+                    <div class="moj-primary-navigation__search">
+                        <div class="moj-search-toggle" data-module="moj-search-toggle" data-moj-search-toggle-text="Find case">
+                            <div class="moj-search-toggle__toggle">
+                                <button class="moj-search-toggle__button" type="button" aria-haspopup="true" aria-expanded="true">Find case<svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="moj-search-toggle__button__icon"><path d="M7.433,12.5790048 C6.06762625,12.5808611 4.75763941,12.0392925 3.79217348,11.0738265 C2.82670755,10.1083606 2.28513891,8.79837375 2.28699522,7.433 C2.28513891,6.06762625 2.82670755,4.75763941 3.79217348,3.79217348 C4.75763941,2.82670755 6.06762625,2.28513891 7.433,2.28699522 C8.79837375,2.28513891 10.1083606,2.82670755 11.0738265,3.79217348 C12.0392925,4.75763941 12.5808611,6.06762625 12.5790048,7.433 C12.5808611,8.79837375 12.0392925,10.1083606 11.0738265,11.0738265 C10.1083606,12.0392925 8.79837375,12.5808611 7.433,12.5790048 L7.433,12.5790048 Z M14.293,12.579 L13.391,12.579 L13.071,12.269 C14.2300759,10.9245158 14.8671539,9.20813198 14.866,7.433 C14.866,3.32786745 11.5381325,-1.65045755e-15 7.433,-1.65045755e-15 C3.32786745,-1.65045755e-15 -1.65045755e-15,3.32786745 -1.65045755e-15,7.433 C-1.65045755e-15,11.5381325 3.32786745,14.866 7.433,14.866 C9.208604,14.8671159 10.9253982,14.2296624 12.27,13.07 L12.579,13.39 L12.579,14.294 L18.296,20 L20,18.296 L14.294,12.579 L14.293,12.579 Z"></path></svg></button>                            
+                            </div>
+                            <div class="moj-search-toggle__search">
+                                <div class="moj-search moj-search--ondark moj-search--toggle moj-js-hidden">
+                                    <form action="13B-search-results" method="get">
+                                        <div class="govuk-form-group">
+                                            <label class="govuk-label moj-search__label govuk-visually-hidden" for="searchOFF_URN">Search</label>
+                                            <div id="searchOFF_URN-hint" class="govuk-hint moj-search__hint ">
+                                                Enter case operation name, team member, URN or defendants name
+                                            </div>
+                                            <input class="govuk-input moj-search__input " id="searchOFF_URN" name="searchOFF_URN" type="search" aria-describedby="searchOFF_URN-hint">
+                                        </div>
+                                        <button type="submit" class="govuk-button moj-search__button " data-module="govuk-button">Search</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SEARCH - START -->
+                </div>
+            </div>
+        </div>
+    </nav>
+<!--     <nav class="cps-bar-wrapper" id="secondary-navigation" style="background:#fff; z-index:9; margin-bottom: 1em;">
+        <div class="govuk-width-container">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <div class="case-info new" id="test-nav">
+                        <h1 class="govuk-heading-s" style="margin:0; padding: 0.55em 0.5em 0.55em 0; background: #f3f2f1;">
+                            {% if data['newCase_OperationName'] %}
+                                <span style="position: relative; z-index:2;">{{ data['newCase_OperationName'] }}</span>
+                                <br>
+                                <span style="position: relative; z-index:2;" class="case-URN">
+                                    {{ data['newCase_URN-A'] }}{{ data['newCase_URN-B'] }}{{ data['newCase_URN-C'] }}/{{ data['newCase_URN-D'] }}
+                                </span>
+                            {% else %}
+                                <span style="position: relative; z-index:2;">McLove, Eoin</span>
+                                <br>
+                                <span style="position: relative; z-index:2;" class="case-URN">45AA209820/1</span>
+                            {% endif %}
+                        </h1>
+                    </div>
+                    <ul style="display:flex; margin:10px 0; width:40%; float:left; padding:0 0 0 1em; list-style: none;" id="tall-nav">
+                        <li class="sub-overview selected"><a href="#">Overview</a></li>
+                        <li class="sub-review"><a href="#">Create EIA</a></li>
+                        <li class="sub-case"><a href="" class="third-level-trigger">Materials</a></li>
+                        <li class="sub-review"><a href="#">Review</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+ --></div>
+
+<style>body {visibility: hidden}</style>
+<script>
+    $(document).ready(function () {
+        $("body")
+            .contents()
+            .filter(function () {
+        return this.nodeType == Node.TEXT_NODE;
+    })
+        .remove();
+        $("body").css("visibility", "visible");
+    });
+</script>
+

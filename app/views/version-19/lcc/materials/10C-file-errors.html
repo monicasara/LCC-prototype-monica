@@ -1,0 +1,121 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+{% block beforeContent %}
+    {% include "../../includes/off-system-MVP/modalConfirmation-Egress.html" %}
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+    </div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-2" id="homepage-journey">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="wrapper main-cotent">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-7" style="">You do not have permission to transfer these files from egress</h1>
+            <!-- <h2 class="govuk-heading-m govuk-!-margin-bottom-4" style="">Network error</h2> -->
+            <!-- <p>You can't transfer files right now because of a technical issue.</p> -->
+
+            <form method="post" action="03-case-overview#failed_files_COMPLETED" id="submit_failed_files">  
+
+                <!-- SECTION - 1 - START -->
+<!--                 <div class="url-text file_structure">
+                    <div><span class="icon-new folder small"></span> SHEAF Ben</div>
+                </div>
+                <div class="file_container govuk-!-margin-bottom-6">
+                    <table class="govuk-table" id="">
+                        <tbody class="govuk-table__body">
+
+                            <tr class="govuk-table__row hidden_row">
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> S285 - MG11 - Intel analyst 6744 SHEAF Ben 21.05.2025.PDF
+                                </td>
+                                <td class="govuk-table__cell" width="30%;"><strong class="govuk-tag govuk-tag--red" style="float: right;">Failed</strong></td>
+                            </tr>
+
+                            <tr class="govuk-table__row hidden_row">
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> S84 - MG11 - Intel analyst 3256 SHEAF Ben 15.09.2024.PDF
+                                </td>
+                                <td class="govuk-table__cell" width="30%;"><strong class="govuk-tag govuk-tag--red" style="float: right;">Failed</strong></td>
+                            </tr>
+
+                            <tr class="govuk-table__row hidden_row">
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> S68 - MG11 - Intel analyst 1234 SHEAF Ben 10.12.2025.PDF
+                                </td>
+                                <td class="govuk-table__cell" width="30%;"><strong class="govuk-tag govuk-tag--red" style="float: right;">Failed</strong></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+ -->                <!-- SECTION - 1 - END -->
+
+                <!-- SECTION - 2 - START -->
+<!--                 <div class="url-text file_structure">
+                    <div><span class="icon-new folder small"></span> Video Surveillance</div>
+                </div>
+
+                <div class="file_container govuk-!-margin-bottom-6">
+                    <table class="govuk-table" id="">
+                        <tbody class="govuk-table__body">
+
+                            <tr class="govuk-table__row hidden_row">
+                                <td scope="row" class="govuk-table__cell" width="72.5%;">
+                                    <span class="icon-new file"></span> S81 - Video of crime in action 11-06-2024.MP4
+                                </td>
+                                <td class="govuk-table__cell" width="30%;"><strong class="govuk-tag govuk-tag--red" style="float: right;">Failed</strong></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+ -->                <!-- SECTION - 2 - END -->
+
+<!--                 <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s"><h1 class="govuk-fieldset__heading">What you can do</h1></legend>
+                        <div class="govuk-radios  govuk-radios--inline" data-module="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="failed_file_transfer__Try_again" name="failed_file_transfer" type="radio" value="Try again">
+                                <label class="govuk-label govuk-radios__label" for="failed_file_transfer__Try_again">Try again</label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="failed_file_transfer__Ignore_files" name="failed_file_transfer" type="radio" value="Ignore files">
+                                <label class="govuk-label govuk-radios__label" for="failed_file_transfer__Ignore_files">Complete transfer without these files</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+ -->
+
+                <p>If you think you should have access, contact the egress administrator for the case.</p>
+
+<!--                 <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+                    <li>try again</li>
+                    <li>check the activity log to see if any files or folders have transferred successfully</li>
+                </ul>
+ -->
+
+                <input id="failed_file_transfer" name="failed_file_transfer" type="text" value="false" style="display: none;">
+                <input id="long_file_path_COMPLETED" name="long_file_path_COMPLETED" type="text" value="false" style="display: none;">
+                <input id="failed_files_COMPLETED" name="failed_files_COMPLETED" type="text" value="true" style="display: none;">
+                <button id="" type="submit" aria-disabled="false" class="govuk-button govuk-!-margin-bottom-6" data-module="govuk-button">Return to the case</button>
+                
+            </form>
+
+<!--             <p class="govuk-!-margin-bottom-7">
+                To get help, call the Service Desk <a href="">0800 692 6996</a>.<br>Tell them you're seeing error code: <strong>E128YHU00</strong>.
+            </p>
+ -->
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

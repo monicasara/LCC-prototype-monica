@@ -1,0 +1,220 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="confirmTransferFiles">
+
+    <div class="das-cookie-banner x-small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-grid-row" id="feedback">
+
+                <!-- //////////////////////////////// DUPLICATE TRANSFER - START //////////////////////////////// -->
+                <div class="innerPanel simpleModelTwo" id="duplicate_Transfer_Files_Journey">
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-m"><span class="transfer_file_name">###</span> already exists in <span class="transfer_folder_name">folder name</span></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="redaction-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <p></p>
+
+                                <div class="govuk-form-group" style="padding:0; margin:0;">
+                                    <fieldset class="govuk-fieldset">
+                                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s govuk-!-margin-bottom-0">What would you like to do?</legend>
+<!--                                         <div class="govuk-radios" data-module="govuk-radios">
+                                            <div class="govuk-radios__item">
+                                                <input class="govuk-radios__input" id="duplicate_File_Replace" name="duplicate_File" type="radio" value="england">
+                                                <label class="govuk-label govuk-radios__label" for="duplicate_File_Replace">Replace the existing file</label>
+                                            </div>
+                                            <div class="govuk-radios__divider">or</div>
+                                            <div class="govuk-radios__item">
+                                                <input class="govuk-radios__input" id="duplicate_File_Keep" name="duplicate_File" type="radio" value="scotland">
+                                                <label class="govuk-label govuk-radios__label" for="duplicate_File_Keep">Keep both and make a duplicate of the file</label>
+                                            </div>
+                                        </div>
+ -->                                    </fieldset>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full cta-group">
+                                <!-- <button id="duplicate_File" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled" data-module="govuk-button" type="submit">Continue</button> -->
+                                <button id="duplicate_File" class="govuk-button" data-module="govuk-button" type="button">Continue</button>
+                                <button class="non-button" data-module="govuk-button" type="button" onclick="closeConfirmTransferFiles()">Cancel transfer</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- //////////////////////////////// DUPLICATE TRANSFER - END //////////////////////////////// -->
+
+                <!-- //////////////////////////////// DUPLICATE TRANSFER - START //////////////////////////////// -->
+                <div class="innerPanel simpleModelTwo" id="duplicate_Rename_File_Journey">
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-m">Rename the duplicate file name</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="redaction-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <p></p>
+
+                                <div class="govuk-form-group" style="padding:0; margin:0; width: 100%;">
+                                    <fieldset class="govuk-fieldset">
+                                        <label class="govuk-label govuk-label--s" for="duplicate_Rename_File">New file name</label>
+                                        <input class="govuk-input govuk-!-width-full" id="duplicate_Rename_File" name="duplicate_Rename_File" type="text" aria-describedby="duplicate_Rename_File-hint" value="MG11_Joe_BLOGGS.pdf">
+                                    </fieldset>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full cta-group">
+                                <button id="duplicate_Rename_COPY" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled copy_content_show" data-module="govuk-button" type="submit">Continue</button>
+                                <button id="duplicate_Rename_MOVE" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled move_content_show" data-module="govuk-button" type="submit">Continue</button>
+                                <button class="non-button" data-module="govuk-button" type="button" onclick="closeConfirmTransferFiles()">Cancel</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- //////////////////////////////// DUPLICATE TRANSFER - END //////////////////////////////// -->
+
+                <!-- //////////////////////////////// CONFIRM TRANSFER - START //////////////////////////////// -->
+                <div class="innerPanel simpleModelTwo" id="confirm_Transfer_Files_Journey">
+
+                    <!-- COPY - START -->
+                    <div class="header-wrapper copy_content_show">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-m">Confirm</h1>
+<!--                                 {% if data['shared_Drive_Copying'] == 'true' %}
+                                    <h1 class="govuk-heading-m">Copy files to: <span class="transfer_folder_name">Investigator</span></h1>
+                                {% else %}
+                                    <h1 class="govuk-heading-m">Copy files to: <span class="transfer_folder_name">folder name</span></h1>
+                                {% endif %}
+ -->                            </div>
+                        </div>
+                    </div>
+                    <!-- COPY - END -->
+
+                    <!-- MOVE - START -->
+                    <div class="header-wrapper move_content_show">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-m">Confirm</h1>
+<!--                                 {% if data['shared_Drive_Copying'] == 'true' %}
+                                    <h1 class="govuk-heading-m">Move files to: <span class="transfer_folder_name">Investigator</span></h1>
+                                {% else %}
+                                    <h1 class="govuk-heading-m">Move files to: <span class="transfer_folder_name">folder name</span></h1>
+                                {% endif %}
+ -->                            </div>
+                        </div>
+                    </div>
+                    <!-- MOVE - END -->
+
+                    <div class="redaction-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <p></p>
+
+                                <!-- ////// FORM ITEM 1 - START ////// -->
+                                <div class="govuk-form-group" style="padding:0; margin:0;">
+                                    <fieldset class="govuk-fieldset">
+                                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="transfer_Folder_Confirmation" name="transfer_Folder_Confirmation" type="checkbox" value="Confirm">
+                                                <label class="govuk-label govuk-checkboxes__label" for="transfer_Folder_Confirmation">
+                                                    I want to 
+                                                    {% if data['shared_Drive_Copying'] == 'true' %}
+                                                        <strong class="move_content_show">move <span class="files_number">4 folders</span></strong> 
+                                                        <strong class="copy_content_show">copy <span class="files_number">4 folders</span></strong> 
+                                                    {% else %}
+                                                        <strong class="move_content_show">move <span class="files_number"># files</span></strong> 
+                                                        <strong class="copy_content_show">copy <span class="files_number"># files</span></strong> 
+                                                    {% endif %}
+                                                    to <strong class="transfer_folder_name">folder name</strong>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <!-- ////// FORM ITEM 1 - END ////// -->
+
+                            </div>
+
+                        </div>
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full cta-group">
+                                <div class="normal_transfer">
+                                    <!-- TOP LEVEL -->
+                                    <button id="confirm-CopyFiles_TOP" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled copy_content_show" data-module="govuk-button" type="submit">Continue</button>
+                                    <button id="confirm-MoveFiles_TOP" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled move_content_show" data-module="govuk-button" type="submit">Continue</button>
+                                    
+                                    <!-- SECONDARY LEVEL -->
+                                    <button id="confirm-CopyFiles_SECOND" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled copy_content_show" data-module="govuk-button" type="submit">Continue</button>
+                                    <button id="confirm-MoveFiles_SECOND" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled move_content_show" data-module="govuk-button" type="submit">Continue</button>
+                                    
+                                    <!-- NORMAL LEVEL -->
+                                    <button id="confirm-CopyFiles" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled copy_content_show" data-module="govuk-button" type="submit">Continue</button>
+                                    <button id="confirm-MoveFiles" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled move_content_show" data-module="govuk-button" type="submit">Continue</button>
+                                </div>
+                                <!-- ZIP FILE -->
+                                <div class="zip_transfer">
+                                    <form id="redirect_long_file_path">
+                                        <button id="confirm-CopyFiles_ZIP" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled copy_content_show" data-module="govuk-button" type="button">Continue</button>
+                                        <button id="confirm-MoveFiles_ZIP" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled move_content_show" data-module="govuk-button" type="button">Continue</button>
+                                    </form>
+                                </div>
+                                <!-- LOCKED FILE -->
+                                <div class="locked_file_transfer">
+                                    <form id="redirect_locked_file">
+                                        <button id="confirm-CopyFiles_LOCK" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled copy_content_show" data-module="govuk-button" type="submit">Continue</button>
+                                        <button id="confirm-MoveFiles_LOCK" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled move_content_show" data-module="govuk-button" type="submit">Continue</button>
+                                    </form>
+                                </div>
+                                <!-- DUPLICATE FILE -->
+                                <div class="duplicate_file_transfer">
+                                    <form id="redirect_duplicate_file">
+                                        <button id="confirm-CopyFiles_DUPLICATE" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled copy_content_show" data-module="govuk-button" type="button">Continue</button>
+                                        <button id="confirm-MoveFiles_DUPLICATE" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled move_content_show" data-module="govuk-button" type="button">Continue</button>
+                                    </form>
+                                </div>
+                                <!-- ALL ERRORS -->
+                                <div class="all_file_errors">
+                                    <form id="redirect_all_file_file_errors">
+                                        <button id="confirm-CopyFiles_ALL_ERRORS" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled copy_content_show" data-module="govuk-button" type="button">Continue</button>
+                                        <button id="confirm-MoveFiles_ALL_ERRORS" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled move_content_show" data-module="govuk-button" type="button">Continue</button>
+                                    </form>
+                                </div>
+                                <!-- FAILED TRANSFER -->
+                                <div class="failed_transfer">
+                                    <form id="redirect_failed_transfer">
+                                        <button id="confirm-CopyFiles_FAILED" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled copy_content_show" data-module="govuk-button" type="button">Continue</button>
+                                        <button id="confirm-MoveFiles_FAILED" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled move_content_show" data-module="govuk-button" type="button">Continue</button>
+                                    </form>
+                                </div>
+
+                                <button class="non-button" data-module="govuk-button" type="button" onclick="closeConfirmTransferFiles()">Cancel</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- //////////////////////////////// CONFIRM TRANSFER - END //////////////////////////////// -->
+
+            </div>
+        </div>
+    </div>
+</div>

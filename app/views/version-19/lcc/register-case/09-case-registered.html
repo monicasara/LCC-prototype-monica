@@ -1,0 +1,67 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+{% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+
+{% endblock %}
+{% block content %}
+
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">Case registered</h1>
+        <p class="govuk-body"></p>
+        <p class="govuk-body">The case has been created.</p>
+        <div class="govuk-inset-text">
+          URN:
+            {% if data['URN1'] %}
+            {{ data['URN1'] }}{{ data['URN2'] }}{{ data['URN3'] }}{{ data['URN4'] }}
+            {% else %}
+            87AA6543226
+            {% endif %}
+        </div>
+        <!-- <p class="govuk-body">Save the URN as you will need it to find or update the case.</p> -->
+        <h2 class="govuk-heading-m">Manage case materials</h2>
+        <p class="govuk-body">You can:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>create a new Egress or Shared Drive folder for this case</li>
+          <li>connect an existing Egress or Shared Drive folder to this case</li>
+        </ul>
+
+        <form action="/version-19/lcc/register-case/09-case-registered" method="post" novalidate>
+          <div class="govuk-form-group govuk-!-margin-top-6">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                 <label class="govuk-label" for="address-line-1">
+                  Would you like to manage materials for this case?
+                 </label>
+              </legend>
+
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="add-materials" name="add-materials" type="radio" value="Yes" {% if data['add-materials'] == 'Yes' %}checked{% endif %}>
+                  <label class="govuk-label govuk-radios__label" for="add-materials">
+                    Yes
+                  </label>
+                </div>
+
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="add-materials-2" name="add-materials" type="radio" value="No" {% if data['add-materials'] == 'No' %}checked{% endif %}>
+                  <label class="govuk-label govuk-radios__label" for="add-materials-2">
+                    No
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <button type="submit" class="govuk-button" data-module="govuk-button">Continue</button>
+        </form>
+
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<style>
+    .create-case-input-error {
+        border: 2px solid #d4351c !important;
+        box-shadow: none;
+    }
+</style>
+
+<div class="govuk-grid-row" id="create-case-journey">
+
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+
+            {% if errors %}
+            <div class="govuk-error-summary" data-module="govuk-error-summary">
+                <div role="alert">
+                    <h2 class="govuk-error-summary__title">
+                        There is a problem
+                    </h2>
+                    <div class="govuk-error-summary__body">
+                        <ul class="govuk-list govuk-error-summary__list">
+                            {% if errors.urn %}
+                            <li><a href="#newCase_URN-B">{{ errors.urn }}</a></li>
+                            {% endif %}
+                            {% if errors.registeringUnit %}
+                            <li><a href="#docType-Unit">{{ errors.registeringUnit }}</a></li>
+                            {% endif %}
+                            {% if errors.wcu %}
+                            <li><a href="#docType-WCU">{{ errors.wcu }}</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-5">Case details</h1>
+
+
+            <form method="post" action="/version-19/lcc/register-case/02-case-details" id="newCase_Form-A">  
+
+                <fieldset class="govuk-fieldset">
+
+                    <!-- <div class="govuk-form-group" id="newCase_Operation_AREA-Value">
+                        <label class="govuk-label govuk-!-font-weight-bold" for="newCase_URN">What is the division or area?</label>
+
+                        <p id="newCase_Area-error" class="govuk-error-message govuk-!-margin-bottom-2"><span class="govuk-visually-hidden">Error:</span> Select an area</p>
+                        <input class="govuk-input govuk-input--width-20" id="docType-Area" name="docType-Area" type="text" value="{{ data['docType-Area'] }}">
+                    </div>
+ -->
+
+                    <!-- ITEM 1 - START -->
+                    <div class="govuk-form-group{% if errors and errors.urn %} govuk-form-group--error{% endif %}" id="newCase_URN-Value">
+                        <label class="govuk-label govuk-!-font-weight-bold" for="newCase_URN">What is the URN?</label>
+                        {% if errors and errors.urn %}
+                        <p id="newCase_URN_Error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> {{ errors.urn }}</p>
+                        {% endif %}
+                        <div class="form-wrapper">
+                            <input class="govuk-input govuk-input--width-2{% if errors and errors.urn and not data['URN1'] %} create-case-input-error{% endif %}" id="newCase_URN-A" name="newCase_URN-A" type="text" value="{{ data['URN1'] }}">
+                            <input class="govuk-input govuk-input--width-2{% if errors and errors.urn %} create-case-input-error{% endif %}" id="newCase_URN-B" name="newCase_URN-B" type="text" value="{{ data['URN2'] }}" {% if errors and errors.urn %}aria-describedby="newCase_URN_Error"{% endif %}>
+                            <input class="govuk-input govuk-input--width-5{% if errors and errors.urn and not data['URN3'] %} create-case-input-error{% endif %}" id="newCase_URN-C" name="newCase_URN-C" type="text" value="{{ data['URN3'] }}">
+                            <input class="govuk-input govuk-input--width-2{% if errors and errors.urn and not data['URN4'] %} create-case-input-error{% endif %}" id="newCase_URN-D" name="newCase_URN-D" type="text" value="{{ data['URN4'] }}">
+                        </div>
+
+                    </div>                                
+                    <!-- ITEM 1 - END -->
+
+                    <!-- ITEM 2 - START -->
+                    <div class="govuk-form-group{% if errors and errors.registeringUnit %} govuk-form-group--error{% endif %}">
+                        <label class="govuk-label govuk-!-font-weight-bold" for="newCase_RegisteringUnit">What is the registering unit?</label>
+                        {% if errors and errors.registeringUnit %}
+                        <p id="registering-unit-error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> {{ errors.registeringUnit }}</p>
+                        {% endif %}
+                        <input class="govuk-input govuk-input--width-20{% if errors and errors.registeringUnit %} create-case-input-error{% endif %}" id="docType-Unit" name="newCase_RegisteringUnit" type="text" value="{{ data['registeringUnit'] }}" {% if errors and errors.registeringUnit %}aria-describedby="registering-unit-error"{% endif %}>
+                    </div>
+                    <!-- ITEM 2 - END -->
+
+                    <!-- ITEM 3 - START -->
+                    <div class="govuk-form-group{% if errors and errors.wcu %} govuk-form-group--error{% endif %}">
+                        <label class="govuk-label govuk-!-font-weight-bold" for="newCase_WCU">What is the witness care unit (WCU)?</label>
+                        {% if errors and errors.wcu %}
+                        <p id="wcu-error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> {{ errors.wcu }}</p>
+                        {% endif %}
+                        <input class="govuk-input govuk-input--width-20{% if errors and errors.wcu %} create-case-input-error{% endif %}" id="docType-WCU" name="newCase_WCU" type="text" value="{{ data['WCU'] }}" {% if errors and errors.wcu %}aria-describedby="wcu-error"{% endif %}>
+                    </div>
+                    <!-- ITEM 3 - END -->
+
+                </fieldset>
+
+                {% include "../../includes/buttons.html" %}
+
+            </form>
+
+        </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+</div>
+
+{% endblock %}

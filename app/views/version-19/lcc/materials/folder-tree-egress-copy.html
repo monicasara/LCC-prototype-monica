@@ -1,0 +1,74 @@
+{% extends "layoutCPS-NEW-INDEX.html" %}
+
+{% block pageTitle %}
+  Egress folder tree – {{ serviceName }} – Prototype
+{% endblock %}
+
+{% block header %}
+  {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Choose an Egress folder</h1>
+<p class="govuk-body">
+  You are copying {{ data.transferSharedDriveCopySelectedCount }} item{{ 's' if data.transferSharedDriveCopySelectedCount != 1 else '' }}.
+</p>
+<p class="govuk-body">Select the Egress folder you want to copy them into.</p>
+
+{% macro renderNodes(nodes, isRoot=true) %}
+  <ul class="{{ 'folder-tree' if isRoot else 'folder-children-list' }}">
+    {% for node in nodes %}
+      <li class="folder-node" data-folder-id="{{ node.id }}" data-folder-name="{{ node.name }}">
+        <div class="folder-row">
+          {% if node.children and node.children.length %}
+            <button type="button" class="folder-toggle" aria-expanded="false">+</button>
+          {% else %}
+            <span class="folder-toggle placeholder"></span>
+          {% endif %}
+
+          <button type="button" class="folder-box folder-select">
+            <span class="icon-new folder"></span>
+            <span class="folder-name">{{ node.name }}</span>
+          </button>
+        </div>
+
+        {% if node.children and node.children.length %}
+          <div class="folder-children" hidden>
+            {{ renderNodes(node.children, false) }}
+          </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<ul class="folder-tree">
+  <li class="folder-node folder-node--root">
+    <div class="folder-row">
+      <button type="button" class="folder-toggle" aria-expanded="true">−</button>
+
+      <span class="folder-box folder-box--root" aria-label="Egress Thundercat">
+        <span class="folder-name">Egress: Thundercat</span>
+      </span>
+    </div>
+
+    <div class="folder-children">
+      {{ renderNodes(folderTree or [], true) }}
+    </div>
+  </li>
+</ul>
+
+<form action="/version-19/lcc/materials/copy-transfer-shared-drive-to-egress" method="post">
+  <input type="hidden" name="destinationFolder" id="destinationFolder" value="">
+  <div class="govuk-button-group govuk-!-margin-top-6">
+    <button class="govuk-button" type="submit" id="copyFolderButton">Copy</button>
+    <a class="govuk-link" href="transfer-materials?transferView=shared-drive">Cancel</a>
+  </div>
+</form>
+
+{% endblock %}
