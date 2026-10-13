@@ -1,0 +1,757 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+    <div class="search-bar-wrapper-MVP">
+        <div class="govuk-width-container">
+            <div class="govuk-grid-row">
+
+                <div class="govuk-grid-column-full">
+                    <a href="javascript:history.back()" class="govuk-back-link govuk-!-margin-top-0">Back</a>
+                </div>
+
+                <div class="govuk-grid-column-two-thirds">
+                    <form method="post" id="searchOFF_SYSTEM" action="02-search-results">
+                        <fieldset>
+                            <div class="govuk-form-group">
+                                {% if data['searchOFF'] == 'Operation name' %}
+                                    <label class="govuk-label govuk-label--s" for="searchOFF_Operation_VALUE">Update your Operation name search</label>
+                                    <input class="govuk-input govuk-!-width-one-third" id="searchOFF_Operation_VALUE" name="searchOFF_Operation_VALUE" type="text" value="{{ data['searchOFF_Operation_VALUE'] }}" />
+                                    <select class="govuk-select" id="searchOFF_Operation_AREA" name="searchOFF_Operation_AREA">
+                                        <option disabled selected>-- Select Area --</option>
+                                        <optgroup label="Large and Complex Case Divisions">
+                                            {% if data['searchOFF_Operation_AREA'] == 'SEOCID Int London and SE Div' %}
+                                                <option value="SEOCID Int London and SE Div" selected>SEOCID Int London and SE Div</option> 
+                                            {% else %}
+                                                <option value="SEOCID Int London and SE Div">SEOCID Int London and SE Div</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'SEOCID Regional and Wales Div' %}
+                                                <option value="SEOCID Regional and Wales Div" selected>SEOCID Regional and Wales Div</option>
+                                            {% else %}
+                                                <option value="SEOCID Regional and Wales Div">SEOCID Regional and Wales Div</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Counter Terrorism Division' %}
+                                                <option value="Counter Terrorism Division" selected>Counter Terrorism Division</option>
+                                            {% else %}
+                                                <option value="Counter Terrorism Division">Counter Terrorism Division</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Special Crime Division' %}
+                                                <option value="Special Crime Division" selected>Special Crime Division</option>
+                                            {% else %}
+                                                <option value="Special Crime Division">Special Crime Division</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Specialist Fraud Division' %}
+                                                <option value="Specialist Fraud Division" selected>Specialist Fraud Division</option>
+                                            {% else %}
+                                                <option value="Specialist Fraud Division">Specialist Fraud Division</option>
+                                            {% endif %}
+                                        </optgroup>
+                                        <optgroup label="CPS Areas">
+                                            {% if data['searchOFF_Operation_AREA'] == 'Avon & Somerset' %}
+                                                <option value="Avon & Somerset" selected>Avon & Somerset</option>
+                                            {% else %}
+                                                <option value="Avon & Somerset">Avon & Somerset</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Bedfordshire' %}
+                                                <option value="Bedfordshire" selected>Bedfordshire</option>
+                                            {% else %}
+                                                <option value="Bedfordshire">Bedfordshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Cambridgeshire' %}
+                                                <option value="Cambridgeshire" selected>Cambridgeshire</option>
+                                            {% else %}
+                                                <option value="Cambridgeshire">Cambridgeshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Cheshire' %}
+                                                <option value="Cheshire" selected>Cheshire</option>
+                                            {% else %}
+                                                <option value="Cheshire">Cheshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Cleveland' %}
+                                                <option value="Cleveland" selected>Cleveland</option>
+                                            {% else %}
+                                                <option value="Cleveland">Cleveland</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Cumbria' %}
+                                                <option value="Cumbria" selected>Cumbria</option>
+                                            {% else %}
+                                                <option value="Cumbria">Cumbria</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Derbyshire' %}
+                                                <option value="Derbyshire" selected>Derbyshire</option>
+                                            {% else %}
+                                                <option value="Derbyshire">Derbyshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Devon and Cornwall' %}
+                                                <option value="Devon and Cornwall" selected>Devon and Cornwall</option>
+                                            {% else %}
+                                                <option value="Devon and Cornwall">Devon and Cornwall</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Dorset' %}
+                                                <option value="Dorset" selected>Dorset</option>
+                                            {% else %}
+                                                <option value="Dorset">Dorset</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Durham' %}
+                                                <option value="Durham" selected>Durham</option>
+                                            {% else %}
+                                                <option value="Durham">Durham</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Dyfed Powys' %}
+                                                <option value="Dyfed Powys" selected>Dyfed Powys</option>
+                                            {% else %}
+                                                <option value="Dyfed Powys">Dyfed Powys</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Essex' %}
+                                                <option value="Essex" selected>Essex</option>
+                                            {% else %}
+                                                <option value="Essex">Essex</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Gloucestershire' %}
+                                                <option value="Gloucestershire" selected>Gloucestershire</option>
+                                            {% else %}
+                                                <option value="Gloucestershire">Gloucestershire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Greater Manchester' %}
+                                                <option value="Greater Manchester" selected>Greater Manchester</option>
+                                            {% else %}
+                                                <option value="Greater Manchester">Greater Manchester</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Gwent' %}
+                                                <option value="Gwent" selected>Gwent</option>
+                                            {% else %}
+                                                <option value="Gwent">Gwent</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Hampshire & IOW' %}
+                                                <option value="Hampshire & IOW" selected>Hampshire & IOW</option>
+                                            {% else %}
+                                                <option value="Hampshire & IOW">Hampshire & IOW</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Hertfordshire' %}
+                                                <option value="Hertfordshire" selected>Hertfordshire</option>
+                                            {% else %}
+                                                <option value="Hertfordshire">Hertfordshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'HMCPSI' %}
+                                                <option value="HMCPSI" selected>HMCPSI</option>
+                                            {% else %}
+                                                <option value="HMCPSI">HMCPSI</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Humberside' %}
+                                                <option value="Humberside" selected>Humberside</option>
+                                            {% else %}
+                                                <option value="Humberside">Humberside</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Kent' %}
+                                                <option value="Kent" selected>Kent</option>
+                                            {% else %}
+                                                <option value="Kent">Kent</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Lancashire' %}
+                                                <option value="Lancashire" selected>Lancashire</option>
+                                            {% else %}
+                                                <option value="Lancashire">Lancashire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Leatherhead' %}
+                                                <option value="Leatherhead" selected>Leatherhead</option>
+                                            {% else %}
+                                                <option value="Leatherhead">Leatherhead</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Leicestershire' %}
+                                                <option value="Leicestershire" selected>Leicestershire</option>
+                                            {% else %}
+                                                <option value="Leicestershire">Leicestershire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Lincolnshire' %}
+                                                <option value="Lincolnshire" selected>Lincolnshire</option>
+                                            {% else %}
+                                                <option value="Lincolnshire">Lincolnshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'London' %}
+                                                <option value="London" selected>London</option>
+                                            {% else %}
+                                                <option value="London">London</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'London North' %}
+                                                <option value="London North" selected>London North</option>
+                                            {% else %}
+                                                <option value="London North">London North</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'London South' %}
+                                                <option value="London South" selected>London South</option>
+                                            {% else %}
+                                                <option value="London South">London South</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Merseyside' %}
+                                                <option value="Merseyside" selected>Merseyside</option>
+                                            {% else %}
+                                                <option value="Merseyside">Merseyside</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Norfolk' %}
+                                                <option value="Norfolk" selected>Norfolk</option>
+                                            {% else %}
+                                                <option value="Norfolk">Norfolk</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'North Wales' %}
+                                                <option value="North Wales" selected>North Wales</option>
+                                            {% else %}
+                                                <option value="North Wales">North Wales</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'North Yorkshire' %}
+                                                <option value="North Yorkshire" selected>North Yorkshire</option>
+                                            {% else %}
+                                                <option value="North Yorkshire">North Yorkshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Northamptonshire' %}
+                                                <option value="Northamptonshire" selected>Northamptonshire</option>
+                                            {% else %}
+                                                <option value="Northamptonshire">Northamptonshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Northumbria' %}
+                                                <option value="Northumbria" selected>Northumbria</option>
+                                            {% else %}
+                                                <option value="Northumbria">Northumbria</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Nottinghamshire' %}
+                                                <option value="Nottinghamshire" selected>Nottinghamshire</option>
+                                            {% else %}
+                                                <option value="Nottinghamshire">Nottinghamshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Records Management Team (RMT)' %}
+                                                <option value="Records Management Team (RMT)" selected>Records Management Team (RMT)</option>
+                                            {% else %}
+                                                <option value="Records Management Team (RMT)">Records Management Team (RMT)</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'RMU Area' %}
+                                                <option value="RMU Area" selected>RMU Area</option>
+                                            {% else %}
+                                                <option value="RMU Area">RMU Area</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'South Wales' %}
+                                                <option value="South Wales" selected>South Wales</option>
+                                            {% else %}
+                                                <option value="South Wales">South Wales</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'South Yorkshire' %}
+                                                <option value="South Yorkshire" selected>South Yorkshire</option>
+                                            {% else %}
+                                                <option value="South Yorkshire">South Yorkshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Stafford' %}
+                                                <option value="Stafford" selected>Stafford</option>
+                                            {% else %}
+                                                <option value="Stafford">Stafford</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Suffolk' %}
+                                                <option value="Suffolk" selected>Suffolk</option>
+                                            {% else %}
+                                                <option value="Suffolk">Suffolk/option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Surrey' %}
+                                                <option value="Surrey" selected>Surrey</option>
+                                            {% else %}
+                                                <option value="Surrey">Surrey</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Sussex' %}
+                                                <option value="Sussex" selected>Sussex</option>
+                                            {% else %}
+                                                <option value="Sussex">Sussex</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Thames Valley' %}
+                                                <option value="Thames Valley" selected>Thames Valley</option>
+                                            {% else %}
+                                                <option value="Thames Valley">Thames Valley</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Warwickshire' %}
+                                                <option value="Warwickshire" selected>Warwickshire</option>
+                                            {% else %}
+                                                <option value="Warwickshire">Warwickshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'West Mercia' %}
+                                                <option value="West Mercia" selected>West Mercia</option>
+                                            {% else %}
+                                                <option value="West Mercia">West Mercia</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'West Midlands' %}
+                                                <option value="West Midlands" selected>West Midlands</option>
+                                            {% else %}
+                                                <option value="West Midlands">West Midlands</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'West Yorkshire' %}
+                                                <option value="West Yorkshire" selected>West Yorkshire</option>
+                                            {% else %}
+                                                <option value="West Yorkshire">West Yorkshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Operation_AREA'] == 'Wilstshire' %}
+                                                <option value="Wilstshire" selected>Wilstshire</option>
+                                            {% else %}
+                                                <option value="Wilstshire">Wilstshire</option>
+                                            {% endif %}
+                                        </optgroup>
+                                    </select>
+                                {% elseif data['searchOFF'] == 'Defendant surname' %}
+                                    <label class="govuk-label govuk-label--s" for="searchOFF_Defendant_VALUE">Update your Defendant surname search</label>
+                                    <input class="govuk-input govuk-!-width-one-third" id="searchOFF_Defendant_VALUE" name="searchOFF_Defendant_VALUE" type="text" value="{{ data['searchOFF_Defendant_VALUE'] }}" />
+                                    <select class="govuk-select" id="searchOFF_Defendant_AREA" name="searchOFF_Defendant_AREA">
+                                        <option disabled selected>-- Select Area --</option>
+                                        <optgroup label="Large and Complex Case Divisions">
+                                            {% if data['searchOFF_Defendant_AREA'] == 'SEOCID Int London and SE Div' %}
+                                                <option value="SEOCID Int London and SE Div" selected>SEOCID Int London and SE Div</option> 
+                                            {% else %}
+                                                <option value="SEOCID Int London and SE Div">SEOCID Int London and SE Div</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'SEOCID Regional and Wales Div' %}
+                                                <option value="SEOCID Regional and Wales Div" selected>SEOCID Regional and Wales Div</option>
+                                            {% else %}
+                                                <option value="SEOCID Regional and Wales Div">SEOCID Regional and Wales Div</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Counter Terrorism Division' %}
+                                                <option value="Counter Terrorism Division" selected>Counter Terrorism Division</option>
+                                            {% else %}
+                                                <option value="Counter Terrorism Division">Counter Terrorism Division</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Special Crime Division' %}
+                                                <option value="Special Crime Division" selected>Special Crime Division</option>
+                                            {% else %}
+                                                <option value="Special Crime Division">Special Crime Division</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Specialist Fraud Division' %}
+                                                <option value="Specialist Fraud Division" selected>Specialist Fraud Division</option>
+                                            {% else %}
+                                                <option value="Specialist Fraud Division">Specialist Fraud Division</option>
+                                            {% endif %}
+                                        </optgroup>
+                                        <optgroup label="CPS Areas">
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Avon & Somerset' %}
+                                                <option value="Avon & Somerset" selected>Avon & Somerset</option>
+                                            {% else %}
+                                                <option value="Avon & Somerset">Avon & Somerset</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Bedfordshire' %}
+                                                <option value="Bedfordshire" selected>Bedfordshire</option>
+                                            {% else %}
+                                                <option value="Bedfordshire">Bedfordshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Cambridgeshire' %}
+                                                <option value="Cambridgeshire" selected>Cambridgeshire</option>
+                                            {% else %}
+                                                <option value="Cambridgeshire">Cambridgeshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Cheshire' %}
+                                                <option value="Cheshire" selected>Cheshire</option>
+                                            {% else %}
+                                                <option value="Cheshire">Cheshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Cleveland' %}
+                                                <option value="Cleveland" selected>Cleveland</option>
+                                            {% else %}
+                                                <option value="Cleveland">Cleveland</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Cumbria' %}
+                                                <option value="Cumbria" selected>Cumbria</option>
+                                            {% else %}
+                                                <option value="Cumbria">Cumbria</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Derbyshire' %}
+                                                <option value="Derbyshire" selected>Derbyshire</option>
+                                            {% else %}
+                                                <option value="Derbyshire">Derbyshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Devon and Cornwall' %}
+                                                <option value="Devon and Cornwall" selected>Devon and Cornwall</option>
+                                            {% else %}
+                                                <option value="Devon and Cornwall">Devon and Cornwall</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Dorset' %}
+                                                <option value="Dorset" selected>Dorset</option>
+                                            {% else %}
+                                                <option value="Dorset">Dorset</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Durham' %}
+                                                <option value="Durham" selected>Durham</option>
+                                            {% else %}
+                                                <option value="Durham">Durham</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Dyfed Powys' %}
+                                                <option value="Dyfed Powys" selected>Dyfed Powys</option>
+                                            {% else %}
+                                                <option value="Dyfed Powys">Dyfed Powys</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Essex' %}
+                                                <option value="Essex" selected>Essex</option>
+                                            {% else %}
+                                                <option value="Essex">Essex</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Gloucestershire' %}
+                                                <option value="Gloucestershire" selected>Gloucestershire</option>
+                                            {% else %}
+                                                <option value="Gloucestershire">Gloucestershire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Greater Manchester' %}
+                                                <option value="Greater Manchester" selected>Greater Manchester</option>
+                                            {% else %}
+                                                <option value="Greater Manchester">Greater Manchester</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Gwent' %}
+                                                <option value="Gwent" selected>Gwent</option>
+                                            {% else %}
+                                                <option value="Gwent">Gwent</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Hampshire & IOW' %}
+                                                <option value="Hampshire & IOW" selected>Hampshire & IOW</option>
+                                            {% else %}
+                                                <option value="Hampshire & IOW">Hampshire & IOW</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Hertfordshire' %}
+                                                <option value="Hertfordshire" selected>Hertfordshire</option>
+                                            {% else %}
+                                                <option value="Hertfordshire">Hertfordshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'HMCPSI' %}
+                                                <option value="HMCPSI" selected>HMCPSI</option>
+                                            {% else %}
+                                                <option value="HMCPSI">HMCPSI</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Humberside' %}
+                                                <option value="Humberside" selected>Humberside</option>
+                                            {% else %}
+                                                <option value="Humberside">Humberside</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Kent' %}
+                                                <option value="Kent" selected>Kent</option>
+                                            {% else %}
+                                                <option value="Kent">Kent</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Lancashire' %}
+                                                <option value="Lancashire" selected>Lancashire</option>
+                                            {% else %}
+                                                <option value="Lancashire">Lancashire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Leatherhead' %}
+                                                <option value="Leatherhead" selected>Leatherhead</option>
+                                            {% else %}
+                                                <option value="Leatherhead">Leatherhead</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Leicestershire' %}
+                                                <option value="Leicestershire" selected>Leicestershire</option>
+                                            {% else %}
+                                                <option value="Leicestershire">Leicestershire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Lincolnshire' %}
+                                                <option value="Lincolnshire" selected>Lincolnshire</option>
+                                            {% else %}
+                                                <option value="Lincolnshire">Lincolnshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'London' %}
+                                                <option value="London" selected>London</option>
+                                            {% else %}
+                                                <option value="London">London</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'London North' %}
+                                                <option value="London North" selected>London North</option>
+                                            {% else %}
+                                                <option value="London North">London North</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'London South' %}
+                                                <option value="London South" selected>London South</option>
+                                            {% else %}
+                                                <option value="London South">London South</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Merseyside' %}
+                                                <option value="Merseyside" selected>Merseyside</option>
+                                            {% else %}
+                                                <option value="Merseyside">Merseyside</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Norfolk' %}
+                                                <option value="Norfolk" selected>Norfolk</option>
+                                            {% else %}
+                                                <option value="Norfolk">Norfolk</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'North Wales' %}
+                                                <option value="North Wales" selected>North Wales</option>
+                                            {% else %}
+                                                <option value="North Wales">North Wales</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'North Yorkshire' %}
+                                                <option value="North Yorkshire" selected>North Yorkshire</option>
+                                            {% else %}
+                                                <option value="North Yorkshire">North Yorkshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Northamptonshire' %}
+                                                <option value="Northamptonshire" selected>Northamptonshire</option>
+                                            {% else %}
+                                                <option value="Northamptonshire">Northamptonshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Northumbria' %}
+                                                <option value="Northumbria" selected>Northumbria</option>
+                                            {% else %}
+                                                <option value="Northumbria">Northumbria</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Nottinghamshire' %}
+                                                <option value="Nottinghamshire" selected>Nottinghamshire</option>
+                                            {% else %}
+                                                <option value="Nottinghamshire">Nottinghamshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Records Management Team (RMT)' %}
+                                                <option value="Records Management Team (RMT)" selected>Records Management Team (RMT)</option>
+                                            {% else %}
+                                                <option value="Records Management Team (RMT)">Records Management Team (RMT)</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'RMU Area' %}
+                                                <option value="RMU Area" selected>RMU Area</option>
+                                            {% else %}
+                                                <option value="RMU Area">RMU Area</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'South Wales' %}
+                                                <option value="South Wales" selected>South Wales</option>
+                                            {% else %}
+                                                <option value="South Wales">South Wales</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'South Yorkshire' %}
+                                                <option value="South Yorkshire" selected>South Yorkshire</option>
+                                            {% else %}
+                                                <option value="South Yorkshire">South Yorkshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Stafford' %}
+                                                <option value="Stafford" selected>Stafford</option>
+                                            {% else %}
+                                                <option value="Stafford">Stafford</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Suffolk' %}
+                                                <option value="Suffolk" selected>Suffolk</option>
+                                            {% else %}
+                                                <option value="Suffolk">Suffolk/option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Surrey' %}
+                                                <option value="Surrey" selected>Surrey</option>
+                                            {% else %}
+                                                <option value="Surrey">Surrey</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Sussex' %}
+                                                <option value="Sussex" selected>Sussex</option>
+                                            {% else %}
+                                                <option value="Sussex">Sussex</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Thames Valley' %}
+                                                <option value="Thames Valley" selected>Thames Valley</option>
+                                            {% else %}
+                                                <option value="Thames Valley">Thames Valley</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Warwickshire' %}
+                                                <option value="Warwickshire" selected>Warwickshire</option>
+                                            {% else %}
+                                                <option value="Warwickshire">Warwickshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'West Mercia' %}
+                                                <option value="West Mercia" selected>West Mercia</option>
+                                            {% else %}
+                                                <option value="West Mercia">West Mercia</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'West Midlands' %}
+                                                <option value="West Midlands" selected>West Midlands</option>
+                                            {% else %}
+                                                <option value="West Midlands">West Midlands</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'West Yorkshire' %}
+                                                <option value="West Yorkshire" selected>West Yorkshire</option>
+                                            {% else %}
+                                                <option value="West Yorkshire">West Yorkshire</option>
+                                            {% endif %}
+                                            {% if data['searchOFF_Defendant_AREA'] == 'Wilstshire' %}
+                                                <option value="Wilstshire" selected>Wilstshire</option>
+                                            {% else %}
+                                                <option value="Wilstshire">Wilstshire</option>
+                                            {% endif %}
+                                        </optgroup>
+                                    </select>
+                                {% elseif data['searchOFF'] == 'URN' %}
+                                    <label class="govuk-label govuk-label--s" for="searchOFF_URN_VALUE">Update your URN search</label>
+                                    <input class="govuk-input govuk-!-width-one-third" id="searchOFF_URN_VALUE" name="searchOFF_URN_VALUE" type="text" value="{{ data['searchOFF_URN_VALUE'] }}" />
+                                {% endif %}
+                                <button type="submit" class="govuk-button" style="">Update search</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                    {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                        <span span class="govuk-caption-m">We've found <strong>4</strong> case that matches <strong>{{ data['searchOFF_Operation_VALUE'] }}struck</strong> in {{ data['searchOFF_Operation_AREA'] }}.</span>
+                    {% elseif data['searchOFF_Operation_VALUE'] == 'Thunderstruck' or data['searchOFF_Operation_VALUE'] == 'thunderstruck' %}
+                        <span span class="govuk-caption-m">We've found <strong>4</strong> case that matches <strong>{{ data['searchOFF_Operation_VALUE'] }}</strong> in {{ data['searchOFF_Operation_AREA'] }}.</span>
+                    {% elseif data['searchOFF_Defendant_VALUE'] == 'Thunderstruck' or data['searchOFF_Defendant_VALUE'] == 'thunderstruck' %}
+                        <span span class="govuk-caption-m">We've found <strong>4</strong> case that matches <strong>{{ data['searchOFF_Defendant_VALUE'] }}</strong> in {{ data['searchOFF_Defendant_AREA'] }}.</span>
+                    {% elseif data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                        <span span class="govuk-caption-m">We've found <strong>4</strong> case that matches <strong>{{ data['searchOFF_Defendant_VALUE'] }}</strong> in {{ data['searchOFF_Defendant_AREA'] }}.</span>
+                    {% elseif data['searchOFF_Operation_VALUE'] %}
+                        <span span class="govuk-caption-m">There are <strong>no matching</strong> results for <strong>{{ data['searchOFF_Operation_VALUE'] }}</strong> in {{ data['searchOFF_Operation_AREA'] }}.</span>
+                    {% elseif data['searchOFF_Defendant_VALUE'] %}
+                        <span span class="govuk-caption-m">There are <strong>no matching</strong> results for <strong>{{ data['searchOFF_Defendant_VALUE'] }}</strong> in {{ data['searchOFF_Defendant_AREA'] }}.</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block beforeContent %}
+
+{% endblock %}
+{% block content %}
+
+<link href="/public/stylesheets/filtering.css" media="screen" rel="stylesheet" type="text/css" />
+
+<div class="govuk-grid-row search-results MVP" id="search-journey" style="display: block !important;">
+    <div class="govuk-grid-column-full">
+
+        {% if data['searchOFF_Operation_VALUE'] == 'Thunderstruck' or data['searchOFF_Operation_VALUE'] == 'thunderstruck' or data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' or data['searchOFF_Defendant_VALUE'] == 'Thunderstruck' or data['searchOFF_Defendant_VALUE'] == 'thunderstruck' or data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+            <!-- RESULT 1 - START -->
+            <div id="caseOne" class="result-item">
+                <div class="heading">
+                    <h2 class="govuk-heading-l">
+                        <form method="post" action="03-case-overview" id="">  
+                            <input id="mvp_Case_1" name="mvp_Case_1" type="text" value="true" style="display: none;">
+                            <input id="mvp_Case_2" name="mvp_Case_2" type="text" value="false" style="display: none;">
+                            <input id="mvp_Case_3" name="mvp_Case_3" type="text" value="false" style="display: none;">
+                            <input id="mvp_Case_4" name="mvp_Case_4" type="text" value="false" style="display: none;">
+                            {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                                <button type="submit" class="">{{ data['searchOFF_Operation_VALUE'] }}struck</button><br>
+                            {% elseif data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                                <button type="submit" class="">{{ data['searchOFF_Defendant_VALUE'] }}struck</button><br>
+                            {% elseif data['searchOFF_Operation_VALUE'] %}
+                                <button type="submit" class="">{{ data['searchOFF_Operation_VALUE'] }}</button><br>
+                            {% elseif data['searchOFF_Defendant_VALUE'] %}
+                                <button type="submit" class="">{{ data['searchOFF_Defendant_VALUE'] }}</button><br>
+                            {% endif %}
+                        </form>
+                        <span id="" class="govuk-hint">45AA209820/21</span>
+                    </h2>
+                </div>
+                <div class="contents">
+                    <p class="title">Defendants:</p> <p class="description"><strong>N/A</strong></p>
+                    <p class="title">Egress:</p> <p class="description"><strong class="govuk-tag govuk-tag--green">Connected</strong></p>
+                    <p class="title">Shared Drive:</p> <p class="description"><strong class="govuk-tag govuk-tag--green">Connected</strong></p>
+                    <p class="title">Case created:</p> <p class="description"><strong>08/08/2021</strong></p>
+                </div>
+            </div>
+            <!-- RESULT 1 - END -->
+
+            <!-- RESULT 2 - START -->
+            <div id="caseTwo" class="result-item">
+                <div class="heading">
+                    <h2 class="govuk-heading-l">
+                        <form method="post" action="03-case-overview" id="">  
+                            <input id="mvp_Case_1" name="mvp_Case_1" type="text" value="false" style="display: none;">
+                            <input id="mvp_Case_2" name="mvp_Case_2" type="text" value="true" style="display: none;">
+                            <input id="mvp_Case_3" name="mvp_Case_3" type="text" value="false" style="display: none;">
+                            <input id="mvp_Case_4" name="mvp_Case_4" type="text" value="false" style="display: none;">
+                            {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                                <button type="submit" class="">{{ data['searchOFF_Operation_VALUE'] }}struck Traffic</button><br>
+                            {% elseif data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                                <button type="submit" class="">{{ data['searchOFF_Defendant_VALUE'] }}struck Traffic</button><br>
+                            {% elseif data['searchOFF_Operation_VALUE'] %}
+                                <button type="submit" class="">{{ data['searchOFF_Operation_VALUE'] }} Traffic</button><br>
+                            {% elseif data['searchOFF_Defendant_VALUE'] %}
+                                <button type="submit" class="">{{ data['searchOFF_Defendant_VALUE'] }} Traffic</button><br>
+                            {% endif %}
+                        </form>
+                        <span id="" class="govuk-hint">89AV678452/22</span>
+                    </h2>
+                </div>
+                <div class="contents">
+                    <p class="title">Defendants:</p> <p class="description"><strong>BLOGGS, Joe</strong></p>
+                    {% if data['offCMS_Egress_files'] %}
+                        <p class="title">Egress:</p> <p class="description"><strong class="govuk-tag govuk-tag--green">Connected</strong></p>
+                    {% else %}
+                        <p class="title">Egress:</p> <p class="description"><strong class="govuk-tag govuk-tag--grey">Inactive</strong></p>
+                    {% endif %}
+                    <p class="title">Shared Drive:</p> <p class="description"><strong class="govuk-tag govuk-tag--green">Connected</strong></p>
+                    <p class="title">Case created:</p> <p class="description"><strong>25/06/2022</strong></p>
+                </div>
+            </div>
+            <!-- RESULT 2 - END -->
+
+            <!-- RESULT 3 - START -->
+            <div id="caseThree" class="result-item">
+                <div class="heading">
+                    <h2 class="govuk-heading-l">
+                        <form method="post" action="03-case-overview" id="">  
+                            <input id="mvp_Case_1" name="mvp_Case_1" type="text" value="false" style="display: none;">
+                            <input id="mvp_Case_2" name="mvp_Case_2" type="text" value="false" style="display: none;">
+                            <input id="mvp_Case_3" name="mvp_Case_3" type="text" value="true" style="display: none;">
+                            <input id="mvp_Case_4" name="mvp_Case_4" type="text" value="false" style="display: none;">
+                            {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                                <button type="submit" class="">{{ data['searchOFF_Operation_VALUE'] }}struck Office</button><br>
+                            {% elseif data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                                <button type="submit" class="">{{ data['searchOFF_Defendant_VALUE'] }}struck Office</button><br>
+                            {% elseif data['searchOFF_Operation_VALUE'] %}
+                                <button type="submit" class="">{{ data['searchOFF_Operation_VALUE'] }} Office</button><br>
+                            {% elseif data['searchOFF_Defendant_VALUE'] %}
+                                <button type="submit" class="">{{ data['searchOFF_Defendant_VALUE'] }} Office</button><br>
+                            {% endif %}
+                        </form>
+                        <span id="" class="govuk-hint">64GB245761/24</span>
+                    </h2>
+                </div>
+                <div class="contents">
+                    <p class="title">Defendants:</p> <p class="description"><strong>SCHRUTTE, Dwight</strong></p>
+                    <p class="title">Egress:</p> <p class="description"><strong class="govuk-tag govuk-tag--green">Connected</strong></p>
+                    {% if data['offCMS_PDrive_files'] %}
+                        <p class="title">Shared Drive:</p> <p class="description"><strong class="govuk-tag govuk-tag--green">Connected</strong></p>
+                    {% else %}
+                        <p class="title">Shared Drive:</p> <p class="description"><strong class="govuk-tag govuk-tag--grey">Inactive</strong></p>
+                    {% endif %}
+                    <p class="title">Case created:</p> <p class="description"><strong>17/07/2024</strong></p>
+                </div>
+            </div>
+            <!-- RESULT 3 - END -->
+
+            <!-- RESULT 4 - START -->
+            <div id="caseFour" class="result-item">
+                <div class="heading">
+                    <h2 class="govuk-heading-l">
+                        <form method="get" action="03-case-overview" id="">  
+                            <input id="mvp_Case_1" name="mvp_Case_1" type="text" value="false" style="display: none;">
+                            <input id="mvp_Case_2" name="mvp_Case_2" type="text" value="false" style="display: none;">
+                            <input id="mvp_Case_3" name="mvp_Case_3" type="text" value="false" style="display: none;">
+                            <input id="mvp_Case_4" name="mvp_Case_4" type="text" value="true" style="display: none;">
+                            {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                                <button type="submit">Captain {{ data['searchOFF_Operation_VALUE'] }}struck</button><br>
+                            {% elseif data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                                <button type="submit">Captain {{ data['searchOFF_Defendant_VALUE'] }}struck</button><br>
+                            {% elseif data['searchOFF_Operation_VALUE'] %}
+                                <button type="submit">Captain {{ data['searchOFF_Operation_VALUE'] }}</button><br>
+                            {% elseif data['searchOFF_Defendant_VALUE'] %}
+                                <button type="submit">Captain {{ data['searchOFF_Defendant_VALUE'] }}</button><br>
+                            {% endif %}
+                        </form>
+                        <span id="" class="govuk-hint">6897542684/24</span>
+                    </h2>
+                </div>
+                <div class="contents">
+                    <p class="title">Defendants:</p> <div class="description"><p><strong>HALPERT, Jim</strong></p></div>
+                    {% if data['offCMS_Egress_files_V2'] %}
+                        <p class="title">Egress:</p> <p class="description"><strong class="govuk-tag govuk-tag--green">Connected</strong></p>
+                    {% else %}
+                        <p class="title">Egress:</p> <p class="description"><strong class="govuk-tag govuk-tag--grey">Inactive</strong></p>
+                    {% endif %}
+                    {% if data['offCMS_PDrive_files_V2'] %}
+                        <p class="title">Shared Drive:</p> <p class="description"><strong class="govuk-tag govuk-tag--green">Connected</strong></p>
+                    {% else %}
+                        <p class="title">Shared Drive:</p> <p class="description"><strong class="govuk-tag govuk-tag--grey">Inactive</strong></p>
+                    {% endif %}
+                    <p class="title">Case created:</p> <p class="description"><strong>18/08/2024</strong></p>
+                </div>
+            </div>
+            <!-- RESULT 4 - END -->
+
+        {% else %}
+
+            <p class="govuk-body"><strong>You can:</strong></p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>check CMS to see if the case exists</li>
+                <li>check the spelling of your search</li>
+                <li>check with your Unit Manager to see if the case is restricted</li>
+                <li>contact the Service Desk</li>
+            </ul>
+
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

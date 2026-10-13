@@ -1,0 +1,251 @@
+{% extends "layoutCPS-NEW-INDEX.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+{% set suspectIndex = data['editSuspect'] if data['editSuspect'] != 999 else (data['pendingSuspectId'] if data['pendingSuspectId'] != undefined else data['suspectCount']) %}
+{% set hasPersonName = data['suspectFirstName'][suspectIndex] and data['suspectLastName'][suspectIndex] %}
+{% set hasDobDetails = data['suspectDOB'][suspectIndex] or data['suspectDayBirth'][suspectIndex] or data['suspectMonthBirth'][suspectIndex] or data['suspectYearBirth'][suspectIndex] %}
+{% set hasOffenderTypeDetails = data['suspectOffenderType'][suspectIndex] %}
+{% set hasGenderDetails = data['suspectGender'][suspectIndex] %}
+{% set hasDisabilityDetails = data['suspectDisability'][suspectIndex] %}
+{% set hasReligionDetails = data['suspectReligion'][suspectIndex] %}
+{% set hasEthnicityDetails = data['suspectEthnicity'][suspectIndex] %}
+{% set hasAliasDetails = data['suspectAlias'][suspectIndex] %}
+{% set hasArrestSummonsDetails = data['suspectArrestSummons'][suspectIndex] %}
+
+<style>
+  .govuk-radios:has(#suspect-type-person:checked) #suspect-type-person-details,
+  .govuk-radios:has(#suspect-type-company:checked) #suspect-type-company-details {
+    display: block !important;
+  }
+</style>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% if errorList and errorList.length %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            {% for error in errorList %}
+            <li>
+              <a href="{{ error.href }}">{{ error.text }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if data['editSuspect'] == 999 %}
+      <form action="/version-19/lcc/register-case/03-add-suspect" method="post" novalidate>
+    {% else %}
+      <form action="/version-19/lcc/register-case/03-edit-suspect" method="post" novalidate>
+    {% endif %}
+
+      <div class="govuk-form-group{% if errors and errors.suspectType %} govuk-form-group--error{% endif %}">
+        <fieldset class="govuk-fieldset" {% if errors and errors.suspectType %}aria-describedby="suspect-type-error"{% endif %}>
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                  Add a suspect 
+                  <!-- {% if data['editSuspect'] == 999 %} {{data['suspectCount'] + 1}} {% else %} {{data['displaySuspect']}} {% endif %} -->
+                </h1>
+            </legend>
+          {% if errors and errors.suspectType %}
+          <span id="suspect-type-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> {{ errors.suspectType }}
+          </span>
+          {% endif %}
+          <!-- <div id="contact-hint" class="govuk-hint">
+            Suspect 1
+          </div> -->
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="suspect-type-person" name="suspect-type" type="radio" value="Person" data-aria-controls="suspect-type-person-details" {% if data['suspectType'][suspectIndex] == 'Person' or hasPersonName %} checked {% endif %} {% if errors and errors.suspectType %}aria-describedby="suspect-type-error"{% endif %}>
+              <label class="govuk-label govuk-radios__label" for="suspect-type-person">
+                Person
+              </label>
+            </div>
+            <div class="govuk-radios__conditional{% if data['suspectType'][suspectIndex] != 'Person' and not hasPersonName %} govuk-radios__conditional--hidden{% endif %}" id="suspect-type-person-details">
+              <div class="govuk-form-group{% if errors and errors.firstName %} govuk-form-group--error{% endif %}">
+                <label class="govuk-label govuk-!-font-weight-bold" for="suspect-type-person-first-name">
+                  First name
+                </label>
+                {% if errors and errors.firstName %}
+                <span id="suspect-person-first-name-error" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> {{ errors.firstName }}
+                </span>
+                {% endif %}
+                <input class="govuk-input govuk-!-width-one-third{% if errors and errors.firstName %} govuk-input--error{% endif %}" id="suspect-person-first-name" name="suspect-person-first-name" type="text" spellcheck="false" autocomplete="new-password" value="{{ data['suspectFirstName'][suspectIndex]}}" {% if errors and errors.firstName %}aria-describedby="suspect-person-first-name-error"{% endif %}>
+              </div>
+              
+              <div class="govuk-form-group{% if errors and errors.lastName %} govuk-form-group--error{% endif %}">
+                <label class="govuk-label govuk-!-font-weight-bold" for="suspect-person-last-name">
+                  Last name
+                </label>
+                {% if errors and errors.lastName %}
+                <span id="suspect-person-last-name-error" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> {{ errors.lastName }}
+                </span>
+                {% endif %}
+                <input class="govuk-input govuk-!-width-one-third{% if errors and errors.lastName %} govuk-input--error{% endif %}" id="suspect-person-last-name" name="suspect-person-last-name" type="text" spellcheck="false" autocomplete="new-password" value="{{ data['suspectLastName'][suspectIndex]}}" {% if errors and errors.lastName %}aria-describedby="suspect-person-last-name-error"{% endif %}>
+              </div>
+
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="suspect-person-additional-details-hint">
+                  <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">
+                    Do you want to add any additional details about this suspect?
+                  </legend>
+                  <div id="suspect-person-additional-details-hint" class="govuk-hint">
+                    Select all that apply
+                  </div>
+                  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="suspect-person-additional-details-0" name="suspect-person-dob" type="checkbox" value="Date of birth" {% if hasDobDetails %}checked{% endif %}>
+                      <label class="govuk-label govuk-checkboxes__label" for="suspect-person-additional-details-0">
+                        Date of birth
+                      </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="suspect-person-additional-details-7" name="suspect-person-offender-type" type="checkbox" value="Type of offender" {% if hasOffenderTypeDetails %}checked{% endif %}>
+                      <label class="govuk-label govuk-checkboxes__label" for="suspect-person-additional-details-7">
+                        Type of offender
+                      </label>
+                    </div>
+
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="suspect-person-additional-details" name="suspect-person-gender" type="checkbox" value="Gender" {% if hasGenderDetails %}checked{% endif %}>
+                      <label class="govuk-label govuk-checkboxes__label" for="suspect-person-additional-details">
+                        Gender
+                      </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="suspect-person-additional-details-2" name="suspect-person-disability" type="checkbox" value="Disability" {% if hasDisabilityDetails %}checked{% endif %}>
+                      <label class="govuk-label govuk-checkboxes__label" for="suspect-person-additional-details-2">
+                        Disability
+                      </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="suspect-person-additional-details-3" name="suspect-person-religion" type="checkbox" value="Religion" {% if hasReligionDetails %}checked{% endif %}>
+                      <label class="govuk-label govuk-checkboxes__label" for="suspect-person-additional-details-3">
+                        Religion
+                      </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="suspect-person-additional-details-4" name="suspect-person-ethnicity" type="checkbox" value="Ethnicity" {% if hasEthnicityDetails %}checked{% endif %}>
+                      <label class="govuk-label govuk-checkboxes__label" for="suspect-person-additional-details-4">
+                        Ethnicity
+                      </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="suspect-person-additional-details-8" name="suspect-person-alias" type="checkbox" value="Alias details" {% if hasAliasDetails %}checked{% endif %}>
+                      <label class="govuk-label govuk-checkboxes__label" for="suspect-person-additional-details-8">
+                        Alias details
+                      </label>
+                    </div>
+                    <!-- <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="suspect-person-additional-details-5" name="suspect-person-sdo" type="checkbox" value="Serious Dangerous Offender (SDO)">
+                      <label class="govuk-label govuk-checkboxes__label" for="suspect-person-additional-details-5">
+                        Serious dangerous offender (SDO)
+                      </label>
+                    </div> -->
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="suspect-person-additional-details-6" name="suspect-person-arrest-summons" type="checkbox" value="Arrest summons" {% if hasArrestSummonsDetails %}checked{% endif %}>
+                      <label class="govuk-label govuk-checkboxes__label" for="suspect-person-additional-details-6">
+                        Arrest summons number (ASN)
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>                  
+
+
+            </div>
+
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="suspect-type-company" name="suspect-type" type="radio" value="Company" data-aria-controls="suspect-type-company-details" {% if data['suspectType'][suspectIndex] == 'Company' %} checked {% endif %} {% if errors and errors.suspectType %}aria-describedby="suspect-type-error"{% endif %}>
+              <label class="govuk-label govuk-radios__label" for="suspect-type-company">
+                Company
+              </label>
+            </div>
+            <div class="govuk-radios__conditional{% if data['suspectType'][suspectIndex] != 'Company' %} govuk-radios__conditional--hidden{% endif %}" id="suspect-type-company-details">
+              <div class="govuk-form-group{% if errors and errors.companyName %} govuk-form-group--error{% endif %}">
+                <label class="govuk-label govuk-!-font-weight-bold" for="suspect-company-name">
+                  Company name
+                </label>
+                {% if errors and errors.companyName %}
+                <span id="suspect-company-name-error" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> {{ errors.companyName }}
+                </span>
+                {% endif %}
+                <input class="govuk-input govuk-!-width-one-third{% if errors and errors.companyName %} govuk-input--error{% endif %}" id="suspect-company-name" name="suspect-company-name" type="text" autocomplete="text" value="{{ data['suspectCompanyName'][suspectIndex]}}" {% if errors and errors.companyName %}aria-describedby="suspect-company-name-error"{% endif %}>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <input type="hidden" name="id" value="{{ data['suspectId'][data['id']]}}">
+        <input type="hidden" name="update" value="{{data['id']}}">
+        <input type="hidden" name="suspect-index" value="{{ suspectIndex }}">
+
+      </div>
+
+
+      {% include "../../includes/buttons.html" %}
+      
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+  (function () {
+    var radios = document.querySelectorAll('input[name="suspect-type"][data-aria-controls]')
+
+    function updateSuspectTypePanels () {
+      radios.forEach(function (radio) {
+        var panel = document.getElementById(radio.getAttribute('data-aria-controls'))
+
+        if (!panel) {
+          return
+        }
+
+        if (radio.checked) {
+          panel.removeAttribute('hidden')
+          panel.classList.remove('govuk-radios__conditional--hidden')
+          panel.style.display = ''
+        } else {
+          panel.setAttribute('hidden', 'hidden')
+          panel.classList.add('govuk-radios__conditional--hidden')
+          panel.style.display = 'none'
+        }
+      })
+    }
+
+    radios.forEach(function (radio) {
+      radio.addEventListener('change', updateSuspectTypePanels)
+    })
+
+    document.addEventListener('DOMContentLoaded', updateSuspectTypePanels)
+    window.addEventListener('pageshow', updateSuspectTypePanels)
+
+    updateSuspectTypePanels()
+    window.setTimeout(updateSuspectTypePanels, 0)
+    window.setTimeout(updateSuspectTypePanels, 100)
+    window.setTimeout(updateSuspectTypePanels, 300)
+    window.setTimeout(updateSuspectTypePanels, 750)
+  })()
+</script>
+{% endblock %}

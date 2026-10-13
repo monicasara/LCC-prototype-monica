@@ -1,0 +1,1858 @@
+<!-- ////////////////////////////////////////////// SEOCID MATERIALS - SECTION 1 - START ////////////////////////////////////////////// -->
+<div id="shared_drive_section_1">
+
+    <!-- NORMAL TRANSFER - START -->
+    <div class="permissions transfer_Folder_Destination">
+        {% if data['searchOFF_Operation_VALUE'] == 'Dumper Truck' or data['searchOFF_Operation_VALUE'] == 'Dumper truck'  or data['searchOFF_Operation_VALUE'] == 'dumper truck'  or data['searchOFF_Operation_VALUE'] == 'Dumpertruck' %}
+            <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+        {% elseif data['searchOFF_Defendant_VALUE'] == 'Dumper Truck' or data['searchOFF_Defendant_VALUE'] == 'Dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'Dumpertruck' %}
+            <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+        {% elseif data['searchOFF_URN_VALUE'] %}
+            <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Dumper Truck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+        {% elseif data['searchOFF_Operation_VALUE'] %}
+            {% if data['mvp_Case_1'] == 'true' %}
+                {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }}struck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_2'] == 'true' %}
+                {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }}struck Traffic</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }} Traffic</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_3'] == 'true' %}
+                {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }}struck Office</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }} Office</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_4'] == 'true' %}
+                {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Captain {{ data['searchOFF_Operation_VALUE'] }}struck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Captain {{ data['searchOFF_Operation_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% endif %}
+        {% elseif data['searchOFF_Defendant_VALUE'] %}
+            {% if data['mvp_Case_1'] == 'true' %}
+                {% if data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }}struck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_2'] == 'true' %}
+                {% if data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }}struck Traffic</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }} Traffic</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_3'] == 'true' %}
+                {% if data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }}struck Office</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }} Office</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_4'] == 'true' %}
+                {% if data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Captain {{ data['searchOFF_Defendant_VALUE'] }}struck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Captain {{ data['searchOFF_Defendant_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Thunderstruck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+        {% endif %}
+    </div>
+    <!-- NORMAL TRANSFER - START -->
+
+    <!-- DUPLICATE TRANSFER - START -->
+    <div class="permissions duplicate_transfer_Folder_Destination">
+        {% if data['searchOFF_Operation_VALUE'] == 'Dumper Truck' or data['searchOFF_Operation_VALUE'] == 'Dumper truck'  or data['searchOFF_Operation_VALUE'] == 'dumper truck'  or data['searchOFF_Operation_VALUE'] == 'Dumpertruck' %}
+            <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+        {% elseif data['searchOFF_Defendant_VALUE'] == 'Dumper Truck' or data['searchOFF_Defendant_VALUE'] == 'Dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'Dumpertruck' %}
+            <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+        {% elseif data['searchOFF_URN_VALUE'] %}
+            <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Dumper Truck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+        {% elseif data['searchOFF_Operation_VALUE'] %}
+            {% if data['mvp_Case_1'] == 'true' %}
+                {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }}struck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_2'] == 'true' %}
+                {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }}struck Traffic</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }} Traffic</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_3'] == 'true' %}
+                {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }}struck Office</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Operation_VALUE'] }} Office</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_4'] == 'true' %}
+                {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Captain {{ data['searchOFF_Operation_VALUE'] }}struck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Captain {{ data['searchOFF_Operation_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% endif %}
+        {% elseif data['searchOFF_Defendant_VALUE'] %}
+            {% if data['mvp_Case_1'] == 'true' %}
+                {% if data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }}struck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_2'] == 'true' %}
+                {% if data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }}struck Traffic</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }} Traffic</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_3'] == 'true' %}
+                {% if data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }}struck Office</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">{{ data['searchOFF_Defendant_VALUE'] }} Office</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% elseif data['mvp_Case_4'] == 'true' %}
+                {% if data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Captain {{ data['searchOFF_Defendant_VALUE'] }}struck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% else %}
+                    <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Captain {{ data['searchOFF_Defendant_VALUE'] }}</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name">Thunderstruck</span> <a href="" class="copy_Folder_Destination_top_level">Copy</a><a href="" class="move_Folder_Destination_top_level">Move</a></div>
+        {% endif %}
+    </div>
+    <!-- DUPLICATE TRANSFER - END -->
+
+    <table class="govuk-table sortable" id="shared_drive-table">
+
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_all_SD_Folder_1" name="transfer_SD_Folder_1" type="checkbox" value="Select all folders">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_all_SD_Folder_1">Select all</label>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+                <th scope="col" class="govuk-table__header num"><button class="govuk-button" data-module="govuk-button">File or folder</button></th>
+                <!-- <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">Type</button></th> -->
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">Last modified date</button></th>
+                <th scope="col" class="govuk-table__header num"><button class="govuk-button" data-module="govuk-button">Size</button></th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button"></button></th>
+            </tr>
+        </thead>
+
+        <tbody class="govuk-table__body">
+
+            <!-- FOLDER 1 - START -->
+            <tr class="govuk-table__row materials_row_1">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                {% if data['shared_Drive_Copying'] == 'true' %}
+                                    <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1A" name="transfer_SD_Folder_1" type="checkbox" value="1. Case Management" checked>
+                                {% else %}
+                                    <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1A" name="transfer_SD_Folder_1" type="checkbox" value="1. Case Management">
+                                {% endif %}
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1A">1. Case Management</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">1. Case Management</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">1. Case Management</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu move_Folder_Destination copy_Folder_Destination" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><a href="" class="move_Folder_Destination">Move</a></li>
+                                <li><a href="" class="copy_Folder_Destination">Copy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <strong class="govuk-tag govuk-tag--green">Finished</strong>
+                </td>
+            </tr>
+            <!-- FOLDER 1  - END -->
+
+            <!-- FOLDER 2 - START -->
+            <tr class="govuk-table__row materials_row_2">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1B" name="transfer_SD_Folder_1" type="checkbox" value="2. Conference Hearing Notes">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1B">2. Conference Hearing Notes</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">2. Conference Hearing Notes</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">2. Conference Hearing Notes</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu move_Folder_Destination copy_Folder_Destination" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><a href="" class="move_Folder_Destination">Move</a></li>
+                                <li><a href="" class="copy_Folder_Destination">Copy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <strong class="govuk-tag govuk-tag--green">Finished</strong>
+                </td>
+            </tr>
+            <!-- FOLDER 2  - END -->
+
+            <!-- FOLDER 3 - START -->
+            <tr class="govuk-table__row materials_row_3">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1C" name="transfer_SD_Folder_1" type="checkbox" value="3. Experts">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1C">3. Experts</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">3. Experts</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">3. Experts</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu move_Folder_Destination copy_Folder_Destination" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><a href="" class="move_Folder_Destination">Move</a></li>
+                                <li><a href="" class="copy_Folder_Destination">Copy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <strong class="govuk-tag govuk-tag--green">Finished</strong>
+                </td>
+            </tr>
+            <!-- FOLDER 3  - END -->
+
+            <!-- FOLDER 4 - START -->
+            <tr class="govuk-table__row materials_row_4">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1D" name="transfer_SD_Folder_1" type="checkbox" value="4. Counsel">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1D">4. Counsel</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">4. Counsel</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">4. Counsel</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu move_Folder_Destination copy_Folder_Destination" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><a href="" class="move_Folder_Destination">Move</a></li>
+                                <li><a href="" class="copy_Folder_Destination">Copy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <strong class="govuk-tag govuk-tag--green">Finished</strong>
+                </td>
+            </tr>
+            <!-- FOLDER 4  - END -->
+
+            <!-- FOLDER 5 - START -->
+            <tr class="govuk-table__row materials_row_5">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                {% if data['shared_Drive_Copying'] == 'true' %}
+                                    <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1E" name="transfer_SD_Folder_1" type="checkbox" value="5. Correspondence" checked>
+                                {% else %}
+                                    <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1E" name="transfer_SD_Folder_1" type="checkbox" value="5. Correspondence">
+                                {% endif %}
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1E">5. Correspondence</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">5. Correspondence</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">5. Correspondence</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu move_Folder_Destination copy_Folder_Destination" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><a href="" class="move_Folder_Destination">Move</a></li>
+                                <li><a href="" class="copy_Folder_Destination">Copy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <strong class="govuk-tag govuk-tag--green">Finished</strong>
+                </td>
+            </tr>
+            <!-- FOLDER 5  - END -->
+
+            <!-- FOLDER 6 - START -->
+            <tr class="govuk-table__row materials_row_6">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                {% if data['shared_Drive_Copying'] == 'true' %}
+                                    <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1F" name="transfer_SD_Folder_1" type="checkbox" value="6. Disclosure" checked>
+                                {% else %}
+                                    <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1F" name="transfer_SD_Folder_1" type="checkbox" value="6. Disclosure">
+                                {% endif %}
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1F">6. Disclosure</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">6. Disclosure</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">6. Disclosure</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu move_Folder_Destination copy_Folder_Destination" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><a href="" class="move_Folder_Destination">Move</a></li>
+                                <li><a href="" class="copy_Folder_Destination">Copy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <strong class="govuk-tag govuk-tag--green">Finished</strong>
+                </td>
+            </tr>
+            <!-- FOLDER 6  - END -->
+
+            <!-- FOLDER 7 - START -->
+            <tr class="govuk-table__row materials_row_7">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1G" name="transfer_SD_Folder_1" type="checkbox" value="7. Finance">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1G">7. Finance</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">7. Finance</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">7. Finance</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu move_Folder_Destination copy_Folder_Destination" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><a href="" class="move_Folder_Destination">Move</a></li>
+                                <li><a href="" class="copy_Folder_Destination">Copy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <strong class="govuk-tag govuk-tag--green">Finished</strong>
+                </td>
+            </tr>
+            <!-- FOLDER 7  - END -->
+
+            <!-- FOLDER 8 - START -->
+            <tr class="govuk-table__row materials_row_8">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1H" name="transfer_SD_Folder_1" type="checkbox" value="8. Lawyer Working copies">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1H">8. Lawyer Working copies</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">8. Lawyer Working copies</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">8. Lawyer Working copies</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu move_Folder_Destination copy_Folder_Destination" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><a href="" class="move_Folder_Destination">Move</a></li>
+                                <li><a href="" class="copy_Folder_Destination">Copy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <strong class="govuk-tag govuk-tag--green">Finished</strong>
+                </td>
+            </tr>
+            <!-- FOLDER 8  - END -->
+
+            <!-- FOLDER 9 - START -->
+            <tr class="govuk-table__row materials_row_9">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1I" name="transfer_SD_Folder_1" type="checkbox" value="9. PO Working copies">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1I">9. PO Working copies</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">9. PO Working copies</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">9. PO Working copies</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu move_Folder_Destination copy_Folder_Destination" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><a href="" class="move_Folder_Destination">Move</a></li>
+                                <li><a href="" class="copy_Folder_Destination">Copy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <strong class="govuk-tag govuk-tag--green">Finished</strong>
+                </td>
+            </tr>
+            <!-- FOLDER 9  - END -->
+
+            <!-- FOLDER 10 - START -->
+            <tr class="govuk-table__row materials_row_10">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                {% if data['shared_Drive_Copying'] == 'true' %}
+                                    <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1J" name="transfer_SD_Folder_1" type="checkbox" value="10. Police" checked>
+                                {% else %}
+                                    <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1J" name="transfer_SD_Folder_1" type="checkbox" value="10. Police">
+                                {% endif %}
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1J">10. Police</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">10. Police</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">10. Police</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu move_Folder_Destination copy_Folder_Destination" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><a href="" class="move_Folder_Destination">Move</a></li>
+                                <li><a href="" class="copy_Folder_Destination">Copy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <strong class="govuk-tag govuk-tag--green">Finished</strong>
+                    {% if data['duplicate_files_transfer'] == 'Overwrite existing files' %}
+                        <strong class="govuk-tag govuk-tag--green" style="display: inline-block;">Replaced</strong>
+                    {% elseif data['duplicate_files_transfer'] == 'Ignore files' %}
+                        <strong class="govuk-tag govuk-tag--green" style="display: inline-block;">Finished</strong>
+                    {% elseif data['duplicate_files_transfer'] == 'Duplicate files' %}
+                        <strong class="govuk-tag govuk-tag--green" style="display: inline-block;">Finished</strong>
+                    {% else %}
+
+                    {% endif %}
+                </td>
+            </tr>
+            <!-- FOLDER 10 - END -->
+
+            <!-- FOLDER 11 - START -->
+            {% if data['all_failed_files_COMPLETED'] == 'true' %}
+
+            {% else %}
+
+            {% endif %}
+            <tr class="govuk-table__row materials_row_11">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1K" name="transfer_SD_Folder_1" type="checkbox" value="11. Media">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1K">11. Media</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">11. Media</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">11. Media</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu move_Folder_Destination copy_Folder_Destination" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><a href="" class="move_Folder_Destination">Move</a></li>
+                                <li><a href="" class="copy_Folder_Destination">Copy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% if data['all_file_errors_COMPLETED'] == 'true' %}
+                        <strong class="govuk-tag govuk-tag--green" style="display: inline-block;">Finished</strong>
+                    {% else %}
+
+                    {% endif %}
+                </td>
+            </tr>
+            <!-- FOLDER 11 - END -->
+
+            <!-- FOLDER 12 - START -->
+            <tr class="govuk-table__row materials_row_12">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1L" name="transfer_SD_Folder_1" type="checkbox" value="12. Victims & Witnesses">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1L">12. Victims & Witnesses</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">12. Victims & Witnesses</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">12. Victims & Witnesses</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu move_Folder_Destination copy_Folder_Destination" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><a href="" class="move_Folder_Destination">Move</a></li>
+                                <li><a href="" class="copy_Folder_Destination">Copy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <strong class="govuk-tag govuk-tag--green">Finished</strong>
+                </td>
+            </tr>
+            <!-- FOLDER 12 - END -->
+
+            <!-- FOLDER 13 - START -->
+            <tr class="govuk-table__row materials_row_13">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1M" name="transfer_SD_Folder_1" type="checkbox" value="13. DCS">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1M">13. DCS</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">13. DCS</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">13. DCS</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu move_Folder_Destination copy_Folder_Destination" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><a href="" class="move_Folder_Destination">Move</a></li>
+                                <li><a href="" class="copy_Folder_Destination">Copy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <strong class="govuk-tag govuk-tag--green">Finished</strong>
+                </td>
+            </tr>
+            <!-- FOLDER 13 - END -->
+
+            <!-- FOLDER 14 - START -->
+            <tr class="govuk-table__row materials_row_14">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1N" name="transfer_SD_Folder_1" type="checkbox" value="14. Mags Ct">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1N">14. Mags Ct</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">14. Mags Ct</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">14. Mags Ct</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu move_Folder_Destination copy_Folder_Destination" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><a href="" class="move_Folder_Destination">Move</a></li>
+                                <li><a href="" class="copy_Folder_Destination">Copy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <strong class="govuk-tag govuk-tag--green">Finished</strong>
+                </td>
+            </tr>
+            <!-- FOLDER 14 - END -->
+
+            <!-- FOLDER 15 - START -->
+            <tr class="govuk-table__row materials_row_15">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1O" name="transfer_SD_Folder_1" type="checkbox" value="15. IDPC">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1O">15. IDPC</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell">
+                    <span class="icon-new folder"></span>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">15. IDPC</a>
+                    <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">15. IDPC</a>
+                </td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">
+                    <div class="moj-button-menu move_Folder_Destination copy_Folder_Destination" data-module="moj-button-menu" data-button-text="Actions">
+                        <button type="button" class="govuk-button moj-button-menu__toggle-button" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="wrapper">
+                            <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                <li><a href="" class="move_Folder_Destination">Move</a></li>
+                                <li><a href="" class="copy_Folder_Destination">Copy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <strong class="govuk-tag govuk-tag--green">Finished</strong>
+                </td>
+            </tr>
+            <!-- FOLDER 15 - END -->
+
+            {% if data['shared_drive_NewFolder'] %}
+                <!-- NEW FOLDER - START -->
+                <tr class="govuk-table__row materials_row_16 new_row">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-form-group">
+                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1P" name="transfer_SD_Folder_1" type="checkbox" value="{{ data['shared_drive_NewFolder'] }}">
+                                    <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1P">{{ data['shared_drive_NewFolder'] }}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <span class="icon-new folder"></span>
+                        <a href="#" class="govuk-link govuk-link--no-visited-state empty_shared_drive_section_2">{{ data['shared_drive_NewFolder'] }}</a>
+                        <a href="#" class="govuk-link govuk-link--no-visited-state shared_drive_section_2">{{ data['shared_drive_NewFolder'] }}</a>
+                        <strong class="govuk-tag govuk-tag--green">New</strong>
+                    </td>
+                    <!-- <td class="govuk-table__cell">File folder</td> -->
+                    <td class="govuk-table__cell">--</td>
+                    <td class="govuk-table__cell">--</td>
+                    <td class="govuk-table__cell">
+                        <div class="moj-button-menu move_Folder_Destination copy_Folder_Destination" data-module="moj-button-menu" data-button-text="Actions">
+                            <button type="button" class="govuk-button moj-button-menu__toggle-button " aria-haspopup="true" aria-expanded="false">Actions</button>
+                            <div class="wrapper">
+                                <ul role="list" hidden="" class="moj-button-menu__wrapper">
+                                    <li><button type="button" class="moj-button-menu__item rename_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="renameFolder();">Rename</button></li>
+                                    <li><button type="button" class="moj-button-menu__item" data-module="govuk-button" data-govuk-button-init="" tabindex="-1">Move</button></li>
+                                    <li><button type="button" class="moj-button-menu__item delete_folder" data-module="govuk-button" data-govuk-button-init="" tabindex="-1" onClick="deleteFolder();">Delete</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- NEW FOLDER - END -->
+            {% else %}
+
+            {% endif %}
+
+            <!-- LONG FILE FOLDER - START -->
+            {% if data['long_file_path_COMPLETED'] == 'true' %}
+                <tr class="govuk-table__row ">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-form-group">
+                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1ZIP" name="transfer_SD_Folder_1" type="checkbox" value="Digital evidence">
+                                    <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1ZIP">Digital evidence</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell"><span class="icon-new folder"></span><a href="#" class="govuk-link govuk-link--no-visited-state show_section_pdrive_3D">Digital evidence</a></td>
+                    <!-- <td class="govuk-table__cell">File folder</td> -->
+                    <td class="govuk-table__cell">--</td>
+                    <td class="govuk-table__cell">--</td>
+                    <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green" style="display: inline-block;">Finished</strong></td>
+                </tr>
+            {% else %}
+
+            {% endif %}
+            <!-- LONG FILE FOLDER - END -->
+
+            <!-- FILE ERROR FOLDER - START -->
+            {% if data['failed_files_COMPLETED'] == 'true' %}
+            
+<!--                 <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-form-group">
+                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" id="transfer_SD_Folder_2ZIP" name="transfer_SD_Folder_1" type="checkbox" value="New evidence">
+                                    <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_2ZIP">New evidence</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell"><span class="icon-new folder"></span><a href="#" class="govuk-link govuk-link--no-visited-state show_section_pdrive_3D">New evidence</a></td>
+                    <td class="govuk-table__cell">--</td>
+                    <td class="govuk-table__cell">--</td>
+                    <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green" style="display: inline-block;">Finished</strong></td>
+                </tr>
+ -->
+            {% else %}
+
+            {% endif %}
+            <!-- FILE ERROR FOLDER - END -->
+
+            <!-- EXISTING DOCUMENT - START -->
+            {% if data['createCaseStarted'] == 'true' %}
+
+            {% else %}
+                <tr class="govuk-table__row materials_row_17">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-form-group">
+                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1Q" name="transfer_SD_Folder_1" type="checkbox" value="mg11_BLAYNEE.pdf">
+                                    <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1Q">mg11_BLAYNEE.pdf</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell"><span class="icon-new file"></span><a href="#" class="file_name non_link">mg11_BLAYNEE.pdf</a></td>
+                    <!-- <td class="govuk-table__cell">PDF</td> -->
+                    <td class="govuk-table__cell">22/08/2024</td>
+                    <td class="govuk-table__cell">50 KB</td>
+                    {% if data['file_locked_transfer'] == 'Try again' %}
+                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green" style="display: inline-block;">Replaced</strong></td>
+                    {% elseif data['file_locked_transfer'] == 'Ignore files' %}
+                        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red" style="display: inline-block;">Failed</strong></td>
+                    {% else %}
+                        <td class="govuk-table__cell"></td>
+                    {% endif %}
+                </tr>
+            {% endif %}
+            <!-- EXISTING DOCUMENT - START -->
+
+            <!-- EXISTING DOCUMENT 1 - NEW - START -->
+            <tr class="govuk-table__row materials_row_18 hidden_row">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1Q" name="transfer_SD_Folder_1" type="checkbox" value="mg11_BLAYNEE.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1Q">mg11_BLAYNEE.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><a href="#" class="duplicated_file_name non_link">###.pdf</a></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">Today</td>
+                <td class="govuk-table__cell">50 KB</td>
+                <td class="govuk-table__cell"></td>
+            </tr>
+            <!-- EXISTING DOCUMENT 1 - NEW - END -->
+
+            <!-- EXISTING DOCUMENT 2 - NEW - START -->
+            {% if data['file_locked_transfer'] == 'Duplicate files' %}
+                <tr class="govuk-table__row materials_row_19">
+                    <td class="govuk-table__cell">
+                        <div class="govuk-form-group">
+                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1QA" name="transfer_SD_Folder_1" type="checkbox" value="mg11_BLAYNEE_V2.pdf">
+                                    <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1QA">mg11_BLAYNEE_V2.pdf</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="govuk-table__cell"><span class="icon-new file"></span><a href="#" class="duplicated_file_name non_link">mg11_BLAYNEE_V2.pdf</a></td>
+                    <!-- <td class="govuk-table__cell">PDF</td> -->
+                    <td class="govuk-table__cell">Today</td>
+                    <td class="govuk-table__cell">50 KB</td>
+                    <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green" style="display: inline-block;">Duplicated</strong></td>
+                </tr>
+            {% else %}
+
+            {% endif %}
+            <!-- EXISTING DOCUMENT 2 - NEW - END -->
+
+            <!-- EXISTING DOCUMENT 2 - START -->
+<!--             <tr class="govuk-table__row materials_row_19">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1QQ" name="transfer_SD_Folder_1" type="checkbox" value="MG11_Joe_BLOGGS.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1QQ">MG11_Joe_BLOGGS.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><a href="#" class="file_name non_link">MG11_Joe_BLOGGS.pdf</a></td>
+                <td class="govuk-table__cell">PDF</td>
+                <td class="govuk-table__cell">27/06/2024</td>
+                <td class="govuk-table__cell">108 KB</td>
+                <td class="govuk-table__cell"></td>
+            </tr>
+ -->            <!-- EXISTING DOCUMENT 2 - START -->
+
+            <!-- ================= HIDDEN ROWS - START ================= -->
+
+            <!-- SUB FOLDER 1 - START -->
+            <tr class="govuk-table__row hidden_row hidden_row_1">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1R" name="transfer_SD_Folder_1" type="checkbox" value="Reviews">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1R">Reviews</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new folder"></span><a href="#" class="govuk-link govuk-link--no-visited-state show_section_pdrive_3A">Reviews</a></td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <!-- SUB FOLDER 1 - END -->
+
+            <!-- SUB FOLDER 2 - START -->
+            <tr class="govuk-table__row hidden_row hidden_row_2">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1S" name="transfer_SD_Folder_1" type="checkbox" value="Case overview">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1S">Case overview</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new folder"></span><a href="#" class="govuk-link govuk-link--no-visited-state show_section_pdrive_3B">Case overview</a></td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <!-- SUB FOLDER 2 - END -->
+
+            <!-- SUB FOLDER 3 - START -->
+            <tr class="govuk-table__row hidden_row hidden_row_3">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1T" name="transfer_SD_Folder_1" type="checkbox" value="Statements">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1T">Statements</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new folder"></span><a href="#" class="govuk-link govuk-link--no-visited-state show_section_pdrive_3C">Statements</a></td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <!-- SUB FOLDER 3 - END -->
+
+            <!-- SUB FOLDER 4 - START -->
+            <tr class="govuk-table__row hidden_row hidden_row_ZIP">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1ZIP" name="transfer_SD_Folder_1" type="checkbox" value="10. Police">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1ZIP">10. Police</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new folder"></span><a href="#" class="govuk-link govuk-link--no-visited-state show_section_pdrive_3D">10. Police</a></td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <!-- SUB FOLDER 4 - END -->
+
+            <!-- SUB FOLDER 1 - FILES - START -->
+            <tr class="govuk-table__row hidden_row hidden_row_4">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1U" name="transfer_SD_Folder_1" type="checkbox" value="MCLOVEMG3.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1U">MCLOVEMG3.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">MCLOVEMG3.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">23/07/2024</td>
+                <td class="govuk-table__cell">27 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <!-- SUB FOLDER 1 - FILES - END -->
+
+            <!-- SUB FOLDER 2 - FILES - START -->
+            <tr class="govuk-table__row hidden_row hidden_row_5">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1V" name="transfer_SD_Folder_1" type="checkbox" value="CM01.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1V">CM01.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">CM01.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">11/05/2024</td>
+                <td class="govuk-table__cell">20 MB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row hidden_row hidden_row_6">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1W" name="transfer_SD_Folder_1" type="checkbox" value="CM01.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1W">CM01.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">CM01.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">14/06/2024</td>
+                <td class="govuk-table__cell">108 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row hidden_row hidden_row_7">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1X" name="transfer_SD_Folder_1" type="checkbox" value="MG06_3June.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1X">MG06_3June.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">MG06_3June.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">21/07/2024</td>
+                <td class="govuk-table__cell">1 MB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row hidden_row hidden_row_8">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1Y" name="transfer_SD_Folder_1" type="checkbox" value="MG06_10june.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1Y">MG06_10june.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">MG06_10june.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">24/04/2024</td>
+                <td class="govuk-table__cell">24 MB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <!-- SUB FOLDER 2 - FILES - END -->
+
+            <!-- SUB FOLDER 3 - FILES - START -->
+            <tr class="govuk-table__row hidden_row hidden_row_9">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1Z" name="transfer_SD_Folder_1" type="checkbox" value="stmt_BLAYNEE_2034_1_JUNE_mg11.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1Z">stmt_BLAYNEE_2034_1_JUNE_mg11.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">stmt_BLAYNEE_2034_1_JUNE_mg11.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">22/08/2024</td>
+                <td class="govuk-table__cell">50 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row hidden_row hidden_row_10">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1AA" name="transfer_SD_Folder_1" type="checkbox" value="stmt_JONES_1989_1_JUNE_mg11.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1AA">stmt_JONES_1989_1_JUNE_mg11.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">stmt_JONES_1989_1_JUNE_mg11.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">25/09/2024</td>
+                <td class="govuk-table__cell">1 MB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row hidden_row hidden_row_11">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1AB" name="transfer_SD_Folder_1" type="checkbox" value="stmt_Lucy_Doyle_MG11.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1AB">stmt_Lucy_Doyle_MG11.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">stmt_Lucy_Doyle_MG11.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">15/08/2024</td>
+                <td class="govuk-table__cell">207 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row hidden_row hidden_row_12">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1AC" name="transfer_SD_Folder_1" type="checkbox" value="stmt_Shelagh_McLove_MG11_hand.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1AC">stmt_Shelagh_McLove_MG11_hand.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">stmt_Shelagh_McLove_MG11_hand.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">14/10/2024</td>
+                <td class="govuk-table__cell">68 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row hidden_row hidden_row_13">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1AD" name="transfer_SD_Folder_1" type="checkbox" value="Shelagh_McLove_VPS_mg11.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1AD">Shelagh_McLove_VPS_mg11.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">Shelagh_McLove_VPS_mg11.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">23/04/2024</td>
+                <td class="govuk-table__cell">87 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row hidden_row hidden_row_14">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_1AE" name="transfer_SD_Folder_1" type="checkbox" value="MG11_Shelagh_MCLOVE_retraction.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_1AE">MG11_Shelagh_MCLOVE_retraction.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">MG11_Shelagh_MCLOVE_retraction.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">08/12/2024</td>
+                <td class="govuk-table__cell">69 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <!-- SUB FOLDER 3 - FILES - END -->
+            <!-- ================= HIDDEN ROWS - END ================= -->
+
+        </tbody>
+    </table>
+
+</div>
+<!-- ////////////////////////////////////////////// SEOCID MATERIALS - SECTION 1 - END ////////////////////////////////////////////// -->
+
+<!-- ////////////////////////////////////////////// SEOCID MATERIALS - EMPTY SECTION 2 - START ////////////////////////////////////////////// -->
+<div id="shared_drive_empty_section_2">
+
+    <div class="permissions transfer_Folder_Destination">
+        <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name"></span> <a href="" class="copy_Folder_Destination_second_level">Copy</a><a href="" class="move_Folder_Destination_second_level">Move</a></div>
+    </div>
+
+    <table class="govuk-table transfer-table sortable" id="">
+
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_all_SD_Folder_2" name="transfer_SD_Folder_2" type="checkbox" value="Select all documents">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_all_SD_Folder_2">Select all</label>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">File or folder</button></th>
+                <!-- <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">Type</button></th> -->
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">Last modified date</button></th>
+                <th scope="col" class="govuk-table__header num"><button class="govuk-button" data-module="govuk-button">Size</button></th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button"></button></th>
+            </tr>
+        </thead>
+
+        <tbody class="govuk-table__body">
+            <tr class="govuk-table__row empty_row" id="">
+                <td scope="row" class="govuk-table__cell" colspan="6">
+                    <p>There are no documents currently in this folder</p>
+                </td>
+            </tr>
+
+            <!-- ================= HIDDEN ROWS - START ================= -->
+            <!-- SUB FOLDER 1 - START -->
+            <tr class="govuk-table__row hidden_row hidden_row_1">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_2A" name="transfer_SD_Folder_2" type="checkbox" value="Reviews">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_2A">Reviews</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new folder"></span><a href="#" class="govuk-link govuk-link--no-visited-state show_section_pdrive_3A">Reviews</a></td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <!-- SUB FOLDER 1 - END -->
+
+            <!-- SUB FOLDER 2 - START -->
+            <tr class="govuk-table__row hidden_row hidden_row_2">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_2B" name="transfer_SD_Folder_2" type="checkbox" value="Case overview">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_2B">Case overview</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new folder"></span><a href="#" class="govuk-link govuk-link--no-visited-state show_section_pdrive_3B">Case overview</a></td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <!-- SUB FOLDER 2 - END -->
+
+            <!-- SUB FOLDER 3 - START -->
+            <tr class="govuk-table__row hidden_row hidden_row_3">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_2C" name="transfer_SD_Folder_2" type="checkbox" value="Statements">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_2C">Statements</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new folder"></span><a href="#" class="govuk-link govuk-link--no-visited-state show_section_pdrive_3C">Statements</a></td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <!-- SUB FOLDER 3 - END -->
+
+            <!-- SUB FOLDER 1 - FILES - START -->
+            <tr class="govuk-table__row hidden_row hidden_row_4">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_2D" name="transfer_SD_Folder_2" type="checkbox" value="MCLOVEMG3.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_2D">MCLOVEMG3.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">MCLOVEMG3.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">23/07/2024</td>
+                <td class="govuk-table__cell">27 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <!-- SUB FOLDER 1 - FILES - END -->
+
+            <!-- SUB FOLDER 2 - FILES - START -->
+            <tr class="govuk-table__row hidden_row hidden_row_5">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_2E" name="transfer_SD_Folder_2" type="checkbox" value="CM01.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_2E">CM01.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">CM01.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">11/05/2024</td>
+                <td class="govuk-table__cell">20 MB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row hidden_row hidden_row_6">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_2F" name="transfer_SD_Folder_2" type="checkbox" value="CM01.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_2F">CM01.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">CM01.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">14/06/2024</td>
+                <td class="govuk-table__cell">108 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row hidden_row hidden_row_7">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_2G" name="transfer_SD_Folder_2" type="checkbox" value="MG06_3June.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_2G">MG06_3June.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">MG06_3June.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">21/07/2024</td>
+                <td class="govuk-table__cell">1 MB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row hidden_row hidden_row_8">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_2H" name="transfer_SD_Folder_2" type="checkbox" value="MG06_10june.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_2H">MG06_10june.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">MG06_10june.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">24/04/2024</td>
+                <td class="govuk-table__cell">24 MB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <!-- SUB FOLDER 2 - FILES - END -->
+
+            <!-- SUB FOLDER 3 - FILES - START -->
+            <tr class="govuk-table__row hidden_row hidden_row_9">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_2I" name="transfer_SD_Folder_2" type="checkbox" value="stmt_BLAYNEE_2034_1_JUNE_mg11.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_2I">stmt_BLAYNEE_2034_1_JUNE_mg11.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">stmt_BLAYNEE_2034_1_JUNE_mg11.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">22/08/2024</td>
+                <td class="govuk-table__cell">50 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row hidden_row hidden_row_10">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_2J" name="transfer_SD_Folder_2" type="checkbox" value="stmt_JONES_1989_1_JUNE_mg11.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_2J">stmt_JONES_1989_1_JUNE_mg11.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">stmt_JONES_1989_1_JUNE_mg11.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">25/09/2024</td>
+                <td class="govuk-table__cell">1 MB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row hidden_row hidden_row_11">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_2K" name="transfer_SD_Folder_2" type="checkbox" value="stmt_Lucy_Doyle_MG11.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_2K">stmt_Lucy_Doyle_MG11.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">stmt_Lucy_Doyle_MG11.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">15/08/2024</td>
+                <td class="govuk-table__cell">207 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row hidden_row hidden_row_12">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_2L" name="transfer_SD_Folder_2" type="checkbox" value="stmt_Shelagh_McLove_MG11_hand.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_2L">stmt_Shelagh_McLove_MG11_hand.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">stmt_Shelagh_McLove_MG11_hand.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">14/10/2024</td>
+                <td class="govuk-table__cell">68 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row hidden_row hidden_row_13">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_2M" name="transfer_SD_Folder_2" type="checkbox" value="Shelagh_McLove_VPS_mg11.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_2M">Shelagh_McLove_VPS_mg11.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">Shelagh_McLove_VPS_mg11.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">23/04/2024</td>
+                <td class="govuk-table__cell">87 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row hidden_row hidden_row_14">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_2N" name="transfer_SD_Folder_2" type="checkbox" value="MG11_Shelagh_MCLOVE_retraction.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_2N">MG11_Shelagh_MCLOVE_retraction.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">MG11_Shelagh_MCLOVE_retraction.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">08/12/2024</td>
+                <td class="govuk-table__cell">69 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <!-- SUB FOLDER 3 - FILES - END -->
+            <!-- ================= HIDDEN ROWS - END ================= -->
+
+        </tbody>
+    </table>
+
+</div>
+<!-- ////////////////////////////////////////////// SEOCID MATERIALS - EMPTY SECTION 2 - END ////////////////////////////////////////////// -->
+
+<!-- ////////////////////////////////////////////// SEOCID MATERIALS - SECTION 2 - START ////////////////////////////////////////////// -->
+<div id="shared_drive_section_2">
+
+    <div class="permissions transfer_Folder_Destination">
+        <div class="govuk-inset-text">Transfer to <span class="transfer_folder_name"></span> <a href="" class="copy_Folder_Destination_second_level">Copy</a><a href="" class="move_Folder_Destination_second_level">Move</a></div>
+    </div>
+
+    <table class="govuk-table transferred-table sortable" id="show_transferred_Folders">
+
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_all_SD_Folder_3" name="transfer_SD_Folder_3" type="checkbox" value="Select all documents">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_all_SD_Folder_3">Select all</label>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">File or folder</button></th>
+                <!-- <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">Type</button></th> -->
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">Last modified date</button></th>
+                <th scope="col" class="govuk-table__header num"><button class="govuk-button" data-module="govuk-button">Size</button></th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button"></button></th>
+            </tr>
+        </thead>
+
+        <tbody class="govuk-table__body">
+
+            <!-- SUB FOLDER 1 - START -->
+            <tr class="govuk-table__row" id="show_transferred_Folder_1">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_3A" name="transfer_SD_Folder_3" type="checkbox" value="Reviews">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_3A">Reviews</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new folder"></span><a href="#" class="govuk-link govuk-link--no-visited-state show_section_pdrive_3A">Reviews</a></td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell"></td>
+            </tr>
+            <!-- SUB FOLDER 1 - END -->
+
+            <!-- SUB FOLDER 2 - START -->
+            <tr class="govuk-table__row" id="show_transferred_Folder_2">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_3B" name="transfer_SD_Folder_3" type="checkbox" value="Case overview">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_3B">Case overview</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new folder"></span><a href="#" class="govuk-link govuk-link--no-visited-state show_section_pdrive_3B">Case overview</a></td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell"></td>
+            </tr>
+            <!-- SUB FOLDER 2 - END -->
+
+            <!-- SUB FOLDER 3 - START -->
+            <tr class="govuk-table__row" id="show_transferred_Folder_3">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_3C" name="transfer_SD_Folder_3" type="checkbox" value="Statements">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_3C">Statements</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new folder"></span><a href="#" class="govuk-link govuk-link--no-visited-state show_section_pdrive_3C">Statements</a></td>
+                <!-- <td class="govuk-table__cell">File folder</td> -->
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell">--</td>
+                <td class="govuk-table__cell"></td>
+            </tr>
+            <!-- SUB FOLDER 3 - END -->
+
+        </tbody>
+    </table>
+
+    <table class="govuk-table transferred-table sortable" id="show_transferred_Folder_Contents_1">
+
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_all_SD_Folder_4" name="transfer_SD_Folder_4" type="checkbox" value="Select all documents">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_all_SD_Folder_4">Select all</label>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">File or folder</button></th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">Type</button></th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">Date</button></th>
+                <th scope="col" class="govuk-table__header num"><button class="govuk-button" data-module="govuk-button">Size</button></th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button"></button></th>
+            </tr>
+        </thead>
+
+        <tbody class="govuk-table__body">
+            <!-- SUB FOLDER 1 - FILES - START -->
+            <tr class="govuk-table__row" id="show_transferred_Folder_Contents_1A" style="display: none;">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_4A" name="transfer_SD_Folder_4" type="checkbox" value="MCLOVEMG3.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_4A">MCLOVEMG3.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">MCLOVEMG3.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">23/07/2024</td>
+                <td class="govuk-table__cell">27 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <!-- SUB FOLDER 1 - FILES - END -->
+
+        </tbody>
+    </table>
+
+    <table class="govuk-table transferred-table sortable" id="show_transferred_Folder_Contents_2">
+
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_all_SD_Folder_5" name="transfer_SD_Folder_5" type="checkbox" value="Select all documents">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_all_SD_Folder_5">Select all</label>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">File or folder</button></th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">Type</button></th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">Date</button></th>
+                <th scope="col" class="govuk-table__header num"><button class="govuk-button" data-module="govuk-button">Size</button></th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button"></button></th>
+            </tr>
+        </thead>
+
+        <tbody class="govuk-table__body">
+
+            <!-- SUB FOLDER 2 - FILES - START -->
+            <tr class="govuk-table__row" id="show_transferred_Folder_Contents_2A" style="display: none;">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_5A" name="transfer_SD_Folder_5" type="checkbox" value="CM01.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_5A">CM01.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">CM01.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">11/05/2024</td>
+                <td class="govuk-table__cell">20 MB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row" id="show_transferred_Folder_Contents_2B" style="display: none;">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_5B" name="transfer_SD_Folder_5" type="checkbox" value="CM01.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_5B">CM01.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">CM01.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">14/06/2024</td>
+                <td class="govuk-table__cell">108 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row" id="show_transferred_Folder_Contents_2C" style="display: none;">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_5C" name="transfer_SD_Folder_5" type="checkbox" value="MG06_3June.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_5C">MG06_3June.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">MG06_3June.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">21/07/2024</td>
+                <td class="govuk-table__cell">1 MB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row" id="show_transferred_Folder_Contents_2D" style="display: none;">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_5D" name="transfer_SD_Folder_5" type="checkbox" value="MG06_10june.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_5D">MG06_10june.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">MG06_10june.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">24/04/2024</td>
+                <td class="govuk-table__cell">24 MB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <!-- SUB FOLDER 2 - FILES - END -->
+
+        </tbody>
+    </table>
+
+    <table class="govuk-table transferred-table sortable" id="show_transferred_Folder_Contents_3">
+
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="select_all_SD_Folder_6" name="transfer_SD_Folder_6" type="checkbox" value="Select all documents">
+                                <label class="govuk-label govuk-checkboxes__label" for="select_all_SD_Folder_6">Select all</label>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">File or folder</button></th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">Type</button></th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button">Date</button></th>
+                <th scope="col" class="govuk-table__header num"><button class="govuk-button" data-module="govuk-button">Size</button></th>
+                <th scope="col" class="govuk-table__header"><button class="govuk-button" data-module="govuk-button"></button></th>
+            </tr>
+        </thead>
+
+        <tbody class="govuk-table__body">
+
+            <!-- SUB FOLDER 3 - FILES - START -->
+            <tr class="govuk-table__row" id="show_transferred_Folder_Contents_3A" style="display: none;">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_6A" name="transfer_SD_Folder_6" type="checkbox" value="stmt_BLAYNEE_2034_1_JUNE_mg11.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_6A">stmt_BLAYNEE_2034_1_JUNE_mg11.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">stmt_BLAYNEE_2034_1_JUNE_mg11.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">22/08/2024</td>
+                <td class="govuk-table__cell">50 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row" id="show_transferred_Folder_Contents_3B" style="display: none;">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_6B" name="transfer_SD_Folder_6" type="checkbox" value="stmt_JONES_1989_1_JUNE_mg11.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_6B">stmt_JONES_1989_1_JUNE_mg11.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">stmt_JONES_1989_1_JUNE_mg11.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">25/09/2024</td>
+                <td class="govuk-table__cell">1 MB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row" id="show_transferred_Folder_Contents_3C" style="display: none;">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_6C" name="transfer_SD_Folder_6" type="checkbox" value="stmt_Lucy_Doyle_MG11.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_6C">stmt_Lucy_Doyle_MG11.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">stmt_Lucy_Doyle_MG11.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">15/08/2024</td>
+                <td class="govuk-table__cell">207 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row" id="show_transferred_Folder_Contents_3D" style="display: none;">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_6D" name="transfer_SD_Folder_6" type="checkbox" value="stmt_Shelagh_McLove_MG11_hand.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_6D">stmt_Shelagh_McLove_MG11_hand.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">stmt_Shelagh_McLove_MG11_hand.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">14/10/2024</td>
+                <td class="govuk-table__cell">68 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row" id="show_transferred_Folder_Contents_3E" style="display: none;">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_6E" name="transfer_SD_Folder_6" type="checkbox" value="Shelagh_McLove_VPS_mg11.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_6E">Shelagh_McLove_VPS_mg11.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">Shelagh_McLove_VPS_mg11.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">23/04/2024</td>
+                <td class="govuk-table__cell">87 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <tr class="govuk-table__row" id="show_transferred_Folder_Contents_3F" style="display: none;">
+                <td class="govuk-table__cell">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="transfer_SD_Folder_6F" name="transfer_SD_Folder_6" type="checkbox" value="MG11_Shelagh_MCLOVE_retraction.pdf">
+                                <label class="govuk-label govuk-checkboxes__label" for="transfer_SD_Folder_6F">MG11_Shelagh_MCLOVE_retraction.pdf</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="govuk-table__cell"><span class="icon-new file"></span><span class="file_name">MG11_Shelagh_MCLOVE_retraction.pdf</span></td>
+                <!-- <td class="govuk-table__cell">PDF</td> -->
+                <td class="govuk-table__cell">08/12/2024</td>
+                <td class="govuk-table__cell">69 KB</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Finished</strong></td>
+            </tr>
+            <!-- SUB FOLDER 3 - FILES - END -->
+
+        </tbody>
+    </table>
+
+</div>
+<!-- ////////////////////////////////////////////// SEOCID MATERIALS - SECTION 2 - END ////////////////////////////////////////////// -->

@@ -1,0 +1,460 @@
+<h2 class="govuk-heading-m">Materials</h2>
+<span class="govuk-caption-m">Last updated <span id="materials-timestamp"></span></span>
+<!-- <div class="permissions">
+    {% if data['searchOFF_URN'] == 'Thunder' or data['searchOFF_URN'] == 'thunder' %}
+        <input type="text" value="\\ Public (P:) > RCTCaseData > SCCTD > CTD > Live Op > {{ data['searchOFF_URN'] }}struck" id="filePath-Drive" class="url-text" disabled>
+    {% else %}
+        <input type="text" value="\\ Public (P:) > RCTCaseData > SCCTD > CTD > Live Op > {{ data['searchOFF_URN'] }}" id="filePath-Drive" class="url-text" disabled>
+    {% endif %}
+    <a class="govuk-button copy-button" id="copyDriveLink" onclick="copyDriveLink()">Copy path</a>
+</div>
+ -->
+<div class="section-wrapper materials_holder">
+
+    <section class="width_50">
+
+        <button onclick="windowSizeChange2(), windowSizeChangeText()" class="window-size" id="window-size"><span>View full screen</span></button>
+
+        {% if data['searchOFF_Operation_VALUE'] == 'Dumper Truck' or data['searchOFF_Operation_VALUE'] == 'Dumper truck'  or data['searchOFF_Operation_VALUE'] == 'dumper truck'  or data['searchOFF_Operation_VALUE'] == 'Dumpertruck' %}
+            <div class="title-wrapper">
+                <h3 class="govuk-heading-s"><img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo small"> inbound documents</h3>
+                <a href="#" class="new-window">Open</a>
+            </div>
+            <div class="permissions">
+                <div id="filePath-Egress" class="url-text div-style">https://cps.egresscloud.com/w/edit/66fd8bd1158de0c2ca41b172/</div>
+                <a class="" id="">Edit folder</a>
+            </div>
+            <div class="loading" id="loading_transfer">
+                <div>
+                    <div class="hods-loading-spinner">
+                        <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                    </div>
+                    <p>Loading documents from <img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo x-small">...</p>
+                </div>
+            </div>
+        {% elseif data['searchOFF_Defendant_VALUE'] == 'Dumper Truck' or data['searchOFF_Defendant_VALUE'] == 'Dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'Dumpertruck' %}
+            <div class="title-wrapper">
+                <h3 class="govuk-heading-s"><img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo small"> inbound documents</h3>
+                <a href="#" class="new-window">Open</a>
+            </div>
+            <div class="permissions">
+                <div id="filePath-Egress" class="url-text div-style">https://cps.egresscloud.com/w/edit/66fd8bd1158de0c2ca41b172/</div>
+                <a class="" id="">Edit folder</a>
+            </div>
+            <div class="loading" id="loading_transfer">
+                <div>
+                    <div class="hods-loading-spinner">
+                        <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                    </div>
+                    <p>Loading documents from <img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo x-small">...</p>
+                </div>
+            </div>
+        {% elseif data['searchOFF_Operation_VALUE'] or data['searchOFF_Defendant_VALUE'] %}
+            {% if data['mvp_Case_1'] == 'true' %}
+                <div class="title-wrapper">
+                    <h3 class="govuk-heading-s"><img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo small"> inbound documents</h3>
+                    <a href="#" class="new-window">Open</a>
+                </div>
+                <div class="permissions">
+                    <div id="filePath-Egress" class="url-text div-style">https://cps.egresscloud.com/w/edit/66fd8bd1158de0c2ca41b172/</div>
+                    <a class="" id="">Edit folder</a>
+                </div>
+                <div class="loading" id="loading_transfer">
+                    <div>
+                        <div class="hods-loading-spinner">
+                            <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                        </div>
+                        <p>Loading documents from <img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo x-small">...</p>
+                    </div>
+                </div>
+                <!-- ////////////////////////////// DOCUMENTS - START ////////////////////////////// -->
+                {% include "../../includes/off-system-MVP/egress-files.html" %}
+                <!-- ////////////////////////////// DOCUMENTS - START ////////////////////////////// -->
+            {% elseif data['mvp_Case_2'] == 'true' %}
+                {% if data['offCMS_Egress_files'] %}
+                    <div class="title-wrapper">
+                        <h3 class="govuk-heading-s"><img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo small"> inbound documents</h3>
+                        <a href="#" class="new-window">Open</a>
+                    </div>
+                    <div class="permissions">
+                        <div id="filePath-Egress" class="url-text div-style">https://cps.egresscloud.com/w/edit/58y34nekrgeroignerggegjg654687/</div>
+                        <a class="" id="">Edit folder</a>
+                    </div>
+                    <div class="loading" id="loading_transfer">
+                        <div>
+                            <div class="hods-loading-spinner">
+                                <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                            </div>
+                            <p>Loading documents from <img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo x-small">...</p>
+                        </div>
+                    </div>
+                    <!-- ////////////////////////////// DOCUMENTS - START ////////////////////////////// -->
+                    {% include "../../includes/off-system-MVP/egress-files.html" %}
+                    <!-- ////////////////////////////// DOCUMENTS - START ////////////////////////////// -->
+                {% else %}
+                    <div class="title-wrapper">
+                        <h3 class="govuk-heading-s"><img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo small"> inbound documents</h3>
+                        <a href="04-egress-files" class="">Connect folder</a>
+                    </div>
+                    <div class="permissions">
+                        <p>There has been no connection made to egress.</p>
+                    </div>
+                {% endif %}
+            {% elseif data['mvp_Case_3'] == 'true' %}
+                <div class="title-wrapper">
+                    <h3 class="govuk-heading-s"><img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo small"> inbound documents</h3>
+                    <a href="#" class="new-window">Open</a>
+                </div>
+                <div class="permissions">
+                    <div id="filePath-Egress" class="url-text div-style">https://cps.egresscloud.com/w/edit/66fd8bd1158de0c2ca41b172/</div>
+                    <a class="" id="">Edit folder</a>
+                    <div class="loading" id="loading_transfer">
+                        <div>
+                            <div class="hods-loading-spinner">
+                                <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                            </div>
+                            <p>Loading documents from <img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo x-small">...</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- ////////////////////////////// DOCUMENTS - START ////////////////////////////// -->
+                {% include "../../includes/off-system-MVP/egress-files.html" %}
+                <!-- ////////////////////////////// DOCUMENTS - START ////////////////////////////// -->
+            {% elseif data['mvp_Case_4'] == 'true' %}
+                {% if data['offCMS_Egress_files_V2'] %}
+                    <div class="title-wrapper">
+                        <h3 class="govuk-heading-s"><img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo small"> inbound documents</h3>
+                        <a href="#" class="new-window">Open</a>
+                    </div>
+                    <div class="permissions">
+                        <div id="filePath-Egress" class="url-text div-style">https://cps.egresscloud.com/w/edit/t9865eer84we548tegdv6s/</div>
+                        <a class="" id="">Edit folder</a>
+                        <div class="loading" id="loading_transfer">
+                            <div>
+                                <div class="hods-loading-spinner">
+                                    <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                                </div>
+                                <p>Loading documents from <img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo x-small">...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ////////////////////////////// DOCUMENTS - START ////////////////////////////// -->
+                    {% include "../../includes/off-system-MVP/egress-files.html" %}
+                    <!-- ////////////////////////////// DOCUMENTS - START ////////////////////////////// -->
+                {% else %}
+                    <div class="title-wrapper">
+                        <h3 class="govuk-heading-s"><img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo small"> inbound documents</h3>
+                        <a href="04-egress-files" class="">Connect folder</a>
+                    </div>
+                    <div class="permissions">
+                        <p>There has been no connection made to egress.</p>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            <div class="permissions">
+                <div id="filePath-Egress" class="url-text div-style">https://cps.egresscloud.com/w/edit/66fd8bd1158de0c2ca41b172/</div>
+                <a class="" id="">Edit folder</a>
+            </div>
+        {% endif %}
+
+        <div class="cta-wrapper cta-materials govuk-!-margin-top-2">
+            <p>There are <strong class="selected-number">11 files</strong> to transfer</p>
+            <a disabled class="govuk-button" id="transfer_Materials" data-module="govuk-button">Transfer materials</a>
+        </div>
+
+    </section>
+
+    <section class="width_50">
+
+        {% if data['searchOFF_Operation_VALUE'] == 'Dumper Truck' or data['searchOFF_Operation_VALUE'] == 'Dumper truck'  or data['searchOFF_Operation_VALUE'] == 'dumper truck'  or data['searchOFF_Operation_VALUE'] == 'Dumpertruck' %}
+            <div class="title-wrapper">
+                <h3 class="govuk-heading-s">Shared Drive</h3>
+                <a href="#" class="new-window">Open</a>                                
+            </div>
+
+            <div class="permissions">
+                <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+                    <ol class="govuk-breadcrumbs__list">
+                        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Public (P:)</a></li>
+                        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">RCTCaseData</a></li>
+                        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">SCCTD</a></li>
+                        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Live cases</a></li>
+                        {% if data['searchOFF_Operation_VALUE'] == 'Dumper Truck' or data['searchOFF_Operation_VALUE'] == 'Dumper truck'  or data['searchOFF_Operation_VALUE'] == 'dumper truck'  or data['searchOFF_Operation_VALUE'] == 'Dumpertruck' %}
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">{{ data['searchOFF_Operation_VALUE'] }}</a></li>
+                        {% elseif data['searchOFF_Defendant_VALUE'] == 'Dumper Truck' or data['searchOFF_Defendant_VALUE'] == 'Dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'Dumpertruck' %}
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">{{ data['searchOFF_Defendant_VALUE'] }}</a></li>
+                        {% elseif data['searchOFF_URN_VALUE'] %}
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">Dumper Truck {{ data['searchOFF_URN_VALUE'] }}</a></li>
+                        {% endif %}
+                    </ol>
+                </nav>
+                <a href="#">Edit folder</a>
+            </div>
+
+            <div class="loading" id="loading_materials">
+                <div>
+                    <div class="hods-loading-spinner">
+                        <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                    </div>
+                    <p>Loading documents from the Shared Drive...</p>
+                </div>
+            </div>
+
+            <!-- ////////////////////////////// ACCORDIONS - START ////////////////////////////// -->
+            {% include "../../includes/off-system-MVP/documents-Folder_V2.html" %}
+            <!-- ////////////////////////////// ACCORDIONS - END ////////////////////////////// -->
+        {% elseif data['searchOFF_Defendant_VALUE'] == 'Dumper Truck' or data['searchOFF_Defendant_VALUE'] == 'Dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'Dumpertruck' %}
+            <div class="title-wrapper">
+                <h3 class="govuk-heading-s">Shared Drive</h3>
+                <a href="#" class="new-window">Open</a>                                
+            </div>
+
+            <div class="permissions">
+                <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+                    <ol class="govuk-breadcrumbs__list">
+                        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Public (P:)</a></li>
+                        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">RCTCaseData</a></li>
+                        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">SCCTD</a></li>
+                        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Live cases</a></li>
+                        {% if data['searchOFF_Operation_VALUE'] == 'Dumper Truck' or data['searchOFF_Operation_VALUE'] == 'Dumper truck'  or data['searchOFF_Operation_VALUE'] == 'dumper truck'  or data['searchOFF_Operation_VALUE'] == 'Dumpertruck' %}
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">{{ data['searchOFF_Operation_VALUE'] }}</a></li>
+                        {% elseif data['searchOFF_Defendant_VALUE'] == 'Dumper Truck' or data['searchOFF_Defendant_VALUE'] == 'Dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'Dumpertruck' %}
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">{{ data['searchOFF_Defendant_VALUE'] }}</a></li>
+                        {% elseif data['searchOFF_URN_VALUE'] %}
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">Dumper Truck {{ data['searchOFF_URN_VALUE'] }}</a></li>
+                        {% elseif data['searchOFF_Operation_VALUE'] %}
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#"></a></li>
+                        {% endif %}
+                    </ol>
+                </nav>
+                <a href="#">Edit folder</a>
+            </div>
+
+            <div class="loading" id="loading_materials">
+                <div>
+                    <div class="hods-loading-spinner">
+                        <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                    </div>
+                    <p>Loading documents from the Shared Drive...</p>
+                </div>
+            </div>
+
+            <!-- ////////////////////////////// ACCORDIONS - START ////////////////////////////// -->
+            {% include "../../includes/off-system-MVP/documents-Folder_V2.html" %}
+            <!-- ////////////////////////////// ACCORDIONS - END ////////////////////////////// -->
+        {% elseif data['searchOFF_Operation_VALUE'] or data['searchOFF_Defendant_VALUE'] %}
+            {% if data['mvp_Case_1'] == 'true' %}
+                <div class="title-wrapper">
+                    <h3 class="govuk-heading-s">Shared Drive</h3>
+                    <a href="#" class="new-window">Open</a>                                
+                </div>
+
+                <div class="permissions">
+                    <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+                        <ol class="govuk-breadcrumbs__list">
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Public (P:)</a></li>
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">RCTCaseData</a></li>
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">SCCTD</a></li>
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Live cases</a></li>
+                            {% if data[''] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">{{ data['searchOFF_Operation_VALUE'] }}struck</a></li>
+                            {% elseif data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">{{ data['searchOFF_Operation_VALUE'] }}struck</a></li>
+                            {% elseif data['searchOFF_Operation_VALUE'] %}
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">{{ data['searchOFF_Operation_VALUE'] }}</a></li>
+                            {% elseif data['searchOFF_Defendant_VALUE'] %}
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">{{ data['searchOFF_Defendant_VALUE'] }}</a></li>
+                            {% endif %}
+                        </ol>
+                    </nav>
+                    <a href="#">Edit folder</a>
+                </div>
+
+                <div class="loading" id="loading_materials">
+                    <div>
+                        <div class="hods-loading-spinner">
+                            <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                        </div>
+                        <p>Loading documents from the Shared Drive...</p>
+                    </div>
+                </div>
+
+                <!-- ////////////////////////////// ACCORDIONS - START ////////////////////////////// -->
+                {% include "../../includes/off-system-MVP/documents-Folder_V2.html" %}
+                <!-- ////////////////////////////// ACCORDIONS - END ////////////////////////////// -->
+            {% elseif data['mvp_Case_2'] == 'true' %}
+                <div class="title-wrapper">
+                    <h3 class="govuk-heading-s">Shared Drive</h3>
+                    <a href="#" class="new-window">Open</a>                                
+                </div>
+
+                <div class="permissions">
+                    <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+                        <ol class="govuk-breadcrumbs__list">
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Public (P:)</a></li>
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">RCTCaseData</a></li>
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">SCCTD</a></li>
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Live cases</a></li>
+                            {% if data[''] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">{{ data['searchOFF_Operation_VALUE'] }}struck traffic</a></li>
+                            {% elseif data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">{{ data['searchOFF_Defendant_VALUE'] }}struck traffic</a></li>
+                            {% elseif data['searchOFF_Operation_VALUE'] %}
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">{{ data['searchOFF_Operation_VALUE'] }} traffic</a></li>
+                            {% elseif data['searchOFF_Defendant_VALUE'] %}
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">{{ data['searchOFF_Defendant_VALUE'] }} traffic</a></li>
+                            {% endif %}
+                        </ol>
+                    </nav>
+                    <a href="#">Edit folder</a>
+                </div>
+
+                <div class="loading" id="loading_materials">
+                    <div>
+                        <div class="hods-loading-spinner">
+                            <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                        </div>
+                        <p>Loading documents from the Shared Drive...</p>
+                    </div>
+                </div>
+
+                <!-- ////////////////////////////// ACCORDIONS - START ////////////////////////////// -->
+                {% include "../../includes/off-system-MVP/documents-Folder_V2.html" %}
+                <!-- ////////////////////////////// ACCORDIONS - END ////////////////////////////// -->
+            {% elseif data['mvp_Case_3'] == 'true' %}
+                {% if data['offCMS_PDrive_files'] %}
+                    <div class="title-wrapper">
+                        <h3 class="govuk-heading-s">Shared Drive</h3>
+                        <a href="#" class="new-window">Open</a>                                
+                    </div>
+
+                    <div class="permissions">
+                        <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+                            <ol class="govuk-breadcrumbs__list">
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Public (P:)</a></li>
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">RCTCaseData</a></li>
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">SCCTD</a></li>
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Live cases</a></li>
+                                {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">{{ data['searchOFF_Operation_VALUE'] }}struck Office</a></li>
+                                {% elseif data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">{{ data['searchOFF_Defendant_VALUE'] }}struck Office</a></li>
+                                {% elseif data['searchOFF_Operation_VALUE'] %}
+                                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">{{ data['searchOFF_Operation_VALUE'] }} Office</a></li>
+                                {% elseif data['searchOFF_Defendant_VALUE'] %}
+                                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">{{ data['searchOFF_Defendant_VALUE'] }} Office</a></li>
+                                {% endif %}
+                            </ol>
+                        </nav>
+                        <a href="#">Edit folder</a>
+                    </div>
+
+                    <div class="loading" id="loading_materials">
+                        <div>
+                            <div class="hods-loading-spinner">
+                                <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                            </div>
+                            <p>Loading documents from the Shared Drive...</p>
+                        </div>
+                    </div>
+
+                    <!-- ////////////////////////////// ACCORDIONS - START ////////////////////////////// -->
+                    {% include "../../includes/off-system-MVP/documents-Folder_V2.html" %}
+                    <!-- ////////////////////////////// ACCORDIONS - END ////////////////////////////// -->
+                {% else %}
+                    <div class="title-wrapper">
+                        <h3 class="govuk-heading-s">Shared Drive</h3>
+                        <a href="05A-p-drive-files" class="">Connect folder</a>                                
+                    </div>
+                    <div class="permissions">
+                        <p>There has been no connection made to the Shared Drive.</p>
+                    </div>
+                {% endif %}
+            {% elseif data['mvp_Case_4'] == 'true' %}
+                {% if data['offCMS_PDrive_files_V2'] %}
+                    <div class="title-wrapper">
+                        <h3 class="govuk-heading-s">Shared Drive</h3>
+                        <a href="#" class="new-window">Open</a>                                
+                    </div>
+
+                    <div class="permissions">
+                        <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+                            <ol class="govuk-breadcrumbs__list">
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Public (P:)</a></li>
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">RCTCaseData</a></li>
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">SCCTD</a></li>
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Live cases</a></li>
+                                {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">Captain {{ data['searchOFF_Operation_VALUE'] }}struck</a></li>
+                                {% elseif data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">Captain {{ data['searchOFF_Defendant_VALUE'] }}struck</a></li>
+                                {% elseif data['searchOFF_Operation_VALUE'] %}
+                                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">Captain {{ data['searchOFF_Operation_VALUE'] }}</a></li>
+                                {% elseif data['searchOFF_Defendant_VALUE'] %}
+                                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">Captain {{ data['searchOFF_Defendant_VALUE'] }}</a></li>
+                                {% endif %}
+                            </ol>
+                        </nav>
+                        <a href="#">Edit folder</a>
+                    </div>
+
+                    <div class="loading" id="loading_materials">
+                        <div>
+                            <div class="hods-loading-spinner">
+                                <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                            </div>
+                            <p>Loading documents from the Shared Drive...</p>
+                        </div>
+                    </div>
+
+                    <!-- ////////////////////////////// ACCORDIONS - START ////////////////////////////// -->
+                    {% include "../../includes/off-system-MVP/documents-Folder_V2.html" %}
+                    <!-- ////////////////////////////// ACCORDIONS - END ////////////////////////////// -->
+                {% else %}
+                    <div class="title-wrapper">
+                        <h3 class="govuk-heading-s">Shared Drive</h3>
+                        <a href="05A-p-drive-files" class="">Connect folder</a>                                
+                    </div>
+                    <div class="permissions">
+                        <p>There has been no connection made to the Shared Drive.</p>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            <div class="title-wrapper">
+                <h3 class="govuk-heading-s">Shared Drive</h3>
+                <a href="#" class="new-window">Open</a>                                
+            </div>
+
+            <div class="permissions">
+                <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+                    <ol class="govuk-breadcrumbs__list">
+                        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Public (P:)</a></li>
+                        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">RCTCaseData</a></li>
+                        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">SCCTD</a></li>
+                        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Live cases</a></li>
+                        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link selected" href="#">Dumper Truck {{ data['searchOFF_URN_VALUE'] }}</a></li>
+                    </ol>
+                </nav>
+                <a href="#">Edit folder</a>
+            </div>
+
+            <div class="loading" id="loading_materials">
+                <div>
+                    <div class="hods-loading-spinner">
+                        <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                    </div>
+                    <p>Loading documents from the Shared Drive...</p>
+                </div>
+            </div>
+
+            <!-- ////////////////////////////// ACCORDIONS - START ////////////////////////////// -->
+            {% include "../../includes/off-system-MVP/documents-Folder_V2.html" %}
+            <!-- ////////////////////////////// ACCORDIONS - END ////////////////////////////// -->
+        {% endif %}
+
+    </section>
+
+
+</div>

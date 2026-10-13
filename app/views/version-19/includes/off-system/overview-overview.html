@@ -1,0 +1,276 @@
+<h2 class="govuk-heading-m">Overview</h2>
+<span class="govuk-caption-m">Last updated <span id="my-cases-timestamp"></span></span>
+
+<p></p>
+
+<div class="section-wrapper section-row flex-30">
+    <section>
+        <div class="title-wrapper">
+            <h3 class="govuk-heading-s">Case details</h3>
+            <a href="16-case-details">Edit</a>
+        </div>
+        <div class="section-content">
+
+            <table class="govuk-table settings-table">
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Operation name</th>
+                        {% if data['newCase_OperationName'] or data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                            {% if data['newCase_OperationName'] %}
+                                <td class="govuk-table__cell">{{ data['newCase_OperationName'] }}</td>
+                            {% else %}
+                                <td class="govuk-table__cell"><span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}, </span>{{ data['newCase_DefendantName-Forename'] }}</td>
+                            {% endif %}                   
+                        {% elseif data['existing_Case'] == 'true' %}
+                            <td class="govuk-table__cell">Groundhog day</td>
+                        {% endif %}
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Suspect/defendant name(s)</th>
+                        <td class="govuk-table__cell">
+                            {% if data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                                <span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}, </span>{{ data['newCase_DefendantName-Forename'] }}
+                                {% if data['addSuspect_Form-Surname'] or data['addSuspect_Form-Forename'] %}
+                                    <br><span class="uppercase">{{ data['addSuspect_Form-Surname'] }}, </span>{{ data['addSuspect_Form-Forename'] }}
+                                {% else %}
+
+                                {% endif %}
+                            {% elseif data['newCase_DefendantName-CompanyName'] %}
+                                {{ data['newCase_DefendantName-CompanyName'] }}
+                            {% else %}
+                                --
+                            {% endif %}
+                        </td>    
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Crest/Indictment no.</th>
+                        {% if data['caseDetails_Crest'] %}
+                            <td class="govuk-table__cell">{{ data['caseDetails_Crest'] }}</td>
+                        {% else %}
+                            <td class="govuk-table__cell">--</td>
+                        {% endif %}                   
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Force/Investigative Agency</th>
+                        {% if data['caseDetails_Agency'] %}
+                            <td class="govuk-table__cell">{{ data['caseDetails_Agency'] }}</td>
+                        {% else %}
+                            <td class="govuk-table__cell">--</td>
+                        {% endif %}                   
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Complexity rating</th>
+                        <td class="govuk-table__cell">
+                            {% if data['caseDetails_Complexity'] == 'Low' %}
+                                <strong class="govuk-tag govuk-tag--green">{{ data['caseDetails_Complexity'] }}</strong>
+                            {% elseif data['caseDetails_Complexity'] == 'Medium' %}
+                                <strong class="govuk-tag govuk-tag--blue">{{ data['caseDetails_Complexity'] }}</strong>
+                            {% elseif data['caseDetails_Complexity'] == 'High' %}
+                                <strong class="govuk-tag govuk-tag--yellow">{{ data['caseDetails_Complexity'] }}</strong>
+                            {% elseif data['caseDetails_Complexity'] == 'Exceptional' %}
+                                <strong class="govuk-tag govuk-tag--red">{{ data['caseDetails_Complexity'] }}</strong>
+                            {% else %}
+                                --
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Current case status</th>
+                        {% if data['chargeAddedComplete'] == 'True' %}
+                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Charged</strong></td>
+                        {% else %}
+                            {% if data['caseDetails_Status'] == 'Early Advice' %}
+                                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Early Advice</strong></td>
+                            {% elseif data['caseDetails_Status'] == 'Pre Charge Request' %}
+                                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Pre-charge</strong></td>
+                            {% elseif data['caseDetails_Status'] == 'Charged' %}
+                                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Charged</strong></td>
+                            {% else %}
+                                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Pre-charge</strong></td>
+                            {% endif %} 
+                        {% endif %}                   
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Proceeding type</th>
+                        {% if data['caseDetails_Type'] %}
+                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">{{ data['caseDetails_Type'] }}</strong></td>
+                        {% else %}
+                            <td class="govuk-table__cell">--</td>
+                        {% endif %}                   
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+    <section>
+        <div class="title-wrapper">
+            <h3 class="govuk-heading-s">CPS team members</h3>
+            <a href="14-lock-down">Edit</a>
+        </div>
+
+        <table class="govuk-table contacts-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">User</th>
+                    <th scope="col" class="govuk-table__header">Case role</th>
+                    <th scope="col" class="govuk-table__header"></th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header"><span class="icon-new user"></span> {{ data['offCMS_Username'] }}</th>
+                    {% if data['newCase_Access-Role'] %}
+                        {% if data['newCase_Access-Role'] == 'Lead Prosecutor' or data['newCase_Access-Role'] == 'Lead Paralegal Officer' %}
+                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Lead</strong> - {{ data['newCase_Access-Role'] }}</td>
+                        {% else %}
+                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">{{ data['newCase_Access-Role'] }}</strong></td>
+                        {% endif %}                    
+                    {% else %}
+                        <td class="govuk-table__cell">--</td>
+                    {% endif %}                    
+                    <td class="govuk-table__cell"><a href="14-lock-down">Edit</a><a class="removeContact">Remove</a></td>
+                </tr>
+
+                {% if data['newCase_Access-Email'] %}
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header"><span class="icon-new user"></span> {{ data['newCase_Access-Email'] }}</th>
+                        {% if data['newCase_Access-Permissions'] == 'Lead Prosecutor' or data['newCase_Access-Permissions'] == 'Lead Paralegal Officer' %}
+                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">{{ data['newCase_Access-Permissions'] }}</strong></td>
+                        {% else %}
+                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">{{ data['newCase_Access-Permissions'] }}</strong></td>
+                        {% endif %}                    
+                        <td class="govuk-table__cell"><a href="14-lock-down">Edit</a><a class="removeContact">Remove</a></td>
+                    </tr>
+                {% else %}
+
+                {% endif %}    
+
+                {% if data['newCase_Access-Email2'] %}
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header"><span class="icon-new user"></span> {{ data['newCase_Access-Email2'] }}</th>
+                        {% if data['newCase_Access-Permissions2'] == 'Lead Prosecutor' or data['newCase_Access-Permissions2'] == 'Lead Paralegal Officer' %}
+                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">{{ data['newCase_Access-Permissions2'] }}</strong></td>
+                        {% else %}
+                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">{{ data['newCase_Access-Permissions2'] }}</strong></td>
+                        {% endif %}                    
+                        <td class="govuk-table__cell"><a href="14-lock-down">Edit</a><a class="removeContact">Remove</a></td>
+                    </tr>
+                {% else %}
+
+                {% endif %}  
+
+                {% if data['newCase_Access-Email3'] %}
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header"><span class="icon-new user"></span> {{ data['newCase_Access-Email3'] }}</th>
+                        {% if data['newCase_Access-Permissions3'] == 'Lead Prosecutor' or data['newCase_Access-Permissions3'] == 'Lead Paralegal Officer' %}
+                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">{{ data['newCase_Access-Permissions3'] }}</strong></td>
+                        {% else %}
+                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">{{ data['newCase_Access-Permissions3'] }}</strong></td>
+                        {% endif %}                    
+                        <td class="govuk-table__cell"><a href="14-lock-down">Edit</a><a class="removeContact">Remove</a></td>
+                    </tr>
+                {% else %}
+
+                {% endif %}       
+
+                {% if data['newCase_Access-Email4'] %}
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header"><span class="icon-new user"></span> {{ data['newCase_Access-Email4'] }}</th>
+                        {% if data['newCase_Access-Permissions4'] == 'Lead Prosecutor' or data['newCase_Access-Permissions4'] == 'Lead Paralegal Officer' %}
+                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">{{ data['newCase_Access-Permissions4'] }}</strong></td>
+                        {% else %}
+                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">{{ data['newCase_Access-Permissions4'] }}</strong></td>
+                        {% endif %}                    
+                        <td class="govuk-table__cell"><a href="14-lock-down">Edit</a><a class="removeContact">Remove</a></td>
+                    </tr>
+                {% else %}
+
+                {% endif %}                    
+
+                {% if data['newCase_Access-Email5'] %}
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header"><span class="icon-new user"></span> {{ data['newCase_Access-Email5'] }}</th>
+                        {% if data['newCase_Access-Permissions5'] == 'Lead Prosecutor' or data['newCase_Access-Permissions5'] == 'Lead Paralegal Officer' %}
+                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">{{ data['newCase_Access-Permissions5'] }}</strong></td>
+                        {% else %}
+                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">{{ data['newCase_Access-Permissions5'] }}</strong></td>
+                        {% endif %}                    
+                        <td class="govuk-table__cell"><a href="14-lock-down">Edit</a><a class="removeContact">Remove</a></td>
+                    </tr>
+                {% else %}
+
+                {% endif %}                    
+
+            </tbody>
+        </table>
+    </section>
+
+</div>
+
+<div class="section-wrapper section-row">
+    <section>
+        <div class="title-wrapper">
+            <h3 class="govuk-heading-s">Last actions on the case</h3>
+        </div>
+        <div class="section-content">
+
+            <div class="hods-timeline" id="last-action-hero">
+
+                <!-- CPS TEAM ADDED -->
+                {% if data['caseAccessLockedDown'] == 'true' %}
+                    <div class="hods-timeline__item">
+                        <h2 class="hods-timeline__title">CPS team added to the case</h2>
+                        <p class="hods-timeline__by">by {{ data['offCMS_Username'] }}</p>
+                        <p class="hods-timeline__date"><span id="">Today 10:04am</span></p>
+                    </div>
+                {% else %}
+
+                {% endif %}
+
+                {% if data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                    <div class="hods-timeline__item">
+                        <h2 class="hods-timeline__title">Suspect added</h2>
+                        <p class="hods-timeline__by">by {{ data['offCMS_Username'] }}</p>
+                        <p class="hods-timeline__date"><span id="">Today 10:04am</span></p>
+                        <p class="hods-timeline__description suspect-description">
+                            {% if data['newCase_Defendant'] == 'Individual' %}
+                                {% if data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                                    <strong>{{ data['newCase_DefendantName-Surname'] }}, {{ data['newCase_DefendantName-Forename'] }}</strong> added as a suspect for the case.
+                                {% else %}
+                                    An <strong>Individual</strong> has been added as a suspect for the case.
+                                {% endif %}
+                            {% elseif data['newCase_Defendant'] == 'Company' %}
+                                <strong>{{ data['newCase_DefendantName-CompanyName'] }}</strong> added as a suspect for the case.
+                            {% endif %}
+                        </p>    
+                    </div>
+                {% elseif data['newCase_DefendantName-CompanyName'] %}
+                    <div class="hods-timeline__item">
+                        <h2 class="hods-timeline__title">Suspect added</h2>
+                        <p class="hods-timeline__by">by {{ data['offCMS_Username'] }}</p>
+                        <p class="hods-timeline__date"><span id="">Today 10:04am</span></p>
+                        <p class="hods-timeline__description suspect-description">
+                            {% if data['newCase_DefendantName-CompanyName'] %}
+                                <strong>{{ data['newCase_DefendantName-CompanyName'] }}</strong> added as a suspect for the case.
+                            {% elseif data['newCase_Defendant'] == 'Company' %}
+                                A company has been added as a suspect for the case.
+                            {% endif %}
+                        </p>    
+                    </div>
+                {% else %}
+
+                {% endif %}
+
+                <!-- CASE CREATED -->
+                <div class="hods-timeline__item">
+                    <h2 class="hods-timeline__title">Case created</h2>
+                    <p class="hods-timeline__by">by {{ data['offCMS_Username'] }}</p>
+                    <p class="hods-timeline__date"><span id="case-created-stamp2">####</span></p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+</div>

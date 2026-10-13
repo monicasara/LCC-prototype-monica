@@ -1,0 +1,66 @@
+{% extends "layoutCPS-OFF-V11.html" %}
+
+{% block pageTitle %}
+Disconnect Egress – {{ serviceName }} – Prototype
+{% endblock %}
+
+{% block header %}
+{% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if disconnectEgressError %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">There is a problem</h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li><a href="#disconnect-egress-choice">{{ disconnectEgressError }}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <form method="post" action="/version-19/lcc/materials/disconnect-egress">
+      <div class="govuk-form-group {% if disconnectEgressError %}govuk-form-group--error{% endif %}">
+        <fieldset class="govuk-fieldset" aria-describedby="{% if disconnectEgressError %}disconnect-egress-choice-error{% endif %}">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading govuk-!-margin-top-4">Disconnect Egress?</h1>
+          </legend>
+
+          {% if disconnectEgressError %}
+          <p id="disconnect-egress-choice-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> {{ disconnectEgressError }}
+          </p>
+          {% endif %}
+
+          <div class="govuk-radios" data-module="govuk-radios" id="disconnect-egress-choice">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="disconnect-egress-yes" name="disconnect-egress-choice" type="radio" value="Yes">
+              <label class="govuk-label govuk-radios__label" for="disconnect-egress-yes">
+                Yes, disconnect an Egress case
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="disconnect-egress-no" name="disconnect-egress-choice" type="radio" value="No">
+              <label class="govuk-label govuk-radios__label" for="disconnect-egress-no">
+                No, keep Egress connected
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-button-group">
+        <button class="govuk-button" data-module="govuk-button" type="submit">Continue</button>
+        <a class="govuk-link" href="/version-19/lcc/materials/transfer-materials">Cancel</a>
+      </div>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

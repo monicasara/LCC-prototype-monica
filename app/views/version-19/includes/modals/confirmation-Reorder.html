@@ -1,0 +1,75 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="openReorder">
+
+    <div class="das-cookie-banner x-small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <!-- //////////////////////////////// REDACTION LOG - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="feedback">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-m">
+                                    Sumbit reorder or documents            
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="redaction-wrapper">
+                        <form method="" action="">
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full">
+                                    <p></p>
+                                </div>
+
+                                <div class="govuk-grid-column-full">
+
+                                    <!-- ////// FORM ITEM 1 - START ////// -->
+                                    <fieldset class="govuk-fieldset">
+
+                                        <div class="govuk-warning-text govuk-!-margin-bottom-2">
+                                            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                                            <strong class="govuk-warning-text__text">
+                                                <span class="govuk-warning-text__assistive">Warning</span>
+                                                Your re-ordering of documents will be sumbitted to CMS, if you choose to continue
+                                            </strong>
+                                        </div>
+
+                                        <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                            <legend class="govuk-fieldset__legend">Submit re-order of documents</legend>
+                                            <div class="govuk-radios__item">
+                                                <input class="govuk-radios__input" id="submitReorder-Yes" name="submitReorder" type="radio" value="Yes">
+                                                <label class="govuk-label govuk-radios__label" for="submitReorder-Yes">Yes</label>
+                                            </div>
+                                            <div class="govuk-radios__item">
+                                                <input class="govuk-radios__input" id="submitReorder-No" name="submitReorder" type="radio" value="No">
+                                                <label class="govuk-label govuk-radios__label" for="submitReorder-No">No</label>
+                                            </div>                                        
+                                        </div>
+                                    </fieldset>
+                                    <!-- ////// FORM ITEM 1 - END ////// -->
+                                </div>
+
+                            </div>
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full cta-group">
+                                    <button id="sumbittedReorder" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled" data-module="govuk-button" type="button">Continue</button>
+                                    <button class="non-button" data-module="govuk-button" type="button" onclick="closeReorder()">Cancel</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>

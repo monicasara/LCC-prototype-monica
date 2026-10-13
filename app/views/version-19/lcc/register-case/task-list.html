@@ -1,0 +1,172 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Service name
+{% endblock %}
+
+{% block content %}
+<style>
+    .task-list-example {
+        max-width: 630px;
+    }
+
+    .task-list-example .govuk-heading-xl {
+        margin-bottom: 30px;
+    }
+
+    .task-list-example__section {
+        margin-bottom: 28px;
+    }
+
+    .task-list-example__section-heading {
+        margin-bottom: 20px;
+    }
+
+    .task-list-example__list {
+        border-top: 1px solid #b1b4b6;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .task-list-example__item {
+        align-items: center;
+        border-bottom: 1px solid #b1b4b6;
+        display: flex;
+        justify-content: space-between;
+        min-height: 45px;
+    }
+
+    .task-list-example__name {
+        font-size: 19px;
+        line-height: 1.31579;
+        padding: 10px 20px 10px 0;
+    }
+
+    .task-list-example__status {
+        color: #0b0c0c;
+        flex: 0 0 auto;
+        font-size: 19px;
+        line-height: 1.31579;
+        padding: 10px 0;
+        text-align: right;
+    }
+
+    .task-list-example__tag {
+        background: #d2e2f1;
+        color: #144e81;
+        display: inline-block;
+        font-size: 19px;
+        font-weight: 400;
+        line-height: 1.31579;
+        padding: 2px 8px 3px;
+        text-transform: none;
+    }
+
+    .task-list-example__tag--optional {
+        background: #fff7bf;
+        color: #594d00;
+    }
+
+    @media (max-width: 40.0525em) {
+        .task-list-example__item {
+            align-items: flex-start;
+            display: block;
+            padding: 10px 0;
+        }
+
+        .task-list-example__name,
+        .task-list-example__status {
+            padding: 0;
+            text-align: left;
+        }
+
+        .task-list-example__status {
+            margin-top: 5px;
+        }
+    }
+</style>
+
+<div class="govuk-width-container">
+    <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds task-list-example">
+                <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">Service name</h1>
+
+                <section class="task-list-example__section">
+                    <h2 class="govuk-heading-m task-list-example__section-heading">Register a case</h2>
+
+                    <ul class="task-list-example__list">
+                        <li class="task-list-example__item">
+                            <div class="task-list-example__name">
+                                <a class="govuk-link" href="#" aria-describedby="eligibility-status">Case basic
+                                    details</a>
+                            </div>
+                            <strong class="task-list-example__tag">Incomplete</strong>
+                        </li>
+                        <li class="task-list-example__item">
+                            <div class="task-list-example__name">
+                                <a class="govuk-link" href="#" aria-describedby="declaration-status">Suspects and
+                                    charges</a>
+                            </div>
+                            <div class="task-list-example__status" id="declaration-status">
+                                <strong class="task-list-example__tag task-list-example__tag--optional">Optional</strong>
+                            </div>
+                        </li>
+                        <li class="task-list-example__item">
+                            <div class="task-list-example__name">
+                                <a class="govuk-link" href="#" aria-describedby="declaration-status">Monitoring
+                                    codes</a>
+                            </div>
+                            <div class="task-list-example__status" id="declaration-status">
+                                <strong class="task-list-example__tag">Incomplete</strong>
+                            </div>
+                        </li>
+                        <li class="task-list-example__item">
+                            <div class="task-list-example__name">
+                                <a class="govuk-link" href="#" aria-describedby="declaration-status">People</a>
+                            </div>
+                            <div class="task-list-example__status" id="declaration-status">
+                                <strong class="task-list-example__tag task-list-example__tag--optional">Optional</strong>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="task-list-example__section">
+                    <h2 class="govuk-heading-m task-list-example__section-heading">Egress</h2>
+
+                    <ul class="task-list-example__list">
+                        <li class="task-list-example__item">
+                            <div class="task-list-example__name">
+                                <a class="govuk-link" href="#" aria-describedby="company-information-status">Connect or
+                                    create</a>
+                            </div>
+                            <div class="task-list-example__status" id="company-information-status">Completed</div>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="task-list-example__section">
+                    <h2 class="govuk-heading-m task-list-example__section-heading">Shared Drive</h2>
+
+                    <ul class="task-list-example__list">
+                        <li class="task-list-example__item">
+                            <div class="task-list-example__name">
+                                <a class="govuk-link" href="#" aria-describedby="company-information-status">Connect or
+                                    create</a>
+                            </div>
+                            <strong class="task-list-example__tag task-list-example__tag--optional">Optional</strong>
+
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- <a href="#" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+                    Maybe this isn't a button at all
+                </a> -->
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

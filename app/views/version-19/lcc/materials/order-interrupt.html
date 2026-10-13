@@ -1,0 +1,37 @@
+{% extends "layoutCPS-OFF-V11.html" %}
+
+{% block pageTitle %}
+Changing the folder order – {{ serviceName }} – Prototype
+{% endblock %}
+
+{% block header %}
+{% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">Changing the folder order</h1>
+
+    <p class="govuk-body">This will remove the folder order set by {% if data.orderPerson == 'You' %}you{% else %}{{ data.orderPerson }}{% endif %} on {{ data.orderDate }}.</p>
+
+    <p class="govuk-body">If you continue, your new order will be applied to this folder.</p>
+
+    <form method="post" action="/version-19/lcc/materials/order-interrupt">
+      <div class="govuk-button-group govuk-!-margin-top-6">
+        <button class="govuk-button" data-module="govuk-button" type="submit">
+          Continue
+        </button>
+
+        <a class="govuk-link" href="/version-19/lcc/materials/manage-materials">Cancel</a>
+      </div>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

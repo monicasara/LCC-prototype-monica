@@ -1,0 +1,288 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+{% block beforeContent %}
+    {% include "../../includes/off-system-MVP/modalConfirmation-Egress.html" %}
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+    </div>
+</div>
+
+<!-- ////////////// SUCESS BANNER - START ////////////// -->
+{% if data['long_file_path_1_COMPLETED'] == 'true' and data['long_file_path_2_COMPLETED'] == 'true' and data['long_file_path_3_COMPLETED'] == 'true' and data['structure_2_COMPLETED'] == 'true' or data['long_file_path_4_COMPLETED'] == 'true' and data['structure_1_COMPLETED'] == 'true' %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
+            <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-6" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner" id="file_names_completed">
+                <div class="govuk-notification-banner__header">
+                    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+                </div>
+                <div class="govuk-notification-banner__content">
+                    <h3 class="govuk-notification-banner__heading">Your files can now be transferred.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+{% elseif data['long_file_path_1_COMPLETED'] == 'true' and data['long_file_path_2_COMPLETED'] == 'true' and data['long_file_path_3_COMPLETED'] == 'true' and data['long_file_path_4_COMPLETED'] == 'true' %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
+            <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-6" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner" id="file_names_completed">
+                <div class="govuk-notification-banner__header">
+                    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+                </div>
+                <div class="govuk-notification-banner__content">
+                    <h3 class="govuk-notification-banner__heading">Your files can now be transferred.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+{% elseif data['structure_1_COMPLETED'] == 'true' and data['structure_2_COMPLETED'] == 'true' %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
+            <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-6" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner" id="file_names_completed">
+                <div class="govuk-notification-banner__header">
+                    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+                </div>
+                <div class="govuk-notification-banner__content">
+                    <h3 class="govuk-notification-banner__heading">Your files can now be transferred.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+
+{% endif %}
+<!-- ////////////// SUCESS BANNER - END ////////////// -->
+
+<div class="govuk-grid-row govuk-!-margin-top-2" id="homepage-journey">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="wrapper main-cotent">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-6" style="">File structure is too long</h1>
+            <!-- <div class="govuk-inset-text"> -->
+                <p>
+                    There are <strong>4 files</strong> with names longer than 260 characters.<br>
+                    <br>
+                    You need to rename the files or change the folder structure.
+                </p>
+            <!-- </div> -->
+
+            <!-- SECTION - 1 - START -->
+            <!-- <h2 class="govuk-heading-s govuk-!-margin-bottom-4" style="">Folder 1</h2> -->
+            <div class="url-text file_structure">
+                <div>
+                    <!-- P:\RCTCaseData\Special Crime and Counter Terrorism Division\SCD - London\CASES\LIVE\Op Dumper Truck\10. Police\Pre-Charge\26.03.2025-from Egress\Witness Statements\Statements batch 1234\Witnesses\ -->
+                    <span class="icon-new folder small"></span> 
+                    {% if data['structure_1_level_7'] == 'true' %}
+                        {{ data['structure_1_level_7'] }}
+                    {% else %}
+                        BLOGGS Jane
+                    {% endif %}                    
+                </div>
+<!--                 <form method="post" action="06C-long-file-paths" id="">  
+                    <input id="long_file_path_structure_1" name="long_file_path_structure_1" type="text" value="true" style="display: none;">
+                    <input id="long_file_path_structure_2" name="long_file_path_structure_2" type="text" value="false" style="display: none;">
+                    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">Edit structure</button>
+                </form>
+ -->                
+            </div>
+
+            <div class="file_container">
+                <table class="govuk-table" id="">
+                    <tbody class="govuk-table__body">
+
+                        <tr class="govuk-table__row hidden_row">
+                            {% if data['long_file_path_1_COMPLETED'] == 'true' %}
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> {{ data['long_file_path_1_NAME'] }}
+                                </td>
+                                <td class="govuk-table__cell" width="20%;"><strong class="govuk-tag govuk-tag--green"><span class="long_file_path_1">294</span> characters</strong></td>
+                            {% elseif data['structure_1_COMPLETED'] == 'true' %}
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> S285 - MG11 - Intel analyst 6744 BLOGGS Jane, witness statement for the 19.03.2024.PDF
+                                </td>
+                                <td class="govuk-table__cell" width="20%;"><strong class="govuk-tag govuk-tag--green"><span class="long_file_path_1">259</span> characters</strong></td>
+                            {% else %}
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> S285 - MG11 - Intel analyst 6744 BLOGGS Jane, witness statement for the 19.03.2024.PDF
+                                </td>
+                                <td class="govuk-table__cell" width="20%;"><strong class="govuk-tag govuk-tag--red"><span class="long_file_path_1">294</span> characters</strong></td>
+                            {% endif %}
+                            <td class="govuk-table__cell" width="10%;">
+                                <form method="post" action="06B-long-file-paths" id="">  
+                                    <input id="long_file_path_1" name="long_file_path_1" type="text" value="true" style="display: none;">
+                                    <input id="long_file_path_2" name="long_file_path_2" type="text" value="false" style="display: none;">
+                                    <input id="long_file_path_3" name="long_file_path_3" type="text" value="false" style="display: none;">
+                                    <input id="long_file_path_4" name="long_file_path_4" type="text" value="false" style="display: none;">
+                                    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">Rename</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                        <tr class="govuk-table__row hidden_row">
+                            {% if data['long_file_path_2_COMPLETED'] == 'true' %}
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> {{ data['long_file_path_2_NAME'] }}
+                                </td>
+                                <td class="govuk-table__cell" width="20%;"><strong class="govuk-tag govuk-tag--green"><span class="long_file_path_2">289</span> characters</strong></td>
+                            {% elseif data['structure_1_COMPLETED'] == 'true' %}
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> S84 - MG11 - Intel analyst 3256 BLOGGS Jane, witness statement for 26.03.2025.PDF
+                                </td>
+                                <td class="govuk-table__cell" width="20%;"><strong class="govuk-tag govuk-tag--green"><span class="long_file_path_2">256</span> characters</strong></td>
+                            {% else %}
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> S84 - MG11 - Intel analyst 3256 BLOGGS Jane, witness statement for 26.03.2025.PDF
+                                </td>
+                                <td class="govuk-table__cell" width="20%;"><strong class="govuk-tag govuk-tag--red"><span class="long_file_path_2">289</span> characters</strong></td>
+                            {% endif %}
+                            <td class="govuk-table__cell" width="10%;">
+                                <form method="post" action="06B-long-file-paths" id="">  
+                                    <input id="long_file_path_1" name="long_file_path_1" type="text" value="false" style="display: none;">
+                                    <input id="long_file_path_2" name="long_file_path_2" type="text" value="true" style="display: none;">
+                                    <input id="long_file_path_3" name="long_file_path_3" type="text" value="false" style="display: none;">
+                                    <input id="long_file_path_4" name="long_file_path_4" type="text" value="false" style="display: none;">
+                                    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">Rename</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                        <tr class="govuk-table__row hidden_row">
+                            {% if data['long_file_path_3_COMPLETED'] == 'true' %}
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> {{ data['long_file_path_3_NAME'] }}
+                                </td>
+                                <td class="govuk-table__cell" width="20%;"><strong class="govuk-tag govuk-tag--green"><span class="long_file_path_3">289</span> characters</strong></td>
+                            {% elseif data['structure_1_COMPLETED'] == 'true' %}
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> S68 - MG11 - Intel analyst 1234 BLOGGS Jane, witness statement for 26.03.2025.PDF
+                                </td>
+                                <td class="govuk-table__cell" width="20%;"><strong class="govuk-tag govuk-tag--green"><span class="long_file_path_3">258</span> characters</strong></td>
+                            {% else %}
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> S68 - MG11 - Intel analyst 1234 BLOGGS Jane, witness statement for 26.03.2025.PDF
+                                </td>
+                                <td class="govuk-table__cell" width="20%;"><strong class="govuk-tag govuk-tag--red"><span class="long_file_path_3">289</span> characters</strong></td>
+                            {% endif %}
+                            <td class="govuk-table__cell" width="10%;">
+                                <form method="post" action="06B-long-file-paths" id="">  
+                                    <input id="long_file_path_1" name="long_file_path_1" type="text" value="false" style="display: none;">
+                                    <input id="long_file_path_2" name="long_file_path_2" type="text" value="false" style="display: none;">
+                                    <input id="long_file_path_3" name="long_file_path_3" type="text" value="true" style="display: none;">
+                                    <input id="long_file_path_4" name="long_file_path_4" type="text" value="false" style="display: none;">
+                                    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">Rename</button>
+                                </form>                            
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- SECTION - 1 - END -->
+
+            <p><br></p>
+
+            <!-- SECTION - 2 - START -->
+            <!-- <h2 class="govuk-heading-s govuk-!-margin-bottom-4" style="">Folder 2</h2> -->
+            <div class="url-text file_structure">
+                <div>
+                    <!-- P:\RCTCaseData\Special Crime and Counter Terrorism Division\SCD - London\CASES\LIVE\Op Dumper Truck\10. Police\Pre-Charge\26.03.2025-from Egress\Evidence\Videos 1234\Surveillance\ -->
+                    <span class="icon-new folder small"></span> 
+                    {% if data['structure_2_level_7'] == 'true' %}
+                        {{ data['structure_2_level_7'] }}
+                    {% else %}
+                        Video Surveillance
+                    {% endif %}                    
+                </div>
+<!--                 <form method="post" action="06C-long-file-paths" id="">  
+                    <input id="long_file_path_structure_1" name="long_file_path_structure_1" type="text" value="false" style="display: none;">
+                    <input id="long_file_path_structure_2" name="long_file_path_structure_2" type="text" value="true" style="display: none;">
+                    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">Edit structure</button>
+                </form>
+ -->                
+            </div>
+
+            <div class="file_container  govuk-!-margin-bottom-6">
+                <table class="govuk-table" id="">
+                    <tbody class="govuk-table__body">
+
+                        <tr class="govuk-table__row hidden_row">
+                            {% if data['long_file_path_4_COMPLETED'] == 'true' %}
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> {{ data['long_file_path_4_NAME'] }}
+                                </td>
+                                <td class="govuk-table__cell" width="20%;"><strong class="govuk-tag govuk-tag--green"><span class="long_file_path_4">283</span> characters</strong></td>
+                            {% elseif data['structure_2_COMPLETED'] == 'true' %}
+                                <td scope="row" class="govuk-table__cell" width="72.5%;">
+                                    <span class="icon-new file"></span> S81 - Video of crime in action, showing defendant commtting the crime, 26-03-2025.MP4
+                                </td>
+                                <td class="govuk-table__cell" width="20%;"><strong class="govuk-tag govuk-tag--green"><span class="long_file_path_4">259</span> characters</strong></td>
+                            {% else %}
+                                <td scope="row" class="govuk-table__cell" width="72.5%;">
+                                    <span class="icon-new file"></span> S81 - Video of crime in action, showing defendant commtting the crime, 26-03-2025.MP4
+                                </td>
+                                <td class="govuk-table__cell" width="20%;"><strong class="govuk-tag govuk-tag--red"><span class="long_file_path_4">283</span> characters</strong></td>
+                            {% endif %}
+                            <td class="govuk-table__cell" width="10%;">
+                                <form method="post" action="06B-long-file-paths" id="">  
+                                    <input id="long_file_path_1" name="long_file_path_1" type="text" value="false" style="display: none;">
+                                    <input id="long_file_path_2" name="long_file_path_2" type="text" value="false" style="display: none;">
+                                    <input id="long_file_path_3" name="long_file_path_3" type="text" value="false" style="display: none;">
+                                    <input id="long_file_path_4" name="long_file_path_4" type="text" value="true" style="display: none;">
+                                    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">Rename</button>
+                                </form>                            
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- SECTION - 1 - END -->
+
+            {% if data['long_file_path_1_COMPLETED'] == 'true' and data['long_file_path_2_COMPLETED'] == 'true' and data['long_file_path_3_COMPLETED'] == 'true' and data['structure_2_COMPLETED'] == 'true' or data['long_file_path_4_COMPLETED'] == 'true' and data['structure_1_COMPLETED'] == 'true' %}
+                <form method="post" action="03-case-overview#long_file_path_COMPLETED" id="" style="display: inline-block;">  
+                    <input id="failed_file_transfer" name="failed_file_transfer" type="text" value="false" style="display: none;">
+                    <input id="long_file_path_COMPLETED" name="long_file_path_COMPLETED" type="text" value="true" style="display: none;">
+                    <input id="failed_files_COMPLETED" name="failed_files_COMPLETED" type="text" value="false" style="display: none;">
+                    <input id="duplicate_files_COMPLETED" name="duplicate_files_COMPLETED" type="text" value="false" style="display: none;">
+                    <button id="" type="submit" aria-disabled="true" class="govuk-button govuk-!-margin-bottom-6" data-module="govuk-button">Start transfer</button>
+                    <a class="non-button" href="03-case-overview">Cancel</button>
+                </form>
+            {% elseif data['long_file_path_1_COMPLETED'] == 'true' and data['long_file_path_2_COMPLETED'] == 'true' and data['long_file_path_3_COMPLETED'] == 'true' and data['long_file_path_4_COMPLETED'] == 'true' %}
+                <form method="post" action="03-case-overview#long_file_path_COMPLETED" id="" style="display: inline-block;">  
+                    <input id="failed_file_transfer" name="failed_file_transfer" type="text" value="false" style="display: none;">
+                    <input id="long_file_path_COMPLETED" name="long_file_path_COMPLETED" type="text" value="true" style="display: none;">
+                    <input id="failed_files_COMPLETED" name="failed_files_COMPLETED" type="text" value="false" style="display: none;">
+                    <input id="duplicate_files_COMPLETED" name="duplicate_files_COMPLETED" type="text" value="false" style="display: none;">
+                    <button id="" type="submit" aria-disabled="true" class="govuk-button govuk-!-margin-bottom-6" data-module="govuk-button">Start transfer</button>
+                    <a class="non-button" href="03-case-overview">Cancel</button>
+                </form>
+            {% elseif data['structure_1_COMPLETED'] == 'true' and data['structure_2_COMPLETED'] == 'true' %}
+                <form method="post" action="03-case-overview#long_file_path_COMPLETED" id="" style="display: inline-block;">  
+                    <input id="failed_file_transfer" name="failed_file_transfer" type="text" value="false" style="display: none;">
+                    <input id="long_file_path_COMPLETED" name="long_file_path_COMPLETED" type="text" value="true" style="display: none;">
+                    <input id="failed_files_COMPLETED" name="failed_files_COMPLETED" type="text" value="false" style="display: none;">
+                    <input id="duplicate_files_COMPLETED" name="duplicate_files_COMPLETED" type="text" value="false" style="display: none;">
+                    <button id="" type="submit" aria-disabled="true" class="govuk-button govuk-!-margin-bottom-6" data-module="govuk-button">Start transfer</button>
+                    <a class="non-button" href="03-case-overview">Cancel</button>
+                </form>
+            {% else %}
+                <form method="post" action="03-case-overview#long_file_path_COMPLETED" id="" style="display: inline-block;">  
+                    <input id="failed_file_transfer" name="failed_file_transfer" type="text" value="false" style="display: none;">
+                    <input id="long_file_path_COMPLETED" name="long_file_path_COMPLETED" type="text" value="true" style="display: none;">
+                    <input id="failed_files_COMPLETED" name="failed_files_COMPLETED" type="text" value="false" style="display: none;">
+                    <input id="duplicate_files_COMPLETED" name="duplicate_files_COMPLETED" type="text" value="false" style="display: none;">
+                    <button id="" type="submit" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled govuk-!-margin-bottom-6" data-module="govuk-button">Start transfer</button>
+                    <a class="non-button" href="03-case-overview">Cancel</button>
+                </form>
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

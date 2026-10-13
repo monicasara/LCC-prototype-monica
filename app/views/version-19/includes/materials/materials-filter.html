@@ -1,0 +1,153 @@
+<!-- ///////////////////////////////// MATERIALS FILTER - CONTENT - START ///////////////////////////////// -->
+<div class="moj-filter" id="filter_Materials">
+  
+  <div class="moj-filter__header">
+    <div class="moj-filter__header-title">
+      <h2 class="govuk-heading-m">Filters</h2>
+    </div>
+  </div>
+
+
+
+  <form action="/ur-apr-2026/includes/materials/materials-filter" method="post" novalidate>
+    {% if 
+      data['filterStatusUsed']
+      or data['filterStatusUnused']
+      or data['filterStatusNone']
+    %}
+
+    <div class="selected-filters-panel">
+
+      <div class="selected-filters-header">
+        <h3 class="govuk-heading-m">Selected filters</h3>
+        <a href="/ur-apr-2026/includes/materials/clear-filters" class="selected-clear-link">Clear</a>
+      </div>
+
+      <!-- Status -->
+      {% if data['filterStatusUsed'] or data['filterStatusUnused'] or data['filterStatusNone'] %}
+      <div class="filter-section">
+        <h4 class="govuk-heading-s filter-section-title">Status</h4>
+
+        {% if data['filterStatusUsed'] %}
+        <a href="/ur-apr-2026/includes/materials/clear-filter?type=filterStatusUsed" class="filter-chip">
+          Used
+          <span class="chip-remove">×</span>
+        </a>
+        {% endif %}
+
+        {% if data['filterStatusUnused'] %}
+        <a href="/ur-apr-2026/includes/materials/clear-filter?type=filterStatusUnused" class="filter-chip">
+          Unused
+          <span class="chip-remove">×</span>
+        </a>
+        {% endif %}
+
+        {% if data['filterStatusNone'] %}
+        <a href="/ur-apr-2026/includes/materials/clear-filter?type=filterStatusNone" class="filter-chip">
+          None
+          <span class="chip-remove">×</span>
+        </a>
+        {% endif %}
+
+      </div>
+      {% endif %}
+
+    </div>
+    {% endif %}
+    <!-- <div class="moj-filter__selected">
+        <div class="moj-filter__header govuk-clearfix">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-0" style="display:inline-block;">Selected filters</h2>
+        <a href="/ur-apr-2026/includes/materials/clear-filters"
+            class="govuk-link govuk-link--no-visited-state govuk-!-float-right">Clear</a>
+        </div>
+
+        {% if data['filterNew'] %}
+        <div class="moj-filter-tags__group">
+            <h3 class="govuk-heading-s">New materials</h3>
+            <ul class="moj-filter-tags">
+            <li>
+                <a class="moj-filter__tag"
+                href="/ur-apr-2026/includes/materials/clear-filter?type=filterNew">
+                {{ data['filterNew'] }}
+                <span class="govuk-visually-hidden"> Remove this filter</span>
+                </a>
+            </li>
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if data['filterStatusUsed'] or data['filterStatusUnused'] or data['filterStatusNone'] %}
+        <div class="moj-filter-tags__group">
+            <h3 class="govuk-heading-s">Status</h3>
+            <ul class="moj-filter-tags">
+            {% if data['filterStatusUsed'] %}
+                <li><a class="moj-filter__tag" href="/ur-apr-2026/includes/materials/clear-filter?type=filterStatusUsed">{{ data['filterStatusUsed'] }}<span class="govuk-visually-hidden"> Remove this filter</span></a></li>
+            {% endif %}
+            {% if data['filterStatusUnused'] %}
+                <li><a class="moj-filter__tag" href="/ur-apr-2026/includes/materials/clear-filter?type=filterStatusUnused">{{ data['filterStatusUnused'] }}<span class="govuk-visually-hidden"> Remove this filter</span></a></li>
+            {% endif %}
+            {% if data['filterStatusNone'] %}
+                <li><a class="moj-filter__tag" href="/ur-apr-2026/includes/materials/clear-filter?type=filterStatusNone">{{ data['filterStatusNone'] }}<span class="govuk-visually-hidden"> Remove this filter</span></a></li>
+            {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+    </div> -->
+
+    <div class="moj-filter__content">
+      <div class="moj-filter__options">
+
+      <div class="govuk-form-group search_container">
+        <label class="govuk-label govuk-label--s" for="filtersSearch">Search materials</label>
+        
+        <div class="search-wrapper">
+          <input class="govuk-input"
+                id="filtersSearch"
+                name="filtersSearch"
+                type="text"
+                value="{{ data['filtersSearch'] }}">
+
+          <button id="search_materials" type="submit" name="search" class="govuk-button">Search</button>
+
+          {% if data['filtersSearch'] %}
+              <button class="search-clear" type="submit" name="clearSearch" value="x">×</button>
+          {% endif %}
+        </div>
+      </div>        
+      <!-- <p>debug: {{ data | dump }}</p> -->
+        <!-- 2 - Status -->
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Status</legend>
+            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="filter_materials__Status_1"
+                  name="filterStatusUsed" type="checkbox" value="Used"
+                  {% if data['filterStatusUsed'] %}checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="filter_materials__Status_1">Used</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="filter_materials__Status_2"
+                  name="filterStatusUnused" type="checkbox" value="Unused"
+                  {% if data['filterStatusUnused'] %}checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="filter_materials__Status_2">Unused</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="filter_materials__Status_3"
+                  name="filterStatusNone" type="checkbox" value="None"
+                  {% if data['filterStatusNone'] %}checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="filter_materials__Status_3">None</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="cta_group">
+          <button type="submit" class="govuk-button" data-module="govuk-button">Apply filters</button>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>
+<!-- ///////////////////////////////// MATERIALS FILTER - CONTENT - END ///////////////////////////////// -->

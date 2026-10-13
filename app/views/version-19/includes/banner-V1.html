@@ -1,0 +1,104 @@
+<header class="govuk-header {{ params.classes if params.classes }}" role="banner" data-module="govuk-header" {%- for attribute, value in params.attributes %} {{attribute}}="{{value}}"{% endfor %}>
+    <div class="govuk-header__container {{ params.containerClasses | default('govuk-width-container') }}">
+        <div style="display:flex">
+            <div class="govuk-header__logo">
+                <a href="{{ params.homepageUrl | default('/') }}" class="govuk-header__link govuk-header__link--homepage">
+                    <span class="govuk-header__logotype">
+                        <span class="govuk-header__logotype-text caseReviewHeader">CPS</span>
+                        <span class="govuk-header__logotype-text caseReviewHeaderSub">Casework App</span>
+                    </span>
+                </a>
+            </div>
+            <div class="govuk-header__logo right">
+                <a href="" class="username">user_name_1983</a>
+                <div class="user-settings">
+                    <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                <h1 class="govuk-fieldset__heading">Colour scheme</h1>
+                            </legend>
+                            <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="colourScheme__White" name="colourScheme" type="radio" value="White" checked>
+                                    <label class="govuk-label govuk-radios__label" for="colourScheme__White" checked>White</label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="colourScheme__SoftGrey" name="colourScheme" type="radio" value="Soft grey">
+                                    <label class="govuk-label govuk-radios__label" for="colourScheme__SoftGrey">Soft grey</label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="colourScheme__Grey" name="colourScheme" type="radio" value="Grey">
+                                    <label class="govuk-label govuk-radios__label" for="colourScheme__Grey">Grey</label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="colourScheme__Dark" name="colourScheme" type="radio" value="Dark">
+                                    <label class="govuk-label govuk-radios__label" for="colourScheme__Dark">Dark</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                <h1 class="govuk-fieldset__heading">Colour overlay</h1>
+                            </legend>
+                            <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="colourOverlay__Pink" name="colourOverlay" type="radio" value="Pink">
+                                    <label class="govuk-label govuk-radios__label" for="colourOverlay__Pink" checked>Pink</label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="colourOverlay__Green" name="colourOverlay" type="radio" value="Green">
+                                    <label class="govuk-label govuk-radios__label" for="colourOverlay__Green">Green</label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="colourOverlay__Blue" name="colourOverlay" type="radio" value="Blue">
+                                    <label class="govuk-label govuk-radios__label" for="colourOverlay__Blue">Blue</label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="colourOverlay__Yellow" name="colourOverlay" type="radio" value="Yellow">
+                                    <label class="govuk-label govuk-radios__label" for="colourOverlay__Yellow">Yellow</label>
+                                <hr>
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="colourOverlay__Remove" name="colourOverlay" type="radio" value="Remove">
+                                    <label class="govuk-label govuk-radios__label" for="colourOverlay__Remove">No colour overlay</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                <h1 class="govuk-fieldset__heading">Colour hue</h1>
+                            </legend>
+                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" id="colourHue" name="colourHue" type="checkbox" value="Change colour hue">
+                                    <label class="govuk-label govuk-checkboxes__label" for="colourHue">Change colour hue</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="govuk-form-group">
+                        <button type="button" class="govuk-button govuk-!-margin-bottom-3" onclick="location.href='../../prototype-admin/clear-data';">Clear data</button>
+                    </div>                
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</header>
+
+<style>body {visibility: hidden}</style>
+<script>
+    $(document).ready(function () {
+        $("body")
+            .contents()
+            .filter(function () {
+        return this.nodeType == Node.TEXT_NODE;
+    })
+        .remove();
+        $("body").css("visibility", "visible");
+    });
+</script>
+

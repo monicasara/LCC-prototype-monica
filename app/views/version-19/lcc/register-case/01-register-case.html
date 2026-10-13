@@ -1,0 +1,136 @@
+{% extends "layoutCPS-OFF.html" %}
+
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+
+{% endblock %}
+{% block content %}
+
+<!-- <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+    </div>
+</div> -->
+
+<div class="govuk-grid-row" id="create-case-journey">
+
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+
+            <h1 class="govuk-heading-xl govuk-!-margin-top-4 govuk-!-margin-bottom-4">Register a case</h1>
+            <div id="changedName-hint" class="govuk-hint">
+                You must add an operation name or suspect details to continue.
+            </div>
+
+            {% if errorList and errorList.length %}
+            <div class="govuk-error-summary" data-module="govuk-error-summary">
+                <div role="alert">
+                    <h2 class="govuk-error-summary__title">
+                        There is a problem
+                    </h2>
+                    <div class="govuk-error-summary__body">
+                        <ul class="govuk-list govuk-error-summary__list">
+                            {% for error in errorList %}
+                            <li>
+                                <a href="{{ error.href }}">{{ error.text }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <form action="/version-19/lcc/register-case/01-register-case" method="post" novalidate>
+
+                <div class="govuk-form-group{% if errors and (errors.operationNameYesNo or errors.page or errors.operationName) %} govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset" aria-describedby="contact-hint{% if errors and (errors.operationNameYesNo or errors.page or errors.operationName) %} operation-name-error{% endif %}">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                    <h2 class="govuk-fieldset__heading">
+                        Do you have an operation name?
+                    </h2>
+                    </legend>
+                    {% if errors and errors.page %}
+                        <span id="operation-name-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> {{ errors.page }}
+                        </span>
+                    {% elseif errors and errors.operationNameYesNo %}
+                        <span id="operation-name-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> {{ errors.operationNameYesNo }}
+                        </span>
+                    {% elseif errors and errors.operationName %}
+                        <span id="operation-name-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> {{ errors.operationName }}
+                        </span>
+                    {% endif %}
+
+
+                    <div class="govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="operation-name-yes" name="operation-name-yes-no" type="radio" value="Yes" data-aria-controls="conditional-contact" {% if data['operationNameYesNo'] === 'Yes' %}checked {% endif %} {% if errors and (errors.operationNameYesNo or errors.page or errors.operationName) %}aria-describedby="operation-name-error"{% endif %}>
+                            <label class="govuk-label govuk-radios__label" for="operation-name-yes">
+                            Yes
+                            </label>
+                        </div>
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
+                            <div class="govuk-form-group{% if errors and errors.operationName %} govuk-form-group--error{% endif %}">
+                            <label class="govuk-label" for="operation-name">
+                                Operation name
+                            </label>
+                            <input class="govuk-input govuk-input--width-20{% if errors and errors.operationName %} govuk-input--error{% endif %}" id="operation-name" name="operation-name" type="text" spellcheck="false" autocomplete="text" value="{{ data['operationName'] }}" {% if errors and errors.operationName %}aria-describedby="operation-name-error"{% endif %}>
+                            </div>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="operation-name-no" name="operation-name-yes-no" type="radio" value="No" data-aria-controls="conditional-contact-2" {% if data['operationNameYesNo'] === 'No' %}checked{% endif %} {% if errors and (errors.operationNameYesNo or errors.page or errors.operationName) %}aria-describedby="operation-name-error"{% endif %}>
+                            <label class="govuk-label govuk-radios__label" for="operation-name-no">
+                            No
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+                </div>
+
+                <div class="govuk-form-group{% if errors and (errors.suspectDetailsYesNo or errors.page) %} govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset" {% if errors and (errors.suspectDetailsYesNo or errors.page) %}aria-describedby="suspect-details-error"{% endif %}>
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                    <h2 class="govuk-fieldset__heading">
+                        Do you have any suspect details?
+                    </h2>
+                    </legend>
+                    {% if errors and errors.suspectDetailsYesNo %}
+                    <span id="suspect-details-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> {{ errors.suspectDetailsYesNo }}
+                    </span>
+                    {% elseif errors and errors.page %}
+                    <span id="suspect-details-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> {{ errors.page }}
+                    </span>
+                    {% endif %}
+                    <div class="govuk-radios" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="suspect-details-yes" name="suspect-details-yes-no" type="radio" value="Yes" {% if data['suspectDetailsYesNo'] === 'Yes' %}checked{% endif %} {% if errors and (errors.suspectDetailsYesNo or errors.page) %}aria-describedby="suspect-details-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="suspect-details-yes">
+                        Yes
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="suspect-details-no" name="suspect-details-yes-no" type="radio" value="No" {% if data['suspectDetailsYesNo'] === 'No' %}checked{% endif %} {% if errors and (errors.suspectDetailsYesNo or errors.page) %}aria-describedby="suspect-details-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="suspect-details-no">
+                        No
+                        </label>
+                    </div>
+                    </div>
+                </fieldset>
+                </div>
+
+                {% include "../../includes/buttons.html" %}
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

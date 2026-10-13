@@ -1,0 +1,138 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+{% block beforeContent %}
+    {% include "../../includes/off-system-MVP/modalConfirmation-Egress.html" %}
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+    </div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-2" id="homepage-journey">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="wrapper main-cotent">
+
+            <form method="post" action="06A-long-file-paths" id="">  
+                {% if data['long_file_path_1'] == 'true' %}
+                    {% if data['long_file_path_1_COMPLETED'] == 'true' %}
+                        <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--xl" for="long_file_path_1_NAME">Rename file</label></h1>
+                        <div class="govuk-form-group govuk-!-margin-bottom-6">
+                            <input class="govuk-input govuk-!-margin-bottom-4 govuk-!-width-full" id="long_file_path_1_NAME" name="long_file_path_1_NAME" type="text" value="{{ data['long_file_path_1_NAME'] }}">
+                            <p class="govuk-!-margin-bottom-2">File path length: <strong class="govuk-tag govuk-tag--green"><strong class="total_character_number long_file_path_1">289</strong> characters</strong></p>
+                            <p class="govuk-!-margin-bottom-6">You must reduce this to 260 characters or fewer.</p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <input id="long_file_path_1_COMPLETED" name="long_file_path_1_COMPLETED" type="text" value="true" style="display: none;">
+                            <button id="long_file_path_1_BUTTON" type="submit" aria-disabled="true" class="govuk-button govuk-!-margin-bottom-0" data-module="govuk-button">Continue</button>
+                            <button type="submit" class="non-button" data-module="govuk-button" style="margin-left:0.75em;">Cancel</button>
+                        </div>
+                    {% else %}
+                        <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--xl" for="long_file_path_1_NAME">Rename file</label></h1>
+                        <div class="govuk-form-group govuk-!-margin-bottom-6">
+                            <input class="govuk-input govuk-!-margin-bottom-4  govuk-!-width-full" id="long_file_path_1_NAME" name="long_file_path_1_NAME" type="text" value="S84 - MG11 - Intel analyst 3256 BLOGGS Jane, witness statement for 26.03.2025.PDF">
+                            <p class="govuk-!-margin-bottom-2">File path length: <strong class="govuk-tag govuk-tag--red"><strong class="total_character_number">289</strong> characters</strong></p>
+                            <p class="govuk-!-margin-bottom-6">You must reduce this to 260 characters or fewer.</p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <input id="long_file_path_1_COMPLETED" name="long_file_path_1_COMPLETED" type="text" value="true" style="display: none;">
+                            <button id="long_file_path_1_BUTTON" type="submit" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled govuk-!-margin-bottom-0" data-module="govuk-button">Continue</button>
+                            <button type="submit" class="non-button" data-module="govuk-button" style="margin-left:0.75em;">Cancel</button>
+                        </div>
+                    {% endif %}
+
+                {% elseif data['long_file_path_2'] == 'true' %}
+                    {% if data['long_file_path_2_COMPLETED'] == 'true' %}
+                        <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--xl" for="long_file_path_2_NAME">Rename file</label></h1>
+                        <div class="govuk-form-group govuk-!-margin-bottom-6">
+                            <input class="govuk-input govuk-!-margin-bottom-4 govuk-!-width-full" id="long_file_path_2_NAME" name="long_file_path_2_NAME" type="text" value="{{ data['long_file_path_2_NAME'] }}">
+                            <p class="govuk-!-margin-bottom-2">File path length: <strong class="govuk-tag govuk-tag--green"><strong class="total_character_number long_file_path_2">289</strong> characters</strong></p>
+                            <p class="govuk-!-margin-bottom-6">You must reduce this to 260 characters or fewer.</p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <input id="long_file_path_2_COMPLETED" name="long_file_path_2_COMPLETED" type="text" value="true" style="display: none;">
+                            <button id="long_file_path_2_BUTTON" type="submit" aria-disabled="true" class="govuk-button govuk-!-margin-bottom-0" data-module="govuk-button">Continue</button>
+                            <button type="submit" class="non-button" data-module="govuk-button" style="margin-left:0.75em;">Cancel</button>
+                        </div>
+                    {% else %}
+                        <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--xl" for="long_file_path_2_NAME">Rename file</label></h1>
+                        <div class="govuk-form-group govuk-!-margin-bottom-6">
+                            <input class="govuk-input govuk-!-margin-bottom-4  govuk-!-width-full" id="long_file_path_2_NAME" name="long_file_path_2_NAME" type="text" value="S84 - MG11 - Intel analyst 3256 BLOGGS Jane, witness statement for 26.03.2025.PDF">
+                            <p class="govuk-!-margin-bottom-2">File path length: <strong class="govuk-tag govuk-tag--red"><strong class="total_character_number">289</strong> characters</strong></p>
+                            <p class="govuk-!-margin-bottom-6">You must reduce this to 260 characters or fewer.</p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <input id="long_file_path_2_COMPLETED" name="long_file_path_2_COMPLETED" type="text" value="true" style="display: none;">
+                            <button id="long_file_path_2_BUTTON" type="submit" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled govuk-!-margin-bottom-0" data-module="govuk-button">Continue</button>
+                            <button type="submit" class="non-button" data-module="govuk-button" style="margin-left:0.75em;">Cancel</button>
+                        </div>
+                    {% endif %}
+
+                {% elseif data['long_file_path_3'] == 'true' %}
+                    {% if data['long_file_path_3_COMPLETED'] == 'true' %}
+                        <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--xl" for="long_file_path_3_NAME">Rename file</label></h1>
+                        <div class="govuk-form-group govuk-!-margin-bottom-6">
+                            <input class="govuk-input govuk-!-margin-bottom-4 govuk-!-width-full" id="long_file_path_3_NAME" name="long_file_path_3_NAME" type="text" value="{{ data['long_file_path_3_NAME'] }}">
+                            <p class="govuk-!-margin-bottom-2">File path length: <strong class="govuk-tag govuk-tag--green"><strong class="total_character_number long_file_path_3">289</strong> characters</strong></p>
+                            <p class="govuk-!-margin-bottom-6">You must reduce this to 260 characters or fewer.</p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <input id="long_file_path_3_COMPLETED" name="long_file_path_3_COMPLETED" type="text" value="true" style="display: none;">
+                            <button id="long_file_path_3_BUTTON" type="submit" aria-disabled="true" class="govuk-button govuk-!-margin-bottom-0" data-module="govuk-button">Continue</button>
+                            <button type="submit" class="non-button" data-module="govuk-button" style="margin-left:0.75em;">Cancel</button>
+                        </div>
+                    {% else %}
+                        <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--xl" for="long_file_path_3_NAME">Rename file</label></h1>
+                        <div class="govuk-form-group govuk-!-margin-bottom-6">
+                            <input class="govuk-input govuk-!-margin-bottom-4  govuk-!-width-full" id="long_file_path_3_NAME" name="long_file_path_3_NAME" type="text" value="S68 - MG11 - Intel analyst 1234 BLOGGS Jane, witness statement for 26.03.2025.PDF">
+                            <p class="govuk-!-margin-bottom-2">File path length: <strong class="govuk-tag govuk-tag--red"><strong class="total_character_number">289</strong> characters</strong></p>
+                            <p class="govuk-!-margin-bottom-6">You must reduce this to 260 characters or fewer.</p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <input id="long_file_path_3_COMPLETED" name="long_file_path_3_COMPLETED" type="text" value="true" style="display: none;">
+                            <button id="long_file_path_3_BUTTON" type="submit" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled govuk-!-margin-bottom-0" data-module="govuk-button">Continue</button>
+                            <button type="submit" class="non-button" data-module="govuk-button" style="margin-left:0.75em;">Cancel</button>
+                        </div>
+                    {% endif %}
+
+                {% elseif data['long_file_path_4'] == 'true' %}
+                    {% if data['long_file_path_4_COMPLETED'] == 'true' %}
+                        <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--xl" for="long_file_path_4_NAME">Rename file</label></h1>
+                        <div class="govuk-form-group govuk-!-margin-bottom-6">
+                            <input class="govuk-input govuk-!-margin-bottom-4 govuk-!-width-full" id="long_file_path_4_NAME" name="long_file_path_4_NAME" type="text" value="{{ data['long_file_path_4_NAME'] }}">
+                            <p class="govuk-!-margin-bottom-2">File path length: <strong class="govuk-tag govuk-tag--green"><strong class="total_character_number long_file_path_4">283</strong> characters</strong></p>
+                            <p class="govuk-!-margin-bottom-6">You must reduce this to 260 characters or fewer.</p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <input id="long_file_path_4_COMPLETED" name="long_file_path_4_COMPLETED" type="text" value="true" style="display: none;">
+                            <button id="long_file_path_4_BUTTON" type="submit" aria-disabled="true" class="govuk-button govuk-!-margin-bottom-0" data-module="govuk-button">Continue</button>
+                            <button type="submit" class="non-button" data-module="govuk-button" style="margin-left:0.75em;">Cancel</button>
+                        </div>
+                    {% else %}
+                        <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--xl" for="long_file_path_4_NAME">Rename file</label></h1>
+                        <div class="govuk-form-group govuk-!-margin-bottom-6">
+                            <input class="govuk-input govuk-!-margin-bottom-4  govuk-!-width-full" id="long_file_path_4_NAME" name="long_file_path_4_NAME" type="text" value="S81 - Video of crime in action, showing defendant commtting the crime, 26-03-2025.MP4">
+                            <p class="govuk-!-margin-bottom-2">File path length: <strong class="govuk-tag govuk-tag--red"><strong class="total_character_number">283</strong> characters</strong></p>
+                            <p class="govuk-!-margin-bottom-6">You must reduce this to 260 characters or fewer.</p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <input id="long_file_path_4_COMPLETED" name="long_file_path_4_COMPLETED" type="text" value="true" style="display: none;">
+                            <button id="long_file_path_4_BUTTON" type="submit" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled govuk-!-margin-bottom-0" data-module="govuk-button">Continue</button>
+                            <button type="submit" class="non-button" data-module="govuk-button" style="margin-left:0.75em;">Cancel</button>
+                        </div>
+                    {% endif %}
+
+                {% endif %}
+
+            </form>
+            <p><br></p>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

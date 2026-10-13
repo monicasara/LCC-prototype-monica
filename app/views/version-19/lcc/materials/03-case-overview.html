@@ -1,0 +1,52 @@
+{% extends "layoutCPS-OFF-V11.html" %}
+
+{% block header %}
+{% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block v11Content %}
+{% set activeTab = data.activeTab | default('tab-2-content') %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full main_Case_Title">
+        <div class="title-wrapper">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-0 govuk-!-margin-top-4">
+                Thundercat
+            </h1>
+            <span class="govuk-caption-m govuk-!-margin-bottom-4">
+                87AA65432/25
+            </span>
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-full">
+        <div class="govuk-tabs off-cms-overview" id="new-tabs">
+
+            <ul class="govuk-tabs__list">
+                <li class="govuk-tabs__list-item{% if activeTab == 'tab-1-content' %} govuk-tabs__list-item--selected{% endif %}" id="tab-1"><a class="tab-link tab-1-content">Transfer materials</a></li>
+                <li class="govuk-tabs__list-item{% if activeTab == 'tab-2-content' %} govuk-tabs__list-item--selected{% endif %}" id="tab-2"><a class="tab-link tab-2-content">Manage materials</a></li>
+                <li class="govuk-tabs__list-item{% if activeTab == 'tab-3-content' %} govuk-tabs__list-item--selected{% endif %}" id="tab-3"><a class="tab-link tab-3-content">Activity log</a></li>
+            </ul>
+
+            <div class="panel" id="tab-1-content"{% if activeTab != 'tab-1-content' %} style="display: none;"{% endif %}>
+                {% include "../../includes/materials/tab-transfer-materials.html" %}
+            </div>
+
+            <div class="panel" id="tab-2-content"{% if activeTab != 'tab-2-content' %} style="display: none;"{% endif %}>
+                {% include "../../includes/materials/tab-manage-materials.html" %}
+            </div>
+
+            <div class="panel" id="tab-3-content"{% if activeTab != 'tab-3-content' %} style="display: none;"{% endif %}>
+                {% include "../../includes/materials/activity-log.html" %}
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

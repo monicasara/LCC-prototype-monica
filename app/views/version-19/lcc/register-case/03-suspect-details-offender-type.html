@@ -1,0 +1,240 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+  (function () {
+    function formatDate(value) {
+      if (!value || !value.includes('-')) return '';
+      var parts = value.split('-');
+      if (parts.length !== 3) return '';
+      return Number(parts[2]) + '/' + parts[1] + '/' + parts[0];
+    }
+
+    function normaliseDate(value) {
+      if (!value || !value.includes('/')) return '';
+      var parts = value.split('/');
+      if (parts.length !== 3) return '';
+      var day = String(Number(parts[0])).padStart(2, '0');
+      var month = String(Number(parts[1])).padStart(2, '0');
+      var year = parts[2];
+      if (!day || !month || !year) return '';
+      return year + '-' + month + '-' + day;
+    }
+
+    var calendars = document.querySelectorAll('.create-case-arrest-date');
+
+    calendars.forEach(function (calendar) {
+      var textInput = calendar.querySelector('.create-case-arrest-date__text');
+      var nativeInput = calendar.querySelector('.create-case-arrest-date__native');
+      var toggle = calendar.querySelector('.create-case-arrest-date__toggle');
+
+      if (!textInput || !nativeInput || !toggle) {
+        return;
+      }
+
+      toggle.addEventListener('click', function () {
+        var parsedValue = normaliseDate(textInput.value.trim());
+        if (parsedValue) {
+          nativeInput.value = parsedValue;
+        }
+
+        if (typeof nativeInput.showPicker === 'function') {
+          nativeInput.showPicker();
+        } else {
+          nativeInput.focus();
+          nativeInput.click();
+        }
+      });
+
+      nativeInput.addEventListener('change', function () {
+        var formatted = formatDate(nativeInput.value);
+        if (formatted) {
+          textInput.value = formatted;
+        }
+      });
+    });
+  })();
+</script>
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<style>
+  .create-case-arrest-date__text {
+    max-width: 20ex;
+  }
+
+  .create-case-arrest-date__native {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 1px;
+    height: 1px;
+  }
+</style>
+
+<div class="govuk-grid-row" id="create-case-journey">
+
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+            {% if errorList and errorList.length %}
+            <div class="govuk-error-summary" data-module="govuk-error-summary">
+                <div role="alert">
+                    <h2 class="govuk-error-summary__title">
+                        There is a problem
+                    </h2>
+                    <div class="govuk-error-summary__body">
+                        <ul class="govuk-list govuk-error-summary__list">
+                            {% for error in errorList %}
+                            <li>
+                                <a href="{{ error.href }}">{{ error.text }}</a>
+                                {% if error.skipHref and error.skipText %}
+                                <div class="govuk-!-margin-top-3">
+                                    <a class="govuk-link" style="font-weight: normal;" href="{{ error.skipHref }}">{{ error.skipText }}</a>
+                                </div>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <form method="post" action="/version-19/lcc/register-case/03-suspect-details-offender-type">  
+
+                <fieldset class="govuk-fieldset">
+
+                <div class="govuk-form-group{% if errors and errors.offenderType %} govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <h1 class="govuk-fieldset__heading">
+                        What type of offender is <span class="uppercase">{{ data['suspect-person-last-name'] }}</span>, {{ data['suspect-person-first-name'] }}?
+                    </h1>
+                    </legend>
+                    {% if errors and errors.offenderType %}
+                    <span id="offender-type-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> {{ errors.offenderType }}
+                    </span>
+                    {% endif %}
+                    {% if data['forceOffenderTypeAfterDob'] and data['forceOffenderTypeAfterDob'][data['suspectDetailsCount']] %}
+                    <div class="govuk-hint">
+                        This is required because the suspect is under 18.
+                    </div>
+                    {% endif %}
+
+                    <!-- Prolific  priority offender (PPO) -->
+                    <div class="govuk-radios" data-module="govuk-radios">
+                    <!-- <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="offender-type-ppo" name="offender-type" type="radio" value="Prolific priority offender (PPO)">
+                        <label class="govuk-label govuk-radios__label" for="offender-type-ppo">
+                        Prolific priority offender (PPO)
+                        </label>
+                    </div> -->
+
+                    <!-- Prolific youth offender (PYO) -->
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="offender-type-pyo" name="offender-type" type="radio" data-aria-controls="offender-type" value="Prolific youth offender (PYO)" {% if data['suspectOffenderType'][data['suspectDetailsCount']] == 'Prolific youth offender (PYO)' %}checked{% endif %} {% if errors and errors.offenderType %}aria-describedby="offender-type-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="offender-type-pyo">
+                        Prolific youth offender (PYO)
+                        </label>
+                    </div>
+                    <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="offender-type">
+                        <div class="create-case-arrest-date">
+                            <div class="govuk-form-group">
+                                <label class="govuk-label govuk-!-font-weight-bold" for="newCase_FirstHearing_Date">Arrest date (optional)</label>
+                                <div class="govuk-hint">For example, 17/05/2024.</div>
+                                <div class="date_range_wrapper create_case">
+                                    <input class="govuk-input moj-js-datepicker-input create-case-arrest-date__text" id="arrest-date-pyo" name="arrest-date-pyo" type="text" aria-describedby="date-hint" autocomplete="off" value="{% if data['suspectOffenderType'][data['suspectDetailsCount']] == 'Prolific youth offender (PYO)' %}{{ data['arrestDate'][data['suspectDetailsCount']] }}{% endif %}">
+                                    <input class="create-case-arrest-date__native" id="arrest-date-pyo-native" type="date" tabindex="-1" aria-hidden="true">
+                                    <button class="moj-datepicker__toggle create-case-arrest-date__toggle" type="button" aria-label="Choose arrest date">
+                                        <span class="govuk-visually-hidden">Choose date</span>
+                                        <svg width="32" height="24" focusable="false" class="moj-datepicker-icon" aria-hidden="true" role="img" viewBox="0 0 22 22">
+                                            <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16.1333 2.93333H5.86668V4.4C5.86668 5.21002 5.21003 5.86667 4.40002 5.86667C3.59 5.86667 2.93335 5.21002 2.93335 4.4V2.93333H2C0.895431 2.93333 0 3.82877 0 4.93334V19.2667C0 20.3712 0.89543 21.2667 2 21.2667H20C21.1046 21.2667 22 20.3712 22 19.2667V4.93333C22 3.82876 21.1046 2.93333 20 2.93333H19.0667V4.4C19.0667 5.21002 18.41 5.86667 17.6 5.86667C16.79 5.86667 16.1333 5.21002 16.1333 4.4V2.93333ZM20.5333 8.06667H1.46665V18.8C1.46665 19.3523 1.91436 19.8 2.46665 19.8H19.5333C20.0856 19.8 20.5333 19.3523 20.5333 18.8V8.06667Z"></path>
+                                            <rect x="3.66669" width="1.46667" height="5.13333" rx="0.733333" fill="currentColor"></rect>
+                                            <rect x="16.8667" width="1.46667" height="5.13333" rx="0.733333" fill="currentColor"></rect>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Both prolific priority offender (PPO) and prolific youth offender (PYO) -->
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="offender-type-both" name="offender-type" type="radio" data-aria-controls="offender-type-1" value="Both prolific priority offender (PPO) and prolific youth offender (PYO)" {% if data['suspectOffenderType'][data['suspectDetailsCount']] == 'Both prolific priority offender (PPO) and prolific youth offender (PYO)' %}checked{% endif %} {% if errors and errors.offenderType %}aria-describedby="offender-type-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="offender-type-both">
+                        Both prolific priority offender (PPO) and prolific youth offender (PYO)
+                        </label>
+                    </div>
+                    <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="offender-type-1">
+                        <div class="create-case-arrest-date">
+                            <div class="govuk-form-group">
+                                <label class="govuk-label govuk-!-font-weight-bold" for="newCase_FirstHearing_Date">Arrest date (optional)</label>
+                                <div class="govuk-hint">For example, 17/05/2024.</div>
+                                <div class="date_range_wrapper create_case">
+                                    <input class="govuk-input moj-js-datepicker-input create-case-arrest-date__text" id="arrest-date-ppo-pyo" name="arrest-date-ppo-pyo" type="text" aria-describedby="date-hint" autocomplete="off" value="{% if data['suspectOffenderType'][data['suspectDetailsCount']] == 'Both prolific priority offender (PPO) and prolific youth offender (PYO)' %}{{ data['arrestDate'][data['suspectDetailsCount']] }}{% endif %}">
+                                    <input class="create-case-arrest-date__native" id="arrest-date-ppo-pyo-native" type="date" tabindex="-1" aria-hidden="true">
+                                    <button class="moj-datepicker__toggle create-case-arrest-date__toggle" type="button" aria-label="Choose arrest date">
+                                        <span class="govuk-visually-hidden">Choose date</span>
+                                        <svg width="32" height="24" focusable="false" class="moj-datepicker-icon" aria-hidden="true" role="img" viewBox="0 0 22 22">
+                                            <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16.1333 2.93333H5.86668V4.4C5.86668 5.21002 5.21003 5.86667 4.40002 5.86667C3.59 5.86667 2.93335 5.21002 2.93335 4.4V2.93333H2C0.895431 2.93333 0 3.82877 0 4.93334V19.2667C0 20.3712 0.89543 21.2667 2 21.2667H20C21.1046 21.2667 22 20.3712 22 19.2667V4.93333C22 3.82876 21.1046 2.93333 20 2.93333H19.0667V4.4C19.0667 5.21002 18.41 5.86667 17.6 5.86667C16.79 5.86667 16.1333 5.21002 16.1333 4.4V2.93333ZM20.5333 8.06667H1.46665V18.8C1.46665 19.3523 1.91436 19.8 2.46665 19.8H19.5333C20.0856 19.8 20.5333 19.3523 20.5333 18.8V8.06667Z"></path>
+                                            <rect x="3.66669" width="1.46667" height="5.13333" rx="0.733333" fill="currentColor"></rect>
+                                            <rect x="16.8667" width="1.46667" height="5.13333" rx="0.733333" fill="currentColor"></rect>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Youth offender (YO) -->
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="offender-type-yo" name="offender-type" type="radio" data-aria-controls="offender-type-2" value="Youth offender (YO)" {% if data['suspectOffenderType'][data['suspectDetailsCount']] == 'Youth offender (YO)' %}checked{% endif %} {% if errors and errors.offenderType %}aria-describedby="offender-type-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="offender-type-yo">
+                        Youth offender (YO)
+                        </label>
+                    </div>
+                    <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="offender-type-2">
+                        <div class="create-case-arrest-date">
+                            <div class="govuk-form-group">
+                                <label class="govuk-label govuk-!-font-weight-bold" for="newCase_FirstHearing_Date">Arrest date (optional)</label>
+                                <div class="govuk-hint">For example, 17/05/2024.</div>
+                                <div class="date_range_wrapper create_case">
+                                    <input class="govuk-input moj-js-datepicker-input create-case-arrest-date__text" id="arrest-date-yo" name="arrest-date-yo" type="text" aria-describedby="date-hint" autocomplete="off" value="{% if data['suspectOffenderType'][data['suspectDetailsCount']] == 'Youth offender (YO)' %}{{ data['arrestDate'][data['suspectDetailsCount']] }}{% endif %}">
+                                    <input class="create-case-arrest-date__native" id="arrest-date-yo-native" type="date" tabindex="-1" aria-hidden="true">
+                                    <button class="moj-datepicker__toggle create-case-arrest-date__toggle" type="button" aria-label="Choose arrest date">
+                                        <span class="govuk-visually-hidden">Choose date</span>
+                                        <svg width="32" height="24" focusable="false" class="moj-datepicker-icon" aria-hidden="true" role="img" viewBox="0 0 22 22">
+                                            <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16.1333 2.93333H5.86668V4.4C5.86668 5.21002 5.21003 5.86667 4.40002 5.86667C3.59 5.86667 2.93335 5.21002 2.93335 4.4V2.93333H2C0.895431 2.93333 0 3.82877 0 4.93334V19.2667C0 20.3712 0.89543 21.2667 2 21.2667H20C21.1046 21.2667 22 20.3712 22 19.2667V4.93333C22 3.82876 21.1046 2.93333 20 2.93333H19.0667V4.4C19.0667 5.21002 18.41 5.86667 17.6 5.86667C16.79 5.86667 16.1333 5.21002 16.1333 4.4V2.93333ZM20.5333 8.06667H1.46665V18.8C1.46665 19.3523 1.91436 19.8 2.46665 19.8H19.5333C20.0856 19.8 20.5333 19.3523 20.5333 18.8V8.06667Z"></path>
+                                            <rect x="3.66669" width="1.46667" height="5.13333" rx="0.733333" fill="currentColor"></rect>
+                                            <rect x="16.8667" width="1.46667" height="5.13333" rx="0.733333" fill="currentColor"></rect>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </fieldset>
+                </div>
+
+                {% include "../../includes/buttons.html" %}
+
+            </form>
+
+        </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+</div>
+
+{% endblock %}

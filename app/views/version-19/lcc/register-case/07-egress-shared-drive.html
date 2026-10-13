@@ -1,0 +1,91 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row" id="create-case-journey">
+
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+
+            <h1 class="govuk-heading-xl govuk-!-margin-top-4 govuk-!-margin-bottom-4" style="">Material locations</h1>
+
+            <form method="get" action="../03-case-overview" id="newCase_Form-G">  
+
+                <fieldset class="govuk-fieldset">
+
+                    <!-- OPTION 1 - START -->
+                    <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset" aria-describedby="newCase_ExistingEgress-hint">
+                            <legend class="govuk-fieldset__legend">
+                                <h1 class="govuk-fieldset__heading">Is there an Egress folder for this case?</h1>
+                            </legend>
+                            <div class="govuk-radios  govuk-radios--inline" data-module="govuk-radios">
+                                <div class="govuk-radios__item">
+                                    {% if data['newCase_ExistingEgress_YesNo'] == 'Yes' %}
+                                        <input class="govuk-radios__input" id="newCase_ExistingEgress_Yes" name="newCase_ExistingEgress_YesNo" type="radio" value="Yes" checked>
+                                    {% else %}
+                                        <input class="govuk-radios__input" id="newCase_ExistingEgress_Yes" name="newCase_ExistingEgress_YesNo" type="radio" value="Yes">
+                                    {% endif %}
+                                    <label class="govuk-label govuk-radios__label" for="newCase_ExistingEgress_Yes">Yes</label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    {% if data['newCase_ExistingEgress_YesNo'] == 'No' %}
+                                        <input class="govuk-radios__input" id="newCase_ExistingEgress_No" name="newCase_ExistingEgress_YesNo" type="radio" value="No" checked>
+                                    {% else %}
+                                        <input class="govuk-radios__input" id="newCase_ExistingEgress_No" name="newCase_ExistingEgress_YesNo" type="radio" value="No">
+                                    {% endif %}
+                                    <label class="govuk-label govuk-radios__label" for="newCase_ExistingEgress_No">No</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>                    
+                    <!-- OPTION 1 - END -->
+
+                    <!-- OPTION 2 - START -->
+                    <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset" aria-describedby="newCase_Suspect-hint">
+                            <legend class="govuk-fieldset__legend">
+                                <h1 class="govuk-fieldset__heading">Is there a Shared Drive folder for this case?</h1>
+                            </legend>
+                            <div class="govuk-radios  govuk-radios--inline" data-module="govuk-radios">
+                                <div class="govuk-radios__item">
+                                    {% if data['newCase_ExistingSharedDrive_YesNo'] == 'Yes' %}
+                                        <input class="govuk-radios__input" id="newCase_ExistingSharedDrive_Yes" name="newCase_ExistingSharedDrive_YesNo" type="radio" value="Yes" checked>
+                                    {% else %}
+                                        <input class="govuk-radios__input" id="newCase_ExistingSharedDrive_Yes" name="newCase_ExistingSharedDrive_YesNo" type="radio" value="Yes">
+                                    {% endif %}
+                                    <label class="govuk-label govuk-radios__label" for="newCase_ExistingSharedDrive_Yes">Yes</label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    {% if data['newCase_ExistingSharedDrive_YesNo'] == 'No' %}
+                                        <input class="govuk-radios__input" id="newCase_ExistingSharedDrive_No" name="newCase_ExistingSharedDrive_YesNo" type="radio" value="No" checked>
+                                    {% else %}
+                                        <input class="govuk-radios__input" id="newCase_ExistingSharedDrive_No" name="newCase_ExistingSharedDrive_YesNo" type="radio" value="No">
+                                    {% endif %}
+                                    <label class="govuk-label govuk-radios__label" for="newCase_ExistingSharedDrive_No">No</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>                    
+                    <!-- OPTION 2 - END -->
+
+                </fieldset>
+
+                <input id="createCase_G_Complete" name="createCase_G_Complete" type="text" value="true" style="display: none;">
+                {% include "../../includes/buttons.html" %}
+
+            </form>
+
+        </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+</div>
+
+{% endblock %}

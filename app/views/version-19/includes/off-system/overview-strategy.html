@@ -1,0 +1,1681 @@
+<h2 class="govuk-heading-m">Case strategy</h2>
+<span class="govuk-caption-m">Last updated <span id="strategy-timestamp"></span></span>
+
+<!-- TABS - START -->
+<nav class="secondaryTabs moj-sub-navigation tabsGroup-1" aria-label="Sub navigation" id="strategy_Nav">
+    <ul class="moj-sub-navigation__list">
+        <li class="moj-sub-navigation__item secondaryTab-Selected" id="secondaryTab-1">
+            <a class="moj-sub-navigation__link" aria-current="page" onclick="return secondaryTab1();">Description & Linked cases</a>
+        </li>
+        <li class="moj-sub-navigation__item" id="secondaryTab-2">
+            <a class="moj-sub-navigation__link" onclick="return secondaryTab2();">Suspects/Defendants</a>
+<!--             {% if data['newCase_DefendantName-CompanyName'] or data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] or data['strategy_Add_New_Suspect-Surname'] %}
+                {% if data['chargeAddedComplete'] == 'true' and data['addSuspectStarted'] == 'true' %}
+		            <a class="moj-sub-navigation__link" onclick="return secondaryTab2();">Suspect / Defendant (<span class="suspects-number">2</span>)</a>
+                {% elseif data['addSuspectStarted'] == 'true' %}
+                    {% if data['addSuspectStarted'] == 'true' and data['newCase_DefendantName-CompanyName'] and data['newCase_DefendantName-Surname'] and data['strategy_Add_New_Suspect-Surname'] %}
+			            <a class="moj-sub-navigation__link" onclick="return secondaryTab2();">Suspect / Defendant (<span class="suspects-number">4</span>)</a>
+                    {% elseif data['addSuspectStarted'] == 'true' and data['newCase_DefendantName-CompanyName'] and data['strategy_Add_New_Suspect-Surname'] %}
+			            <a class="moj-sub-navigation__link" onclick="return secondaryTab2();">Suspect / Defendant (<span class="suspects-number">3</span>)</a>
+                    {% elseif data['addSuspectPerson'] == 'true' and data['addSuspect_Form-Surname'] and data['strategy_Add_New_Suspect-Surname'] %}
+			            <a class="moj-sub-navigation__link" onclick="return secondaryTab2();">Suspect / Defendant (<span class="suspects-number">3</span>)</a>
+                    {% else %}
+			            <a class="moj-sub-navigation__link" onclick="return secondaryTab2();">Suspect / Defendant (<span class="suspects-number">2</span>)</a>
+                    {% endif %}
+                {% else %}
+                    {% if data['newCase_DefendantName-CompanyName'] and data['newCase_DefendantName-Surname'] and data['strategy_Add_New_Suspect-Surname'] %}
+			            <a class="moj-sub-navigation__link" onclick="return secondaryTab2();">Suspect / Defendant (<span class="suspects-number">3</span>)</a>
+                    {% elseif data['newCase_DefendantName-CompanyName'] and data['newCase_DefendantName-Surname'] %}
+			            <a class="moj-sub-navigation__link" onclick="return secondaryTab2();">Suspect / Defendant (<span class="suspects-number">2</span>)</a>
+                    {% else %}
+			            <a class="moj-sub-navigation__link" onclick="return secondaryTab2();">Suspect / Defendant (<span class="suspects-number">1</span>)</a>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab2();">Suspect / Defendant (<span class="suspects-number">0</span>)</a>
+            {% endif %}
+ -->        </li>
+        <li class="moj-sub-navigation__item" id="secondaryTab-3">
+            <!-- <a class="moj-sub-navigation__link" onclick="return secondaryTab3();">Strategies (<span class="strategies-number">0</span>)</a> -->
+            <a class="moj-sub-navigation__link" onclick="return secondaryTab3();">Strategies</a>
+        </li>
+        <li class="moj-sub-navigation__item" id="secondaryTab-4">
+            <a class="moj-sub-navigation__link" onclick="return secondaryTab4_V2();">Asset Recovery</a>
+<!-- 			{% if data['strategy_7_Complete'] == 'true' and data['restrained_Add_New_Suspect-Surname'] and data['restrained_Edit_Suspect_1-Lawyer'] and data['restrained_Edit_Suspect_2-Lawyer'] %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab4_V2();">Asset recovery (<span class="asset-number">4</span>)</a>
+			{% elseif data['strategy_7_Complete'] == 'true' and data['restrained_Edit_Suspect_1-Lawyer'] and data['restrained_Edit_Suspect_2-Lawyer'] %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab4_V2();">Asset recovery (<span class="asset-number">3</span>)</a>
+			{% elseif data['strategy_7_Complete'] == 'true' and data['restrained_Edit_Suspect_1-Lawyer'] and data['restrained_Edit_Suspect_2-Lawyer'] %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab4_V2();">Asset recovery (<span class="asset-number">3</span>)</a>
+			{% elseif data['restrained_Add_New_Suspect-Surname'] %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab4_V2();">Asset recovery (<span class="asset-number">1</span>)</a>
+			{% elseif data['restrained_Edit_Suspect_1-Lawyer'] %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab4_V2();">Asset recovery (<span class="asset-number">1</span>)</a>
+			{% elseif data['restrained_Edit_Suspect_2-Lawyer'] %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab4_V2();">Asset recovery (<span class="asset-number">1</span>)</a>
+			{% elseif data['strategy_7_Complete'] == 'true' %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab4_V2();">Asset recovery (<span class="asset-number">1</span>)</a>
+            {% else %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab4_V2();">Asset recovery (<span class="asset-number">0</span>)</a>
+            {% endif %}
+ -->        </li>
+        <li class="moj-sub-navigation__item" id="secondaryTab-5">
+            <a class="moj-sub-navigation__link" onclick="return secondaryTab5_V2();">Charges</a>
+<!-- 			{% if data['charges_Add_New_Suspect-Original'] and data['charges_Edit_Suspect_1-Original'] %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab5_V2();">Charges (<span class="charges-number">2</span>)</a>
+			{% elseif data['charges_Add_New_Suspect-Original'] %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab5_V2();">Charges (<span class="charges-number">1</span>)</a>
+			{% elseif data['charges_Edit_Suspect_1-Original'] %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab5_V2();">Charges (<span class="charges-number">1</span>)</a>
+            {% else %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab5_V2();">Charges (<span class="charges-number">0</span>)</a>
+            {% endif %}
+ -->        </li>
+        <li class="moj-sub-navigation__item" id="secondaryTab-6">
+            <a class="moj-sub-navigation__link" onclick="return secondaryTab6_V2();">International</a>
+<!--             {% if data['strategy_11_Complete'] and data['strategy_12_Complete'] %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab6_V2();">International (<span class="international-number">2</span>)</a>
+            {% elseif data['strategy_11_Complete'] %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab6_V2();">International (<span class="international-number">1</span>)</a>
+            {% elseif data['strategy_12_Complete'] %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab6_V2();">International (<span class="international-number">1</span>)</a>
+            {% else %}
+	            <a class="moj-sub-navigation__link" onclick="return secondaryTab6_V2();">International (<span class="international-number">0</span>)</a>
+            {% endif %}
+ -->        </li>
+        <li class="moj-sub-navigation__item" id="secondaryTab-7">
+            <a class="moj-sub-navigation__link" onclick="return secondaryTab7_V2();">Risks, Actions & Decisions</a>
+            <!-- <a class="moj-sub-navigation__link" onclick="return secondaryTab7_V2();">Risk, Actions & Decisions (<span class="risks-number">0</span>)</a> -->
+        </li>
+        <li class="moj-sub-navigation__item" id="secondaryTab-8">
+            <a class="moj-sub-navigation__link" onclick="return secondaryTab8_V2();">Financial Management</a>
+            <!-- <a class="moj-sub-navigation__link" onclick="return secondaryTab8_V2();">Financial Management (<span class="financial-number">0</span>)</a> -->
+        </li>
+    </ul>
+</nav>
+<!-- TABS - END -->
+
+<!-- TABS CONTENT - 1 - START -->
+<div class="secondaryTabContent tabsGroup-1" id="secondaryTabContent-1">
+	<div class="strategyContent">
+
+		<!-- SECTION 1 - START -->
+		<div class="section-wrapper section-row doubleSection">
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">Brief description of the case</h3>
+		           <div class="tooltip">
+		                <button class="govuk-button open-tooltip" data-module="govuk-button" type="button" onClick="toggleGuidance1()">Guidance notes</button>
+		                <div class="tooltiptext-1">
+		                     <button class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeToggleGuidance1()">×</button>
+		                    <p>Brief description of the case</p>
+		                    <p class="govuk-body-s">This box should be completed by the lawyer and briefly set out what the case is about and what the likely issues are.</p>
+		                </div>
+		            </div>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_1" style="display: none;">
+	                    {% if data['strategy_1_Complete'] %}
+			                <button type="submit" class="govuk-button non-button" style="">Edit</button>
+	                    {% else %}
+			                <button type="submit" class="govuk-button non-button" style="">Add</button>
+	                    {% endif %}
+		            </form>
+		        </div>
+		        <div class="section-content">
+                    {% if data['strategy_1_Complete'] %}
+			            <p class="govuk-!-margin-bottom-0" id="strategy_Description-Text"></p>
+                    {% else %}
+			            <p class="govuk-!-margin-bottom-0" id="">There is no description of this case</p>
+                    {% endif %}
+		        </div>
+		    </section>
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">Linked cases (list names or URN)</h3>
+		           <a href="#">Edit</a>
+		        </div>
+		        <div class="section-content">
+
+		            <p class="govuk-!-margin-bottom-0" id="">There are no linked cases to this case <span class="govuk-caption-m">* For completion by the Lawyer</span></p>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 1 - END -->
+
+	</div>
+</div>
+<!-- TABS CONTENT - 1 - END -->
+
+<!-- TABS CONTENT - 2 - START -->
+<div class="secondaryTabContent tabsGroup-1" id="secondaryTabContent-2" style="display: none;">
+	<div class="strategyContent">
+
+		<!-- SECTION 2 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+	                <h3 class="govuk-heading-s">Suspects/Defendants</h3>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Edit_Suspect_1" name="strategy_Edit_Suspect_1" type="text" value="false" style="display: none;">
+		                <input id="strategy_Edit_Suspect_2" name="strategy_Edit_Suspect_2" type="text" value="false" style="display: none;">
+		                <input id="strategy_Edit_Suspect_3" name="strategy_Edit_Suspect_3" type="text" value="false" style="display: none;">
+		                <input id="strategy_Add_New_Suspect" name="strategy_Add_New_Suspect" type="text" value="true" style="display: none;">
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_2" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header">Name</th>
+								<th scope="col" class="govuk-table__header">Counts</th>
+								<th scope="col" class="govuk-table__header">Sentence & Date</th>
+								<th scope="col" class="govuk-table__header">GFS Offence Class</th>
+								<th scope="col" class="govuk-table__header"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+
+							{% if data['strategy_Add_New_Suspect-Surname'] %}
+								<tr class="govuk-table__row">
+									<th class="govuk-table__cell"><span class="uppercase">{{ data['strategy_Add_New_Suspect-Surname'] }}</span>, {{ data['strategy_Add_New_Suspect-Forename'] }}</td>
+									{% if data['strategy_Add_New_Suspect-Counts'] %}
+										<td class="govuk-table__cell">{{ data['strategy_Add_New_Suspect-Counts'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['strategy_Add_New_Suspect-Sentence'] %}
+										<td class="govuk-table__cell">
+											{{ data['strategy_Add_New_Suspect-Sentence'] }} - {{ data['strategy_Add_New_Suspect-Day'] }}/{{ data['strategy_Add_New_Suspect-Month'] }}/{{ data['strategy_Add_New_Suspect-Year'] }}
+										</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['strategy_Add_New_Suspect-GFS'] %}
+										<td class="govuk-table__cell">{{ data['strategy_Add_New_Suspect-GFS'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									<td class="govuk-table__cell">
+							            <form method="get" action="18-case-strategy" id="">  
+							                <input id="strategy_Edit_Suspect_1" name="strategy_Edit_Suspect_1" type="text" value="false" style="display: none;">
+							                <input id="strategy_Edit_Suspect_2" name="strategy_Edit_Suspect_2" type="text" value="false" style="display: none;">
+							                <input id="strategy_Edit_Suspect_3" name="strategy_Edit_Suspect_3" type="text" value="false" style="display: none;">
+							                <input id="strategy_Add_New_Suspect" name="strategy_Add_New_Suspect" type="text" value="true" style="display: none;">
+							                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_2" style="display: none;">
+							                <button type="submit" class="govuk-button non-button" style="margin: 0; font-weight: normal;">Edit</button>
+							            </form>
+									</td>
+								</tr>
+		                    {% else %}
+
+		                    {% endif %}
+
+							{% if data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+								<tr class="govuk-table__row">
+									<th class="govuk-table__cell"><span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</span>, {{ data['newCase_DefendantName-Forename'] }}</td>
+									{% if data['strategy_Edit_Suspect_1-Counts'] %}
+										<td class="govuk-table__cell">{{ data['strategy_Edit_Suspect_1-Counts'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['strategy_Edit_Suspect_1-Sentence'] %}
+										<td class="govuk-table__cell">
+											{{ data['strategy_Edit_Suspect_1-Sentence'] }} - {{ data['strategy_Edit_Suspect_1-Day'] }}/{{ data['strategy_Edit_Suspect_1-Month'] }}/{{ data['strategy_Edit_Suspect_1-Year'] }}
+										</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['strategy_Edit_Suspect_1-GFS'] %}
+										<td class="govuk-table__cell">{{ data['strategy_Edit_Suspect_1-GFS'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									<td class="govuk-table__cell">
+							            <form method="get" action="18-case-strategy" id="">  
+							                <input id="strategy_Edit_Suspect_1" name="strategy_Edit_Suspect_1" type="text" value="true" style="display: none;">
+							                <input id="strategy_Edit_Suspect_2" name="strategy_Edit_Suspect_2" type="text" value="false" style="display: none;">
+							                <input id="strategy_Edit_Suspect_3" name="strategy_Edit_Suspect_3" type="text" value="false" style="display: none;">
+							                <input id="strategy_Add_New_Suspect" name="strategy_Add_New_Suspect" type="text" value="false" style="display: none;">
+							                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_2" style="display: none;">
+							                <button type="submit" class="govuk-button non-button" style="margin: 0; font-weight: normal;">Edit</button>
+							            </form>
+									</td>
+								</tr>
+		                    {% else %}
+
+		                    {% endif %}
+
+							{% if data['addSuspect_Form-Surname'] %}
+								<tr class="govuk-table__row">
+									<th class="govuk-table__cell"><span class="uppercase">{{ data['addSuspect_Form-Surname'] }}</span>, {{ data['addSuspect_Form-Forename'] }}</td>
+									{% if data['strategy_Edit_Suspect_3-Counts'] %}
+										<td class="govuk-table__cell">{{ data['strategy_Edit_Suspect_3-Counts'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['strategy_Edit_Suspect_3-Sentence'] %}
+										<td class="govuk-table__cell">
+											{{ data['strategy_Edit_Suspect_3-Sentence'] }} - {{ data['strategy_Edit_Suspect_3-Day'] }}/{{ data['strategy_Edit_Suspect_3-Month'] }}/{{ data['strategy_Edit_Suspect_3-Year'] }}
+										</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['strategy_Edit_Suspect_3-GFS'] %}
+										<td class="govuk-table__cell">{{ data['strategy_Edit_Suspect_3-GFS'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									<td class="govuk-table__cell">
+							            <form method="get" action="18-case-strategy" id="">  
+							                <input id="strategy_Edit_Suspect_1" name="strategy_Edit_Suspect_1" type="text" value="false" style="display: none;">
+							                <input id="strategy_Edit_Suspect_2" name="strategy_Edit_Suspect_2" type="text" value="false" style="display: none;">
+							                <input id="strategy_Edit_Suspect_3" name="strategy_Edit_Suspect_3" type="text" value="true" style="display: none;">
+							                <input id="strategy_Add_New_Suspect" name="strategy_Add_New_Suspect" type="text" value="false" style="display: none;">
+							                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_2" style="display: none;">
+							                <button type="submit" class="govuk-button non-button" style="margin: 0; font-weight: normal;">Edit</button>
+							            </form>
+									</td>
+								</tr>
+		                    {% else %}
+
+		                    {% endif %}
+
+							{% if data['newCase_DefendantName-CompanyName'] %}
+								<tr class="govuk-table__row">
+									<th class="govuk-table__cell">{{ data['newCase_DefendantName-CompanyName'] }}</th>
+									{% if data['strategy_Edit_Suspect_2-Counts'] %}
+										<td class="govuk-table__cell">{{ data['strategy_Edit_Suspect_2-Counts'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['strategy_Edit_Suspect_2-Sentence'] %}
+										<td class="govuk-table__cell">
+											{{ data['strategy_Edit_Suspect_2-Sentence'] }} - {{ data['strategy_Edit_Suspect_2-Day'] }}/{{ data['strategy_Edit_Suspect_2-Month'] }}/{{ data['strategy_Edit_Suspect_2-Year'] }}
+										</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['strategy_Edit_Suspect_2-GFS'] %}
+										<td class="govuk-table__cell">{{ data['strategy_Edit_Suspect_2-GFS'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									<td class="govuk-table__cell">
+							            <form method="get" action="18-case-strategy" id="">  
+							                <input id="strategy_Edit_Suspect_1" name="strategy_Edit_Suspect_1" type="text" value="false" style="display: none;">
+							                <input id="strategy_Edit_Suspect_2" name="strategy_Edit_Suspect_2" type="text" value="true" style="display: none;">
+							                <input id="strategy_Edit_Suspect_2" name="strategy_Edit_Suspect_3" type="text" value="false" style="display: none;">
+							                <input id="strategy_Add_New_Suspect" name="strategy_Add_New_Suspect" type="text" value="false" style="display: none;">
+							                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_2" style="display: none;">
+							                <button type="submit" class="govuk-button non-button" style="margin: 0; font-weight: normal;">Edit</button>
+							            </form>
+									</td>
+								</tr>
+		                    {% else %}
+
+		                    {% endif %}
+
+							{% if data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] or data['newCase_DefendantName-CompanyName'] or data['strategy_Add_New_Suspect-Surname'] %}
+
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="5">There are no Suspect / Defendant on this case</td>
+								</tr>
+		                    {% endif %}
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 2 - END -->
+		
+	</div>
+</div>
+<!-- TABS CONTENT - 2 - END -->
+
+<!-- TABS CONTENT - 3 - START -->
+<div class="secondaryTabContent tabsGroup-1" id="secondaryTabContent-3" style="display: none;">
+	<div class="strategyContent">
+
+		<!-- SECTION 3 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">Prosecution Strategy</h3>
+		           <div class="tooltip">
+		                <button class="govuk-button open-tooltip" data-module="govuk-button" type="button" onClick="toggleGuidance2()">Guidance notes</button>
+		                <div class="tooltiptext-2">
+		                     <button class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeToggleGuidance2()">×</button>
+		                    <p>Prosecution Strategy</p>
+		                    <p class="govuk-body-s">This section should be completed by the lawyer and include the following.</p>
+		                    <ul>
+		                    	<li>Case/Investigation objectives</li>
+		                    	<li>Origin of the investigation</li>
+		                    	<li>Agreed case/investigation parameters</li>
+		                    	<li>Trial strategy including any decision to draft multiple indictments or joinder applications</li>
+		                    	<li>Redaction strategy and DPA considerations </li>
+		                    </ul>
+		                    <p class="govuk-body-s">
+		                    	<strong>Pre-charge</strong>, the prosecutor should set out how the CPS has been working with the investigation team and outline any relevant decisions or agreements which have been taken pre charge.
+		                    </p>
+		                    <p class="govuk-body-s">The prosecutor should consider:</p>
+		                    <ul>
+		                    	<li>What issues need to be resolved pre charge? </li>
+		                    	<li>What is the strategy for overcoming those issues?</li>
+		                    	<li>What are the likely charges under consideration? This should list viable charges and questionable offences with critical analysis.</li>
+		                    	<li>What evidence will be required to prove these and how will that be presented?</li>
+		                    	<li>How will the prosecutor keep the investigation focused?</li>
+		                    	<li>What timescales have been agreed and why?</li>
+		                    	<li>Any suspects not proceeded with?</li>
+		                    	<li>Have the charges been selected based on any trial management considerations?</li>
+		                    	<li>Any VRR or VLC considerations</li>
+		                    	<li>Redaction strategy</li>
+		                    </ul> 	 
+		                    <p class="govuk-body-s"><strong>Post charge</strong>, the prosecutor should consider the following points:</p>     
+		                    <ul>
+		                    	<li>What are the issues for trial and how will they be addressed?</li>
+		                    	<li>Any outstanding actions which need to be resolved, additional evidence or disclosure?</li>
+		                    	<li>If there is to be more than one trial how this will be managed?</li>
+		                    	<li>Which witnesses need to be called and why?</li>
+		                    </ul>
+							<p class="govuk-body-s">Any changes in strategy should be recorded as a new entry, dated appropriately. Prosecutors should consider the need to record updated strategy following key events e.g. ECPC, charging, PTPH and stage dates.</p> 
+		                </div>
+		            </div>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_3" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header" width="15%">Date</th>
+								<th scope="col" class="govuk-table__header" width="60%">Current Strategy</th>
+								<th scope="col" class="govuk-table__header" width="15%">User</th>
+								<th scope="col" class="govuk-table__header" width="10%"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+
+		                    {% if data['strategy_3_Complete'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">Today, 12:07pm</td>
+									<td class="govuk-table__cell"><span id="strategy_Prosecution-Text"></span></td>
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell"><a href="18-case-strategy">Edit</a></td>
+								</tr>
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="4">There is no Prosecution Strategy on this case</td>
+								</tr>
+		                    {% endif %}
+
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 3 - END -->
+
+		<!-- SECTION 4 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">Victim & Witness Strategy</h3>
+		           <div class="tooltip">
+		                <button class="govuk-button open-tooltip" data-module="govuk-button" type="button" onClick="toggleGuidance3()">Guidance notes</button>
+		                <div class="tooltiptext-3">
+		                     <button class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeToggleGuidance3()">×</button>
+		                    <p>Victim & Witness Strategy</p>
+		                    <p class="govuk-body-s">This section should be completed by the lawyer.</p>
+		                    <p class="govuk-body-s">This section should address witness management for the case and should include the following.</p>
+		                    <ul>
+		                    	<li>Special Measures and use of s.28 YJCEA</li>
+		                    	<li>How victim and witness care will be addressed, referencing any Victim and Witness Strategy agreed with UKLE</li>
+		                    	<li>Anonymity applications</li>
+		                    </ul>
+		                </div>
+		            </div>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_4" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header" width="15%">Date</th>
+								<th scope="col" class="govuk-table__header" width="60%">Current Strategy</th>
+								<th scope="col" class="govuk-table__header" width="15%">User</th>
+								<th scope="col" class="govuk-table__header" width="10%"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+
+		                    {% if data['strategy_4_Complete'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">Today, 12:07pm</td>
+									<td class="govuk-table__cell"><span id="strategy_Victim-Text"></span></td>
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell"><a href="18-case-strategy">Edit</a></td>
+								</tr>
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="5">There is no Victim & Witness Strategy on this case</td>
+								</tr>
+		                    {% endif %}
+
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 4 - END -->
+
+		<!-- SECTION 5 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">Proceeds of Crime Strategy</h3>
+		           <div class="tooltip">
+		                <button class="govuk-button open-tooltip" data-module="govuk-button" type="button" onClick="toggleGuidance4()">Guidance notes</button>
+		                <div class="tooltiptext-4">
+		                     <button class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeToggleGuidance4()">×</button>
+		                    <p>Proceeds of Crime Strategy</p>
+		                    <p class="govuk-body-s">This section should be completed by the lawyer.</p>
+		                    <p class="govuk-body-s">This section should address witness management for the case and should include the following.</p>
+		                    <ul>
+		                    	<li>Special Measures and use of s.28 YJCEA</li>
+		                    	<li>How victim and witness care will be addressed, referencing any Victim and Witness Strategy agreed with UKLE</li>
+		                    	<li>Anonymity applications</li>
+		                    </ul>
+		                </div>
+		            </div>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_5" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header" width="15%">Date</th>
+								<th scope="col" class="govuk-table__header" width="60%">Current Strategy</th>
+								<th scope="col" class="govuk-table__header" width="15%">User</th>
+								<th scope="col" class="govuk-table__header" width="10%"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+		                    {% if data['strategy_5_Complete'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">Today, 12:07pm</td>
+									<td class="govuk-table__cell"><span id="strategy_Proceeds-Text"></span></td>
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell"><a href="18-case-strategy">Edit</a></td>
+								</tr>
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="5">There is no Proceeds of Crime Strategy on this case</td>
+								</tr>
+		                    {% endif %}
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 5 - END -->
+
+		<!-- SECTION 6 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">Disclosure Strategy</h3>
+		           <div class="tooltip">
+		                <button class="govuk-button open-tooltip" data-module="govuk-button" type="button" onClick="toggleGuidance5()">Guidance notes</button>
+		                <div class="tooltiptext-5">
+		                    <button class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeToggleGuidance5()">×</button>
+		                    <p>Disclosure Strategy</p>
+		                    <p class="govuk-body-s">This section should be completed by the lawyer.</p>
+		                    <p class="govuk-body-s">This section should set out the key areas considered for disclosure purposes and how the prosecutor intends to deal with them. It will include the following considerations:</p>
+		                    <ul>
+		                    	<li>When did the investigation commence for the purposes of disclosure?</li>
+		                    	<li>What defences can reasonably be anticipated? Were any disclosed in interview?</li>
+		                    </ul>
+		                    <p class="govuk-body-s">Prosecutors should record here strategy agreed with UKLE on pursuing reasonable lines of enquiry.</p>
+		                    <p class="govuk-body-s">Prosecutors should also record here the strategy agreed with UKLE and other relevant parties on the approach to be taken to categories of relevant material. This will include, but not be limited to, digital devices and electronic material, third party material, linked investigations, telecoms data, forensic material, product arising from covert tactics (including application of applicable MOUs), visual and audio footage and international material.</p>
+		                    <p class="govuk-body-s">In cases involving multiple devices, at an early stage the prosecutor should agree any approach to review with the case team. This includes liaison pre-arrest/search to agree parameters of the search and strategy for securing relevant material. This section will address this approach for both evidential and disclosure purposes. It will also address any issues around consent and presentation of material.</p>
+		                    <p class="govuk-body-s">Lawyers must complete the Disclosure Record Sheet on CMS (Modern) in addition. Where the lawyer chooses to record strategy on the DRS, they should cross reference the relevant entry in this section.</p>
+		                </div>
+		            </div>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_6" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header" width="15%">Date</th>
+								<th scope="col" class="govuk-table__header" width="60%">Current Strategy</th>
+								<th scope="col" class="govuk-table__header" width="15%">User</th>
+								<th scope="col" class="govuk-table__header" width="10%"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+		                    {% if data['strategy_6_Complete'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">Today, 12:07pm</td>
+									<td class="govuk-table__cell"><span id="strategy_Disclosure-Text"></span></td>
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell"><a href="18-case-strategy">Edit</a></td>
+								</tr>
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="5">There is no Disclosure Strategy on this case</td>
+								</tr>
+		                    {% endif %}
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 6 - END -->
+		
+	</div>
+</div>
+<!-- TABS CONTENT - 3 - END -->
+
+<!-- TABS CONTENT - 4 - START -->
+<div class="secondaryTabContent tabsGroup-1" id="secondaryTabContent-4" style="display: none;">
+	<div class="strategyContent">
+
+		<!-- SECTION 7 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">Asset Recovery Strategy</h3>
+		           <div class="tooltip">
+		                <button class="govuk-button open-tooltip" data-module="govuk-button" type="button" onClick="toggleGuidance7()">Guidance notes</button>
+		                <div class="tooltiptext-7">
+		                    <button class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeToggleGuidance7()">×</button>
+		                    <p>Asset Recovery Strategy</p>
+		                    <p class="govuk-body-s">This section should be completed by the lawyer and include the following. </p>
+		                    <ul>
+		                    	<li>Confirmation that consideration has been given to restraint/confiscation in appropriate cases and the reasons for purusing or not pursuing financial orders</li>
+		                    	<li>Any POC contacts assisting with the case</li>
+		                    </ul>
+		                </div>
+		            </div>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_7" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header" width="15%">Date</th>
+								<th scope="col" class="govuk-table__header" width="60%">Current Strategy</th>
+								<th scope="col" class="govuk-table__header" width="15%">User</th>
+								<th scope="col" class="govuk-table__header" width="10%"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+		                    {% if data['strategy_7_Complete'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">Today, 12:07pm</td>
+									<td class="govuk-table__cell"><span id="strategy_Asset-Text"></span></td>
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell"><a href="18-case-strategy">Edit</a></td>
+								</tr>
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="4">There is no Asset recovery stategy on this case</td>
+								</tr>
+		                    {% endif %}
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 7 - END -->
+
+		<!-- SECTION 8 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+					<h3 class="govuk-heading-s">Defendants Restrained</h3>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="restrained_Edit_Suspect_1" name="restrained_Edit_Suspect_1" type="text" value="false" style="display: none;">
+		                <input id="restrained_Edit_Suspect_2" name="restrained_Edit_Suspect_2" type="text" value="false" style="display: none;">
+		                <input id="restrained_Add_New_Suspect" name="restrained_Add_New_Suspect" type="text" value="true" style="display: none;">
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_8" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header">Date</th>
+								<th scope="col" class="govuk-table__header">Defendants Restrained (one Defendant per line)</th>
+								<th scope="col" class="govuk-table__header">POC Lawyer</th>
+								<th scope="col" class="govuk-table__header">Date of Restraint</th>
+								<th scope="col" class="govuk-table__header">Date of Restraint Discharge</th>
+								<th scope="col" class="govuk-table__header">User</th>
+								<th scope="col" class="govuk-table__header"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+							{% if data['restrained_Add_New_Suspect-Surname'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">Today, 2:04pm</td>
+									<th class="govuk-table__cell"><span class="uppercase">{{ data['restrained_Add_New_Suspect-Surname'] }}</span>, {{ data['restrained_Add_New_Suspect-Forename'] }}</td>
+									{% if data['restrained_Add_New_Suspect-Lawyer'] %}
+										<td class="govuk-table__cell">{{ data['restrained_Add_New_Suspect-Lawyer'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['restrained_Add_New_Suspect-Day_1'] %}
+										<td class="govuk-table__cell">
+											{{ data['restrained_Add_New_Suspect-Day_1'] }}/{{ data['restrained_Add_New_Suspect-Month_1'] }}/{{ data['restrained_Add_New_Suspect-Year_1'] }}
+										</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['restrained_Add_New_Suspect-Day_2'] %}
+										<td class="govuk-table__cell">
+											{{ data['restrained_Add_New_Suspect-Day_2'] }}/{{ data['restrained_Add_New_Suspect-Month_2'] }}/{{ data['restrained_Add_New_Suspect-Year_2'] }}
+										</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell">
+							            <form method="get" action="18-case-strategy" id="">  
+							                <input id="restrained_Edit_Suspect_1" name="restrained_Edit_Suspect_1" type="text" value="false" style="display: none;">
+							                <input id="restrained_Edit_Suspect_2" name="restrained_Edit_Suspect_2" type="text" value="false" style="display: none;">
+							                <input id="restrained_Add_New_Suspect" name="restrained_Add_New_Suspect" type="text" value="true" style="display: none;">
+							                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_8" style="display: none;">
+							                <button type="submit" class="govuk-button non-button" style="margin: 0; font-weight: normal;">Edit</button>
+							            </form>
+									</td>
+								</tr>
+		                    {% else %}
+
+		                    {% endif %}
+
+							{% if data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+								<tr class="govuk-table__row">
+									{% if data['strategy_8_Complete'] %}
+										<td class="govuk-table__cell">Today, 2:04pm</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									<th class="govuk-table__cell"><span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</span>, {{ data['newCase_DefendantName-Forename'] }}</td>
+									{% if data['restrained_Edit_Suspect_1-Lawyer'] %}
+										<td class="govuk-table__cell">{{ data['restrained_Edit_Suspect_1-Lawyer'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['restrained_Edit_Suspect_1-Day_1'] %}
+										<td class="govuk-table__cell">
+											{{ data['restrained_Edit_Suspect_1-Day_1'] }}/{{ data['restrained_Edit_Suspect_1-Month_1'] }}/{{ data['restrained_Edit_Suspect_1-Year_1'] }}
+										</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['restrained_Edit_Suspect_1-Day_2'] %}
+										<td class="govuk-table__cell">
+											{{ data['restrained_Edit_Suspect_1-Day_2'] }}/{{ data['restrained_Edit_Suspect_1-Month_2'] }}/{{ data['restrained_Edit_Suspect_1-Year_2'] }}
+										</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell">
+							            <form method="get" action="18-case-strategy" id="">  
+							                <input id="restrained_Edit_Suspect_1" name="restrained_Edit_Suspect_1" type="text" value="true" style="display: none;">
+							                <input id="restrained_Edit_Suspect_2" name="restrained_Edit_Suspect_2" type="text" value="false" style="display: none;">
+							                <input id="restrained_Add_New_Suspect" name="restrained_Add_New_Suspect" type="text" value="false" style="display: none;">
+							                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_8" style="display: none;">
+							                <button type="submit" class="govuk-button non-button" style="margin: 0; font-weight: normal;">Edit</button>
+							            </form>
+									</td>
+								</tr>
+		                    {% else %}
+
+		                    {% endif %}
+
+							{% if data['newCase_DefendantName-CompanyName'] %}
+								<tr class="govuk-table__row">
+									{% if data['strategy_8_Complete'] %}
+										<td class="govuk-table__cell">Today, 2:04pm</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									<th class="govuk-table__cell">{{ data['newCase_DefendantName-CompanyName'] }}</td>
+									{% if data['restrained_Edit_Suspect_2-Lawyer'] %}
+										<td class="govuk-table__cell">{{ data['restrained_Edit_Suspect_2-Lawyer'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['restrained_Edit_Suspect_2-Day_1'] %}
+										<td class="govuk-table__cell">
+											{{ data['restrained_Edit_Suspect_2-Day_1'] }}/{{ data['restrained_Edit_Suspect_2-Month_1'] }}/{{ data['restrained_Edit_Suspect_2-Year_1'] }}
+										</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['restrained_Edit_Suspect_2-Day_2'] %}
+										<td class="govuk-table__cell">
+											{{ data['restrained_Edit_Suspect_2-Day_2'] }}/{{ data['restrained_Edit_Suspect_2-Month_2'] }}/{{ data['restrained_Edit_Suspect_2-Year_2'] }}
+										</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell">
+							            <form method="get" action="18-case-strategy" id="">  
+							                <input id="restrained_Edit_Suspect_1" name="restrained_Edit_Suspect_1" type="text" value="false" style="display: none;">
+							                <input id="restrained_Edit_Suspect_2" name="restrained_Edit_Suspect_2" type="text" value="true" style="display: none;">
+							                <input id="restrained_Add_New_Suspect" name="restrained_Add_New_Suspect" type="text" value="false" style="display: none;">
+							                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_8" style="display: none;">
+							                <button type="submit" class="govuk-button non-button" style="margin: 0; font-weight: normal;">Edit</button>
+							            </form>
+									</td>
+								</tr>
+		                    {% else %}
+
+		                    {% endif %}
+
+							{% if data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] or data['newCase_DefendantName-CompanyName'] or data['restrained_Add_New_Suspect-Surname'] %}
+
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="7">There is no Defendants Restrained on this case</td>
+								</tr>
+		                    {% endif %}
+
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 8 - END -->
+		
+	</div>
+</div>
+<!-- TABS CONTENT - 4 - END -->
+
+<!-- TABS CONTENT - 5 - START -->
+<div class="secondaryTabContent tabsGroup-1" id="secondaryTabContent-5" style="display: none;">
+	<div class="strategyContent">
+
+		<!-- SECTION 9 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+					<h3 class="govuk-heading-s">Changes to Charges</h3>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="charges_Edit_Suspect_1" name="charges_Edit_Suspect_1" type="text" value="false" style="display: none;">
+		                <input id="charges_Edit_Suspect_2" name="charges_Edit_Suspect_2" type="text" value="false" style="display: none;">
+		                <input id="charges_Add_New_Suspect" name="charges_Add_New_Suspect" type="text" value="true" style="display: none;">
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_9" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header">Defendant</th>
+								<th scope="col" class="govuk-table__header">Original Charges</th>
+								<th scope="col" class="govuk-table__header">Change to Charge</th>
+								<th scope="col" class="govuk-table__header">Rationale</th>
+								<th scope="col" class="govuk-table__header">User</th>
+								<th scope="col" class="govuk-table__header"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+							{% if data['charges_Add_New_Suspect-Surname'] %}
+								<tr class="govuk-table__row">
+									<th class="govuk-table__cell"><span class="uppercase">{{ data['charges_Add_New_Suspect-Surname'] }}</span>, {{ data['charges_Add_New_Suspect-Forename'] }}</td>
+									{% if data['charges_Add_New_Suspect-Original'] %}
+										<td class="govuk-table__cell">{{ data['charges_Add_New_Suspect-Original'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['charges_Add_New_Suspect-Change'] %}
+										<td class="govuk-table__cell">{{ data['charges_Add_New_Suspect-Change'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['charges_Add_New_Suspect-Rational'] %}
+										<td class="govuk-table__cell">{{ data['charges_Add_New_Suspect-Rational'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell">
+							            <form method="get" action="18-case-strategy" id="">  
+							                <input id="charges_Edit_Suspect_1" name="charges_Edit_Suspect_1" type="text" value="false" style="display: none;">
+							                <input id="charges_Edit_Suspect_2" name="charges_Edit_Suspect_2" type="text" value="false" style="display: none;">
+							                <input id="charges_Add_New_Suspect" name="charges_Add_New_Suspect" type="text" value="true" style="display: none;">
+							                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_9" style="display: none;">
+							                <button type="submit" class="govuk-button non-button" style="margin: 0; font-weight: normal;">Edit</button>
+							            </form>
+									</td>
+								</tr>
+		                    {% else %}
+
+		                    {% endif %}
+
+							{% if data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+								<tr class="govuk-table__row">
+									<th class="govuk-table__cell"><span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</span>, {{ data['newCase_DefendantName-Forename'] }}</td>
+									{% if data['charges_Edit_Suspect_1-Original'] %}
+										<td class="govuk-table__cell">{{ data['charges_Edit_Suspect_1-Original'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['charges_Edit_Suspect_1-Change'] %}
+										<td class="govuk-table__cell">{{ data['charges_Edit_Suspect_1-Change'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['charges_Edit_Suspect_1-Rational'] %}
+										<td class="govuk-table__cell">{{ data['charges_Edit_Suspect_1-Rational'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell">
+							            <form method="get" action="18-case-strategy" id="">  
+							                <input id="charges_Edit_Suspect_1" name="charges_Edit_Suspect_1" type="text" value="true" style="display: none;">
+							                <input id="charges_Edit_Suspect_2" name="charges_Edit_Suspect_2" type="text" value="false" style="display: none;">
+							                <input id="charges_Add_New_Suspect" name="charges_Add_New_Suspect" type="text" value="false" style="display: none;">
+							                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_9" style="display: none;">
+							                <button type="submit" class="govuk-button non-button" style="margin: 0; font-weight: normal;">Edit</button>
+							            </form>
+									</td>
+								</tr>
+		                    {% else %}
+
+		                    {% endif %}
+
+							{% if data['newCase_DefendantName-CompanyName'] %}
+								<tr class="govuk-table__row">
+									<th class="govuk-table__cell">{{ data['newCase_DefendantName-CompanyName'] }}</td>
+									{% if data['charges_Edit_Suspect_2-Original'] %}
+										<td class="govuk-table__cell">{{ data['charges_Edit_Suspect_2-Original'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['charges_Edit_Suspect_2-Change'] %}
+										<td class="govuk-table__cell">{{ data['charges_Edit_Suspect_2-Change'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									{% if data['charges_Edit_Suspect_2-Rational'] %}
+										<td class="govuk-table__cell">{{ data['charges_Edit_Suspect_2-Rational'] }}</td>
+				                    {% else %}
+										<td class="govuk-table__cell">--</td>
+				                    {% endif %}
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell">
+							            <form method="get" action="18-case-strategy" id="">  
+							                <input id="charges_Edit_Suspect_1" name="charges_Edit_Suspect_1" type="text" value="false" style="display: none;">
+							                <input id="charges_Edit_Suspect_2" name="charges_Edit_Suspect_2" type="text" value="true" style="display: none;">
+							                <input id="charges_Add_New_Suspect" name="charges_Add_New_Suspect" type="text" value="false" style="display: none;">
+							                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_9" style="display: none;">
+							                <button type="submit" class="govuk-button non-button" style="margin: 0; font-weight: normal;">Edit</button>
+							            </form>
+									</td>
+								</tr>
+		                    {% else %}
+
+		                    {% endif %}
+
+							{% if data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] or data['newCase_DefendantName-CompanyName'] or data['restrained_Add_New_Suspect-Surname'] %}
+
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="6">There are no Changes to charges on this case</td>
+								</tr>
+		                    {% endif %}
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 9 - END -->
+		
+	</div>
+</div>
+<!-- TABS CONTENT - 5 - END -->
+
+<!-- TABS CONTENT - 6 - START -->
+<div class="secondaryTabContent tabsGroup-1" id="secondaryTabContent-6" style="display: none;">
+	<div class="strategyContent">
+
+		<!-- SECTION 10 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">International Strategy</h3>
+		           <div class="tooltip">
+		                <button class="govuk-button open-tooltip" data-module="govuk-button" type="button" onClick="toggleGuidance6()">Guidance notes</button>
+		                <div class="tooltiptext-6">
+		                     <button class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeToggleGuidance6()">×</button>
+		                    <p>International Strategy</p>
+		                    <p class="govuk-body-s">This section should be completed by the lawyer.</p>
+		                    <p class="govuk-body-s">This section should address the following.</p>
+		                    <ul>
+		                    	<li>What countries are linked to the investigation?</li>
+		                    	<li>What LORs have been issued/will be required?</li>
+		                    	<li>Any international contacts helping CPS and UKLE? (Liaison Prosecutors, Counter Terrorism and Extremism Liaison Officers, prosecutors in other jurisdictions, Eurojust).</li>
+		                    	<li>Address any issues of concurrent jurisdiction</li>
+		                    	<li>Any contact with UKCA</li>
+		                    	<li>Any necessary risk assessments completed</li>
+		                    	<li>Any related disclosure or witness management issues, including agreement with LPs on the management of disclosure and potentially relevant material</li>
+		                    </ul>
+		                </div>
+		            </div>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_10" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header" width="15%">Date</th>
+								<th scope="col" class="govuk-table__header" width="60%">Current Strategy</th>
+								<th scope="col" class="govuk-table__header" width="15%">User</th>
+								<th scope="col" class="govuk-table__header" width="10%"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+		                    {% if data['strategy_10_Complete'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">Today, 12:07pm</td>
+									<td class="govuk-table__cell"><span id="strategy_International-Text"></span></td>
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell"><a href="18-case-strategy">Edit</a></td>
+								</tr>
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="4">There is no International Strategy on this case</td>
+								</tr>
+		                    {% endif %}
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 10 - END -->
+
+		<!-- SECTION 11 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+					<h3 class="govuk-heading-s">Record of International Requests</h3>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_11" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header">Date</th>
+								<th scope="col" class="govuk-table__header">Country</th>
+								<th scope="col" class="govuk-table__header">Type of Request</th>
+								<th scope="col" class="govuk-table__header">Date Request Sent</th>
+								<th scope="col" class="govuk-table__header">Direct Transmission or via UKCA</th>
+								<th scope="col" class="govuk-table__header">Response Received</th>
+								<th scope="col" class="govuk-table__header">User</th>
+								<th scope="col" class="govuk-table__header"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+		                    {% if data['strategy_11_Complete'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">Today, 12:07pm</td>
+									<td class="govuk-table__cell">{{ data['strategy_International-Country'] }}</td>
+									<td class="govuk-table__cell">{{ data['strategy_International-Type'] }}</td>
+									<td class="govuk-table__cell">{{ data['strategy_International-Day_1'] }}/{{ data['strategy_International-Month_1'] }}/{{ data['strategy_International-Year_1'] }}</td>
+									<td class="govuk-table__cell">{{ data['strategy_International-Transmission'] }}</td>
+				                    {% if data['strategy_International-Response'] == "Yes" %}
+										<td class="govuk-table__cell">Yes</td>
+				                    {% else %}
+										<td class="govuk-table__cell">No</td>
+				                    {% endif %}
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell"><a href="18-case-strategy">Edit</a></td>
+								</tr>
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="8">There are no Record of International Requests on this case</td>
+								</tr>
+		                    {% endif %}
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 11 - END -->
+		
+	</div>
+</div>
+<!-- TABS CONTENT - 6 - END -->
+
+<!-- TABS CONTENT - 7 - START -->
+<div class="secondaryTabContent tabsGroup-1" id="secondaryTabContent-7" style="display: none;">
+	<div class="strategyContent">
+
+		<!-- SECTION 12 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">Risk Register</h3>
+		           <div class="tooltip">
+		                <button class="govuk-button open-tooltip" data-module="govuk-button" type="button" onClick="toggleGuidance8()">Guidance notes</button>
+		                <div class="tooltiptext-8">
+		                    <button class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeToggleGuidance8()">×</button>
+		                    <p>Risk Register</p>
+		                    <p class="govuk-body-s">This section can be completed by any CPS staff member.</p>
+		                    <p class="govuk-body-s">This section should contain all the known case specific risks and what action is being taken to address them. This will include risks arising from the investigative, disclosure and prosecution strategies in the case.</p>
+		                    <p class="govuk-body-s">It should be reviewed monthly and updated by the lawyer.</p>
+		                </div>
+		            </div>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_12" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header" width="10%">Date</th>
+								<th scope="col" class="govuk-table__header" width="25%">Risk</th>
+								<th scope="col" class="govuk-table__header" width="10%">Impact</th>
+								<th scope="col" class="govuk-table__header" width="25%">Action required</th>
+								<th scope="col" class="govuk-table__header" width="10%">Status</th>
+								<th scope="col" class="govuk-table__header" width="10%">User</th>
+								<th scope="col" class="govuk-table__header" width="10%"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+		                    {% if data['strategy_12_Complete'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">Today, 12:07pm</td>
+									<td class="govuk-table__cell"><span id="risk_Register-Risk-Details"></span></td>
+									<td class="govuk-table__cell">
+										{% if data['risk_Register-Impact'] == 'High' %}
+											<strong class="govuk-tag govuk-tag--red">{{ data['risk_Register-Impact'] }}</strong>
+										{% elseif  data['risk_Register-Impact'] == 'Medium' %}
+											<strong class="govuk-tag govuk-tag--yellow">{{ data['risk_Register-Impact'] }}</strong>
+										{% elseif  data['risk_Register-Impact'] == 'Low' %}
+											<strong class="govuk-tag govuk-tag--light-blue">{{ data['risk_Register-Impact'] }}</strong>
+										{% endif %}
+									</td>
+									<td class="govuk-table__cell"><span id="risk_Register-Action-Details"></span></td>
+									<td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">{{ data['risk_Register-Status'] }}</strong></td>
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell"><a href="18-case-strategy">Edit</a></td>
+								</tr>
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="4">There is no Risk Register at this time on this case</td>
+								</tr>
+		                    {% endif %}
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 12 - END -->
+
+		<!-- SECTION 13 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">Outstanding Actions log</h3>
+		           <div class="tooltip">
+		                <button class="govuk-button open-tooltip" data-module="govuk-button" type="button" onClick="toggleGuidance9()">Guidance notes</button>
+		                <div class="tooltiptext-9">
+		                    <button class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeToggleGuidance9()">×</button>
+		                    <p>Outstanding Actions log</p>
+		                    <p class="govuk-body-s">
+		                    	This section should be used to record outstanding actions agreed both internally and with UKLE. Whilst all actions continue to be recorded within action plans issued through CMS, the log will assist the prosecutor in tracking outstanding actions. The status of outstanding actions should be reviewed monthly with UKLE.
+		                    </p>
+		                    <p class="govuk-body-s">When actions are completed they should be deleted from the log.</p>
+		                    <p class="govuk-body-s">If the lawyer chooses to maintain a separate action log, they must reference it’s location in this section.</p>
+		                </div>
+		            </div>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_13" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header" width="15%">Date</th>
+								<th scope="col" class="govuk-table__header" width="40%">Action</th>
+								<th scope="col" class="govuk-table__header" width="17.5%">Status</th>
+								<th scope="col" class="govuk-table__header" width="17.5%">User</th>
+								<th scope="col" class="govuk-table__header" width="10%"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+		                    {% if data['strategy_13_Complete'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">Today, 12:07pm</td>
+									<td class="govuk-table__cell"><span id="actions_Log-Action-Details"></span></td>
+									<td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">{{ data['risk_Register-Status'] }}</strong></td>
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell"><a href="18-case-strategy">Edit</a></td>
+								</tr>
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="4">There are no Outstanding Actions logs at this time on this case</td>
+								</tr>
+		                    {% endif %}
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 13 - END -->
+
+		<!-- SECTION 14 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">Actions and Decisions record</h3>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_14" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+		        	<p>Record all activities using the below sections, including hearing notes, any JOs, directions, Bail calculations, witness warning requirements, and any out of court work and orders.</p>
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header" width="15%">Date</th>
+								<th scope="col" class="govuk-table__header" width="15%">Category</th>
+								<th scope="col" class="govuk-table__header" width="40%">Chronological Record of Decisions, Actions, Reviews and Events (including key meetings and conferences)</th>
+								<th scope="col" class="govuk-table__header" width="17.5%">User</th>
+								<th scope="col" class="govuk-table__header" width="10%"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+		                    {% if data['strategy_14_Complete'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">Today, 12:07pm</td>
+									<td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">{{ data['decision_Category'] }}</strong></td>
+									<td class="govuk-table__cell"><span id="decision_Action-Details"></span></td>
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell"><a href="18-case-strategy">Edit</a></td>
+								</tr>
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="4">There are no Actions and Decisions recorded at this time on this case</td>
+								</tr>
+		                    {% endif %}
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 14 - END -->
+
+		<!-- SECTION 15 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">Bail and Custody Decisions</h3>
+		           <div class="tooltip">
+		                <button class="govuk-button open-tooltip" data-module="govuk-button" type="button" onClick="toggleGuidance10()">Guidance notes</button>
+		                <div class="tooltiptext-10">
+		                    <button class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeToggleGuidance10()">×</button>
+		                    <p>Bail and Custody Decisions</p>
+		                    <p class="govuk-body-s">The Lawyer should use this section for recording the bail status of suspects and defendants.</p>
+		                    <p class="govuk-body-s">
+		                    	This section does not replace the CTL Log which must be completed in all cases where a CTL applies and include a full rationale for decisions made and progression of the case. If recording an action here, which will also be recorded on the CTL log, the author may record the action here and note the detail on the log.
+		                    </p>
+		                    <p class="govuk-body-s">The following are <strong>examples</strong> of the decisions that should recorded here</p>
+		                    <ul>
+		                    	<li>Bail conditions for each suspect/defendant (including changes to conditions) and a brief record of the reasons for imposing conditions</li>
+		                    	<li>Reasons for seeking a remand in custody</li>
+		                    	<li>Consideration of any application for bail or application to vary bail conditions</li>
+		                    </ul>
+		                </div>
+		            </div>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_15" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header" width="10%">Date</th>
+								<th scope="col" class="govuk-table__header" width="20%">Bail and Custody Decisions</th>
+								<th scope="col" class="govuk-table__header" width="25%">Custody Time Limit Information where applicable</th>
+								<th scope="col" class="govuk-table__header" width="30%">CTL Expiry Date</th>
+								<th scope="col" class="govuk-table__header" width="7.5%">User</th>
+								<th scope="col" class="govuk-table__header" width="7.5%"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+		                    {% if data['strategy_15_Complete'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">Today, 12:07pm</td>
+									<td class="govuk-table__cell"><span id="custody_Decision-Details"></span></td>
+									<td class="govuk-table__cell">{{ data['custody_CTL_Date-Day'] }}/{{ data['custody_CTL_Date-Month'] }}/{{ data['custody_CTL_Date-Year'] }}</td>
+									<td class="govuk-table__cell">
+										{% if data['ctl_dates_1-Day'] %}
+											CTL no longer applies: <strong>{{ data['ctl_dates_1-Day'] }}/{{ data['ctl_dates_1-Month'] }}/{{ data['ctl_dates_1-Year'] }}</strong><br>
+										{% else %}
+
+										{% endif %}
+										{% if data['ctl_dates_2-Day'] %}
+											First day in custody in court: <strong>{{ data['ctl_dates_2-Day'] }}/{{ data['ctl_dates_2-Month'] }}/{{ data['ctl_dates_2-Year'] }}</strong><br>
+										{% else %}
+										
+										{% endif %}
+										{% if data['ctl_Announced'] %}
+											Announced in court: <strong>Yes</strong><br>
+										{% else %}
+										
+										{% endif %}
+										{% if data['ctl_dates_4-Day'] %}
+											Date released on bail: <strong>{{ data['ctl_dates_4-Day'] }}/{{ data['ctl_dates_4-Month'] }}/{{ data['ctl_dates_4-Year'] }}</strong><br>
+										{% else %}
+
+										{% endif %}
+										{% if data['ctl_dates_5-Number_Days'] %}
+											Days served in custody: <strong>{{ data['ctl_dates_5-Number_Days'] }}</strong><br>
+										{% else %}
+
+										{% endif %}
+										{% if data['ctl_dates_6-Day'] %}
+											Date released on bail: <strong>{{ data['ctl_dates_6-Day'] }}/{{ data['ctl_dates_6-Month'] }}/{{ data['ctl_dates_6-Year'] }}</strong><br>
+										{% else %}
+
+										{% endif %}								
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell"><a href="18-case-strategy">Edit</a></td>
+								</tr>
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="6">There are no Bail and Custody Decisions at this time on this case</td>
+								</tr>
+		                    {% endif %}
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 15 - END -->
+
+	</div>
+</div>
+<!-- TABS CONTENT - 7 - END -->
+
+
+<!-- TABS CONTENT - 8 - START -->
+<div class="secondaryTabContent tabsGroup-1" id="secondaryTabContent-8" style="display: none;">
+	<div class="strategyContent">
+
+		<!-- SECTION 16 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">Financial Management</h3>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_16" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header" width="25%">Case Level for QASA</th>
+								<th scope="col" class="govuk-table__header" width="25%">VHCC Fee category</th>
+								<th scope="col" class="govuk-table__header" width="10%">CFIN</th>
+								<th scope="col" class="govuk-table__header" width="20%">GFS scheme type</th>
+								<th scope="col" class="govuk-table__header" width="10%">User</th>
+								<th scope="col" class="govuk-table__header" width="10%"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+		                    {% if data['strategy_16_Complete'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">{{ data['financial_level'] }}</td>
+									<td class="govuk-table__cell">£{{ data['financial_fee'] }}</td>
+									<td class="govuk-table__cell">{{ data['financial_CFIN'] }}</td>
+									<td class="govuk-table__cell">{{ data['financial_GFS'] }}</td>
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell"><a href="18-case-strategy">Edit</a></td>
+								</tr>
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="4">There is no Financial Management at this time on this case</td>
+								</tr>
+		                    {% endif %}
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 16 - END -->
+
+		<!-- SECTION 17 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">GFS Expenditure</h3>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_17" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header" width="20%">Type Of Bundle Served</th>
+								<th scope="col" class="govuk-table__header" width="10%">Date Served</th>
+								<th scope="col" class="govuk-table__header" width="10%">Pages of Statements</th>
+								<th scope="col" class="govuk-table__header" width="10%">Pages Of Exhibits</th>
+								<th scope="col" class="govuk-table__header" width="10%">Number Of Witnesses</th>
+								<th scope="col" class="govuk-table__header" width="20%">Served Disc/Electronic Media Material inc Exhibit Ref</th>
+								<th scope="col" class="govuk-table__header" width="10%">User</th>
+								<th scope="col" class="govuk-table__header" width="10%"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+		                    {% if data['strategy_17_Complete'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">{{ data['expenditure_Type'] }}</td>
+									<td class="govuk-table__cell">{{ data['expenditure_Date-Day'] }}/{{ data['expenditure_Date-Month'] }}/{{ data['expenditure_Date-Year'] }}</td>
+									<td class="govuk-table__cell">{{ data['expenditure_Pages_Statements'] }}</td>
+									<td class="govuk-table__cell">{{ data['expenditure_Pages_Exhibits'] }}</td>
+									<td class="govuk-table__cell">{{ data['expenditure_Number_Witnesses'] }}</td>
+									<td class="govuk-table__cell">{{ data['expenditure_Served'] }}</td>
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell"><a href="18-case-strategy">Edit</a></td>
+								</tr>
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="4">There is no GFS Expenditure at this time on this case</td>
+								</tr>
+		                    {% endif %}
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 17 - END -->
+
+		<!-- SECTION 18 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">Suppliers</h3>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_18" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header" width="20%">Supplier / Company Name</th>
+								<th scope="col" class="govuk-table__header" width="10%">Type of Service Provided</th>
+								<th scope="col" class="govuk-table__header" width="10%">Estimate £</th>
+								<th scope="col" class="govuk-table__header" width="10%">Actual £ (inc VAT)</th>
+								<th scope="col" class="govuk-table__header" width="10%">Date Invoice Received</th>
+								<th scope="col" class="govuk-table__header" width="20%">Date sent to Finance</th>
+								<th scope="col" class="govuk-table__header" width="10%">User</th>
+								<th scope="col" class="govuk-table__header" width="10%"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+		                    {% if data['strategy_18_Complete'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">{{ data['supplier_name'] }}</td>
+									<td class="govuk-table__cell">{{ data['supplier_Service'] }}</td>
+									<td class="govuk-table__cell">£{{ data['supplier_Estimate'] }}</td>
+									<td class="govuk-table__cell">£{{ data['supplier_Actual'] }}</td>
+									<td class="govuk-table__cell">{{ data['supplier_Invoice_Date-Day'] }}/{{ data['supplier_Invoice_Date-Month'] }}/{{ data['supplier_Invoice_Date-Year'] }}</td>
+									<td class="govuk-table__cell">{{ data['supplier_Sent_Date-Day'] }}/{{ data['supplier_Sent_Date-Month'] }}/{{ data['supplier_Sent_Date-Year'] }}</td>
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell"><a href="18-case-strategy">Edit</a></td>
+								</tr>
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="4">There is no Suppliers at this time on this case</td>
+								</tr>
+		                    {% endif %}
+						</tbody>
+					</table>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 18 - END -->
+
+		<!-- SECTION 19 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">VHCC Expenditure</h3>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_19" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header" width="15%">Stage</th>
+								<th scope="col" class="govuk-table__header" width="15%">Stage Details</th>
+								<th scope="col" class="govuk-table__header" width="15%">Rate</th>
+								<th scope="col" class="govuk-table__header" width="15%">Case Cat</th>
+								<th scope="col" class="govuk-table__header" width="15%">Counsel(s)/Chambers</th>
+								<th scope="col" class="govuk-table__header" width="15%">User</th>
+								<th scope="col" class="govuk-table__header" width="10%"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+		                    {% if data['strategy_19_Complete'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">{{ data['expenditure_Stage'] }}</td>
+									<td class="govuk-table__cell">{{ data['expenditure_Stage_Details'] }}</td>
+									<td class="govuk-table__cell">£{{ data['expenditure_Rate'] }}</td>
+									<td class="govuk-table__cell">{{ data['expenditure_Cat'] }}</td>
+									<td class="govuk-table__cell">{{ data['expenditure_Chambers'] }}</td>
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell double-button">
+										<a href="18-case-strategy">Edit</a>
+										<a href="#" class="preview-table-link">View<span class="icon-new arrow-down"></span></a>
+										<a href="#" class="hide-table-link">Hide<span class="icon-new arrow-up"></span></a>
+									</td>
+								</tr>
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="4">There is no VHCC Expenditure at this time on this case</td>
+								</tr>
+		                    {% endif %}
+						</tbody>
+					</table>
+					<div id="hidden-row">
+						<table class="govuk-table">
+							<thead class="govuk-table__head">
+								<tr class="govuk-table__row">
+									<th scope="col" class="govuk-table__header" width="5%">Hourly Rate</th>
+									<th scope="col" class="govuk-table__header" width="5%">Agreed Hours Allocated</th>
+									<th scope="col" class="govuk-table__header" width="10%">Total Of Estimated Bill (Inc VAT)</th>
+									<th scope="col" class="govuk-table__header" width="5%">Date Fee Note Received</th>
+									<th scope="col" class="govuk-table__header" width="5%">Actual Billed Hours</th>
+									<th scope="col" class="govuk-table__header" width="10%">Actual Billed Amount (Inc VAT)</th>
+									<th scope="col" class="govuk-table__header" width="10%">Date Fee Note Sent To Fees Unit (Once Audited)</th>
+								</tr>
+							</thead>
+							<tbody class="govuk-table__body">
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">{{ data['expenditure_Hourly_Rate'] }}</td>
+									<td class="govuk-table__cell">{{ data['expenditure_Hours'] }}</td>
+									<td class="govuk-table__cell">£{{ data['expenditure_Estimated_Bill'] }}</td>
+									<td class="govuk-table__cell">{{ data['expenditure_Date_Fee-Day'] }}/{{ data['expenditure_Date_Fee-Month'] }}/{{ data['expenditure_Date_Fee-Year'] }}</td>
+									<td class="govuk-table__cell">{{ data['expenditure_Hours_Billed'] }}</td>
+									<td class="govuk-table__cell">£{{ data['expenditure_Hours_Billed_Amount'] }}</td>
+									<td class="govuk-table__cell">{{ data['expenditure_Date_Note_Sent-Day'] }}/{{ data['expenditure_Date_Note_Sent-Month'] }}/{{ data['expenditure_Date_Note_Sent-Year'] }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 19 - END -->
+
+		<!-- SECTION 20 - START -->
+		<div class="section-wrapper section-row">
+		    <section>
+		        <div class="title-wrapper">
+		           <h3 class="govuk-heading-s">Hearings</h3>
+		            <form method="get" action="18-case-strategy" id="">  
+		                <input id="strategy_Type" name="strategy_Type" type="text" value="strategy_20" style="display: none;">
+		                <button type="submit" class="govuk-button non-button" style="">Add</button>
+		            </form>
+		        </div>
+		        <div class="section-content">
+
+					<table class="govuk-table">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th scope="col" class="govuk-table__header" width="10%">Date</th>
+								<th scope="col" class="govuk-table__header" width="15%">Judge & Court</th>
+								<th scope="col" class="govuk-table__header" width="10%">Name of Counsel/CA</th>
+								<th scope="col" class="govuk-table__header" width="10%">Chambers</th>
+								<th scope="col" class="govuk-table__header" width="20%">Listed for</th>
+								<th scope="col" class="govuk-table__header" width="15%">Hearing Outcome</th>
+								<th scope="col" class="govuk-table__header" width="10%">User</th>
+								<th scope="col" class="govuk-table__header" width="15%"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+		                    {% if data['strategy_20_Complete'] %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">{{ data['hearing_Date-Day'] }}/{{ data['hearing_Date-Month'] }}/{{ data['hearing_Date-Year'] }}</td>
+									<td class="govuk-table__cell">{{ data['hearing_Judge'] }}</td>
+									<td class="govuk-table__cell">{{ data['hearing_Counsel'] }}</td>
+									<td class="govuk-table__cell">{{ data['hearing_Chambers'] }}</td>
+									<td class="govuk-table__cell">{{ data['hearing_Listed'] }}</td>
+									<td class="govuk-table__cell">{{ data['hearing_Listed'] }}</td>
+									<td class="govuk-table__cell">{{ data['offCMS_Username'] }}</td>
+									<td class="govuk-table__cell double-button">
+										<a href="18-case-strategy">Edit</a>
+										<a href="#" class="preview-table-link_V2">View<span class="icon-new arrow-down"></span></a>
+										<a href="#" class="hide-table-link_V2">Hide<span class="icon-new arrow-up"></span></a>
+									</td>
+								</tr>
+		                    {% else %}
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell" colspan="4">There is no Hearing at this time on this case</td>
+								</tr>
+		                    {% endif %}
+						</tbody>
+					</table>
+					<div id="hidden-row_V2">
+						<table class="govuk-table">
+							<thead class="govuk-table__head">
+								<tr class="govuk-table__row">
+									<th scope="col" class="govuk-table__header" width="20%">Main Hearing Type/Fixed Fee Code</th>
+									<th scope="col" class="govuk-table__header" width="20%">Conference time/View of Locus</th>
+									<th scope="col" class="govuk-table__header" width="20%">Travel (Y/N)</th>
+									<th scope="col" class="govuk-table__header" width="20%">Sum for Costs</th>
+									<th scope="col" class="govuk-table__header" width="20%">PO/PAName</th>
+								</tr>
+							</thead>
+							<tbody class="govuk-table__body">
+								<tr class="govuk-table__row">
+									<td class="govuk-table__cell">{{ data['hearing_Fee_Code'] }}</td>
+									<td class="govuk-table__cell">{{ data['hearing_Conference_Time'] }}</td>
+									<td class="govuk-table__cell">{{ data['hearing_Travel'] }}</td>
+									<td class="govuk-table__cell">£{{ data['hearing_Costs'] }}</td>
+									<td class="govuk-table__cell">{{ data['hearing_PA_Name'] }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+		        </div>
+		    </section>
+		</div>
+		<!-- SECTION 20 - END -->
+
+	</div>
+</div>
+<!-- TABS CONTENT - 8 - END -->
+

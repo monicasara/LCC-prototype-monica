@@ -1,0 +1,71 @@
+{% extends "layoutCPS-NEW-INDEX.html" %}
+
+{% block pageTitle %}
+  Folder tree – {{ serviceName }} – Prototype
+{% endblock %}
+
+{% block header %}
+  {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<h1 class="govuk-heading-l">Select the folder you want to copy 4 items to</h1>
+
+{% macro renderNodes(nodes, isRoot=true) %}
+  <ul class="{{ 'folder-tree' if isRoot else 'folder-children-list' }}">
+    {% for node in nodes %}
+      <li class="folder-node" data-folder-id="{{ node.id }}" data-folder-name="{{ node.name }}">
+        <div class="folder-row">
+          {% if node.children and node.children.length %}
+            <!-- <button type="button" class="folder-toggle" aria-expanded="false">+</button> -->
+             <button type="button" class="folder-toggle" aria-expanded="true">−</button>
+          {% else %}
+            <span class="folder-toggle placeholder"></span>
+          {% endif %}
+
+          <span class="folder-box">
+            <span class="folder-icon">📁</span>
+            <span class="folder-name">{{ node.name }}</span>
+          </span>
+        </div>
+
+        {% if node.children and node.children.length %}
+          <div class="folder-children">
+            {{ renderNodes(node.children, false) }}
+          </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<ul class="folder-tree">
+  <li class="folder-node folder-node--root">
+    <div class="folder-row">
+      <button type="button" class="folder-toggle" aria-expanded="true">−</button>
+
+      <span class="folder-box folder-box--root" aria-label="Case name Thundercat">
+        <span class="folder-icon">📁</span>
+        <span class="folder-name">Thundercat</span>
+      </span>
+    </div>
+
+    <div class="folder-children">
+      {{ renderNodes(folderTree or [], true) }}
+    </div>
+  </li>
+</ul>
+
+<div class="govuk-button-group govuk-!-margin-top-6">
+      <button class="govuk-button" data-module="govuk-button" type="submit" id="copyButton">Copy</button>
+      <a class="govuk-link" href="03-case-overview">Cancel</a>
+</div>
+
+
+
+{% endblock %}

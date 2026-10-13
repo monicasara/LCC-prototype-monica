@@ -1,0 +1,34 @@
+{% extends "layoutCPS-OFF-V11.html" %}
+
+{% block pageTitle %}
+Egress disconnected – {{ serviceName }} – Prototype
+{% endblock %}
+
+{% block header %}
+{% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">
+        Egress disconnected
+      </h1>
+    </div>
+
+    <p class="govuk-body govuk-!-margin-top-6">
+      You've disconnected an Egress case.
+    </p>
+
+    <p class="govuk-body">
+      You can connect to another Egress case to transfer materials.
+    </p>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="04A-egress-files">Connect Egress</a>
+
+    </p>
+  </div>
+</div>
+{% endblock %}

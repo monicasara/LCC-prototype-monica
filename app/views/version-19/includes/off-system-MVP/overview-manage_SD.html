@@ -1,0 +1,522 @@
+<!-- ////////////// SUCESS BANNERS - START ////////////// -->
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+        <!-- ============= RENAME FOLDER - START ============= -->
+        <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-6" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner" id="success_banner_Folder">
+            <div class="govuk-notification-banner__header">
+                <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+                <h3 class="govuk-notification-banner__heading">Folder/file renamed successfully</h3>
+            </div>
+        </div>
+        <!-- ============= RENAME FOLDER - END ============= -->
+
+        <!-- ============= DELETE - START ============= -->
+        <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-6" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner" id="success_banner_Deleted">
+            <div class="govuk-notification-banner__header">
+                <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+                <h3 class="govuk-notification-banner__heading"><strong class="folder_deleted_name"></strong> deleted successfully</h3>
+            </div>
+        </div>
+        <!-- ============= DELETE - END ============= -->
+
+
+        <!-- ============= NEW FOLDER - START ============= -->
+        {% if data['shared_drive_NewFolder'] %}
+            <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-6" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner" id="success_banner_New_Folder">
+                <div class="govuk-notification-banner__header">
+                    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+                </div>
+                <div class="govuk-notification-banner__content">
+                    <h3 class="govuk-notification-banner__heading">{{ data['shared_drive_NewFolder'] }} created successfully</h3>
+                </div>
+            </div>
+        {% else %}
+
+        {% endif %}
+        <!-- ============= NEW FOLDER - END ============= -->
+
+        <!-- ============= NEW FOLDER - START ============= -->
+        <div class="govuk-notification-banner govuk-notification-banner--success govuk-!-margin-bottom-6" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner" id="success_banner_Move_Folder">
+            <div class="govuk-notification-banner__header">
+                <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+                <h3 class="govuk-notification-banner__heading">Documents moved successfully</h3>
+            </div>
+        </div>
+        <!-- ============= NEW FOLDER - END ============= -->
+
+    </div>
+</div>
+<!-- ////////////// SUCESS BANNER - RENAME FOLDER - END ////////////// -->
+
+<h2 class="govuk-heading-m" id="">Manage the Shared Drive</h2>
+<p><span class="govuk-caption-m govuk-!-margin-bottom-0">Last updated <span id="manage-timestamp"></span></span></p>
+<div class="govuk-inset-text headline govuk-!-margin-top-0">
+    Create a new folder or select the folders and files you want to move, rename or delete. 
+</div>
+
+<!-- <div class="govuk-inset-text headline govuk-!-margin-top-0" onscroll="scrollTrigger();">
+    Create a new folder or select the folders and files you want to move, rename or delete. 
+    <div class="sticky_move_documents">
+        <p><strong class="selected_to_move">0 items</strong> selected to move.</p>
+        <button type="submit" disabled aria-disabled="true" class="govuk-button move_bulk_documents" data-module="govuk-button">Move documents</button>
+    </div>
+</div>
+ -->
+<!-- LOADING SPINNER 1 - START -->
+<div class="loading" id="switching_transfer_V1">
+    <div>
+        <div class="hods-loading-spinner">
+            <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+        </div>
+        <p>Switching transfer direction to <strong>Shared Drive</strong> > <img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo x-small">...</p>
+    </div>
+</div>
+<!-- LOADING SPINNER 1 - END -->
+
+<!-- TRANSFERING SPINNER 1 - START -->
+<div class="loading" id="completing_transfer_V1">
+    <div>
+        <div class="hods-loading-spinner">
+            <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+        </div>
+        <p class=" govuk-!-margin-bottom-0">Completing transfer from <img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo x-small"> > <strong>Shared Drive</strong>...</p>
+        <p class="govuk-caption-m"><span>Progress: 3 of 4 documents loaded...</span></p>
+    </div>
+</div>
+<!-- LOADING SPINNER 1 - END -->
+
+<!-- LOADING SPINNER 2 - START -->
+<div class="loading" id="switching_transfer_V2">
+    <div>
+        <div class="hods-loading-spinner">
+            <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+        </div>
+        <p>Switching transfer direction to <img src="../../../public/images/egress-logo.png" alt="Egress" class="egress-logo x-small"> > <strong>Shared Drive</strong>...</p>
+    </div>
+</div>
+<!-- LOADING SPINNER 2 - END -->
+
+<div class="section-wrapper materials_holder">
+
+    <!-- RENAME - START -->
+    <section class="" id="rename_folder">
+        <div class="title-wrapper">
+            <h3 class="govuk-heading-s">Rename folder/file name</h3>
+            <!-- <span class="folder_title">Document title</span> -->
+        </div>
+
+        <form method="" action="">
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-label--s" for="rename_SD_Folder">New folder/file name</label>
+                <input class="govuk-input" id="rename_SD_Folder" name="rename_SD_Folder" type="text" aria-describedby="rrename_SD_Folder-hint">
+            </div>
+
+            <button id="document-renamed" class="govuk-button" data-module="govuk-button" type="button" onClick="return renameFolderConfirm()">Save</button>
+            <button class="non-button" data-module="govuk-button" type="button" onClick="closeRenameFolder()">Cancel</button>
+        </form>
+    </section>
+    <!-- RENAME - END -->
+
+    <!-- MANAGE - START -->
+    <section class="manage" id="shared_drive_manage_container">
+
+        {% if data['searchOFF_Operation_VALUE'] == 'Dumper Truck' or data['searchOFF_Operation_VALUE'] == 'Dumper truck' or data['searchOFF_Operation_VALUE'] == 'dumper truck'  or data['searchOFF_Operation_VALUE'] == 'Dumpertruck' %}
+            <div class="title-wrapper">
+                <h3 class="govuk-heading-s">Shared Drive</h3>
+                <!-- <a href="#">Edit folder</a> -->
+            </div>
+
+            <div class="permissions shared_drive_nav">
+                <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+                    <ol class="govuk-breadcrumbs__list">
+                        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link shared_drive_nav_level_0" href="#">Home</a></li>
+                        {% if data['createCaseStarted'] == 'true' %}
+                            {% if data['newCase_OperationName'] %}
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['newCase_OperationName'] }}</a></li>
+                            {% elseif data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#"><span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</span>, {{ data['newCase_DefendantName-Forename'] }}</a></li>
+                            {% elseif data['newCase_DefendantName-CompanyName'] %}
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['newCase_DefendantName-CompanyName'] }}</a></li>
+                            {% endif %}
+                        {% else %}
+                            {% if data['searchOFF_Operation_VALUE'] == 'Dumper Truck' or data['searchOFF_Operation_VALUE'] == 'Dumper truck'  or data['searchOFF_Operation_VALUE'] == 'dumper truck'  or data['searchOFF_Operation_VALUE'] == 'Dumpertruck' %}
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Operation_VALUE'] }}</a></li>
+                            {% elseif data['searchOFF_Defendant_VALUE'] == 'Dumper Truck' or data['searchOFF_Defendant_VALUE'] == 'Dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'Dumpertruck' %}
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Defendant_VALUE'] }}</a></li>
+                            {% elseif data['searchOFF_URN_VALUE'] %}
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">Dumper Truck</a></li>
+                            {% endif %}
+                        {% endif %}                            
+                        <li class="govuk-breadcrumbs__list-item shared_drive_level_2"><a class="govuk-breadcrumbs__link shared_drive_nav_level_2" href="#"></a></li>
+                        <li class="govuk-breadcrumbs__list-item shared_drive_level_3"><a class="govuk-breadcrumbs__link shared_drive_nav_level_3" href="#"></a></li>
+                        <li class="govuk-breadcrumbs__list-item shared_drive_level_4"><a class="govuk-breadcrumbs__link shared_drive_nav_level_4" href="#"></a></li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="loading" id="loading_materials">
+                <div>
+                    <div class="hods-loading-spinner">
+                        <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                    </div>
+                    <p>Loading documents from the Shared Drive...</p>
+                </div>
+            </div>
+
+            <!-- ////////////////////////////// ACCORDIONS - START ////////////////////////////// -->
+            {% include "../../includes/off-system-MVP/shared_drive-Folder_Manage.html" %}
+            <!-- ////////////////////////////// ACCORDIONS - END ////////////////////////////// -->
+        {% elseif data['searchOFF_Defendant_VALUE'] == 'Dumper Truck' or data['searchOFF_Defendant_VALUE'] == 'Dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'Dumpertruck' %}
+            <div class="title-wrapper">
+                <h3 class="govuk-heading-s">Shared Drive</h3>
+                <!-- <a href="#">Edit folder</a> -->
+            </div>
+
+            <div class="permissions shared_drive_nav">
+                <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+                    <ol class="govuk-breadcrumbs__list">
+                        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link shared_drive_nav_level_0" href="#">Home</a></li>
+                        {% if data['createCaseStarted'] == 'true' %}
+                            {% if data['newCase_OperationName'] %}
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['newCase_OperationName'] }}</a></li>
+                            {% elseif data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#"><span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</span>, {{ data['newCase_DefendantName-Forename'] }}</a></li>
+                            {% elseif data['newCase_DefendantName-CompanyName'] %}
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['newCase_DefendantName-CompanyName'] }}</a></li>
+                            {% endif %}
+                        {% else %}
+                            {% if data['searchOFF_Operation_VALUE'] == 'Dumper Truck' or data['searchOFF_Operation_VALUE'] == 'Dumper truck'  or data['searchOFF_Operation_VALUE'] == 'dumper truck'  or data['searchOFF_Operation_VALUE'] == 'Dumpertruck' %}
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Operation_VALUE'] }}</a></li>
+                            {% elseif data['searchOFF_Defendant_VALUE'] == 'Dumper Truck' or data['searchOFF_Defendant_VALUE'] == 'Dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'Dumpertruck' %}
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Defendant_VALUE'] }}</a></li>
+                            {% elseif data['searchOFF_URN_VALUE'] %}
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">Dumper Truck</a></li>
+                            {% elseif data['searchOFF_Operation_VALUE'] %}
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#"></a></li>
+                            {% endif %}
+                        {% endif %}                            
+                        <li class="govuk-breadcrumbs__list-item shared_drive_level_2"><a class="govuk-breadcrumbs__link shared_drive_nav_level_2" href="#"></a></li>
+                        <li class="govuk-breadcrumbs__list-item shared_drive_level_3"><a class="govuk-breadcrumbs__link shared_drive_nav_level_3" href="#"></a></li>
+                        <li class="govuk-breadcrumbs__list-item shared_drive_level_4"><a class="govuk-breadcrumbs__link shared_drive_nav_level_4" href="#"></a></li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="loading" id="loading_materials">
+                <div>
+                    <div class="hods-loading-spinner">
+                        <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                    </div>
+                    <p>Loading documents from the Shared Drive...</p>
+                </div>
+            </div>
+
+            <!-- ////////////////////////////// ACCORDIONS - START ////////////////////////////// -->
+            {% include "../../includes/off-system-MVP/shared_drive-Folder_Manage.html" %}
+            <!-- ////////////////////////////// ACCORDIONS - END ////////////////////////////// -->
+        {% elseif data['searchOFF_Operation_VALUE'] or data['searchOFF_Defendant_VALUE'] %}
+            {% if data['mvp_Case_1'] == 'true' %}
+                <div class="title-wrapper">
+                    <h3 class="govuk-heading-s">Shared Drive</h3>
+                    <!-- <a href="#">Edit folder</a> -->
+                </div>
+
+                <div class="permissions shared_drive_nav">
+                    <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+                        <ol class="govuk-breadcrumbs__list">
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link shared_drive_nav_level_0" href="#">Home</a></li>
+                            {% if data['createCaseStarted'] == 'true' %}
+                                {% if data['newCase_OperationName'] %}
+                                    <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['newCase_OperationName'] }}</a></li>
+                                {% elseif data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                                    <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#"><span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</span>, {{ data['newCase_DefendantName-Forename'] }}</a></li>
+                                {% elseif data['newCase_DefendantName-CompanyName'] %}
+                                    <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['newCase_DefendantName-CompanyName'] }}</a></li>
+                                {% endif %}
+                            {% else %}
+                                {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                                    <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Operation_VALUE'] }}struck</a></li>
+                                {% elseif data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                                    <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Operation_VALUE'] }}struck</a></li>
+                                {% elseif data['searchOFF_Operation_VALUE'] %}
+                                    <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Operation_VALUE'] }}</a></li>
+                                {% elseif data['searchOFF_Defendant_VALUE'] %}
+                                    <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Defendant_VALUE'] }}</a></li>
+                                {% endif %}
+                            {% endif %}                            
+                            <li class="govuk-breadcrumbs__list-item shared_drive_level_2"><a class="govuk-breadcrumbs__link shared_drive_nav_level_2" href="#"></a></li>
+                            <li class="govuk-breadcrumbs__list-item shared_drive_level_3"><a class="govuk-breadcrumbs__link shared_drive_nav_level_3" href="#"></a></li>
+                            <li class="govuk-breadcrumbs__list-item shared_drive_level_4"><a class="govuk-breadcrumbs__link shared_drive_nav_level_4" href="#"></a></li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <div class="loading" id="loading_materials">
+                    <div>
+                        <div class="hods-loading-spinner">
+                            <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                        </div>
+                        <p>Loading documents from the Shared Drive...</p>
+                    </div>
+                </div>
+
+                <!-- ////////////////////////////// ACCORDIONS - START ////////////////////////////// -->
+                {% include "../../includes/off-system-MVP/shared_drive-Folder_Manage.html" %}
+                <!-- ////////////////////////////// ACCORDIONS - END ////////////////////////////// -->
+            {% elseif data['mvp_Case_2'] == 'true' %}
+                <div class="title-wrapper">
+                    <h3 class="govuk-heading-s">Shared Drive</h3>
+                    <!-- <a href="#">Edit folder</a> -->
+                </div>
+
+                <div class="permissions shared_drive_nav">
+                    <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+                        <ol class="govuk-breadcrumbs__list">
+                            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link shared_drive_nav_level_0" href="#">Home</a></li>
+                            {% if data['createCaseStarted'] == 'true' %}
+                                {% if data['newCase_OperationName'] %}
+                                    <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['newCase_OperationName'] }}</a></li>
+                                {% elseif data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                                    <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#"><span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</span>, {{ data['newCase_DefendantName-Forename'] }}</a></li>
+                                {% elseif data['newCase_DefendantName-CompanyName'] %}
+                                    <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['newCase_DefendantName-CompanyName'] }}</a></li>
+                                {% endif %}
+                            {% else %}
+                                {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                                    <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Operation_VALUE'] }}struck traffic</a></li>
+                                {% elseif data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                                    <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Defendant_VALUE'] }}struck traffic</a></li>
+                                {% elseif data['searchOFF_Operation_VALUE'] %}
+                                    <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Operation_VALUE'] }} traffic</a></li>
+                                {% elseif data['searchOFF_Defendant_VALUE'] %}
+                                    <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Defendant_VALUE'] }} traffic</a></li>
+                                {% endif %}
+                            {% endif %}                            
+                            <li class="govuk-breadcrumbs__list-item shared_drive_level_2"><a class="govuk-breadcrumbs__link shared_drive_nav_level_2" href="#"></a></li>
+                            <li class="govuk-breadcrumbs__list-item shared_drive_level_3"><a class="govuk-breadcrumbs__link shared_drive_nav_level_3" href="#"></a></li>
+                            <li class="govuk-breadcrumbs__list-item shared_drive_level_4"><a class="govuk-breadcrumbs__link shared_drive_nav_level_4" href="#"></a></li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <div class="loading" id="loading_materials">
+                    <div>
+                        <div class="hods-loading-spinner">
+                            <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                        </div>
+                        <p>Loading documents from the Shared Drive...</p>
+                    </div>
+                </div>
+
+                <!-- ////////////////////////////// ACCORDIONS - START ////////////////////////////// -->
+                {% include "../../includes/off-system-MVP/shared_drive-Folder_Manage.html" %}
+                <!-- ////////////////////////////// ACCORDIONS - END ////////////////////////////// -->
+            {% elseif data['mvp_Case_3'] == 'true' %}
+                {% if data['offCMS_PDrive_files'] %}
+                    <div class="title-wrapper">
+                        <h3 class="govuk-heading-s">Shared Drive</h3>
+                        <!-- <a href="#">Edit folder</a> -->
+                    </div>
+
+                    <div class="permissions shared_drive_nav">
+                        <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+                            <ol class="govuk-breadcrumbs__list">
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link shared_drive_nav_level_0" href="#">Home</a></li>
+                                {% if data['createCaseStarted'] == 'true' %}
+                                    {% if data['newCase_OperationName'] %}
+                                        <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['newCase_OperationName'] }}</a></li>
+                                    {% elseif data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                                        <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#"><span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</span>, {{ data['newCase_DefendantName-Forename'] }}</a></li>
+                                    {% elseif data['newCase_DefendantName-CompanyName'] %}
+                                        <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['newCase_DefendantName-CompanyName'] }}</a></li>
+                                    {% endif %}
+                                {% else %}
+                                    {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                                        <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Operation_VALUE'] }}struck Office</a></li>
+                                    {% elseif data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                                        <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Defendant_VALUE'] }}struck Office</a></li>
+                                    {% elseif data['searchOFF_Operation_VALUE'] %}
+                                        <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Operation_VALUE'] }} Office</a></li>
+                                    {% elseif data['searchOFF_Defendant_VALUE'] %}
+                                        <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Defendant_VALUE'] }} Office</a></li>
+                                    {% endif %}
+                                {% endif %}                            
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_2"><a class="govuk-breadcrumbs__link shared_drive_nav_level_2" href="#"></a></li>
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_3"><a class="govuk-breadcrumbs__link shared_drive_nav_level_3" href="#"></a></li>
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_4"><a class="govuk-breadcrumbs__link shared_drive_nav_level_4" href="#"></a></li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <div class="loading" id="loading_materials">
+                        <div>
+                            <div class="hods-loading-spinner">
+                                <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                            </div>
+                            <p>Loading documents from the Shared Drive...</p>
+                        </div>
+                    </div>
+
+                    <!-- ////////////////////////////// ACCORDIONS - START ////////////////////////////// -->
+                    {% include "../../includes/off-system-MVP/shared_drive-Folder_Manage.html" %}
+                    <!-- ////////////////////////////// ACCORDIONS - END ////////////////////////////// -->
+                {% else %}
+                    <div class="title-wrapper">
+                        <h3 class="govuk-heading-s">Shared Drive</h3>
+                        <a href="05A-p-drive-files" class="">Connect folder</a>                                
+                    </div>
+                    <div class="permissions">
+                        <p>This case has not been linked to a folder on the network Shared Drive. To transfer files, you need to select the folder where materials are stored for this case.</p>
+                    </div>
+                {% endif %}
+            {% elseif data['mvp_Case_4'] == 'true' %}
+                {% if data['offCMS_PDrive_files_V2'] %}
+                    <div class="title-wrapper">
+                        <h3 class="govuk-heading-s">Shared Drive</h3>
+                        <!-- <a href="#">Edit folder</a> -->
+                    </div>
+
+                    <div class="permissions shared_drive_nav">
+                        <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+                            <ol class="govuk-breadcrumbs__list">
+                                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link shared_drive_nav_level_0" href="#">Home</a></li>
+                                {% if data['createCaseStarted'] == 'true' %}
+                                    {% if data['newCase_OperationName'] %}
+                                        <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['newCase_OperationName'] }}</a></li>
+                                    {% elseif data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                                        <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#"><span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</span>, {{ data['newCase_DefendantName-Forename'] }}</a></li>
+                                    {% elseif data['newCase_DefendantName-CompanyName'] %}
+                                        <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['newCase_DefendantName-CompanyName'] }}</a></li>
+                                    {% endif %}
+                                {% else %}
+                                    {% if data['searchOFF_Operation_VALUE'] == 'Thunder' or data['searchOFF_Operation_VALUE'] == 'thunder' %}
+                                        <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">Captain {{ data['searchOFF_Operation_VALUE'] }}struck</a></li>
+                                    {% elseif data['searchOFF_Defendant_VALUE'] == 'Thunder' or data['searchOFF_Defendant_VALUE'] == 'thunder' %}
+                                        <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">Captain {{ data['searchOFF_Defendant_VALUE'] }}struck</a></li>
+                                    {% elseif data['searchOFF_Operation_VALUE'] %}
+                                        <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">Captain {{ data['searchOFF_Operation_VALUE'] }}</a></li>
+                                    {% elseif data['searchOFF_Defendant_VALUE'] %}
+                                        <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">Captain {{ data['searchOFF_Defendant_VALUE'] }}</a></li>
+                                    {% endif %}
+                                {% endif %}                            
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_2"><a class="govuk-breadcrumbs__link shared_drive_nav_level_2" href="#"></a></li>
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_3"><a class="govuk-breadcrumbs__link shared_drive_nav_level_3" href="#"></a></li>
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_4"><a class="govuk-breadcrumbs__link shared_drive_nav_level_4" href="#"></a></li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <div class="loading" id="loading_materials">
+                        <div>
+                            <div class="hods-loading-spinner">
+                                <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                            </div>
+                            <p>Loading documents from the Shared Drive...</p>
+                        </div>
+                    </div>
+
+                    <!-- ////////////////////////////// ACCORDIONS - START ////////////////////////////// -->
+                    {% include "../../includes/off-system-MVP/shared_drive-Folder_Manage.html" %}
+                    <!-- ////////////////////////////// ACCORDIONS - END ////////////////////////////// -->
+                {% else %}
+                    <div class="title-wrapper">
+                        <h3 class="govuk-heading-s">Shared Drive</h3>
+                        <a href="05A-p-drive-files" class="">Connect folder</a>                                
+                    </div>
+                    <div class="permissions">
+                        <p>This case has not been linked to a folder on the network Shared Drive. To transfer files, you need to select the folder where materials are stored for this case.</p>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            <div class="title-wrapper">
+                <h3 class="govuk-heading-s">Shared Drive</h3>
+                <!-- <a href="#">Edit folder</a> -->
+            </div>
+
+            <div class="permissions shared_drive_nav">
+                <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+                    <ol class="govuk-breadcrumbs__list">
+                        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link shared_drive_nav_level_0" href="#">Home</a></li>
+                        {% if data['createCaseStarted'] == 'true' %}
+                            {% if data['newCase_OperationName'] %}
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['newCase_OperationName'] }}</a></li>
+                            {% elseif data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#"><span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</span>, {{ data['newCase_DefendantName-Forename'] }}</a></li>
+                            {% elseif data['newCase_DefendantName-CompanyName'] %}
+                                <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['newCase_DefendantName-CompanyName'] }}</a></li>
+                            {% endif %}
+                        {% else %}
+                            <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">Dumper Truck</a></li>
+                        {% endif %}                            
+                        <li class="govuk-breadcrumbs__list-item shared_drive_level_2"><a class="govuk-breadcrumbs__link shared_drive_nav_level_2" href="#"></a></li>
+                        <li class="govuk-breadcrumbs__list-item shared_drive_level_3"><a class="govuk-breadcrumbs__link shared_drive_nav_level_3" href="#"></a></li>
+                        <li class="govuk-breadcrumbs__list-item shared_drive_level_4"><a class="govuk-breadcrumbs__link shared_drive_nav_level_4" href="#"></a></li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="loading" id="loading_materials">
+                <div>
+                    <div class="hods-loading-spinner">
+                        <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+                    </div>
+                    <p>Loading documents from the Shared Drive...</p>
+                </div>
+            </div>
+
+            <!-- ////////////////////////////// ACCORDIONS - START ////////////////////////////// -->
+            {% include "../../includes/off-system-MVP/shared_drive-Folder_Manage.html" %}
+            <!-- ////////////////////////////// ACCORDIONS - END ////////////////////////////// -->
+        {% endif %}
+
+    </section>
+    <!-- MANAGE - END -->
+
+    <!-- MOVE - START -->
+    <section class="width_40" id="shared_drive_move_container">
+        <div class="title-wrapper">
+            <h3 class="govuk-heading-s">Select location to move documents</h3>
+        </div>
+
+        <div class="permissions shared_drive_nav">
+            <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link shared_drive_nav_level_0" href="#">Home</a></li>
+                    {% if data['createCaseStarted'] == 'true' %}
+                        {% if data['newCase_OperationName'] %}
+                            <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['newCase_OperationName'] }}</a></li>
+                        {% elseif data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                            <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#"><span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</span>, {{ data['newCase_DefendantName-Forename'] }}</a></li>
+                        {% elseif data['newCase_DefendantName-CompanyName'] %}
+                            <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['newCase_DefendantName-CompanyName'] }}</a></li>
+                        {% endif %}
+                    {% else %}
+                        {% if data['searchOFF_Operation_VALUE'] == 'Dumper Truck' or data['searchOFF_Operation_VALUE'] == 'Dumper truck'  or data['searchOFF_Operation_VALUE'] == 'dumper truck'  or data['searchOFF_Operation_VALUE'] == 'Dumpertruck' %}
+                            <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Operation_VALUE'] }}</a></li>
+                        {% elseif data['searchOFF_Defendant_VALUE'] == 'Dumper Truck' or data['searchOFF_Defendant_VALUE'] == 'Dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'Dumpertruck' %}
+                            <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">{{ data['searchOFF_Defendant_VALUE'] }}</a></li>
+                        {% elseif data['searchOFF_URN_VALUE'] %}
+                            <li class="govuk-breadcrumbs__list-item shared_drive_level_1"><a class="govuk-breadcrumbs__link selected shared_drive_nav_level_1" href="#">Dumper Truck</a></li>
+                        {% endif %}
+                    {% endif %}                                                   
+                    <li class="govuk-breadcrumbs__list-item shared_drive_level_2"><a class="govuk-breadcrumbs__link shared_drive_nav_level_2" href="#"></a></li>
+                    <li class="govuk-breadcrumbs__list-item shared_drive_level_3"><a class="govuk-breadcrumbs__link shared_drive_nav_level_3" href="#"></a></li>
+                    <li class="govuk-breadcrumbs__list-item shared_drive_level_4"><a class="govuk-breadcrumbs__link shared_drive_nav_level_4" href="#"></a></li>
+                </ol>
+            </nav>
+        </div>
+
+        <!-- ////////////////////////////// ACCORDIONS - START ////////////////////////////// -->
+        {% include "../../includes/off-system-MVP/shared_drive-Folder_Move.html" %}
+        <!-- ////////////////////////////// ACCORDIONS - END ////////////////////////////// -->
+    </section>
+    <!-- MOVE - END -->
+
+</div>

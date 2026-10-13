@@ -1,0 +1,314 @@
+<!-- <script src="/public/javascripts/accordion.js"></script> -->
+
+<script>
+    //Get the button:
+    mybutton = document.getElementById("myBtn");
+    docCopy = document.getElementById("docCopy");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+            mybutton.style.display = "block";
+            //docCopy.style.display = "none";
+        } else {
+            mybutton.style.display = "none";
+            //docCopy.style.display = "block";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        // document.body.scrollTop = 0; // For Safari
+        // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        $("html, body").animate({ scrollTop: 0 }, {
+            duration: 500,
+            easing: "easeInOutExpo"
+        });
+    }
+
+    window.addEventListener("keydown", function(e) {
+        if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70) || (e.keyCode === 91 && e.keyCode === 70)) {
+            e.preventDefault();
+            console.log("disable ctrl f")
+            document.getElementById("searchURN").focus();
+            // $('#searchURN').get(0).focus();
+            // $('.searchForm input[type="text"]').attr('autofocus', 'true');
+        }
+    })
+
+    function reply_click(clicked_id) { alert(clicked_id); }
+
+    if ('addEventListener' in document && document.querySelectorAll) { document.addEventListener('DOMContentLoaded', function() {
+        var accordions = document.querySelectorAll('.accordion')
+            for (var i = accordions.length - 1; i >= 0; i--) {
+                new Accordion(accordions[i])
+            };
+        })
+    }
+    function openModal() {
+        $(searchModal).removeClass("rj-dont-display");
+    }
+    function closeModal() {
+        $(searchModal).addClass("rj-dont-display");
+    }
+    function openModal2() {
+        $(redactionModal).removeClass("rj-dont-display");
+        showHideRedaction();
+        console.log("calling 2...")
+    }
+    function closeModal2() {
+        $(redactionModal).addClass("rj-dont-display");
+    }
+
+    function openDummyRedactionLog() {
+        $('#redactionModalDummy').removeClass("rj-dont-display");
+    }
+    function closeDummyRedactionLog() {
+        $('#redactionModalDummy').addClass("rj-dont-display");
+    }
+
+    function openModalHistory() {
+        $(redactionModalHistory).removeClass("rj-dont-display");
+    }
+    function closeModalHistory() {
+        $(redactionModalHistory).addClass("rj-dont-display");
+    }
+
+    function openModalOver() {
+        $(redactionModalOver).removeClass("rj-dont-display");
+    }
+    function closeModalOver() {
+        $(redactionModalOver).addClass("rj-dont-display");
+    }
+
+    function openModalProblem() {
+        $(problemModal).removeClass("rj-dont-display");
+    }
+    function closeModalProblem() {
+        $(problemModal).addClass("rj-dont-display");
+    }
+
+    function viewRedactionsModal() {
+        $("#viewRedactionsModal").removeClass("rj-dont-display");
+        // $(viewRedactionsModal).removeClass("rj-dont-display");
+    }
+    function closeRedactionsModal() {
+        $("#viewRedactionsModal").addClass("rj-dont-display");
+    }
+
+    // $(document).ready(function () {
+    //     setTimeout(function () {
+    //         $("#openFeedbackModal").removeClass("rj-dont-display");
+    //     }, 950000)
+    // })
+
+    function openFeedbackModal() {
+        $("#openFeedbackModal").removeClass("rj-dont-display");
+    }
+
+
+    function closeFeedbackModal() {
+        $("#openFeedbackModal").addClass("rj-dont-display");
+    }
+
+    function openFeedbackSurveyModal() {
+        $("#openFeedbackSurveyModal").removeClass("rj-dont-display");
+    }
+    function closeFeedbackSurveyModal() {
+        $("#openFeedbackSurveyModal").addClass("rj-dont-display");
+    }
+
+    function openNotesModal() {
+        $("#openNotesModal").removeClass("rj-dont-display");
+        $('#notes-Comments').val('');
+    }
+    function closeNotesModal() {
+        $("#openNotesModal").addClass("rj-dont-display");
+    }
+
+    function openNewNotesModal() {
+        $("#openNewNotesModal").removeClass("rj-dont-display");
+    }
+    function closeNewNotesModal() {
+        $("#openNewNotesModal").addClass("rj-dont-display");
+    }
+
+    // setTimeout(function () {
+    //     $("#caseActionModal").removeClass("rj-dont-display");
+    // }, 9)
+
+    function openCaseActionModal() {
+        $("#caseActionModal").removeClass("rj-dont-display");
+    }
+    function closeCaseActionModal() {
+        $("#caseActionModal").addClass("rj-dont-display");
+    }
+
+    function openCaseActionModal2() {
+        $("#caseActionModal2").removeClass("rj-dont-display");
+    }
+    function closeCaseActionModal2() {
+        $("#caseActionModal2").addClass("rj-dont-display");
+    }
+
+    function openCaseActionBuilderModal() {
+        $("#caseActionBuilderModal").removeClass("rj-dont-display");
+    }
+    function closeCaseActionBuilderModal() {
+        $("#caseActionBuilderModal").addClass("rj-dont-display");
+    }
+
+    function openConfirmationModal() {
+        $("#confirmationModal").removeClass("rj-dont-display");
+    }
+    function closeConfirmationModal() {
+        $("#confirmationModal").addClass("rj-dont-display");
+    }
+
+    function openDiscardedModel() {
+        $("#discardedModal").removeClass("rj-dont-display");
+    }
+    function closeDiscardedModel() {
+        $("#discardedModal").addClass("rj-dont-display");
+    }
+
+    function openRedactAllModal() {
+        $("#redactAllModal").removeClass("rj-dont-display");
+    }
+    function closeRedactAllModal() {
+        $("#redactAllModal").addClass("rj-dont-display");
+    }
+
+    function openSearchSuggestions() {
+        $("#searchSuggestionsModal").removeClass("rj-dont-display");
+    }
+    function closeSearchSuggestions() {
+        $("#searchSuggestionsModal").addClass("rj-dont-display");
+    }
+
+    function openHistoryModal() {
+        $("#historyModal").removeClass("rj-dont-display");
+    }
+    function closeHistoryModal() {
+        $("#historyModal").addClass("rj-dont-display");
+    }
+
+    function openConfirmModal() {
+        $("#confirmModal").removeClass("rj-dont-display");
+    }
+    function closeConfirmModal() {
+        $("#confirmModal").addClass("rj-dont-display");
+    }
+
+    function sumbitSuggestedRedactions() {
+        $("#confirmSuggestedRedactions").removeClass("rj-dont-display");
+    }
+    function closeSuggestedRedactions() {
+        $("#confirmSuggestedRedactions").addClass("rj-dont-display");
+    }
+
+    function openRenameModal() {
+        $("#openRenameModal").removeClass("rj-dont-display");
+    }
+    function closeRenameModal() {
+        $("#openRenameModal").addClass("rj-dont-display");
+    }
+
+    function openMoveModal() {
+        $("#openMoveModal").removeClass("rj-dont-display");
+    }
+    function closeMoveModal() {
+        $("#openMoveModal").addClass("rj-dont-display");
+    }
+
+    function openMoveMultipleModal() {
+        $("#openMoveMultipleModal").removeClass("rj-dont-display");
+    }
+    function closeMoveMultipleModal() {
+        $("#openMoveMultipleModal").addClass("rj-dont-display");
+    }
+
+    function confirmReorder() {
+        $("#openReorder").removeClass("rj-dont-display");
+    }
+    function closeReorder() {
+        $("#openReorder").addClass("rj-dont-display");
+    }
+
+    function openWarningModal() {
+        $("#warningModal").removeClass("rj-dont-display");
+    }
+    function closeWarningModal() {
+        $("#warningModal").addClass("rj-dont-display");
+    }
+
+    function markTaskAsComplete() {
+        $("#taskComplete").removeClass("rj-dont-display");
+    }
+    function closeMarkTaskAsComplete() {
+        $("#taskComplete").addClass("rj-dont-display");
+    }
+
+    function openEmailModal() {
+        $("#emailDocumentModal").removeClass("rj-dont-display");
+    }
+    function closeEmailModal() {
+        $("#emailDocumentModal").addClass("rj-dont-display");
+    }
+
+    // function openRotatePagesModal() { 
+    //     $("#openRotatePages").removeClass("rj-dont-display");
+    // }
+    // function closeRotatePagesModal() {
+    //     $("#openRotatePages").addClass("rj-dont-display");
+    // }
+
+    function openRemovePagesModal() {
+        $("#openRemovePages").removeClass("rj-dont-display");
+    }
+    function closeRemovePagesModal() {
+        $("#openRemovePages").addClass("rj-dont-display");
+    }
+
+    // Remove pages
+    function openConfirmRemovePages() {
+        $("#confirmRemovePages").removeClass("rj-dont-display");
+    }
+    function closeConfirmRemovePages() {
+        $("#confirmRemovePages").addClass("rj-dont-display");
+    }
+
+    // Confirm rotate and remove pages
+    // function openRemovePage() {
+    //     $("#confirmRemovePage").removeClass("rj-dont-display");
+    // }
+    function closeRemovePage() {
+        $("#confirmRemovePage").addClass("rj-dont-display");
+    }
+
+    // Triage process
+    function launchTriage() {
+        $("#triageModal").removeClass("rj-dont-display");
+        setTimeout(function() {
+            $('.saving-panel-triage').hide();
+            $('.success-banner-triage, .triage-wrapper, .close-triage').show();
+        }, 2000);
+    }
+    function closeTriage() {
+        $("#triageModal").addClass("rj-dont-display");
+    }
+    
+    function closeLogREMOVE() {
+        $("#redactionModalREMOVE").addClass("rj-dont-display");
+    }
+
+    function openWarningModalRedaction() {
+        $("#warningModalRedaction").removeClass("rj-dont-display");
+    }
+    function closeWarningModalRedaction() {
+        $("#warningModalRedaction").addClass("rj-dont-display");
+    }
+
+</script>

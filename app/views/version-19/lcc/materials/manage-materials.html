@@ -1,0 +1,39 @@
+{% extends "layoutCPS-OFF-V11.html" %}
+
+{% block header %}
+{% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block v11Content %}
+{% set activePage = 'manage-materials' %}
+{% set caseName = data['operationName'] if data['operationName'] else 'Thundercat' %}
+{% set caseUrn = data['URN1'] ~ data['URN2'] ~ data['URN3'] ~ data['URN4'] if data['URN1'] else '87AA6543226' %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full main_Case_Title">
+        <div class="title-wrapper">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-0 govuk-!-margin-top-4">
+                {{ caseName }}
+            </h1>
+            <span class="govuk-caption-m govuk-!-margin-bottom-4">
+                {{ caseUrn }}
+            </span>
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-full">
+        <div class="govuk-tabs off-cms-overview" id="new-tabs">
+            {% include "../../includes/materials/case-tabs.html" %}
+
+            <div class="panel" id="manage-materials">
+                {% include "../../includes/materials/tab-manage-materials.html" %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

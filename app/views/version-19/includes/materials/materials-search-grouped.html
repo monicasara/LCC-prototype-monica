@@ -1,0 +1,296 @@
+{# ==============================================
+GROUPED SEARCH RESULTS — SINGLE TABLE OUTPUT
+============================================== #}
+
+{% set flashRenamedIdSafe = flashRenamedId | default('') %}
+
+{% if data.filtersSearch %}
+<div class="govuk-!-margin-left-6 govuk-!-margin-bottom-4">
+    <p class="govuk-body govuk-!-margin-bottom-4">
+        {{ pagination.totalItems }} result{% if pagination.totalItems != 1 %}s{% endif %} for <strong>{{ data.filtersSearch }}</strong>
+    </p>
+
+    {% if pagination and pagination.showPagination %}
+    <form action="/version-19/lcc/materials/manage-materials" method="get" class="govuk-!-margin-bottom-0">
+        <input type="hidden" name="page" value="1">
+        <div class="govuk-form-group govuk-!-margin-bottom-0" style="display:flex; align-items:center; gap:16px;">
+            <label class="govuk-label govuk-!-margin-bottom-0" for="search-results-page-size">
+                Display
+            </label>
+            <select class="govuk-select" id="search-results-page-size" name="pageSize" onchange="this.form.submit()">
+                {% for option in pageSizeOptions %}
+                <option value="{{ option }}" {% if pagination.pageSize == option %}selected{% endif %}>
+                    {{ option }} results per page
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+    </form>
+    {% endif %}
+</div>
+{% endif %}
+
+
+<!-- <div class="govuk-inset-text govuk-!-margin-top-2 govuk-!-margin-bottom-4 govuk-!-margin-left-6">
+    <form action="/version-19/lcc/materials/clear-search" method="post" novalidate>
+        Showing results for: <strong>{{ data.filtersSearch }}</strong>
+        <button class="govuk-link govuk-link--no-visited-state suspect govuk-!-margin-left-2" type="submit">Clear
+            search</button>
+    </form>
+
+</div> -->
+
+{% if not groupedSearchResults or (groupedSearchResults | length == 0) %}
+<div class="materials-aligned">
+    <p class="govuk-body"><strong>No materials found.</strong></p>
+</div>
+{% endif %}
+
+<div class="materials-aligned">
+<div class="materials-table-wrapper">
+<table class="govuk-table sortable materials-search-grouped-table" id="materials_table">
+    <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">
+                <div class="govuk-checkboxes govuk-checkboxes--small MT-15" data-module="govuk-checkboxes">
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input js-select-all" id="materials_documents_ALL"
+                            name="materials_document" type="checkbox" value="ALL">
+                        <label class="govuk-label govuk-checkboxes__label" for="materials_documents_ALL"></label>
+                    </div>
+                </div>
+            </th>
+            <th scope="col" class="govuk-table__header">
+                <button type="button" class="govuk-link govuk-link--no-visited-state table-sort" data-sort="name">
+                    File or folder
+                </button>
+            </th>
+
+            {# Description and category columns temporarily hidden
+            <th scope="col" class="govuk-table__header">
+                <button type="button" class="govuk-link govuk-link--no-visited-state table-sort table-sort--disabled"
+                    disabled aria-disabled="true">
+                    Description
+                </button>
+            </th>
+
+            <th scope="col" class="govuk-table__header">
+                <button type="button" class="govuk-link govuk-link--no-visited-state table-sort" data-sort="category">
+                    Category
+                </button>
+            </th>
+            #}
+
+            <th class="govuk-table__header"></th>
+        </tr>
+    </thead>
+
+    <tbody class="govuk-table__body">
+
+        {% for entry in groupedSearchResults %}
+        {% set folder = entry.folder %}
+        {% set files = entry.files %}
+        {% set filtersSearch = data.filtersSearch %}
+
+        {# -------------------------------
+        FOLDER ROW (clickable + checkbox)
+        -------------------------------- #}
+        {% if entry.matchesFolder %}
+
+        <tr class="govuk-table__row folder-row folder-clickable material-row" data-id="{{ folder.id }}"
+            data-folder="true">
+
+            <td class="govuk-table__cell">
+                <div class="govuk-checkboxes govuk-checkboxes--small">
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input js-material-checkbox" id="select_{{ folder.id }}"
+                            type="checkbox" name="materials_document" value="{{ folder.id }}"
+                            data-name="{{ folder.name }}" data-folder="true">
+                        <label class="govuk-label govuk-checkboxes__label" for="select_{{ folder.id }}"></label>
+                    </div>
+                </div>
+            </td>
+            <td class="govuk-table__cell title_column">
+                <form action="/version-19/lcc/materials/case-overview-folder" method="post">
+                    <div class="openMe">
+                        {% if folder.folderPath %}
+                        <div class="govuk-hint folder-path">({{ folder.folderPath }})</div>
+                        {% endif %}
+
+                        <div class="material-name">
+                            <span class="icon-new folder"></span>
+                            <input type="hidden" name="flag" value="1">
+                            <input type="hidden" name="folderName" value="{{ folder.name }}">
+                            <input type="hidden" name="level" value="{{ folder.level + 1 }}">
+                            <input type="hidden" name="activeTab" value="tab-2-content">
+                            <button type="submit" name="folderId" value="{{ folder.id }}"
+                                class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-regular govuk-button--link">
+                                {{ folder.name | highlight(data['filtersSearch']) | safe }}
+                                {# tags stay here as you already have #}
+                            </button>
+                        </div>
+
+                        {% if flashRenamedIdSafe and folder.id is defined and (folder.id ~ '') == flashRenamedIdSafe
+                        %}
+                        <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-1">Renamed</strong>
+                        {% endif %}
+
+                        {% if flashNewFolderIdSafe and folder.id is defined and (folder.id ~ '') ==
+                        flashNewFolderIdSafe %}
+                        <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-1">New folder</strong>
+                        {% endif %}
+
+                        </button>
+                    </div>
+                </form>
+            </td>
+
+            {# Description and category columns temporarily hidden
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"></td>
+            #}
+
+            <td class="govuk-table__cell"></td>
+        </tr>
+        {% endif %}
+
+        {# -------------------------------
+        CHILD FILES
+        -------------------------------- #}
+        {% for m in files %}
+        <tr class="govuk-table__row material-row" data-id="{{ m.id }}" data-folder="false">
+            <td class="govuk-table__cell">
+                <div class="govuk-checkboxes govuk-checkboxes--small">
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input js-material-checkbox" id="select_{{ m.id }}"
+                            type="checkbox" name="materials_document" value="{{ m.id }}" data-name="{{ m.name }}"
+                            data-folder="false">
+                        <label class="govuk-label govuk-checkboxes__label" for="select_{{ m.id }}"></label>
+                    </div>
+                </div>
+            </td>
+
+            <td class="govuk-table__cell title_column">
+                <span class="material-title">
+                    <form action="/version-19/lcc/materials/case-overview-folder" method="post">
+                        <div class="openMe">
+                            <!-- {% if folder.name %}
+                        <span class="icon-new folder"></span>
+                        {% endif %} -->
+                            <input type="hidden" name="flag" value="1">
+                            <input type="hidden" name="folderName" value="{{ folder.name }}">
+                            <input type="hidden" name="level" value="{{ folder.level + 1 }}">
+                            <input type="hidden" name="activeTab" value="tab-2-content">
+                            <!-- <button type="submit" name="folderId" value="{{ folder.id }}" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-regular govuk-button--link">
+                            {{ folder.name | highlight(data['filtersSearch']) | safe }}
+                        </button> -->
+                            <!-- {% if folder.name %}/ {% endif %}  -->
+                            {% if m.folderPath %}
+                            <div class="govuk-hint folder-path">({{ m.folderPath }})</div>
+                            {% endif %}
+
+                            <div class="material-name">
+                                {{ m.name | highlight(data.filtersSearch) | safe }}
+                            </div>
+
+                            {% if flashRenamedIdSafe and m.id is defined and (m.id ~ '') == flashRenamedIdSafe %}
+                            <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-1">Renamed</strong>
+                            {% endif %}
+                        </div>
+                    </form>
+
+                    <!-- {{ folder.name | highlight(data.filtersSearch) | safe }} / -->
+                    <!-- {{ m.name | highlight(data.filtersSearch) | safe }} -->
+                </span>
+            </td>
+            {# Description and category columns temporarily hidden
+            <td class="govuk-table__cell">{{ m.description }}</td>
+            <td class="govuk-table__cell">{{ m.category }}</td>
+            #}
+
+
+            <td class="govuk-table__cell toggle-panel">
+                <button type="button" class="govuk-button show_material_actions show-case" data-id="{{ m.id }}"
+                    data-doc="{{ m.previewLink }}">
+                    Preview <i class="fa-solid fa-chevron-down"></i>
+                </button>
+            </td>
+        </tr>
+
+        <tr class="govuk-table__row hidden_row" data-row_id="{{ m.id }}">
+            <td colspan="3">
+                <div class="document_holder">
+                    <embed src="{{ m.previewLink }}">
+                </div>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+        {% endfor %}
+
+    </tbody>
+</table>
+ </div>
+</div>
+
+{% if pagination and pagination.showPagination %}
+<div class="govuk-!-margin-left-6">
+<nav class="govuk-pagination govuk-!-margin-top-6" aria-label="Search results pagination">
+    {% if pagination.page > 1 %}
+    <div class="govuk-pagination__prev">
+        <a class="govuk-link govuk-pagination__link"
+            href="/version-19/lcc/materials/manage-materials?page={{ pagination.page - 1 }}&pageSize={{ pagination.pageSize }}"
+            rel="prev">
+            <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg"
+                height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                <path
+                    d="m6.5938-0.0078125-6.7266 6.7266 6.7266 6.7266 1.4141-1.4141-4.3125-4.3125h11.293v-2h-11.293l4.3125-4.3125-1.4141-1.4141z">
+                </path>
+            </svg>
+            <span class="govuk-pagination__link-title">
+                Previous<span class="govuk-visually-hidden"> page</span>
+            </span>
+        </a>
+    </div>
+    {% endif %}
+
+    <ul class="govuk-pagination__list">
+        {% for item in pagination.pageItems %}
+        {% if item.ellipsis %}
+        <li class="govuk-pagination__item govuk-pagination__item--ellipses">
+            &ctdot;
+        </li>
+        {% else %}
+        <li class="govuk-pagination__item {% if item.number == pagination.page %}govuk-pagination__item--current{% endif %}">
+            {% if item.number == pagination.page %}
+            <span class="govuk-pagination__link">{{ item.number }}</span>
+            {% else %}
+            <a class="govuk-link govuk-pagination__link"
+                href="/version-19/lcc/materials/manage-materials?page={{ item.number }}&pageSize={{ pagination.pageSize }}">
+                {{ item.number }}
+            </a>
+            {% endif %}
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+
+    {% if pagination.page < pagination.totalPages %}
+    <div class="govuk-pagination__next">
+        <a class="govuk-link govuk-pagination__link"
+            href="/version-19/lcc/materials/manage-materials?page={{ pagination.page + 1 }}&pageSize={{ pagination.pageSize }}"
+            rel="next">
+            <span class="govuk-pagination__link-title">Next</span>
+            <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg"
+                height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                <path
+                    d="m8.4062-0.0078125-1.4141 1.4141 4.3125 4.3125h-11.293v2h11.293l-4.3125 4.3125 1.4141 1.4141 6.7266-6.7266-6.7266-6.7266z">
+                </path>
+            </svg>
+        </a>
+    </div>
+    {% endif %}
+</nav>
+ </div>
+{% endif %}

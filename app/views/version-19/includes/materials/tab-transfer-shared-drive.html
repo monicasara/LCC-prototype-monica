@@ -1,0 +1,447 @@
+{% set transferSharedDriveItems = transferSharedDriveItems | default(children | default([])) %}
+{% set transferSharedDriveBreadcrumbs = transferSharedDriveBreadcrumbs | default(breadcrumbs | default([])) %}
+{% set currentTransferSharedDriveFolderId = transferSharedDriveFolderId | default(data.transferSharedDriveFolderId | default(0)) %}
+{% set transferSharedDriveFolderIsEmpty = (currentTransferSharedDriveFolderId != 0 and (not transferSharedDriveItems or (transferSharedDriveItems | length) == 0)) %}
+
+<style>
+    .transfer-shared-drive-action-form {
+        display: inline-block;
+        margin: 0;
+    }
+</style>
+
+<div class="govuk-grid-row">
+
+    <h2 class="govuk-heading-m govuk-!-margin-left-3 govuk-!-margin-top-0 govuk-!-margin-bottom-4">
+        Transfer from the Shared Drive to Egress
+    </h2>
+
+    <p class="govuk-body govuk-!-margin-left-3 govuk-!-margin-bottom-3">
+        Select the files or folders you want to transfer. Then choose where to save them on Egress.<br>
+        <!-- You can also transfer <a class="govuk-link">from the Shared Drive to Egress.</a> -->
+    </p>
+
+    <div class="materials-aligned">
+        <hr>
+    </div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-2">
+    <div class="govuk-grid-column-full" id="transfer_materials_column">
+
+{% macro renderTransferTreeItems(nodes, prefix='') %}
+    {% for node in nodes %}
+        {% if node.isFolder %}
+            {% if prefix %}
+                {% set folderPath = prefix ~ ' > ' ~ node.name %}
+            {% else %}
+                {% set folderPath = node.name %}
+            {% endif %}
+            <li class="no-bullet" style="list-style-type:none; margin-left:-1em; margin-bottom: 6px;">
+                <span class="icon-new folder"></span>
+                <strong>{{ folderPath }}</strong>
+            </li>
+            {% if node.children and (node.children | length) > 0 %}
+                {{ renderTransferTreeItems(node.children, folderPath) }}
+            {% endif %}
+        {% else %}
+            <li>{{ node.name }}</li>
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% macro renderTransferTree(nodes) %}
+<ul class="govuk-list govuk-list--bullet">
+    {{ renderTransferTreeItems(nodes) }}
+</ul>
+{% endmacro %}
+
+{% if data.transferSharedDriveToEgressCopySuccess %}
+<div class="govuk-notification-banner govuk-notification-banner--success materials-notification--white govuk-!-margin-left-3 govuk-!-margin-bottom-4"
+    role="alert" data-module="govuk-notification-banner">
+    <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title">Success</h2>
+    </div>
+    <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+            The materials have been transferred
+        </h3>
+
+        {% if data.transferSharedDriveToEgressDestinationName %}
+        <p class="govuk-body">
+            They are in:
+            {% if data.transferSharedDriveToEgressDestinationHref %}
+            <a class="govuk-link" href="{{ data.transferSharedDriveToEgressDestinationHref }}">
+                {{ data.transferSharedDriveToEgressDestinationName }}
+            </a>
+            {% else %}
+            <strong>{{ data.transferSharedDriveToEgressDestinationName }}</strong>
+            {% endif %}
+        </p>
+        {% endif %}
+
+        {% if data.transferSharedDriveToEgressList and (data.transferSharedDriveToEgressList | length) > 0 %}
+        <details class="govuk-details govuk-!-margin-top-2" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    Show copied materials
+                </span>
+            </summary>
+            <div class="govuk-details__text">
+                {% if data.transferSharedDriveToEgressPreviewTree and (data.transferSharedDriveToEgressPreviewTree | length) > 0 %}
+                {{ renderTransferTree(data.transferSharedDriveToEgressPreviewTree) }}
+                {% else %}
+                <ul class="govuk-list govuk-list--bullet">
+                    {% for itemName in data.transferSharedDriveToEgressList %}
+                    <li>{{ itemName }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </details>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+<div class="govuk-grid-row govuk-!-margin-left-3">
+    <nav class="govuk-breadcrumbs govuk-!-margin-left-3" aria-label="Breadcrumb">
+        <ol class="govuk-breadcrumbs__list">
+            {% for crumb in transferSharedDriveBreadcrumbs %}
+            {% set isCurrent = (crumb.id | string) == (currentTransferSharedDriveFolderId | string) %}
+            <li class="govuk-breadcrumbs__list-item">
+                {% if isCurrent %}
+                {{ crumb.name }}
+                {% else %}
+                <form method="post" action="/version-19/lcc/materials/case-overview-folder" style="display:inline;">
+                    <input type="hidden" name="folderId" value="{{ crumb.id }}">
+                    <input type="hidden" name="folderName" value="{{ crumb.name }}">
+                    <input type="hidden" name="activeTab" value="tab-1-content">
+                    <input type="hidden" name="transferView" value="shared-drive">
+                    <button type="submit" class="govuk-breadcrumbs__link breadcrumb-button">
+                        {{ crumb.name }}
+                    </button>
+                </form>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ol>
+    </nav>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-left-3 transfer-actions-row version-18-transfer-actions-row">
+    <div class="govuk-grid-column-full">
+        <div class="govuk-grid-column-one-half">
+            <div class="materials-toolbar govuk-!-margin-top-3 govuk-!-margin-bottom-4">
+                <div class="materials-toolbar__actions">
+                    <div class="actions_holder">
+                        <div class="moj-button-menu">
+                            <form method="post" action="/version-19/lcc/materials/start-transfer-shared-drive-copy"
+                                class="transfer-shared-drive-action-form">
+                                <input type="hidden" name="selected_ids" class="js-transfer-shared-drive-selected-ids" value="">
+                                <button type="submit"
+                                    class="govuk-button govuk-button--secondary govuk-button--disabled js-transfer-shared-drive-copy-selected"
+                                    id="transfer-copy-selected"
+                                    disabled aria-disabled="true">
+                                    Copy selected
+                                </button>
+                            </form>
+
+                            <a class="govuk-link govuk-button--link transfer-view-shared-drive"
+                                href="/version-19/lcc/materials/transfer-materials?transferView=egress">
+                                View Egress
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="govuk-grid-column-one-half transfer-disconnect-panel">
+            <div class="materials-toolbar govuk-!-margin-top-3 govuk-!-margin-bottom-4">
+                <div class="moj-button-menu transfer-disconnect-menu">
+                    <button type="button" id="show_Transfer_Actions"
+                        class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                        Disconnect
+                        <svg width="11" height="5" viewBox="0 0 11 5"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
+                        </svg>
+                    </button>
+
+                    <div class="hidden_buttons transfer-disconnect-actions" id="transfer_Actions">
+                        <form method="get" action="/version-19/lcc/materials/disconnect-shared-drive">
+                            <button type="submit" class="govuk-button">
+                                Disconnect Shared Drive
+                            </button>
+                        </form>
+                        <form method="get" action="/version-19/lcc/materials/disconnect-egress">
+                            <button type="submit" class="govuk-button">
+                                Disconnect Egress
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="materials-aligned version-15-transfer-table version-18-transfer-table transfer-table-panel" id="transfer-shared-drive-table-panel">
+    <div class="materials-table-wrapper">
+        <table class="govuk-table sortable" id="transfer_shared_drive_table">
+            <colgroup>
+                <col class="transfer-select-column">
+                <col class="transfer-title-column">
+                <col class="transfer-date-column">
+                <col class="transfer-size-column">
+            </colgroup>
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header transfer-select-column">
+                        {% if data.materialsMode != "copy" and data.materialsMode != "move" %}
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input js-transfer-shared-drive-select-all"
+                                    id="transfer_shared_drive_documents_ALL" type="checkbox" value="ALL">
+                                <label class="govuk-label govuk-checkboxes__label"
+                                    for="transfer_shared_drive_documents_ALL"></label>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </th>
+
+                    <th scope="col" class="govuk-table__header title_column">
+                        <button type="button" class="govuk-link govuk-link--no-visited-state table-sort"
+                            data-sort="name">
+                            File or folder
+                        </button>
+                    </th>
+
+                    <th scope="col" class="govuk-table__header">
+                        <button type="button" class="govuk-link govuk-link--no-visited-state table-sort"
+                            data-sort="date">
+                            Last modified date
+                        </button>
+                    </th>
+
+                    <th scope="col" class="govuk-table__header">
+                        <button type="button" class="govuk-link govuk-link--no-visited-state table-sort"
+                            data-sort="category">
+                            Size
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody class="govuk-table__body">
+                {% if transferSharedDriveFolderIsEmpty %}
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell" colspan="4" style="border-bottom: 0;">
+                        <p class="govuk-body govuk-!-margin-bottom-0">This folder is empty</p>
+                    </td>
+                </tr>
+                {% endif %}
+
+                {% for item in transferSharedDriveItems %}
+                {% if item.folder %}
+                <tr class="govuk-table__row" data-id="{{ item.id }}" data-folder="true">
+                    <td class="govuk-table__cell transfer-select-column">
+                        {% if data.materialsMode != "copy" and data.materialsMode != "move" %}
+                        <div class="govuk-checkboxes govuk-checkboxes--small">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input js-material-checkbox"
+                                    id="transfer_shared_drive_select_{{ item.id }}" type="checkbox"
+                                    name="materials_document" value="{{ item.id }}"
+                                    data-name="{{ item.name }}" data-folder="true">
+                                <label class="govuk-label govuk-checkboxes__label"
+                                    for="transfer_shared_drive_select_{{ item.id }}"></label>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </td>
+
+                    <td class="govuk-table__cell title_column">
+                        <span class="folder-inline-wrapper">
+                            <form method="post" action="/version-19/lcc/materials/case-overview-folder">
+                                <input type="hidden" name="folderId" value="{{ item.id }}">
+                                <input type="hidden" name="folderName" value="{{ item.name }}">
+                                <input type="hidden" name="activeTab" value="tab-1-content">
+                                <input type="hidden" name="transferView" value="shared-drive">
+
+                                <button type="submit"
+                                    class="govuk-link govuk-link--no-visited-state govuk-button--link folder-open">
+                                    <span class="icon-new folder"></span>
+
+                                    <span class="folder-name-and-tags">
+                                        <span class="folder-name">{{ item.name }}</span>
+
+                                        {% if data.flashRenamedIds and (item.id | string) in data.flashRenamedIds %}
+                                        <strong class="govuk-tag govuk-tag--green">Renamed</strong>
+                                        {% endif %}
+
+                                        {% if flashNewFolderId and (item.id | string) == flashNewFolderId %}
+                                        <strong class="govuk-tag govuk-tag--green">New folder</strong>
+                                        {% endif %}
+                                    </span>
+                                </button>
+                            </form>
+                        </span>
+                    </td>
+
+                    <td class="govuk-table__cell">
+                        {{ item.date or "" }}
+                    </td>
+
+                    <td class="govuk-table__cell">
+                        {{ item.category or "" }}
+                    </td>
+                </tr>
+
+                {% else %}
+                <tr class="govuk-table__row" data-id="{{ item.id }}" data-folder="false">
+                    <td class="govuk-table__cell transfer-select-column">
+                        {% if data.materialsMode != "copy" and data.materialsMode != "move" %}
+                        <div class="govuk-checkboxes govuk-checkboxes--small">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input js-material-checkbox"
+                                    id="transfer_shared_drive_select_{{ item.id }}" type="checkbox"
+                                    name="materials_document" value="{{ item.id }}"
+                                    data-name="{{ item.name }}" data-folder="false">
+                                <label class="govuk-label govuk-checkboxes__label"
+                                    for="transfer_shared_drive_select_{{ item.id }}"></label>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </td>
+
+                    <td class="govuk-table__cell title_column">
+                        <span class="file-tags">
+                            <span class="file-name">{{ item.name }}</span>
+                        </span>
+                    </td>
+
+                    <td class="govuk-table__cell">
+                        {{ item.date or "" }}
+                    </td>
+
+                    <td class="govuk-table__cell">
+                        {{ item.category or "" }}
+                    </td>
+                </tr>
+
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% if transferSharedDriveItems and (transferSharedDriveItems | length) > 0 %}
+<div class="materials-aligned transfer-actions-row">
+    <div class="materials-toolbar govuk-!-margin-top-4 govuk-!-margin-bottom-2">
+        <div class="materials-toolbar__actions">
+            <div class="actions_holder">
+                <div class="moj-button-menu">
+                    <form method="post" action="/version-19/lcc/materials/start-transfer-shared-drive-copy"
+                        class="transfer-shared-drive-action-form">
+                        <input type="hidden" name="selected_ids" class="js-transfer-shared-drive-selected-ids" value="">
+                        <button type="submit"
+                            class="govuk-button govuk-button--secondary govuk-button--disabled js-transfer-shared-drive-copy-selected"
+                            disabled aria-disabled="true">
+                            Copy selected
+                        </button>
+                    </form>
+
+                    <a class="govuk-link govuk-button--link transfer-view-shared-drive"
+                        href="/version-19/lcc/materials/transfer-materials?transferView=egress">
+                        View Egress
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+<script>
+    (function () {
+        var panel = document.getElementById('transfer-shared-drive-table-panel');
+        var copySelectedButtons = Array.prototype.slice.call(document.querySelectorAll('.js-transfer-shared-drive-copy-selected'));
+
+        if (!panel) return;
+
+        function getRowCheckboxes() {
+            return Array.prototype.slice.call(panel.querySelectorAll('input.js-material-checkbox'));
+        }
+
+        function getSelectedIds() {
+            return getRowCheckboxes().filter(function (checkbox) {
+                return checkbox.checked;
+            }).map(function (checkbox) {
+                return checkbox.value;
+            });
+        }
+
+        function updateTransferActions() {
+            var hasSelection = getSelectedIds().length > 0;
+
+            copySelectedButtons.forEach(function (button) {
+                button.disabled = !hasSelection;
+                button.setAttribute('aria-disabled', String(!hasSelection));
+                button.classList.toggle('govuk-button--disabled', !hasSelection);
+            });
+        }
+
+        function syncSelectAll() {
+            var selectAll = panel.querySelector('input.js-transfer-shared-drive-select-all');
+            if (!selectAll) return;
+
+            var checkboxes = getRowCheckboxes();
+            var checkedCount = checkboxes.filter(function (checkbox) {
+                return checkbox.checked;
+            }).length;
+
+            selectAll.checked = checkboxes.length > 0 && checkedCount === checkboxes.length;
+            selectAll.indeterminate = checkedCount > 0 && checkedCount < checkboxes.length;
+        }
+
+        updateTransferActions();
+        syncSelectAll();
+
+        panel.addEventListener('change', function (event) {
+            if (!event.target.matches('input.js-material-checkbox, input.js-transfer-shared-drive-select-all')) {
+                return;
+            }
+
+            if (event.target.matches('input.js-transfer-shared-drive-select-all')) {
+                getRowCheckboxes().forEach(function (checkbox) {
+                    checkbox.checked = event.target.checked;
+                });
+                event.target.indeterminate = false;
+            } else {
+                syncSelectAll();
+            }
+
+            updateTransferActions();
+        });
+
+        Array.prototype.slice.call(document.querySelectorAll('.transfer-shared-drive-action-form')).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                var selectedIds = getSelectedIds();
+                if (!selectedIds.length) {
+                    event.preventDefault();
+                    return;
+                }
+
+                var input = form.querySelector('.js-transfer-shared-drive-selected-ids');
+                if (input) {
+                    input.value = selectedIds.join(',');
+                }
+            });
+        });
+    })();
+</script>
+
+    </div>
+</div>

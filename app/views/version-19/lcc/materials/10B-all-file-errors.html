@@ -1,0 +1,246 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+{% block beforeContent %}
+    {% include "../../includes/off-system-MVP/modalConfirmation-Egress.html" %}
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+    </div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-2" id="homepage-journey">
+
+    <form method="post" action="03-case-overview#all_file_errors_COMPLETED" id="submit_all_failed_files">  
+
+        <div class="govuk-grid-column-two-thirds">
+            <div class="wrapper main-cotent">
+                <h1 class="govuk-heading-xl govuk-!-margin-bottom-7" style="">File transfer failed</h1>
+
+                <h2 class="govuk-heading-m govuk-!-margin-bottom-4" style="">Duplicate files</h2>
+                <p>These files have the same names as ones already on the Shared Drive:</p>
+
+                <!-- SECTION - 1 - START -->
+                <div class="url-text file_structure">
+                    <div><span class="icon-new folder small"></span> 11. Media</div>
+                </div>
+                <div class="file_container govuk-!-margin-bottom-6">
+                    <table class="govuk-table" id="">
+                        <tbody class="govuk-table__body">
+
+                            <tr class="govuk-table__row hidden_row">
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> S285 - MG11 - Intel analyst 6744 ALLEN Jamie 21.05.2025.pdf
+                                </td>
+                                <td class="govuk-table__cell" width="30%;"><strong class="govuk-tag govuk-tag--blue" style="float: right;">Duplicate</strong></td>
+                            </tr>
+
+                            <tr class="govuk-table__row hidden_row">
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> S84 - MG11 - Intel analyst 3256 ALLEN Jamie 15.09.2024.pdf
+                                </td>
+                                <td class="govuk-table__cell" width="30%;"><strong class="govuk-tag govuk-tag--blue" style="float: right;">Duplicate</strong></td>
+                            </tr>
+
+                            <tr class="govuk-table__row hidden_row">
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> S68 - MG11 - Intel analyst 1234 ALLEN Jamie 10.12.2025.pdf
+                                </td>
+                                <td class="govuk-table__cell" width="30%;"><strong class="govuk-tag govuk-tag--blue" style="float: right;">Duplicate</strong></td>
+                            </tr>
+
+                            <tr class="govuk-table__row hidden_row">
+                                <td scope="row" class="govuk-table__cell" width="72.5%;">
+                                    <span class="icon-new file"></span> S81 - Video of crime in action 11-06-2024.mp4
+                                </td>
+                                <td class="govuk-table__cell" width="30%;"><strong class="govuk-tag govuk-tag--blue" style="float: right;">Duplicate</strong></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s"><h1 class="govuk-fieldset__heading">What would you like to do?</h1></legend>
+                        <div class="govuk-radios  govuk-radios--inline" data-module="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="all_transfer_errors_Duplicate__Overwrite" name="all_transfer_errors_Duplicate" type="radio" value="Overwrite existing files">
+                                <label class="govuk-label govuk-radios__label" for="duplicate_files_transfer__Overwrite">Overwrite existing files</label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="all_transfer_errors_Duplicate__Ignore_files" name="all_transfer_errors_Duplicate" type="radio" value="Ignore files">
+                                <label class="govuk-label govuk-radios__label" for="all_transfer_errors_Duplicate__Ignore_files">Ignore files</label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="all_transfer_errors_Duplicate__Duplicate_files" name="all_transfer_errors_Duplicate" type="radio" value="Duplicate files">
+                                <label class="govuk-label govuk-radios__label" for="all_transfer_errors_Duplicate__Duplicate_files">Duplicate files</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="govuk-warning-text  govuk-!-margin-bottom-6" id="duplicate_files_transfer__Warning">
+                    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                    <strong class="govuk-warning-text__text">
+                        <span class="govuk-visually-hidden">Warning</span>
+                        We duplicate all files and prefix the new items with "_V2", so "duplicate_document.pdf" becomes "duplicate_document_V2.pdf"
+                    </strong>
+                </div>
+                <!-- SECTION - 1 - END -->
+
+                <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+                <!-- SECTION - 2 - START -->
+                <h2 class="govuk-heading-m govuk-!-margin-bottom-4" style="">Network error</h2>
+                <p>These files could not be transferred to the Shared Drive because of a connection problem:</p>
+
+                <div class="url-text file_structure">
+                    <div><span class="icon-new folder small"></span> SHEAF Ben</div>
+                </div>
+                <div class="file_container govuk-!-margin-bottom-6">
+                    <table class="govuk-table" id="">
+                        <tbody class="govuk-table__body">
+
+                            <tr class="govuk-table__row hidden_row">
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> S285 - MG11 - Intel analyst 6744 SHEAF Ben 21.05.2025.pdf
+                                </td>
+                                <td class="govuk-table__cell" width="30%;"><strong class="govuk-tag govuk-tag--red" style="float: right;">Failed</strong></td>
+                            </tr>
+
+                            <tr class="govuk-table__row hidden_row">
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> S84 - MG11 - Intel analyst 3256 SHEAF Ben 15.09.2024.pdf
+                                </td>
+                                <td class="govuk-table__cell" width="30%;"><strong class="govuk-tag govuk-tag--red" style="float: right;">Failed</strong></td>
+                            </tr>
+
+                            <tr class="govuk-table__row hidden_row">
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> S68 - MG11 - Intel analyst 1234 SHEAF Ben 10.12.2025.pdf
+                                </td>
+                                <td class="govuk-table__cell" width="30%;"><strong class="govuk-tag govuk-tag--red" style="float: right;">Failed</strong></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="url-text file_structure">
+                    <div><span class="icon-new folder small"></span> Video Surveillance</div>
+                </div>
+
+                <div class="file_container govuk-!-margin-bottom-6">
+                    <table class="govuk-table" id="">
+                        <tbody class="govuk-table__body">
+
+                            <tr class="govuk-table__row hidden_row">
+                                <td scope="row" class="govuk-table__cell" width="72.5%;">
+                                    <span class="icon-new file"></span> S81 - Video of crime in action 11-06-2024.mp4
+                                </td>
+                                <td class="govuk-table__cell" width="30%;"><strong class="govuk-tag govuk-tag--red" style="float: right;">Failed</strong></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s"><h1 class="govuk-fieldset__heading">What would you like to do?</h1></legend>
+                        <div class="govuk-radios  govuk-radios--inline" data-module="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="all_transfer_errors_Network__Try_again" name="all_transfer_errors_Network" type="radio" value="Try again">
+                                <label class="govuk-label govuk-radios__label" for="all_transfer_errors_Network__Try_again">Try again</label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="all_transfer_errors_Network__Ignore_files" name="all_transfer_errors_Network" type="radio" value="Ignore files">
+                                <label class="govuk-label govuk-radios__label" for="all_transfer_errors_Network__Ignore_files">Ignore files</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <!-- SECTION - 2 - END -->
+
+                <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+                <!-- SECTION - 3 - START -->
+                <h2 class="govuk-heading-m govuk-!-margin-bottom-4" style="">File in use by another user</h2>
+                <p>A file with the same name already exists and is in use by someone else:</p>
+
+                <div class="url-text file_structure">
+                    {% if data['searchOFF_Operation_VALUE'] == 'Dumper Truck' or data['searchOFF_Operation_VALUE'] == 'Dumper truck'  or data['searchOFF_Operation_VALUE'] == 'dumper truck'  or data['searchOFF_Operation_VALUE'] == 'Dumpertruck' %}
+                        <div><span class="icon-new folder small"></span> {{ data['searchOFF_Operation_VALUE'] }}</div>
+                    {% elseif data['searchOFF_Defendant_VALUE'] == 'Dumper Truck' or data['searchOFF_Defendant_VALUE'] == 'Dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'dumper truck'  or data['searchOFF_Defendant_VALUE'] == 'Dumpertruck' %}
+                        <div><span class="icon-new folder small"></span> {{ data['searchOFF_Defendant_VALUE'] }}</div>
+                    {% elseif data['searchOFF_URN_VALUE'] %}
+                        <div><span class="icon-new folder small"></span> Dumper Truck</div>
+                    {% else %}
+                        <div><span class="icon-new folder small"></span> Thunderstruck</div>
+                    {% endif %}
+                </div>
+                <div class="file_container govuk-!-margin-bottom-6">
+                    <table class="govuk-table" id="">
+                        <tbody class="govuk-table__body">
+
+                            <tr class="govuk-table__row hidden_row">
+                                <td scope="row" class="govuk-table__cell" width="70%;">
+                                    <span class="icon-new file"></span> mg11_BLAYNEE.pdf
+                                </td>
+                                <td class="govuk-table__cell" width="30%;"><strong class="govuk-tag govuk-tag--yellow" style="float: right;">File in use</strong></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s"><h1 class="govuk-fieldset__heading">What would you like to do?</h1></legend>
+                        <div class="govuk-radios  govuk-radios--inline" data-module="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="all_transfer_errors_Locked__Overwrite" name="all_transfer_errors_Locked" type="radio" value="Try again">
+                                <label class="govuk-label govuk-radios__label" for="all_transfer_errors_Locked__Overwrite">Try again</label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="all_transfer_errors_Locked__Ignore_files" name="all_transfer_errors_Locked" type="radio" value="Ignore files">
+                                <label class="govuk-label govuk-radios__label" for="all_transfer_errors_Locked__Ignore_files">Ignore file</label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="all_transfer_errors_Locked__Duplicate_files" name="all_transfer_errors_Locked" type="radio" value="Duplicate files">
+                                <label class="govuk-label govuk-radios__label" for="all_transfer_errors_Locked__Duplicate_files">Duplicate file</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="govuk-warning-text  govuk-!-margin-bottom-6" id="file_locked_transfer__Warning">
+                    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                    <strong class="govuk-warning-text__text">
+                        <span class="govuk-visually-hidden">Warning</span>
+                        We duplicate all files and prefix the new items with "_V2", so "duplicate_document.pdf" becomes "duplicate_document_V2.pdf"
+                    </strong>
+                </div>
+                <!-- SECTION - 3 - END -->
+
+                <input id="failed_file_transfer" name="failed_file_transfer" type="text" value="false" style="display: none;">
+                <input id="long_file_path_COMPLETED" name="long_file_path_COMPLETED" type="text" value="false" style="display: none;">
+                <input id="failed_files_COMPLETED" name="failed_files_COMPLETED" type="text" value="fales" style="display: none;">
+                <input id="all_file_errors_COMPLETED" name="all_file_errors_COMPLETED" type="text" value="true" style="display: none;">
+                <button id="" type="submit" aria-disabled="false" class="govuk-button govuk-!-margin-bottom-6" data-module="govuk-button">Continue</button>            
+
+                <p><a href="">Contact the product team</a> if you need further help, <strong>quote error code: 128YHU00</strong></p>
+
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

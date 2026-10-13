@@ -1,0 +1,176 @@
+<h2 class="govuk-heading-m">Emails</h2>
+<span class="govuk-caption-m">Last updated <span id="comms-timestamp"></span></span>
+
+<div class="section-wrapper">
+    <section>
+        <div class="title-wrapper">
+            <h3 class="govuk-heading-s"><img src="../../../public/images/outlook-logo.jpg" alt="Outlook" class="outlook-logo">Outlook emails</h3>
+        </div>
+
+        <div class="permissions">
+            {% if data['newCase_OperationName'] or data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                {% if data['newCase_OperationName'] %}
+                    <input type="text" value="Public (P:) > RCTCaseData > SCCTD > CTD > Live Op > {{ data['newCase_OperationName'] }}" id="filePath-Outlook" class="url-text" disabled>
+                {% else %}
+                    <input type="text" value="Public (P:) > RCTCaseData > SCCTD > CTD > Live Op > {{ data['newCase_DefendantName-Surname'] }}, {{ data['newCase_DefendantName-Forename'] }}" id="filePath-Outlook" class="url-text" disabled>
+                {% endif %}
+            {% elseif data['existing_Case'] == 'true' %}
+                <input type="text" value="Public (P:) > RCTCaseData > SCCTD > CTD > Live Op > Groundhog Day" id="filePath-Outlook" class="url-text" disabled>
+            {% endif %}
+            <a class="govuk-button copy-button" id="copyOutlookLink" onclick="copyOutlookLink()">Copy path</a>
+        </div>
+        <p> </p>
+
+        <div id="emailViewer">
+
+            <div class="emails">
+                <table class="govuk-table" id="emailTable">
+                    <tbody id="accordion-tbody-communication">
+
+                        <!-- EMAIL LINK - 1 - START -->
+                        <tr class="govuk-table__row document-holder">
+                            <td class="govuk-table__cell govuk-body-s activeDocument" scope="row" id="emailLink1">
+                                <div class="wrapper">
+                                    <strong class="govuk-tag current">Active email</strong>
+                                    {% if data['newCase_OperationName'] or data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                                        {% if data['caseName_Type'] == 'Operation name' %}
+                                            <a class="show-case email-document" onclick="return showEmail1();">E-mail regarding Operation {{ data['newCase_OperationName'] }}</a>
+                                        {% else %}
+                                            <a class="show-case email-document" onclick="return showEmail1();">E-mail regarding Operation <span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</span>, {{ data['newCase_DefendantName-Forename'] }}</a>
+                                        {% endif %}                               
+                                    {% elseif data['existing_Case'] == 'true' %}
+                                        <a class="show-case email-document" onclick="return showEmail1();">E-mail regarding Operation Groundhog Day</a>
+                                    {% endif %}
+
+                                    <br>
+                                    <p class="date-added">
+                                        <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span><span id="email-date">Today, 2:04pm</span>
+                                        <br>
+                                        <span class="icon-new sender"><span class="visuallyhidden">Sender</span></span>
+                                        From: <a href="mailto:SA.OffSystemAlpha@test.gov.uk">SA.OffSystemAlpha@test.gov.uk</a>
+                                        <br>
+                                        <span class="icon-new attachments"><span class="visuallyhidden">Attachments</span></span>0 attachments
+                                    </p>
+                                </div>
+                                <button class="more-options">
+                                    <span class="visuallyhidden">More options</span>
+                                </button>
+                                <div class="document-nav">
+                                    <button onclick="" class="reply-button"><span class="icon-new email-reply"></span>Reply to email</button>
+                                    <button onclick="" class="forward-button"><span class="icon-new email-forward"></span>Forward email</button>
+                                    <button onclick="" class="delete-button"><span class="icon-new email-delete"></span>Delete email</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- EMAIL LINK - 1 - END -->
+
+                        <!-- EMAIL LINK - 2 - START -->
+                        <tr class="govuk-table__row document-holder">
+                            <td class="govuk-table__cell govuk-body-s unreadDocument" scope="row" id="emailLink2">
+                                <div class="wrapper">
+                                    <strong class="govuk-tag current">Active email</strong>
+                                    {% if data['newCase_OperationName'] or data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                                        {% if data['caseName_Type'] == 'Operation name' %}
+                                            <a class="show-case email-document" onclick="return showEmail2();">E-mail regarding Operation {{ data['newCase_OperationName'] }}</a>
+                                        {% else %}
+                                            <a class="show-case email-document" onclick="return showEmail2();">E-mail regarding Operation <span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</span>, {{ data['newCase_DefendantName-Forename'] }}</a>
+                                        {% endif %}                               
+                                    {% elseif data['existing_Case'] == 'true' %}
+                                        <a class="show-case email-document" onclick="return showEmail2();">E-mail regarding Operation Groundhog Day</a>
+                                    {% endif %}
+                                    <br>
+                                    <p class="date-added">
+                                        <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span><span id="email-date3">Today, 12:04pm</span>
+                                        <br>
+                                        <span class="icon-new sender"><span class="visuallyhidden">Sender</span></span>
+                                        From: <a href="mailto:PC12345@criminl.justice.gmp.police.uk">PC12345@criminl.justice.gmp.police.uk</a>
+                                        <br>
+                                        <span class="icon-new attachments"><span class="visuallyhidden">Attachments</span></span>0 attachments
+                                    </p>
+                                </div>
+                                <button class="more-options">
+                                    <span class="visuallyhidden">More options</span>
+                                </button>
+                                <div class="document-nav">
+                                    <button onclick="" class="reply-button"><span class="icon-new email-reply"></span>Reply to email</button>
+                                    <button onclick="" class="forward-button"><span class="icon-new email-forward"></span>Forward email</button>
+                                    <button onclick="" class="delete-button"><span class="icon-new email-delete"></span>Delete email</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- EMAIL LINK - 2 - END -->
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="email-container">
+
+                <!-- EMAIL - 1 - START -->
+                <div class="email-wrapper" id="email1">
+                    <div class="email-subject">
+                        <p><strong>From:</strong> SA Off System Alpha &#60;SA.OffSystemAlpha@test.gov.uk&#62;</p>
+                        <p><strong>Date:</strong> <span id="email-date2">Today, 12:07pm</span></p>
+                        <p><strong>To:</strong> {{ data['offCMS_Username'] }}</p>
+                        {% if data['newCase_OperationName'] or data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                            {% if data['caseName_Type'] == 'Operation name' %}
+                                <p><strong>Subject:</strong> E-mail regarding Operation {{ data['newCase_OperationName'] }}</p>
+                            {% else %}
+                                <p><strong>Subject:</strong> E-mail regarding Defendat <span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</span>, {{ data['newCase_DefendantName-Forename'] }}</p>
+                            {% endif %}                               
+                        {% elseif data['existing_Case'] == 'true' %}
+                            <p><strong>Subject:</strong> E-mail regarding Operation Groundhog day</p>
+                        {% endif %}
+
+                    </div>
+                    <div class="email-content">
+                        {% if data['newCase_OperationName'] or data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                            {% if data['caseName_Type'] == 'Operation name' %}
+                                <p>This is the shared outlook folder for operation <strong>{{ data['newCase_OperationName'] }}</strong></p>
+                            {% else %}
+                                <p>This is the shared outlook folder for operation <strong class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</strong>, <strong>{{ data['newCase_DefendantName-Forename'] }}</strong></p>
+                            {% endif %}                               
+                        {% elseif data['existing_Case'] == 'true' %}
+                            <p>This is the shared outlook folder for operation <strong>Groundhog Day</strong>.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- EMAIL - 1 - END -->
+
+                <!-- EMAIL - 2 - START -->
+                <div class="email-wrapper" id="email2" style="display: none;">
+                    <div class="email-subject">
+                        <p><strong>From:</strong> PC12345@criminl.justice.gmp.police.uk</p>
+                        <p><strong>Date:</strong> <span id="email-date4">Today, 12:01pm</span></p>
+                        <p><strong>To:</strong> {{ data['offCMS_Username'] }}</p>
+                        {% if data['newCase_OperationName'] or data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                            {% if data['caseName_Type'] == 'Operation name' %}
+                                <p><strong>Subject:</strong> Early advice for {{ data['newCase_OperationName'] }}</p>
+                            {% else %}
+                                <p><strong>Subject:</strong> Early advice for <span class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</span>, {{ data['newCase_DefendantName-Forename'] }}</p>
+                            {% endif %}                               
+                        {% elseif data['existing_Case'] == 'true' %}
+                            <p><strong>Subject:</strong> Early advice for Groundhog Day</p>
+                        {% endif %}
+                    </div>
+                    <div class="email-content">
+                        <p>Dear {{ data['offCMS_Username'] }},</p>
+                        {% if data['newCase_OperationName'] or data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                            {% if data['caseName_Type'] == 'Operation name' %}
+                                <p>Please can you contact me regarding the new operation: <strong>{{ data['newCase_OperationName'] }}</strong>. I would love to get your thoughts on how to progress the case and any Early advice you can give me.</p>
+                            {% else %}
+                                <p>Please can you contact me regarding the new operation: <strong class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</strong>, <strong>{{ data['newCase_DefendantName-Forename'] }}</strong>. I would love to get your thoughts on how to progress the case and any Early advice you can give me.</p>
+                            {% endif %}                               
+                        {% elseif data['existing_Case'] == 'true' %}
+                            <p>Please can you contact me regarding the new operation: <strong>Groundhog Day</strong>. I would love to get your thoughts on how to progress the case and any Early advice you can give me.</p>
+                        {% endif %}
+                        <p>Kind Regards,<br>PC Steven Hachting</p>
+                    </div>
+                </div>
+                <!-- EMAIL - 2 - END -->
+
+            </div>
+        </div>        
+
+    </section>
+</div>

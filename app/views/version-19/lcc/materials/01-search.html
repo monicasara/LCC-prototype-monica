@@ -1,0 +1,251 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+{% block beforeContent %}
+
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row" id="search-journey">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="wrapper">
+
+            <!-- ///////// ERROR SUMMARY - START ///////// -->
+            <div class="govuk-error-summary  govuk-!-margin-bottom-6" data-module="govuk-error-summary" id="search_errors_summary">
+                <div role="alert">
+                    <h2 class="govuk-error-summary__title">There is a problem</h2>
+                    <div class="govuk-error-summary__body">
+                        <ul class="govuk-list govuk-error-summary__list">
+                            <li class="nothing_error_text"><a href="#nothing_error">Select a search type</a></li>
+                            <li class="operation_name-error_text"><a href="#operation_name-error">You must enter an operation name before you can search</a></li>
+                            <li class="defendant_name-error_text"><a href="#defendant_name-error">You must enter a defendant last name before you can search</a></li>
+                            <li class="urn_invalid_error"><a href="#urn_name-invalid_error">You must enter a URN before you can search</a></li>
+                            <li class="urn_name"><a href="#urn_name-error">Enter the URN of the case</a></li>
+                            <li class="area-error"><a href="#area-error">You must select an area before you can search</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- ///////// ERROR SUMMARY - END ///////// -->
+
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4" style="">Find a case</h1>
+            <form method="get" id="searchOFF_SYSTEM">
+
+                <div class="govuk-form-group" id="searchOFF_SYSTEM_Container">
+                    <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+                        <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--s"><h1 class="govuk-fieldset__heading">Search Large and Complex Cases</h1></legend> -->
+                        <div id="searchOFF-hint" class="govuk-hint">
+                            Select how you want to find a case.<br>
+                            For operation name and defendant last name you will also need to select an area.
+                        </div>
+                        <p id="nothing_error" class="govuk-error-message govuk-!-margin-bottom-2">
+                            <span class="govuk-visually-hidden">Error:</span> You need to choose whether to search by Operation name, Defendant last name, or Unique Reference Number (URN) before continuing.
+                        </p>
+                        <div class="govuk-radios" data-module="govuk-radios">
+
+                            <!-- OPTION 1 - START -->
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="searchOFF_Operation" name="searchOFF" type="radio" value="Operation name" data-aria-controls="conditional-searchOFF_Operation">
+                                <label class="govuk-label govuk-radios__label" for="searchOFF_Operation">Operation name</label>
+                            </div>
+                            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-searchOFF_Operation">
+                                <div class="govuk-form-group govuk-!-margin-bottom-4">
+                                    <p id="operation_name-error" class="govuk-error-message govuk-!-margin-bottom-2"><span class="govuk-visually-hidden">Error:</span> You must enter an operation name before you can search</p>
+                                    <label class="govuk-label govuk-visually-hidden" for="searchOFF_Operation_VALUE">Operation name</label>
+                                    <input class="govuk-input govuk-!-width-one-third" id="searchOFF_Operation_VALUE" name="searchOFF_Operation_VALUE" type="text" spellcheck="false">
+                                </div>
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label" for="searchOFF_Operation_AREA">Area</label>
+                                    <p id="operation_area-error" class="govuk-error-message govuk-!-margin-bottom-2"><span class="govuk-visually-hidden">Error:</span> You must select an area before you can search</p>
+                                    <select class="govuk-select" id="searchOFF_Operation_AREA" name="searchOFF_Operation_AREA">
+                                        <option disabled selected>-- Select Area --</option>
+                                        <optgroup label="Large and Complex Case Divisions">
+                                            <option value="SEOCID Int London and SE Div">SEOCID Int London and SE Div</option>
+                                            <option value="SEOCID Regional and Wales Div">SEOCID Regional and Wales Div</option>
+                                            <option value="Counter Terrorism Division">Counter Terrorism Division</option>
+                                            <option value="Special Crime Division">Special Crime Division</option>
+                                            <option value="Specialist Fraud Division">Specialist Fraud Division</option>
+                                        </optgroup>
+                                        <optgroup label="CPS Areas">
+                                            <option value="Avon & Somerset">Avon & Somerset</option>
+                                            <option value="Bedfordshire">Bedfordshire</option>
+                                            <option value="Cambridgeshire">Cambridgeshire</option>
+                                            <option value="Cheshire">Cheshire</option>
+                                            <option value="Cleveland">Cleveland</option>
+                                            <option value="Cumbria">Cumbria</option>
+                                            <option value="Derbyshire">Derbyshire</option>
+                                            <option value="Devon and Cornwall">Devon and Cornwall</option>
+                                            <option value="Dorset">Dorset</option>
+                                            <option value="Durham">Durham</option>
+                                            <option value="Dyfed Powys">Dyfed Powys</option>
+                                            <option value="Essex">Essex</option>
+                                            <option value="Gloucestershire">Gloucestershire</option>
+                                            <option value="Greater Manchester">Greater Manchester</option>
+                                            <option value="Gwent">Gwent</option>
+                                            <option value="Hampshire & IOW">Hampshire & IOW</option>
+                                            <option value="Hertfordshire">Hertfordshire</option>
+                                            <option value="HMCPSI">HMCPSI</option>
+                                            <option value="Humberside">Humberside</option>
+                                            <option value="Kent">Kent</option>
+                                            <option value="Lancashire">Lancashire</option>
+                                            <option value="Leatherhead">Leatherhead</option>
+                                            <option value="Leicestershire">Leicestershire</option>
+                                            <option value="Lincolnshire">Lincolnshire</option>
+                                            <option value="London">London</option>
+                                            <option value="London North">London North</option>
+                                            <option value="London South">London South</option>
+                                            <option value="Merseyside">Merseyside</option>
+                                            <option value="Norfolk">Norfolk</option>
+                                            <option value="North Wales">North Wales</option>
+                                            <option value="North Yorkshire">North Yorkshire</option>
+                                            <option value="Northamptonshire">Northamptonshire</option>
+                                            <option value="Northumbria">Northumbria</option>
+                                            <option value="Nottinghamshire">Nottinghamshire</option>
+                                            <option value="Records Management Team (RMT)">Records Management Team (RMT)</option>
+                                            <option value="RMU Area">RMU Area</option>
+                                            <option value="South Wales">South Wales</option>
+                                            <option value="South Yorkshire">South Yorkshire</option>
+                                            <option value="Stafford">Stafford</option>
+                                            <option value="Suffolk">Suffolk</option>
+                                            <option value="Surrey">Surrey</option>
+                                            <option value="Sussex">Sussex</option>
+                                            <option value="Thames Valley">Thames Valley</option>
+                                            <option value="Warwickshire">Warwickshire</option>
+                                            <option value="West Mercia">West Mercia</option>
+                                            <option value="West Midlands">West Midlands</option>
+                                            <option value="West Yorkshire">West Yorkshire</option>
+                                            <option value="Wilstshire">Wilstshire</option>
+                                        </optgroup>
+                                    </select>
+                                </div>                
+                            </div>
+                            <!-- OPTION 1 - END -->
+
+                            <!-- OPTION 2 - START -->
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="searchOFF_Defendant" name="searchOFF" type="radio" value="Defendant surname" data-aria-controls="conditional-searchOFF_Defendant">
+                                <label class="govuk-label govuk-radios__label" for="searchOFF_Defendant">Defendant last name</label>
+                            </div>
+                            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-searchOFF_Defendant">
+                                <div class="govuk-form-group govuk-!-margin-bottom-4">
+                                    <p id="defendant_name-error" class="govuk-error-message govuk-!-margin-bottom-2"><span class="govuk-visually-hidden">Error:</span> You must enter a defendant last name before you can search</p>
+                                    <label class="govuk-label govuk-visually-hidden" for="searchOFF_Defendant_VALUE">Defendant last name</label>
+                                    <input class="govuk-input govuk-!-width-one-third" id="searchOFF_Defendant_VALUE" name="searchOFF_Defendant_VALUE" type="text" spellcheck="false">
+                                </div>
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label" for="searchOFF_Defendant_AREA">Area</label>
+                                    <p id="defendant_area-error" class="govuk-error-message govuk-!-margin-bottom-2"><span class="govuk-visually-hidden">Error:</span> You must select an area before you can search</p>
+                                    <select class="govuk-select" id="searchOFF_Defendant_AREA" name="searchOFF_Defendant_AREA">
+                                        <option disabled selected>-- Select Area --</option>
+                                        <optgroup label="Large and Complex Case Divisions">
+                                            <option value="SEOCID Int London and SE Div">SEOCID Int London and SE Div</option>
+                                            <option value="SEOCID Regional and Wales Div">SEOCID Regional and Wales Div</option>
+                                            <option value="Counter Terrorism Division">Counter Terrorism Division</option>
+                                            <option value="Special Crime Division">Special Crime Division</option>
+                                            <option value="Specialist Fraud Division">Specialist Fraud Division</option>
+                                        </optgroup>
+                                        <optgroup label="CPS Areas">
+                                            <option value="Avon & Somerset">Avon & Somerset</option>
+                                            <option value="Bedfordshire">Bedfordshire</option>
+                                            <option value="Cambridgeshire">Cambridgeshire</option>
+                                            <option value="Cheshire">Cheshire</option>
+                                            <option value="Cleveland">Cleveland</option>
+                                            <option value="Cumbria">Cumbria</option>
+                                            <option value="Derbyshire">Derbyshire</option>
+                                            <option value="Devon and Cornwall">Devon and Cornwall</option>
+                                            <option value="Dorset">Dorset</option>
+                                            <option value="Durham">Durham</option>
+                                            <option value="Dyfed Powys">Dyfed Powys</option>
+                                            <option value="Essex">Essex</option>
+                                            <option value="Gloucestershire">Gloucestershire</option>
+                                            <option value="Greater Manchester">Greater Manchester</option>
+                                            <option value="Gwent">Gwent</option>
+                                            <option value="Hampshire & IOW">Hampshire & IOW</option>
+                                            <option value="Hertfordshire">Hertfordshire</option>
+                                            <option value="HMCPSI">HMCPSI</option>
+                                            <option value="Humberside">Humberside</option>
+                                            <option value="Kent">Kent</option>
+                                            <option value="Lancashire">Lancashire</option>
+                                            <option value="Leatherhead">Leatherhead</option>
+                                            <option value="Leicestershire">Leicestershire</option>
+                                            <option value="Lincolnshire">Lincolnshire</option>
+                                            <option value="London">London</option>
+                                            <option value="London North">London North</option>
+                                            <option value="London South">London South</option>
+                                            <option value="Merseyside">Merseyside</option>
+                                            <option value="Norfolk">Norfolk</option>
+                                            <option value="North Wales">North Wales</option>
+                                            <option value="North Yorkshire">North Yorkshire</option>
+                                            <option value="Northamptonshire">Northamptonshire</option>
+                                            <option value="Northumbria">Northumbria</option>
+                                            <option value="Nottinghamshire">Nottinghamshire</option>
+                                            <option value="Records Management Team (RMT)">Records Management Team (RMT)</option>
+                                            <option value="RMU Area">RMU Area</option>
+                                            <option value="South Wales">South Wales</option>
+                                            <option value="South Yorkshire">South Yorkshire</option>
+                                            <option value="Stafford">Stafford</option>
+                                            <option value="Suffolk">Suffolk</option>
+                                            <option value="Surrey">Surrey</option>
+                                            <option value="Sussex">Sussex</option>
+                                            <option value="Thames Valley">Thames Valley</option>
+                                            <option value="Warwickshire">Warwickshire</option>
+                                            <option value="West Mercia">West Mercia</option>
+                                            <option value="West Midlands">West Midlands</option>
+                                            <option value="West Yorkshire">West Yorkshire</option>
+                                            <option value="Wilstshire">Wilstshire</option>
+                                        </optgroup>
+                                    </select>
+                                </div>                
+                            </div>
+                            <!-- OPTION 2 - END -->
+
+                            <!-- OPTION 3 - START -->
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="searchOFF_URN" name="searchOFF" type="radio" value="URN" data-aria-controls="conditional-searchOFF_URN">
+                                <label class="govuk-label govuk-radios__label" for="searchOFF_URN">URN</label>
+                            </div>
+                            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-searchOFF_URN">
+                                <div class="govuk-form-group">
+                                    <p id="urn_name-error" class="govuk-error-message govuk-!-margin-bottom-2"><span class="govuk-visually-hidden">Error:</span> You must enter a URN before you can search</p>
+                                    <p id="urn_name-invalid_error" class="govuk-error-message govuk-!-margin-bottom-2">
+                                        <span class="govuk-visually-hidden">Error:</span> The unique reference number must be 11 characters long and include only letters and numbers
+                                    </p>
+                                    <label class="govuk-label govuk-visually-hidden" for="searchOFF_URN_VALUE">URN</label>
+                                    <input class="govuk-input govuk-!-width-one-third" id="searchOFF_URN_VALUE" name="searchOFF_URN_VALUE" type="text" spellcheck="false">
+                                </div>
+                            </div>
+                            <!-- OPTION 3 - END -->
+
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="search_error_1">
+                    <a id="searchOFF_SYSTEM_Error_1" class="govuk-button" style="">Search</a>
+                </div>
+
+                <div class="search_error_2">
+                    <a id="searchOFF_SYSTEM_Error_2" class="govuk-button" style="">Search</a>
+                </div>
+
+                <div class="search_error_3">
+                    <a id="searchOFF_SYSTEM_Error_3" class="govuk-button" style="">Search</a>
+                </div>
+
+                <div class="search_error_4">
+                    <a id="searchOFF_SYSTEM_Error_4" class="govuk-button" style="">Search</a>
+                </div>
+
+                <div class="search_error_free">
+                    <button type="submit" class="govuk-button" style="">Search</button>
+                    <!-- <input id="newCase_Defendant" name="newCase_Defendant" type="text" value="true" style="display: none;"> -->
+                    <input id="createCaseStarted" name="createCaseStarted" type="text" value="false" style="display: none;">
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

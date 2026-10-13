@@ -1,0 +1,90 @@
+<h2 class="govuk-heading-m">Settings and access</h2>
+<span class="govuk-caption-m">Last updated <span id="permissions-timestamp"></span></span>
+
+<div class="section-wrapper section-row flex-30">
+
+    <section class="">
+        <div class="title-wrapper">
+            <h3 class="govuk-heading-s">Restrict case access</h3>
+        </div>
+        <div class="section-content">
+            {% if data['newCase_URN-Lockdown'] == 'Yes' %}
+                <div class="cta-wrapper contacts-added govuk-!-margin-top-0">
+                    <p>This case is <strong>restricted</strong>.</p>
+                    <button type="submit" class="govuk-button" style="" onclick="removeLockDown();">Remove restrictions</button>
+                </div>
+            {% else %}
+                <div class="cta-wrapper contacts-added govuk-!-margin-top-0">
+                    <p>This case is open to anyone.</p>
+                    <button class="govuk-button" style="" onclick="return openLockDown();">Restrict access</button>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <section>
+        <div class="title-wrapper">
+            <h3 class="govuk-heading-s">Case settings</h3>
+            <a href="6-case-settings">Edit</a>
+        </div>
+        <div class="section-content">
+
+            <table class="govuk-table settings-table">
+                <tbody class="govuk-table__body">
+
+<!--                     <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Case complexity</th>
+                        <td class="govuk-table__cell">
+                            {% if data['caseSettings_Complexity'] == 'Low' %}
+                                <strong class="govuk-tag govuk-tag--green">{{ data['caseSettings_Complexity'] }}</strong>
+                            {% elseif data['caseSettings_Complexity'] == 'Medium' %}
+                                <strong class="govuk-tag govuk-tag--blue">{{ data['caseSettings_Complexity'] }}</strong>
+                            {% elseif data['caseSettings_Complexity'] == 'High' %}
+                                <strong class="govuk-tag govuk-tag--yellow">{{ data['caseSettings_Complexity'] }}</strong>
+                            {% elseif data['caseSettings_Complexity'] == 'Exceptional' %}
+                                <strong class="govuk-tag govuk-tag--red">{{ data['caseSettings_Complexity'] }}</strong>
+                            {% else %}
+                                --
+                            {% endif %}
+                        </td>
+                    </tr>
+ -->                    
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">International case</th>
+                        <td class="govuk-table__cell">
+                            {% if data['caseSettings_International'] %}
+                                {{ data['caseSettings_International'] }}
+                            {% else %}
+                                --
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Case sensitivity</th>
+                        <td class="govuk-table__cell">
+                            {% if data['caseSettings_Sensitivity'] %}
+                                {{ data['caseSettings_Sensitivity'] }}
+                            {% else %}
+                                --
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Long term interest</th>
+                        <td class="govuk-table__cell">
+                            {% if data['caseSettings_Long'] %}
+                                Yes
+                            {% else %}
+                                --
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+</div>
+
+

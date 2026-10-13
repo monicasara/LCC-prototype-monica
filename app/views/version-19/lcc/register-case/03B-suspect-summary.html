@@ -1,0 +1,274 @@
+{% extends "layoutCPS-NEW-INDEX.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<style>
+/* Force this summary-list row's value cell to span both columns */
+.govuk-summary-list__row.hmrc-summary-list__row--full > .govuk-summary-list__value {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+/* Ensure the details inner element also uses full available width */
+.govuk-summary-list__row.hmrc-summary-list__row--full .govuk-details {
+  width: 100%;
+  box-sizing: border-box;
+}
+</style>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if errorList and errorList.length %}
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            {% for error in errorList %}
+            <li><a href="{{ error.href }}">{{ error.text }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <h1 class="govuk-heading-l">You have added {{ data['suspectCount']}} {% if data['suspectCount'] == 1 %} suspect {% else %} suspects{% endif %}</h1>
+
+      {% for id in data['suspectId'] %}            
+        {% if (data['suspectType'][id] == 'Person') %}
+          <dl class="govuk-summary-list hmrc-list-with-actions hmrc-list-with-actions--short govuk-!-margin-bottom-0">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-bold hmrc-summary-list__key">
+                  <span class="icon-new user"></span> <span class="uppercase">{{data['suspectLastName'][id]}}</span>, {{data['suspectFirstName'][id]}} 
+                  {% if isYouthSuspect(id) %}&nbsp;&nbsp;<strong class="govuk-tag">Youth</strong> {% endif %}</span>
+                </dt>
+                <dd class="govuk-summary-list__actions hmrc-summary-list__actions">
+                  <ul class="govuk-summary-list__actions-list">
+                    <li class="govuk-summary-list__actions-list-item">
+                    <form action="/version-19/lcc/register-case/remove-suspect" method="post" novalidate>
+                        <input type="hidden" name="remove-suspect-id" value="{{ data['suspectId'][id] }}">
+                        <button class="govuk-link govuk-link--no-visited-state suspect" type="submit">Remove</button>
+                    </form>
+                    </li>
+                    <li class="govuk-summary-list__actions-list-item">
+                      <form action="/version-19/lcc/register-case/03-edit-suspect-router" method="post" novalidate>
+                        <input type="hidden" name="edit-suspect" value="{{ id }}">
+                        <button class="govuk-link suspect" type="submit">Change</button>
+                      </form>
+                    </li>
+                    <!-- <li class="govuk-summary-list__actions-list-item">
+                      <form action="/version-19/lcc/register-case/03-add-charges" method="post" novalidate>
+                        <input type="hidden" name="add-charges" value="{{ id }}">
+                        <button class="govuk-link suspect" type="submit">Add charges</button>
+                      </form>
+                    </li> -->
+                  </ul>
+                </dd>
+              </div>
+          </dl>
+
+          {% if data['suspectDOB'][id] or data['suspectGender'][id] or data['suspectDisability'][id] or data['suspectReligion'][id] or data['suspectEthnicity'][id] or data['suspectAlias'][id] or data['suspectSDO'][id] or data['suspectArrestSummons'][id] or data['suspectOffenderType'][id] %}
+          <!-- Suspect details -->
+          <details class="govuk-details suspect_details_panel govuk-!-margin-top-1 govuk-!-margin-bottom-2">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                Suspect details
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+
+              {% if data['suspectDOB'][id] %}
+              <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Date of birth</dt>
+                  <dd class="govuk-summary-list__value">{% if data['suspectDayBirth'][id] %} {{data['suspectDayBirth'][id]}} {{data['monthName'][data['suspectMonthBirth'][id]]}} {{data['suspectYearBirth'][id]}} {% else %} Not entered {% endif %}</dd>
+                  <dd class="govuk-summary-list__actions"></dd>
+              </div>
+              {% endif %}
+
+              {% if data['suspectOffenderType'][id] %}
+              <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Type of offender</dt>
+                  <dd class="govuk-summary-list__value">{% if data['suspectOffenderType'][id] %}{{ data['suspectOffenderType'][id] }}{% else %} Unspecified {% endif %}</dd>
+                  <dd class="govuk-summary-list__actions"></dd>
+              </div>
+              {% if data['suspectOffenderType'][id] == 'Youth offender (YO)' or data['suspectOffenderType'][id] == 'Prolific youth offender (PYO)' or data['suspectOffenderType'][id] == 'Both prolific priority offender (PPO) and prolific youth offender (PYO)' %}
+              <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Arrest date</dt>
+                  <dd class="govuk-summary-list__value">
+                    {% if data['arrestDate'][id] %}
+                      {% if '/' in data['arrestDate'][id] %}
+                        {% set arrestDateParts = data['arrestDate'][id].split('/') %}
+                        {% if arrestDateParts.length == 3 %}
+                          {{ arrestDateParts[0] | int }} {{ data['monthName'][arrestDateParts[1] | int] }} {{ arrestDateParts[2] }}
+                        {% else %}
+                          {{ data['arrestDate'][id] }}
+                        {% endif %}
+                      {% else %}
+                        {% set arrestDateParts = data['arrestDate'][id].split('-') %}
+                        {% if arrestDateParts.length == 3 %}
+                          {{ arrestDateParts[2] | int }} {{ data['monthName'][arrestDateParts[1] | int] }} {{ arrestDateParts[0] }}
+                        {% else %}
+                          {{ data['arrestDate'][id] }}
+                        {% endif %}
+                      {% endif %}
+                    {% else %}
+                      Not entered
+                    {% endif %}
+                  </dd>
+                  <dd class="govuk-summary-list__actions"></dd>
+              </div>
+              {% endif %}
+              {% endif %}
+
+              {% if data['suspectGender'][id] %}
+              <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Gender</dt>
+                  <dd class="govuk-summary-list__value">{% if data['suspectGender'][id] %}{{ data['suspectGender'][id] }}{% else %} Unknown {% endif %}</dd>
+                  <dd class="govuk-summary-list__actions"></dd>
+                  </dd>
+              </div>
+              {% endif %}
+
+              {% if data['suspectDisability'][id] %}
+              <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Disability</dt>
+                  <dd class="govuk-summary-list__value">{% if data['suspectDisability'][id] %}{{ data['suspectDisability'][id] }}{% else %} Unknown {% endif %}</dd>
+                  <dd class="govuk-summary-list__actions"></dd>
+              </div>
+              {% endif %}
+
+              {% if data['suspectReligion'][id] %}
+              <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Religion</dt>
+                  <dd class="govuk-summary-list__value">{% if data['suspectReligion'][id] %}{{ data['suspectReligion'][id] }}{% else %} Not provided {% endif %}</dd>
+                  <dd class="govuk-summary-list__actions"></dd>
+                  </dd>
+              </div>
+              {% endif %}
+
+              {% if data['suspectEthnicity'][id] %}
+              <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Ethnicity</dt>
+                  <dd class="govuk-summary-list__value">{% if data['suspectEthnicity'][id] %}{{ data['suspectEthnicity'][id] }}{% else %} Not provided, NP {% endif %}</dd>
+                  <dd class="govuk-summary-list__actions"></dd>
+                  </dd>
+              </div>
+              {% endif %}
+
+              {% if data['suspectAlias'][id] %}
+                {% if data['aliasId'].length == 0 %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">Alias details</dt>
+                    <dd class="govuk-summary-list__value">Not entered</dd>
+                    <dd class="govuk-summary-list__actions"></dd>
+                    </dd>
+                </div>
+                {% else %}
+                  {% for i in data['aliasId'] %}     
+                    {% if data['aliasSuspectID'][i] == data['suspectId'][id] %}
+                    <div class="govuk-summary-list__row">
+                        <!-- <dt class="govuk-summary-list__key">Alias {{ i +1 }}</dt> -->
+                        <dt class="govuk-summary-list__key">Alias</dt>
+                        <dd class="govuk-summary-list__value"><span class="uppercase">{{data['aliasLastName'][i]}}</span>{% if data['aliasFirstName'][i] %}, {{data['aliasFirstName'][i]}}{% endif %}</dd>
+                        <dd class="govuk-summary-list__actions"></dd>
+                    </div>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              {% endif %}
+
+              {% if data['suspectSDO'][id] %}
+              <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Serious dangerous offender (SDO)</dt>
+                  <dd class="govuk-summary-list__value">{% if data['suspectSDO'][id] %}{{ data['suspectSDO'][id] }}{% else %} No {% endif %}</dd>
+                  <dd class="govuk-summary-list__actions"></dd>
+              </div>
+              {% endif %}
+
+              {% if data['suspectArrestSummons'][id] %}
+              <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Arrest summons</dt>
+                  <dd class="govuk-summary-list__value">{% if data['suspectArrestSummons'][id] %}{{ data['suspectArrestSummons'][id] }}{% else %} Not entered {% endif %}</dd>
+                  <dd class="govuk-summary-list__actions"></dd>
+              </div>
+              {% endif %}
+
+            </div>
+          </details>         
+          <!-- End suspect details -->
+           {% endif %}
+
+        {% else %}
+          <dl class="govuk-summary-list hmrc-list-with-actions hmrc-list-with-actions--short govuk-!-margin-bottom-0">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-font-weight-bold hmrc-summary-list__key">
+                  <span class="icon-new company"></span> {{ data['suspectCompanyName'][id]}}
+                </dt>
+                <dd class="govuk-summary-list__actions hmrc-summary-list__actions">
+                  <ul class="govuk-summary-list__actions-list">
+                    <li class="govuk-summary-list__actions-list-item">
+                    <form action="/version-19/lcc/register-case/remove-suspect" method="post" novalidate>
+                        <input type="hidden" name="remove-suspect-id" value="{{ data['suspectId'][id] }}">
+                        <button class="govuk-link govuk-link--no-visited-state suspect" type="submit">Remove</button>
+                    </form>
+                    </li>
+
+                    <li class="govuk-summary-list__actions-list-item">
+                      <form action="/version-19/lcc/register-case/03-edit-suspect-router" method="post" novalidate>
+                        <input type="hidden" name="edit-suspect" value="{{ id }}">
+                        <button class="govuk-link suspect" type="submit">Change<span class="govuk-visually-hidden"> {{ data['suspectCompanyName'][id]}}'s details</span></button>
+                      </form>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+          </dl>
+        {% endif %}
+      {% endfor %}
+
+    <form action="/version-19/lcc/register-case/03B-suspect-summary" method="post" novalidate>
+      <div class="govuk-form-group govuk-!-margin-top-7{% if errors and errors.addAnother %} govuk-form-group--error{% endif %}">
+        <fieldset class="govuk-fieldset" {% if errors and errors.addAnother %}aria-describedby="add-another-error"{% endif %}>
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--m govuk-!-margin-top-9">
+            Do you need to add another suspect?
+          </legend>
+          {% if errors and errors.addAnother %}
+          <span id="add-another-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> {{ errors.addAnother }}
+          </span>
+          {% endif %}
+          <!-- <div id="add-another-hint" class="govuk-hint">
+            You must tell us about all your directors.
+          </div> -->
+          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-another" name="add-another-suspect" type="radio" value="Yes" {% if errors and requestBody and requestBody['add-another-suspect'] == 'Yes' %}checked{% endif %} {% if errors and errors.addAnother %}aria-describedby="add-another-error"{% endif %}>
+              <label class="govuk-label govuk-radios__label" for="add-another">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-another-2" name="add-another-suspect" type="radio" value="No" {% if errors and requestBody and requestBody['add-another-suspect'] == 'No' %}checked{% endif %} {% if errors and errors.addAnother %}aria-describedby="add-another-error"{% endif %}>
+              <label class="govuk-label govuk-radios__label" for="add-another-2">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      {% include "../../includes/buttons.html" %}
+    </form>
+  </div>
+</div>
+
+{% endblock %}

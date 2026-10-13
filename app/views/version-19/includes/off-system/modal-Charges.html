@@ -1,0 +1,100 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="chargesModal">
+
+    <div class="das-cookie-banner small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-modal-dialogue__header">
+                <button aria-label="Close modal dialogue" class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeChargesModal()">×</button>
+            </div>
+
+            <div class="govuk-grid-row" id="">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-m">Charge details - <span id="">{{ data['newChargeCode'] }}</span></h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="redaction-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <p></p>
+
+                                <table class="govuk-table settings-table">
+                                    <tbody class="govuk-table__body">
+
+                                        <tr class="govuk-table__row">
+                                            <th scope="row" class="govuk-table__header">Charge</th>
+                                            <td class="govuk-table__cell">{{ data['newChargeCode'] }} - <strong>Criminal damage to property valued under £5000</strong></td>
+                                        </tr>
+                                        <tr class="govuk-table__row">
+                                            <th scope="row" class="govuk-table__header">Date of offence</th>
+                                            <td class="govuk-table__cell">
+                                                {{ data['addCharge_Form_Date-Day'] }}/{{ data['addCharge_Form_Date-Month'] }}/{{ data['addCharge_Form_Date-Year'] }}
+                                                {% if data['addCharge_Form_Date-Day_2'] %}
+                                                    to {{ data['addCharge_Form_Date-Day_2'] }}/{{ data['addCharge_Form_Date-Month_2'] }}/{{ data['addCharge_Form_Date-Year_2'] }}
+
+                                                {% else %}
+
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr class="govuk-table__row">
+                                            <th scope="row" class="govuk-table__header">Offence location</th>
+                                            <td class="govuk-table__cell">
+                                                {{ data['addCharge_Form-Address_1'] }}<br>
+                                                {{ data['addCharge_Form-Address_2'] }}<br>
+                                                {{ data['addCharge_Form-Address_3'] }}<br>
+                                                {{ data['addCharge_Form-Postcode'] }}<br>
+                                                {{ data['addCharge_Form-Address_4'] }}
+                                            </td>
+                                        </tr>
+                                        <tr class="govuk-table__row">
+                                            <th scope="row" class="govuk-table__header">Victim</th>
+                                            <td class="govuk-table__cell">{{ data['addCharge_Form-Suspect'] }}</td>
+                                        </tr>
+                                        <tr class="govuk-table__row">
+                                            <th scope="row" class="govuk-table__header">Victim status</th>
+                                            <td class="govuk-table__cell">{{ data['addCharge_Form-VictimStatus'] }}</td>
+                                        </tr>
+                                        <tr class="govuk-table__row">
+                                            <th scope="row" class="govuk-table__header">Charge details</th>
+                                            <td class="govuk-table__cell">
+                                                On {{ data['addCharge_Form_Date-Day'] }}/{{ data['addCharge_Form_Date-Month'] }}/{{ data['addCharge_Form_Date-Year'] }} at
+                                                {{ data['addCharge_Form-Location'] }} without lawful excuse, {{ data['addCharge_Form-Type'] }}
+                                                to the value of {{ data['addCharge_Form-Value'] }} belonging to {{ data['addCharge_Form-Owner'] }} intending to destroy or damage such
+                                                property or being reckless as to whether such property would be destroyed or damaged.
+                                            </td>
+                                        </tr>
+<!--                                         <tr class="govuk-table__row">
+                                            <th scope="row" class="govuk-table__header">Summary of charge particulars</th>
+                                            <td class="govuk-table__cell">
+                                                On 21st October 2022 at 31 North Road, destroyed a something to the value of £3500 belonging to {{ data['addCharge_Form-Owner'] }}
+                                            </td>
+                                        </tr>
+ -->                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full cta-group">
+                                <button class="non-button" data-module="govuk-button" type="button" onclick="closeChargesModal()">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

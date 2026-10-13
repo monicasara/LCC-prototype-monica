@@ -1,0 +1,66 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+{% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block content %}
+
+
+<div class="govuk-grid-row" id="create-case-journey">
+  <div class="govuk-grid-column-two-thirds">
+    <!-- <h1 class="govuk-heading-l">You will lose the information you have entered</h1> -->
+
+    <!-- <p class="govuk-body">You have not registered your case. If you cancel, you will need to start again.</p> -->
+
+    <form method="post" action="/version-19/lcc/register-case/cancel-interrupt">
+      <input type="hidden" name="returnTo" value="{{ returnTo }}">
+
+      <fieldset class="govuk-fieldset">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading govuk-!-margin-top-6">
+                Are you sure you want to cancel?
+              </h1>
+            </legend>
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="stop" name="cancel-registration" type="radio"
+                  value="Yes, cancel registration">
+                <label class="govuk-label govuk-radios__label" for="stop">
+                  Yes, cancel registration and delete the information
+                </label>
+                <!-- <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+                  You will not register the case and will lose the information you have entered.
+                </div> -->
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="continue" name="cancel-registration" type="radio"
+                  value="No, go back and continue registration">
+                <label class="govuk-label govuk-radios__label" for="continue">
+                  No, go back and continue registration 
+                </label>
+                <!-- <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+                  You will return to the case registration form and can continue where you left off.
+                </div> -->
+              </div>
+
+          </fieldset>
+        </div>
+
+        <div class="govuk-button-group govuk-!-margin-top-6">
+          <button class="govuk-button" data-module="govuk-button" type="submit">
+            Continue
+          </button>
+
+          <!-- <a class="govuk-link" href="javascript:history.back()">Cancel</a> -->
+        </div>
+
+    </form>
+
+
+
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,602 @@
+<div class="filter_Suspects">
+    {% if data['chargeAddedComplete'] == 'true' %}
+        <h2 class="govuk-heading-m">Defendants & Charges</h2>
+    {% else %}
+        <h2 class="govuk-heading-m">Suspects & Charges</h2>
+    {% endif %}
+    <div class="govuk-form-group">
+        <label class="govuk-label" for="suspects-Sort">Filter by</label>
+        <select class="govuk-select" id="suspects-Sort" name="myCases-Sort">
+            <option selected disabled>-- Please select --</option>
+            <option value="All cases">All suspects</option>
+            <option value="Charged">Charged</option>
+            <option value="Pre-charge">Pre-Charge</option>
+            <option value="Individual">Individual</option>
+            <option value="Companies">Companies</option>
+        </select>
+    </div>       
+</div>
+
+
+<div class="hide-all-title-wrapper">
+    <span class="govuk-caption-m">Last updated <span id="suspects-timestamp"></span></span>
+    {% if data['addSuspectStarted'] == 'true' %}
+        <a href="" class="hide-all-link">Hide all <span class="icon-new arrow-up"></span></a>
+    {% else %}
+
+    {% endif %}
+    <a href="" class="preview-all-link">Show all <span class="icon-new arrow-down"></span></a>
+</div>
+
+{% if data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+    <div class="suspects single">
+        <div class="suspects-details open">
+            <h3 class="govuk-heading-m">
+                <div class="name_Wrapper">
+                    {% if data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                        <span>{{ data['newCase_DefendantName-Surname'] }}</span>, {{ data['newCase_DefendantName-Forename'] }}
+                    {% else %}
+                        Individual
+                    {% endif %}
+                    {% if data['newCase_Defendant-DOB-Day'] or data['newCase_Defendant-DOB-Month'] or data['newCase_Defendant-DOB-Year'] %}
+                        <span class="dob">({{ data['newCase_Defendant-DOB-Day'] }}/{{ data['newCase_Defendant-DOB-Month'] }}/{{ data['newCase_Defendant-DOB-Year'] }})</span>
+                    {% else %}
+
+                    {% endif %}
+                </div>
+                <a onclick="return toggleButtonShow();" class="preview-link">Show <span class="icon-new arrow-down"></span></a>
+                <a onclick="return toggleButtonHide();" class="hide-link">Hide <span class="icon-new arrow-up"></span></a>
+            </h3>
+            <div class="flexbox">
+                <div class="suspects-details-wrapper has-details">
+                    <div class="title">
+                        <h4 class="govuk-heading-s">Charge details</h4>
+                        <a href="#" class="">Edit</a>
+                    </div>
+                    <div class="suspects-content-wrapper">
+                        <div class="suspects-sections">
+                            <section>
+                                {% if data['chargeAddedComplete'] == 'true' %}
+                                    <section>
+                                        <p>
+                                            {{ data['newChargeCode'] }} -
+                                            <strong>Criminal damage to property valued under £5000</strong>
+                                            <span class="links-wrapper">
+                                                <a href="12A-charge-details">Change <span class="visuallyhidden">charge details</span></a>
+                                                <a onclick="return openCharge();">View <span class="visuallyhidden">charge details</span></a>
+                                            </span>
+                                        </p>
+                                    </section>
+                                {% else %}
+                                    <p>
+                                        There are no charges for 
+                                        {% if data['newCase_DefendantName-Surname'] or data['newCase_DefendantName-Forename'] %}
+                                            <strong class="uppercase">{{ data['newCase_DefendantName-Surname'] }}</strong>, <strong>{{ data['newCase_DefendantName-Forename'] }}</strong>
+                                        {% else %}
+                                            <strong>Individual</strong>
+                                        {% endif %}
+                                        {% if data['newCase_Defendant-DOB-Day'] or data['newCase_Defendant-DOB-Month'] or data['newCase_Defendant-DOB-Year'] %}
+                                            <span class="dob">({{ data['newCase_Defendant-DOB-Day'] }}/{{ data['newCase_Defendant-DOB-Month'] }}/{{ data['newCase_Defendant-DOB-Year'] }})</span>
+                                        {% else %}
+
+                                        {% endif %}
+                                        at this time.
+                                    </p>
+                                {% endif %}
+                                <button type="submit" class="govuk-button govuk-button--secondary" style="" onclick="location.href='12A-charge-details';">Draft new charge</button>
+                                <button type="submit" class="govuk-button govuk-button--secondary margin_left" style="" onclick="">Upload new charge</button>
+                                {% if data['chargeAddedComplete'] == 'true' %}
+                                    <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove defendant</button>
+                                {% else %}
+                                    <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove suspect</button>
+                                {% endif %}
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+
+{% endif %}
+
+{% if data['newCase_DefendantName-CompanyName'] %}
+    <div class="suspects single">
+        <div class="suspects-details open">
+            <h3 class="govuk-heading-m">
+                <div class="name_Wrapper">{{ data['newCase_DefendantName-CompanyName'] }}</div>
+                <a onclick="return toggleButtonShow();" class="preview-link">Show <span class="icon-new arrow-down"></span></a>
+                <a onclick="return toggleButtonHide();" class="hide-link">Hide <span class="icon-new arrow-up"></span></a>
+            </h3>
+            <div class="flexbox">
+                <div class="suspects-details-wrapper has-details">
+                    <div class="title">
+                        <h4 class="govuk-heading-s">Charge details</h4>
+                        <a href="#" class="">Edit</a>
+                    </div>
+                    <div class="suspects-content-wrapper">
+                        <div class="suspects-sections">
+                            <section>
+                                {% if data['chargeAddedComplete'] == 'true' %}
+                                    <section>
+                                        <p>
+                                            {{ data['newChargeCode'] }} -
+                                            <strong>Criminal damage to property valued under £5000</strong>
+                                            <span class="links-wrapper">
+                                                <a href="12A-charge-details">Change <span class="visuallyhidden">charge details</span></a>
+                                                <a onclick="return openCharge();">View <span class="visuallyhidden">charge details</span></a>
+                                            </span>
+                                        </p>
+                                    </section>
+                                {% else %}
+                                    <p>
+                                        There are no charges for <strong>{{ data['newCase_DefendantName-CompanyName'] }}</strong> at this time.
+                                    </p>
+                                {% endif %}
+                                <button type="submit" class="govuk-button govuk-button--secondary" style="" onclick="location.href='12A-charge-details';">Draft new charge</button>
+                                <button type="submit" class="govuk-button govuk-button--secondary margin_left" style="" onclick="">Upload new charge</button>
+                                {% if data['chargeAddedComplete'] == 'true' %}
+                                    <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove defendant</button>
+                                {% else %}
+                                    <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove suspect</button>
+                                {% endif %}
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+
+{% endif %}
+
+{% if data['addSuspectStarted'] == 'true' %}
+    {% if data['addSuspect_Details'] == 'Individual' %}
+        <div class="suspects single">
+            <div class="suspects-details open">
+                <h3 class="govuk-heading-m">
+                    <div class="name_Wrapper">
+                        {% if data['addSuspect_Form-Surname'] or data['addSuspect_Form-Forename'] %}
+                            <span>{{ data['addSuspect_Form-Surname'] }}</span>, {{ data['addSuspect_Form-Forename'] }}
+                        {% else %}
+                            Individual
+                        {% endif %}
+                        {% if data['addSuspect_Form-DOB-Day'] or data['addSuspect_Form-DOB-Month'] or data['addSuspect_Form-DOB-Year'] %}
+                            <span class="dob">({{ data['addSuspect_Form-DOB-Day'] }}/{{ data['addSuspect_Form-DOB-Month'] }}/{{ data['addSuspect_Form-DOB-Year'] }})</span>
+                        {% else %}
+
+                        {% endif %}
+                    </div>
+                    <a onclick="return toggleButtonShow();" class="preview-link">Show <span class="icon-new arrow-down"></span></a>
+                    <a onclick="return toggleButtonHide();" class="hide-link">Hide <span class="icon-new arrow-up"></span></a>
+                </h3>
+                {% if data['addSuspectPerson'] == 'true' %}
+                    <div class="flexbox">
+                        <div class="suspects-details-wrapper has-details">
+                            <div class="title">
+                                <h4 class="govuk-heading-s">Charge details</h4>
+                                <a href="#" class="">Edit</a>
+                            </div>
+                            <div class="suspects-content-wrapper">
+                                <div class="suspects-sections">
+                                    <section>
+                                        {% if data['addSuspect_Form_YouthOffender'] or data['addSuspect_Form_Vulnerable'] or data['addSuspect_Form_Neurodivergent'] %}
+                                            <div class="govuk-warning-text">
+                                                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                                                    <strong class="govuk-warning-text__text">
+                                                    <span class="govuk-visually-hidden">Warning</span>
+                                                    Suspect is 
+                                                    {% if data['addSuspect_Form_YouthOffender'] %}
+                                                        a Youth Offender,
+                                                    {% else %}
+
+                                                    {% endif %}
+                                                    {% if data['addSuspect_Form_Vulnerable'] %}
+                                                        Vulnerable,
+                                                    {% else %}
+
+                                                    {% endif %}
+                                                    {% if data['addSuspect_Form_Neurodivergent'] %}
+                                                        Neurodivergent
+                                                    {% else %}
+
+                                                    {% endif %}
+                                                </strong>
+                                            </div>
+                                        {% else %}
+
+                                        {% endif %}
+                                        {% if data['chargeAddedComplete'] == 'true' %}
+                                            <section>
+                                                <p>
+                                                    {{ data['newChargeCode'] }} -
+                                                    <strong>Criminal damage to property valued under £5000</strong>
+                                                    <span class="links-wrapper">
+                                                        <a href="12A-charge-details">Change <span class="visuallyhidden">charge details</span></a>
+                                                        <a onclick="return openCharge();">View <span class="visuallyhidden">charge details</span></a>
+                                                    </span>
+                                                </p>
+                                            </section>
+                                        {% else %}
+                                            <p>
+                                                There are no charges for 
+                                                {% if data['addSuspect_Form-Surname'] or data['addSuspect_Form-Forename'] %}
+                                                    <strong class="uppercase">{{ data['addSuspect_Form-Surname'] }}</strong><strong>, {{ data['addSuspect_Form-Forename'] }}</strong>
+                                                {% else %}
+                                                    <strong>Individual</strong>
+                                                {% endif %}
+                                                {% if data['addSuspect_Form-DOB-Day'] or data['addSuspect_Form-DOB-Month'] or data['addSuspect_Form-DOB-Year'] %}
+                                                    <span class="dob">({{ data['addSuspect_Form-DOB-Day'] }}/{{ data['addSuspect_Form-DOB-Month'] }}/{{ data['addSuspect_Form-DOB-Year'] }})</span>
+                                                {% else %}
+
+                                                {% endif %}
+                                                at this time.
+                                            </p>
+                                        {% endif %}
+                                        <button type="submit" class="govuk-button govuk-button--secondary" style="" onclick="location.href='12A-charge-details';">Draft new charge</button>
+                                        <button type="submit" class="govuk-button govuk-button--secondary margin_left" style="" onclick="">Upload new charge</button>
+                                        {% if data['chargeAddedComplete'] == 'true' %}
+                                            <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove defendant</button>
+                                        {% else %}
+                                            <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove suspect</button>
+                                        {% endif %}
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="flexbox">
+                        <div class="suspects-details-wrapper has-details">
+                            <div class="title">
+                                <h4 class="govuk-heading-s">Charge details</h4>
+                                <a href="#" class="">Edit</a>
+                            </div>
+                            <div class="suspects-content-wrapper">
+                                <div class="suspects-sections">
+                                    <section>
+                                        {% if data['chargeAddedComplete'] == 'true' %}
+                                            <section>
+                                                <p>
+                                                    {{ data['newChargeCode'] }} -
+                                                    <strong>Criminal damage to property valued under £5000</strong>
+                                                    <span class="links-wrapper">
+                                                        <a href="12A-charge-details">Change <span class="visuallyhidden">charge details</span></a>
+                                                        <a onclick="return openCharge();">View <span class="visuallyhidden">charge details</span></a>
+                                                    </span>
+                                                </p>
+                                            </section>
+                                        {% else %}
+                                            <p>
+                                                There are no charges for 
+                                                {% if data['addSuspect_Form-Surname'] or data['addSuspect_Form-Forename'] %}
+                                                    <strong><span>{{ data['addSuspect_Form-Surname'] }}</span>, {{ data['addSuspect_Form-Forename'] }}</strong>
+                                                {% else %}
+                                                    <strong>Individual</strong>
+                                                {% endif %}
+                                                {% if data['addSuspect_Form-DOB-Day'] or data['addSuspect_Form-DOB-Month'] or data['addSuspect_Form-DOB-Year'] %}
+                                                    <span class="dob">({{ data['addSuspect_Form-DOB-Day'] }}/{{ data['addSuspect_Form-DOB-Month'] }}/{{ data['addSuspect_Form-DOB-Year'] }})</span>
+                                                {% else %}
+
+                                                {% endif %}
+                                                at this time.
+                                            </p>
+                                        {% endif %}
+                                        <button type="submit" class="govuk-button govuk-button--secondary" style="" onclick="location.href='12A-charge-details';">Draft new charge</button>
+                                        <button type="submit" class="govuk-button govuk-button--secondary margin_left" style="" onclick="">Upload new charge</button>
+                                        {% if data['chargeAddedComplete'] == 'true' %}
+                                            <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove defendant</button>
+                                        {% else %}
+                                            <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove suspect</button>
+                                        {% endif %}
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    {% elseif data['addSuspect_Details'] == 'Company' %}
+        <div class="suspects">
+            <div class="suspects-details open">
+                <h3 class="govuk-heading-m">
+                    <div class="name_Wrapper">
+                        {{ data['addSuspect_CompanyName'] }}
+                    </div>
+                    <a onclick="return toggleButtonShow();" class="preview-link">Show <span class="icon-new arrow-down"></span></a>
+                    <a onclick="return toggleButtonHide();" class="hide-link">Hide <span class="icon-new arrow-up"></span></a>
+                </h3>
+                <div class="flexbox">
+                    <div class="suspects-details-wrapper has-details">
+                        <div class="title">
+                            <h4 class="govuk-heading-s">Charge details</h4>
+                            <a href="#" class="">Edit</a>
+                        </div>
+                        <div class="suspects-content-wrapper">
+                            <div class="suspects-sections">
+                                <section>
+                                    {% if data['chargeAddedComplete'] == 'true' %}
+                                        <section>
+                                            <p>
+                                                {{ data['newChargeCode'] }} -
+                                                <strong>Criminal damage to property valued under £5000</strong>
+                                                <span class="links-wrapper">
+                                                    <a href="12A-charge-details">Change <span class="visuallyhidden">charge details</span></a>
+                                                    <a onclick="return openCharge();">View <span class="visuallyhidden">charge details</span></a>
+                                                </span>
+                                            </p>
+                                        </section>
+                                    {% else %}
+                                        <p>
+                                            There are no charges for <strong>{{ data['addSuspect_CompanyName'] }}</strong> at this time.
+                                        </p>
+                                    {% endif %}
+                                    <button type="submit" class="govuk-button govuk-button--secondary" style="" onclick="location.href='12A-charge-details';">Draft new charge</button>
+                                    <button type="submit" class="govuk-button govuk-button--secondary margin_left" style="" onclick="">Upload new charge</button>
+                                    {% if data['chargeAddedComplete'] == 'true' %}
+                                        <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove defendant</button>
+                                    {% else %}
+                                        <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove suspect</button>
+                                    {% endif %}
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% else %}
+
+{% endif %}
+
+<!-- MULTIPLE SUSPECTS - START -->
+<div class="suspects" id="multiple_Suspect_Details">
+
+    <!-- SUSPECT - 1 - START -->
+    <div class="suspects-details open">
+        <h3 class="govuk-heading-m">
+            <div class="name_Wrapper">
+                CHAVEZ, Zahra
+            </div>
+            <a onclick="return toggleButtonShow();" class="preview-link">Show <span class="icon-new arrow-down"></span></a>
+            <a onclick="return toggleButtonHide();" class="hide-link">Hide <span class="icon-new arrow-up"></span></a>
+        </h3>
+        <div class="flexbox">
+            <div class="suspects-details-wrapper has-details">
+                <div class="title">
+                    <h4 class="govuk-heading-s">Charge details</h4>
+                    <a href="#" class="">Edit</a>
+                </div>
+                <div class="suspects-content-wrapper">
+                    <div class="suspects-sections">
+                        <section>
+                            <p>
+                                There are no charges for <strong>CHAVEZ, Zahra</strong> at this time.
+                            </p>
+                            <button type="submit" class="govuk-button govuk-button--secondary" style="" onclick="location.href='12A-charge-details';">Draft new charge</button>
+                            <button type="submit" class="govuk-button govuk-button--secondary margin_left" style="" onclick="">Upload new charge</button>
+                            {% if data['chargeAddedComplete'] == 'true' %}
+                                <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove defendant</button>
+                            {% else %}
+                                <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove suspect</button>
+                            {% endif %}
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SUSPECT - 1 - END -->
+
+    <!-- SUSPECT - 2 - START -->
+    <div class="suspects-details open">
+        <h3 class="govuk-heading-m">
+            <div class="name_Wrapper">TERRY, Jayson</div>
+            <a onclick="return toggleButtonShow();" class="preview-link">Show <span class="icon-new arrow-down"></span></a>
+            <a onclick="return toggleButtonHide();" class="hide-link">Hide <span class="icon-new arrow-up"></span></a>
+        </h3>
+        <div class="flexbox">
+            <div class="suspects-details-wrapper has-details">
+                <div class="title">
+                    <h4 class="govuk-heading-s">Charge details</h4>
+                    <a href="#" class="">Edit</a>
+                </div>
+                <div class="suspects-content-wrapper">
+                    <div class="suspects-sections">
+                        <section>
+                            <p>
+                                There are no charges for <strong>TERRY, Jayson</strong> at this time.
+                            </p>
+                            <button type="submit" class="govuk-button govuk-button--secondary" style="" onclick="location.href='12A-charge-details';">Draft new charge</button>
+                            <button type="submit" class="govuk-button govuk-button--secondary margin_left" style="" onclick="">Upload new charge</button>
+                            {% if data['chargeAddedComplete'] == 'true' %}
+                                <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove defendant</button>
+                            {% else %}
+                                <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove suspect</button>
+                            {% endif %}
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SUSPECT - 2 - END -->
+
+    <!-- SUSPECT - 3 - START -->
+    <div class="suspects-details open">
+        <h3 class="govuk-heading-m">
+            <div class="name_Wrapper">SINGH, Mateo</div>
+            <a onclick="return toggleButtonShow();" class="preview-link">Show <span class="icon-new arrow-down"></span></a>
+            <a onclick="return toggleButtonHide();" class="hide-link">Hide <span class="icon-new arrow-up"></span></a>
+        </h3>
+        <div class="flexbox">
+            <div class="suspects-details-wrapper has-details">
+                <div class="title">
+                    <h4 class="govuk-heading-s">Charge details</h4>
+                    <a href="#" class="">Edit</a>
+                </div>
+                <div class="suspects-content-wrapper">
+                    <div class="suspects-sections">
+                        <section>
+                            <p>
+                                There are no charges for <strong>SINGH, Mateo</strong> at this time.
+                            </p>
+                            <button type="submit" class="govuk-button govuk-button--secondary" style="" onclick="location.href='12A-charge-details';">Draft new charge</button>
+                            <button type="submit" class="govuk-button govuk-button--secondary margin_left" style="" onclick="">Upload new charge</button>
+                            {% if data['chargeAddedComplete'] == 'true' %}
+                                <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove defendant</button>
+                            {% else %}
+                                <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove suspect</button>
+                            {% endif %}
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SUSPECT - 3 - END -->
+
+</div>
+<!-- MULTIPLE SUSPECTS - END -->
+
+<!-- TRANSFERRED SUSPECTS - START -->
+<div class="suspects" id="transferred_Suspect_Details">
+
+    <!-- SUSPECT - 1 - START -->
+    <div class="suspects-details open transferred_Suspect_1">
+        <h3 class="govuk-heading-m">
+            <div class="name_Wrapper">
+                HICKS, Niamh
+            </div>
+            <a onclick="return toggleButtonShow();" class="preview-link">Show <span class="icon-new arrow-down"></span></a>
+            <a onclick="return toggleButtonHide();" class="hide-link">Hide <span class="icon-new arrow-up"></span></a>
+        </h3>
+        <div class="flexbox">
+            <div class="suspects-details-wrapper has-details">
+                <div class="title">
+                    <h4 class="govuk-heading-s">Charge details</h4>
+                    <a href="#" class="">Edit</a>
+                </div>
+                <div class="suspects-content-wrapper">
+                    <div class="suspects-sections">
+                        <section>
+                            <p>
+                                There are no charges for <strong>HICKS, Niamh</strong> at this time.
+                            </p>
+                            <button type="submit" class="govuk-button govuk-button--secondary" style="" onclick="location.href='12A-charge-details';">Draft new charge</button>
+                            <button type="submit" class="govuk-button govuk-button--secondary margin_left" style="" onclick="">Upload new charge</button>
+                            {% if data['chargeAddedComplete'] == 'true' %}
+                                <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove defendant</button>
+                            {% else %}
+                                <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove suspect</button>
+                            {% endif %}
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SUSPECT - 1 - END -->
+
+    <!-- SUSPECT - 2 - START -->
+    <div class="suspects-details open transferred_Suspect_2">
+        <h3 class="govuk-heading-m">
+            <div class="name_Wrapper">FRANCIS, Emily</div>
+            <a onclick="return toggleButtonShow();" class="preview-link">Show <span class="icon-new arrow-down"></span></a>
+            <a onclick="return toggleButtonHide();" class="hide-link">Hide <span class="icon-new arrow-up"></span></a>
+        </h3>
+        <div class="flexbox">
+            <div class="suspects-details-wrapper has-details">
+                <div class="title">
+                    <h4 class="govuk-heading-s">Charge details</h4>
+                    <a href="#" class="">Edit</a>
+                </div>
+                <div class="suspects-content-wrapper">
+                    <div class="suspects-sections">
+                        <section>
+                            <p>
+                                There are no charges for <strong>FRANCIS, Emily</strong> at this time.
+                            </p>
+                            <button type="submit" class="govuk-button govuk-button--secondary" style="" onclick="location.href='12A-charge-details';">Draft new charge</button>
+                            <button type="submit" class="govuk-button govuk-button--secondary margin_left" style="" onclick="">Upload new charge</button>
+                            {% if data['chargeAddedComplete'] == 'true' %}
+                                <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove defendant</button>
+                            {% else %}
+                                <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove suspect</button>
+                            {% endif %}
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SUSPECT - 2 - END -->
+
+    <!-- SUSPECT - 3 - START -->
+    <div class="suspects-details open transferred_Suspect_3">
+        <h3 class="govuk-heading-m">
+            <div class="name_Wrapper">CARTER, Charlie</div>
+            <a onclick="return toggleButtonShow();" class="preview-link">Show <span class="icon-new arrow-down"></span></a>
+            <a onclick="return toggleButtonHide();" class="hide-link">Hide <span class="icon-new arrow-up"></span></a>
+        </h3>
+        <div class="flexbox">
+            <div class="suspects-details-wrapper has-details">
+                <div class="title">
+                    <h4 class="govuk-heading-s">Charge details</h4>
+                    <a href="#" class="">Edit</a>
+                </div>
+                <div class="suspects-content-wrapper">
+                    <div class="suspects-sections">
+                        <section>
+                            <p>
+                                There are no charges for <strong>CARTER, Charlie</strong> at this time.
+                            </p>
+                            <button type="submit" class="govuk-button govuk-button--secondary" style="" onclick="location.href='12A-charge-details';">Draft new charge</button>
+                            <button type="submit" class="govuk-button govuk-button--secondary margin_left" style="" onclick="">Upload new charge</button>
+                            {% if data['chargeAddedComplete'] == 'true' %}
+                                <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove defendant</button>
+                            {% else %}
+                                <button class="govuk-button govuk-button--secondary removeSuspect govuk-button--warning">Remove suspect</button>
+                            {% endif %}
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SUSPECT - 3 - END -->
+
+</div>
+<!-- TRANSFERRED SUSPECTS - END -->
+
+<div class="cta-wrapper">
+    <div class="add-new">
+        {% if data['addSuspectStarted'] == 'true' %}
+            {% if data['chargeAddedComplete'] == 'true' %}
+                <p>Add additional <strong>defendants</strong> to this case</p>
+            {% else %}
+                <p>Add additional <strong>suspects</strong> to this case</p>
+            {% endif %}
+        {% else %}
+            <p>There has been <strong>no Suspects</strong> added to this case</p>
+        {% endif %}
+        {% if data['chargeAddedComplete'] == 'true' %}
+            <button type="submit" class="govuk-button" style="" onclick="location.href='9A-add-suspect';">Add defendant</button>
+        {% else %}
+            <button type="submit" class="govuk-button" style="" onclick="location.href='9A-add-suspect';">Add suspect</button>
+        {% endif %}
+    </div>
+    <div class="govuk-form-group file-upload">
+        {% if data['chargeAddedComplete'] == 'true' %}
+            <label class="govuk-label" for="multiple_Suspects">Upload list of Defendants</label>
+        {% else %}
+            <label class="govuk-label" for="multiple_Suspects">Upload list of Suspects</label>
+        {% endif %}
+        <input class="govuk-file-upload" id="multiple_Suspects" name="multiple_Suspects" type="file">
+    </div> 
+</div>

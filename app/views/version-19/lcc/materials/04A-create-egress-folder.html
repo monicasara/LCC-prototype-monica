@@ -1,0 +1,52 @@
+{% extends "layoutCPS-NEW-INDEX.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="/version-19/lcc/materials/04A-create-egress-folder" method="post" novalidate>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="signIn-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Which Egress folder template do you want to use?
+            </h1>
+          </legend>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="egress-template-ccd" name="egress-template" type="radio" value="Central Casework Divisions" aria-describedby="egress template ccs" {% if data['egressTemplate'] == 'Central Casework Divisions' %} checked {% endif %}>
+              <label class="govuk-label govuk-radios__label" for="egress-template-ccd">
+                <!-- <span class="icon-new company"></span> -->
+                Central Casework Divisions
+              </label>
+              <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+                Create a new case submission
+              </div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="egress-template-cps-areas" name="egress-template" type="radio" value="CPS Areas" aria-describedby="egress template cps areas" {% if data['egressTemplate'] == 'CPS Areas' %} checked {% endif %}>
+              <label class="govuk-label govuk-radios__label" for="egress-template-cps-areas">
+                CPS Areas
+              </label>
+              <div id="signIn-2-item-hint" class="govuk-hint govuk-radios__hint">
+                Used for ABE interviews
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      {% include "../../includes/buttons.html" %}
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

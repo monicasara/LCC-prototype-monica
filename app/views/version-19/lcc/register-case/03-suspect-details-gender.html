@@ -1,0 +1,82 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row" id="create-case-journey">
+
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+            {% if errorList and errorList.length %}
+            <div class="govuk-error-summary" data-module="govuk-error-summary">
+                <div role="alert">
+                    <h2 class="govuk-error-summary__title">
+                        There is a problem
+                    </h2>
+                    <div class="govuk-error-summary__body">
+                        <ul class="govuk-list govuk-error-summary__list">
+                            {% for error in errorList %}
+                            <li>
+                                <a href="{{ error.href }}">{{ error.text }}</a>
+                                {% if error.skipHref and error.skipText %}
+                                <div class="govuk-!-margin-top-3">
+                                    <a class="govuk-link" style="font-weight: normal;" href="{{ error.skipHref }}">{{ error.skipText }}</a>
+                                </div>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <form method="post" action="/version-19/lcc/register-case/03-suspect-details-gender">  
+
+                <fieldset class="govuk-fieldset">
+
+                <div class="govuk-form-group{% if errors and errors.gender %} govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <h1 class="govuk-fieldset__heading">
+                        What is <span class="uppercase">{{ data['suspect-person-last-name'] }}</span>, {{ data['suspect-person-first-name'] }}'s gender?
+                    </h1>
+                    </legend>
+                    {% if errors and errors.gender %}
+                    <span id="gender-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> {{ errors.gender }}
+                    </span>
+                    {% endif %}
+                    <div class="govuk-radios" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="gender-female" name="gender" type="radio" value="Female" {% if data['suspectGender'][data['suspectDetailsCount']] == 'Female' %}checked{% endif %} {% if errors and errors.gender %}aria-describedby="gender-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="gender-female">
+                        Female
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="gender-male" name="gender" type="radio" value="Male" {% if data['suspectGender'][data['suspectDetailsCount']] == 'Male' %}checked{% endif %} {% if errors and errors.gender %}aria-describedby="gender-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="gender-male">
+                        Male
+                        </label>
+                    </div>
+
+                </fieldset>
+                </div>
+
+                {% include "../../includes/buttons.html" %}
+
+            </form>
+
+        </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+</div>
+
+{% endblock %}

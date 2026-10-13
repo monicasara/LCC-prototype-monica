@@ -1,0 +1,92 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="historyModal">
+
+    <div class="das-cookie-banner small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-modal-dialogue__header">
+                <button aria-label="Close modal dialogue" class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeHistoryModal()">×</button>
+            </div>
+
+            <!-- //////////////////////////////// DOCUMENT HISTORY - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="document-history">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-l">
+                                    <span class="icon-new document">Document type</span> <strong class="document-title-9">Document title</strong><span> - Previous document versions</span>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="redaction-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full table-wrapper">
+
+                                <p></p>
+
+                                <table class="govuk-table document-history">
+                                    <tbody class="govuk-table__body">
+                                        <tr class="govuk-table__row">
+                                            <th class="govuk-table__cell no-border" width="40%">
+                                                <span class="document-title-9">Document title</span>
+                                                <br>
+                                                <span class="govuk-caption-m">Charging decision log and plan</span>
+                                            </th>
+                                            <td class="govuk-table__cell no-border no-top-padding" width="60%">
+                                                <table class="govuk-table">
+                                                    <thead class="govuk-table__head">
+                                                        <tr class="govuk-table__row">
+                                                            <th scope="col" class="govuk-table__header">Versions</th>
+                                                            <th scope="col" class="govuk-table__header">Date</th>
+                                                            <th scope="col" class="govuk-table__header"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="govuk-table__body">
+                                                        <tr class="govuk-table__row new-document-row">
+                                                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--turquoise">Version 3</strong></td>
+                                                            <td class="govuk-table__cell"><span id="NEW-DOC-date-stamp"></span></td>
+                                                            <td class="govuk-table__cell"><span class="govuk-caption-m small">Document open</span></td>
+                                                        </tr>
+                                                        <tr class="govuk-table__row">
+                                                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--turquoise document-V2">Version 2</strong></td>
+                                                            <td class="govuk-table__cell">02 June 2020, 13:08</td>
+                                                            <td class="govuk-table__cell"><span class="govuk-caption-m small">Document open</span></td>
+                                                        </tr>
+                                                        <tr class="govuk-table__row old-document-row">
+                                                            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey document-V1">Version 1</strong></td>
+                                                            <td class="govuk-table__cell">19 May 2020, 11:32</td>
+                                                            <td class="govuk-table__cell openMe">
+                                                                <a href="#document-top" class="show-case document-history-V1" data-doc="MCLOVEMG3-V1.pdf" data-document="2" onclick="return topFunction(), closeHistoryModal(), documentID()" data-page="6">View document</a>
+                                                                <!-- <a href="#document-top" class="show-case document-history-V1" data-doc="MCLOVEMG3-V1.pdf" data-document="2" onclick="return pageCounter(), topFunction(), closeHistoryModal(), documentID()" data-page="6">View document</a> -->
+                                                                <span class="govuk-caption-m small document-history-V1-OPEN">Document open</span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full cta-group">
+                                <button class="non-button" data-module="govuk-button" type="button" onclick="closeHistoryModal()">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// DOCUMENT HISTORY - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>

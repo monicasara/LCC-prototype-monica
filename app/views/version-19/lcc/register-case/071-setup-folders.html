@@ -1,0 +1,44 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+{% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="/version-19/lcc/register-case/071-setup-folders" method="post" novalidate>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Do you want to set up case materials?
+            </h1>
+          </legend>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-materials" name="add-materials" type="radio" value="Yes" {% if data['add-materials'] == 'Yes' %}checked{% endif %}>
+              <label class="govuk-label govuk-radios__label" for="add-materials">
+                Yes
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-materials-2" name="add-materials" type="radio" value="No" {% if data['add-materials'] == 'No' %}checked{% endif %}>
+              <label class="govuk-label govuk-radios__label" for="add-materials-2">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button">Continue</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

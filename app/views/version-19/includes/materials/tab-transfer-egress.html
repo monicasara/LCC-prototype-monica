@@ -1,0 +1,476 @@
+{% set transferItems = transferEgressItems | default(data.transferEgress | default([])) %}
+{% set currentTransferEgressFolderId = transferEgressFolderId | default(data.transferEgressFolderId | default(100)) %}
+{% set transferIsTopLevelEgress = ((transferItems | length) > 0 and transferItems[0].level == 1) %}
+{% set transferEgressFolderIsEmpty = (currentTransferEgressFolderId != 100 and (not transferItems or (transferItems | length) == 0)) %}
+
+<style>
+    .transfer-egress-action-form {
+        display: inline-block;
+        margin: 0;
+    }
+</style>
+
+<div class="govuk-grid-row">
+
+    <h2 class="govuk-heading-m govuk-!-margin-left-3 govuk-!-margin-top-0 govuk-!-margin-bottom-4">
+        Transfer from Egress to the Shared Drive
+    </h2>
+
+    <p class="govuk-body govuk-!-margin-left-3 govuk-!-margin-bottom-3">
+        Select the files or folders you want to transfer. Then choose where to save them on the Shared Drive.<br>
+        <!-- You can also transfer <a class="govuk-link">from the Shared Drive to Egress.</a> -->
+    </p>
+
+    <div class="materials-aligned">
+        <hr>
+    </div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-2">
+    <div class="govuk-grid-column-full" id="transfer_materials_column">
+
+{% macro renderTransferTreeItems(nodes, prefix='') %}
+    {% for node in nodes %}
+        {% if node.isFolder %}
+            {% if prefix %}
+                {% set folderPath = prefix ~ ' > ' ~ node.name %}
+            {% else %}
+                {% set folderPath = node.name %}
+            {% endif %}
+            <li class="no-bullet" style="list-style-type:none; margin-left:-1em; margin-bottom: 6px;">
+                <span class="icon-new folder"></span>
+                <strong>{{ folderPath }}</strong>
+            </li>
+            {% if node.children and (node.children | length) > 0 %}
+                {{ renderTransferTreeItems(node.children, folderPath) }}
+            {% endif %}
+        {% else %}
+            <li>{{ node.name }}</li>
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% macro renderTransferTree(nodes) %}
+<ul class="govuk-list govuk-list--bullet">
+    {{ renderTransferTreeItems(nodes) }}
+</ul>
+{% endmacro %}
+
+{% if data.transferEgressPartialSuccess %}
+<div role="alert"
+    class="moj-alert moj-alert--warning moj-alert--with-heading transfer-partial-alert govuk-!-margin-left-3 govuk-!-margin-bottom-4"
+    aria-label="Warning: There is a problem transferring files">
+    <div class="moj-alert__content">
+        <strong class="govuk-tag govuk-tag--orange">Partially completed</strong>
+        <h2 class="moj-alert__heading">There is a problem transferring files</h2>
+
+        <p class="govuk-body govuk-!-margin-top-4 transfer-conflict-message">
+            Some files could not be transferred. Other items were transferred successfully.
+            <a class="govuk-link" href="/version-19/lcc/materials/transfer-materials?transferView=egress&amp;transferEgressFolderId=2&amp;retryFailedTransfer=1">Try to transfer the failed items again</a>.
+        </p>
+
+        <details class="govuk-details govuk-!-margin-bottom-0" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">View items</span>
+            </summary>
+            <div class="govuk-details__text">
+                <p class="govuk-body govuk-!-margin-bottom-2"><strong>Items transferred successfully</strong></p>
+                <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0 transfer-success-items">
+                    {% for itemName in data.transferEgressList %}
+                    <li>{{ itemName }}</li>
+                    {% endfor %}
+                </ul>
+
+                <p class="govuk-body govuk-!-margin-top-4 govuk-!-margin-bottom-2"><strong>Files that could not be transferred</strong></p>
+                <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0 transfer-conflict-items">
+                    {% for itemName in data.transferEgressConflictItems %}
+                    <li>{{ itemName }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </details>
+
+        <p class="govuk-body govuk-!-margin-top-2 govuk-!-margin-bottom-0">
+            <a class="govuk-link" href="/version-19/lcc/materials/transfer-materials?transferView=egress&amp;transferEgressFolderId=2&amp;retryFailedTransfer=1">Try to transfer the failed items again</a>
+        </p>
+
+    </div>
+</div>
+{% elseif data.transferEgressCopySuccess or data.transferEgressMoveSuccess %}
+<div class="govuk-notification-banner govuk-notification-banner--success materials-notification--white govuk-!-margin-left-3 govuk-!-margin-bottom-4"
+    role="alert" data-module="govuk-notification-banner">
+    <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title">Success</h2>
+    </div>
+    <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+            The materials have been transferred
+        </h3>
+
+        {% if data.transferEgressDestinationName %}
+        <p class="govuk-body">
+            They are in:
+            <a class="govuk-link"
+                href="/version-19/lcc/materials/transfer-materials?transferView=shared-drive&transferSharedDriveFolderId={{ data.transferEgressDestinationId }}">
+                {{ data.transferEgressDestinationName }}
+            </a>
+        </p>
+        {% else %}
+        <p class="govuk-body">
+            They are in:
+            <strong>Shared Drive: {{ caseName | default('Thundercat') }}</strong>
+        </p>
+        {% endif %}
+
+        {% if data.transferEgressList and (data.transferEgressList | length) > 0 %}
+        <details class="govuk-details govuk-!-margin-top-2" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    Show {{ "moved" if data.transferEgressMoveSuccess else "copied" }} materials
+                </span>
+            </summary>
+            <div class="govuk-details__text">
+                {% if data.transferEgressPreviewTree and (data.transferEgressPreviewTree | length) > 0 %}
+                {{ renderTransferTree(data.transferEgressPreviewTree) }}
+                {% else %}
+                <ul class="govuk-list govuk-list--bullet">
+                    {% for itemName in data.transferEgressList %}
+                    <li>{{ itemName }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </details>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+<div class="govuk-grid-row govuk-!-margin-left-3">
+    <nav class="govuk-breadcrumbs govuk-!-margin-left-3" aria-label="Breadcrumb">
+        <ol class="govuk-breadcrumbs__list">
+            {% set egressBreadcrumbs = transferEgressBreadcrumbs | default([]) %}
+            {% if egressBreadcrumbs and (egressBreadcrumbs | length > 0) %}
+            {% for crumb in egressBreadcrumbs %}
+            {% set isCurrent = (crumb.id | string) == (currentTransferEgressFolderId | string) %}
+            <li class="govuk-breadcrumbs__list-item">
+                {% if isCurrent %}
+                {{ crumb.name }}
+                {% else %}
+                <form method="post" action="/version-19/lcc/materials/transfer-egress-folder" style="display:inline;">
+                    <input type="hidden" name="folderId" value="{{ crumb.id }}">
+                    <input type="hidden" name="folderName" value="{{ crumb.name }}">
+                    <button type="submit" class="govuk-breadcrumbs__link breadcrumb-button">
+                        {{ crumb.name }}
+                    </button>
+                </form>
+                {% endif %}
+            </li>
+            {% endfor %}
+            {% else %}
+            <li class="govuk-breadcrumbs__list-item">Egress: {{ caseName | default('Thundercat') }}</li>
+            {% endif %}
+        </ol>
+    </nav>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-left-3 transfer-actions-row version-18-transfer-actions-row">
+    <div class="govuk-grid-column-full">
+        <div class="govuk-grid-column-one-half">
+            <div class="materials-toolbar govuk-!-margin-top-3 govuk-!-margin-bottom-4">
+                <div class="materials-toolbar__actions">
+                    <div class="actions_holder">
+                        <div class="moj-button-menu transfer-egress-actions">
+                            <form method="post" action="/version-19/lcc/materials/start-transfer-egress-copy"
+                                class="transfer-egress-action-form">
+                                <input type="hidden" name="selected_ids" class="js-transfer-selected-ids" value="">
+                                <button type="submit"
+                                    class="govuk-button govuk-button--secondary govuk-button--disabled js-transfer-copy-selected"
+                                    id="transfer-copy-selected"
+                                    disabled aria-disabled="true">
+                                    Copy selected
+                                </button>
+                            </form>
+
+                            <form method="post" action="/version-19/lcc/materials/start-transfer-egress-move"
+                                class="transfer-egress-action-form">
+                                <input type="hidden" name="selected_ids" class="js-transfer-selected-ids" value="">
+                                <button type="submit"
+                                    class="govuk-button govuk-button--secondary govuk-button--disabled js-transfer-move-selected"
+                                    id="transfer-move-selected"
+                                    disabled aria-disabled="true">
+                                    Move selected
+                                </button>
+                            </form>
+
+                            <a class="govuk-link govuk-button--link transfer-view-shared-drive"
+                                href="/version-19/lcc/materials/transfer-materials?transferView=shared-drive">
+                                View Shared Drive
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="govuk-grid-column-one-half transfer-disconnect-panel">
+            <div class="materials-toolbar govuk-!-margin-top-3 govuk-!-margin-bottom-4">
+                <div class="moj-button-menu transfer-disconnect-menu">
+                    <button type="button" id="show_Transfer_Actions"
+                        class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                        Disconnect
+                        <svg width="11" height="5" viewBox="0 0 11 5"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.5 0L11 5L0 5L5.5 0Z" fill="currentColor"></path>
+                        </svg>
+                    </button>
+
+                    <div class="hidden_buttons transfer-disconnect-actions" id="transfer_Actions">
+                        <form method="get" action="/version-19/lcc/materials/disconnect-shared-drive">
+                            <button type="submit" class="govuk-button">
+                                Disconnect Shared Drive
+                            </button>
+                        </form>
+                        <form method="get" action="/version-19/lcc/materials/disconnect-egress">
+                            <button type="submit" class="govuk-button">
+                                Disconnect Egress
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="materials-aligned version-15-transfer-table version-18-transfer-table transfer-table-panel" id="transfer-egress-table-panel">
+    <div class="materials-table-wrapper">
+        <table class="govuk-table sortable" id="transfer_materials_table">
+            <colgroup>
+                {% if not transferIsTopLevelEgress %}
+                <col class="transfer-select-column">
+                {% endif %}
+                <col class="transfer-title-column">
+                <col class="transfer-date-column">
+                <col class="transfer-size-column">
+            </colgroup>
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    {% if not transferIsTopLevelEgress %}
+                    <th scope="col" class="govuk-table__header transfer-select-column">
+                        <div class="govuk-checkboxes govuk-checkboxes--small MT-15">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input js-transfer-select-all"
+                                    id="transfer_documents_ALL" type="checkbox" value="ALL">
+                                <label class="govuk-label govuk-checkboxes__label"
+                                    for="transfer_documents_ALL"></label>
+                            </div>
+                        </div>
+                    </th>
+                    {% endif %}
+                    <th scope="col" class="govuk-table__header title_column">
+                        <button type="button" class="govuk-link govuk-link--no-visited-state table-sort"
+                            data-sort="name">
+                            File or folder
+                        </button>
+                    </th>
+                    <th scope="col" class="govuk-table__header">
+                        <button type="button" class="govuk-link govuk-link--no-visited-state table-sort"
+                            data-sort="date">
+                            Last modified date
+                        </button>
+                    </th>
+                    <th scope="col" class="govuk-table__header">
+                        <button type="button" class="govuk-link govuk-link--no-visited-state table-sort"
+                            data-sort="category">
+                            Size
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                {% if transferEgressFolderIsEmpty %}
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell" colspan="4" style="border-bottom: 0;">
+                        <p class="govuk-body govuk-!-margin-bottom-0">This folder is empty</p>
+                    </td>
+                </tr>
+                {% endif %}
+
+                {% for item in transferItems %}
+                <tr class="govuk-table__row">
+                    {% if not transferIsTopLevelEgress %}
+                    <td class="govuk-table__cell transfer-select-column">
+                        <div class="govuk-checkboxes govuk-checkboxes--small">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input js-transfer-checkbox"
+                                    id="transfer_select_{{ item.id }}" type="checkbox"
+                                    name="transfer_document" value="{{ item.id }}"
+                                    data-name="{{ item.name }}" data-folder="{{ item.folder }}">
+                                <label class="govuk-label govuk-checkboxes__label"
+                                    for="transfer_select_{{ item.id }}"></label>
+                            </div>
+                        </div>
+                    </td>
+                    {% endif %}
+                    <td class="govuk-table__cell title_column">
+                        {% if item.folder %}
+                        <span class="folder-inline-wrapper">
+                            <form method="post" action="/version-19/lcc/materials/transfer-egress-folder">
+                                <input type="hidden" name="folderId" value="{{ item.id }}">
+                                <input type="hidden" name="folderName" value="{{ item.name }}">
+
+                                <button type="submit"
+                                    class="govuk-link govuk-link--no-visited-state govuk-button--link folder-open">
+                                    <span class="icon-new folder"></span>
+                                    <span class="folder-name-and-tags">
+                                        <span class="folder-name">{{ item.name }}</span>
+                                    </span>
+                                </button>
+                            </form>
+                        </span>
+                        {% else %}
+                        <span class="file-tags">
+                            <span class="file-name">{{ item.name }}</span>
+                        </span>
+                        {% endif %}
+                    </td>
+                    <td class="govuk-table__cell">{{ item.description or "" }}</td>
+                    <td class="govuk-table__cell">{{ item.category or "" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% if transferItems and (transferItems | length) > 0 %}
+<div class="materials-aligned transfer-actions-row">
+    <div class="materials-toolbar govuk-!-margin-top-4 govuk-!-margin-bottom-2">
+        <div class="materials-toolbar__actions">
+            <div class="actions_holder">
+                <div class="moj-button-menu transfer-egress-actions">
+                    <form method="post" action="/version-19/lcc/materials/start-transfer-egress-copy"
+                        class="transfer-egress-action-form">
+                        <input type="hidden" name="selected_ids" class="js-transfer-selected-ids" value="">
+                        <button type="submit"
+                            class="govuk-button govuk-button--secondary govuk-button--disabled js-transfer-copy-selected"
+                            disabled aria-disabled="true">
+                            Copy selected
+                        </button>
+                    </form>
+
+                    <form method="post" action="/version-19/lcc/materials/start-transfer-egress-move"
+                        class="transfer-egress-action-form">
+                        <input type="hidden" name="selected_ids" class="js-transfer-selected-ids" value="">
+                        <button type="submit"
+                            class="govuk-button govuk-button--secondary govuk-button--disabled js-transfer-move-selected"
+                            disabled aria-disabled="true">
+                            Move selected
+                        </button>
+                    </form>
+
+                    <a class="govuk-link govuk-button--link transfer-view-shared-drive"
+                        href="/version-19/lcc/materials/transfer-materials?transferView=shared-drive">
+                        View Shared Drive
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if currentTransferEgressFolderId == 100 and (not transferItems or (transferItems | length) == 0) %}
+<p class="no_results" id="transfer-egress-no-results">
+    <strong>No results</strong> found in Egress
+</p>
+{% endif %}
+
+<script>
+    (function () {
+        var panel = document.getElementById('transfer-egress-table-panel');
+        var copySelectedButtons = Array.prototype.slice.call(document.querySelectorAll('.js-transfer-copy-selected'));
+        var moveSelectedButtons = Array.prototype.slice.call(document.querySelectorAll('.js-transfer-move-selected'));
+
+        if (!panel) return;
+
+        function getRowCheckboxes() {
+            return Array.prototype.slice.call(panel.querySelectorAll('input.js-transfer-checkbox'));
+        }
+
+        function getSelectedIds() {
+            return getRowCheckboxes().filter(function (checkbox) {
+                return checkbox.checked;
+            }).map(function (checkbox) {
+                return checkbox.value;
+            });
+        }
+
+        function updateTransferActions() {
+            var hasSelection = getSelectedIds().length > 0;
+
+            copySelectedButtons.forEach(function (button) {
+                button.disabled = !hasSelection;
+                button.setAttribute('aria-disabled', String(!hasSelection));
+                button.classList.toggle('govuk-button--disabled', !hasSelection);
+            });
+
+            moveSelectedButtons.forEach(function (button) {
+                button.disabled = !hasSelection;
+                button.setAttribute('aria-disabled', String(!hasSelection));
+                button.classList.toggle('govuk-button--disabled', !hasSelection);
+            });
+        }
+
+        function syncSelectAll() {
+            var selectAll = panel.querySelector('input.js-transfer-select-all');
+            if (!selectAll) return;
+
+            var checkboxes = getRowCheckboxes();
+            var checkedCount = checkboxes.filter(function (checkbox) {
+                return checkbox.checked;
+            }).length;
+
+            selectAll.checked = checkboxes.length > 0 && checkedCount === checkboxes.length;
+            selectAll.indeterminate = checkedCount > 0 && checkedCount < checkboxes.length;
+        }
+
+        updateTransferActions();
+        syncSelectAll();
+
+        panel.addEventListener('change', function (event) {
+            if (!event.target.matches('input.js-transfer-checkbox, input.js-transfer-select-all')) {
+                return;
+            }
+
+            if (event.target.matches('input.js-transfer-select-all')) {
+                getRowCheckboxes().forEach(function (checkbox) {
+                    checkbox.checked = event.target.checked;
+                });
+                event.target.indeterminate = false;
+            } else {
+                syncSelectAll();
+            }
+
+            updateTransferActions();
+        });
+
+        Array.prototype.slice.call(document.querySelectorAll('.transfer-egress-action-form')).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                var selectedIds = getSelectedIds();
+                if (!selectedIds.length) {
+                    event.preventDefault();
+                    return;
+                }
+
+                var input = form.querySelector('.js-transfer-selected-ids');
+                if (input) {
+                    input.value = selectedIds.join(',');
+                }
+            });
+        });
+    })();
+</script>
+
+    </div>
+</div>

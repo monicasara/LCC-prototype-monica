@@ -1,0 +1,154 @@
+<h2 class="govuk-heading-m">Key contacts</h2>
+<span class="govuk-caption-m">Last updated <span id="contacts-timestamp"></span></span>
+
+<p> </p>
+
+
+<div class="keyContacts">
+    <div class="section-wrapper section-row">
+
+        <section>
+            <div class="title-wrapper">
+                <h3 class="govuk-heading-s">Key contacts</h3>
+                {% if data['contactsAdded'] %}
+                    <a href="17-key-contacts">Edit</a>
+                {% else %}
+                    <a href="17-key-contacts">Add</a>
+                {% endif %} 
+            </div>
+
+            <div class="section-content">
+
+                <table class="govuk-table key_contacts-table">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">Name</th>
+                            <th scope="col" class="govuk-table__header">Role</th>
+                            <th scope="col" class="govuk-table__header">Email</th>
+                            <th scope="col" class="govuk-table__header">Telephone</th>
+                            <th scope="col" class="govuk-table__header">Date of appointment</th>
+                            <th scope="col" class="govuk-table__header"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        {% if data['keyContact_Name_1A'] %}
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header">{{ data['keyContact_Name_1A'] }}, {{ data['keyContact_Name_1B'] }}</th>
+                                {% if data['keyContact_Role_1'] == 'Counsel 1' or data['keyContact_Role_1'] == 'Counsel 2' or data['keyContact_Role_1'] == 'Counsel 3' %}
+                                    <td class="govuk-table__cell">{{ data['keyContact_Role_1'] }} - {{ data['keyContact_Role_1-Type'] }}</td>
+                                {% else %}
+                                    <td class="govuk-table__cell">{{ data['keyContact_Role_1'] }}</td>
+                                {% endif %}
+                                <td class="govuk-table__cell text_left"><a href="mailto:{{ data['keyContact_Email_1'] }}" class="copy_Item">{{ data['keyContact_Email_1'] }}</a></td>
+                                <td class="govuk-table__cell text_left"><a href="tel:{{ data['keyContact_Phone_1'] }}" class="copy_Item">{{ data['keyContact_Phone_1'] }}</a></td>
+                                <td class="govuk-table__cell">{{ data['keyContact_Date_1-Day'] }}/{{ data['keyContact_Date_1-Month'] }}/{{ data['keyContact_Date_1-Month'] }}</td>
+                                <td class="govuk-table__cell"><a href="#">Edit</a><a class="removeKeyContact">Remove</a></td>
+                            </tr>
+                        {% else %}
+
+                        {% endif %} 
+
+                        {% if data['keyContact_Name_2A'] %}
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header">{{ data['keyContact_Name_2A'] }}, {{ data['keyContact_Name_2B'] }}</th>
+                                {% if data['keyContact_Role_2'] == 'Counsel 1' or data['keyContact_Role_2'] == 'Counsel 2' or data['keyContact_Role_2'] == 'Counsel 3' %}
+                                    <td class="govuk-table__cell">{{ data['keyContact_Role_2'] }} - {{ data['keyContact_Role_2-Type'] }}</td>
+                                {% else %}
+                                    <td class="govuk-table__cell">{{ data['keyContact_Role_2'] }}</td>
+                                {% endif %}
+                                <td class="govuk-table__cell text_left"><a href="mailto:{{ data['keyContact_Email_2'] }}" class="copy_Item">{{ data['keyContact_Email_2'] }}</a></td>
+                                <td class="govuk-table__cell text_left"><a href="tel:{{ data['keyContact_Phone_2'] }}" class="copy_Item">{{ data['keyContact_Phone_2'] }}</a></td>
+                                <td class="govuk-table__cell">{{ data['keyContact_Date_2-Day'] }}/{{ data['keyContact_Date_2-Month'] }}/{{ data['keyContact_Date_2-Month'] }}</td>
+                                <td class="govuk-table__cell"><a href="#">Edit</a><a class="removeKeyContact">Remove</a></td>
+                            </tr>
+                        {% else %}
+
+                        {% endif %}    
+
+                        {% if data['keyContact_Name_3A'] %}
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header">{{ data['keyContact_Name_3A'] }}, {{ data['keyContact_Name_3B'] }}</th>
+                                {% if data['keyContact_Role_3'] == 'Counsel 1' or data['keyContact_Role_3'] == 'Counsel 2' or data['keyContact_Role_3'] == 'Counsel 3' %}
+                                    <td class="govuk-table__cell">{{ data['keyContact_Role_3'] }} - {{ data['keyContact_Role_3-Type'] }}</td>
+                                {% else %}
+                                    <td class="govuk-table__cell">{{ data['keyContact_Role_3'] }}</td>
+                                {% endif %}
+                                <td class="govuk-table__cell text_left"><a href="mailto:{{ data['keyContact_Email_3'] }}" class="copy_Item">{{ data['keyContact_Email_3'] }}</a></td>
+                                <td class="govuk-table__cell text_left"><a href="tel:{{ data['keyContact_Phone_3'] }}" class="copy_Item">{{ data['keyContact_Phone_3'] }}</a></td>
+                                <td class="govuk-table__cell">{{ data['keyContact_Date_3-Day'] }}/{{ data['keyContact_Date_3-Month'] }}/{{ data['keyContact_Date_3-Month'] }}</td>
+                                <td class="govuk-table__cell"><a href="#">Edit</a><a class="removeKeyContact">Remove</a></td>
+                            </tr>
+                        {% else %}
+
+                        {% endif %}    
+
+                        {% if data['keyContact_Name_4A'] %}
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header">{{ data['keyContact_Name_4A'] }}, {{ data['keyContact_Name_4B'] }}</th>
+                                {% if data['keyContact_Role_4'] == 'Counsel 1' or data['keyContact_Role_4'] == 'Counsel 2' or data['keyContact_Role_4'] == 'Counsel 3' %}
+                                    <td class="govuk-table__cell">{{ data['keyContact_Role_4'] }} - {{ data['keyContact_Role_4-Type'] }}</td>
+                                {% else %}
+                                    <td class="govuk-table__cell">{{ data['keyContact_Role_4'] }}</td>
+                                {% endif %}
+                                <td class="govuk-table__cell text_left"><a href="mailto:{{ data['keyContact_Email_4'] }}" class="copy_Item">{{ data['keyContact_Email_4'] }}</a></td>
+                                <td class="govuk-table__cell text_left"><a href="tel:{{ data['keyContact_Phone_4'] }}" class="copy_Item">{{ data['keyContact_Phone_4'] }}</a></td>
+                                <td class="govuk-table__cell">{{ data['keyContact_Date_4-Day'] }}/{{ data['keyContact_Date_4-Month'] }}/{{ data['keyContact_Date_4-Month'] }}</td>
+                                <td class="govuk-table__cell"><a href="#">Edit</a><a class="removeKeyContact">Remove</a></td>
+                            </tr>
+                        {% else %}
+
+                        {% endif %}    
+
+                        {% if data['keyContact_Name_5A'] %}
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header">{{ data['keyContact_Name_5A'] }}, {{ data['keyContact_Name_5B'] }}</th>
+                                {% if data['keyContact_Role_5'] == 'Counsel 1' or data['keyContact_Role_5'] == 'Counsel 2' or data['keyContact_Role_5'] == 'Counsel 3' %}
+                                    <td class="govuk-table__cell">{{ data['keyContact_Role_5'] }} - {{ data['keyContact_Role_5-Type'] }}</td>
+                                {% else %}
+                                    <td class="govuk-table__cell">{{ data['keyContact_Role_5'] }}</td>
+                                {% endif %}
+                                <td class="govuk-table__cell text_left"><a href="mailto:{{ data['keyContact_Email_5'] }}" class="copy_Item">{{ data['keyContact_Email_5'] }}</a></td>
+                                <td class="govuk-table__cell text_left"><a href="tel:{{ data['keyContact_Phone_5'] }}" class="copy_Item">{{ data['keyContact_Phone_5'] }}</a></td>
+                                <td class="govuk-table__cell">{{ data['keyContact_Date_5-Day'] }}/{{ data['keyContact_Date_5-Month'] }}/{{ data['keyContact_Date_5-Month'] }}</td>
+                                <td class="govuk-table__cell"><a href="#">Edit</a><a class="removeKeyContact">Remove</a></td>
+                            </tr>
+                        {% else %}
+
+                        {% endif %}    
+
+                        {% if data['keyContact_Name_1A'] or data['keyContact_Name_2A'] or data['keyContact_Name_3A'] or data['keyContact_Name_4A'] or data['keyContact_Name_5A'] %}
+
+                        {% else %}
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell" colspan="6">There are no key contacts on this case</td>
+                            </tr>
+                        {% endif %} 
+
+                        {% if data['keyContact_Name_1A'] and data['keyContact_Name_2A'] %}
+
+                        {% elseif data['keyContact_Name_1A'] %}
+                            <tr class="govuk-table__row" id="no_key_contacts">
+                                <td class="govuk-table__cell" colspan="6">There are no key contacts on this case</td>
+                            </tr>
+                        {% else %}
+
+                        {% endif %}    
+
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+
+    </div>
+
+    <div class="cta-wrapper contacts-added govuk-!-margin-top-0">
+        {% if data['contactsAdded'] %}
+            <p>Add additional <strong>key contacts</strong> to this case</p>
+        {% else %}
+            <p>There have been <strong>no key contacts</strong> added to this case</p>
+        {% endif %} 
+        <button type="submit" class="govuk-button" style="" onclick="location.href='17-key-contacts';">Add contact</button>
+    </div>
+
+</div>

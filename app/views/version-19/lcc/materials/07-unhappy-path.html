@@ -1,0 +1,63 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+{% block beforeContent %}
+    {% include "../../includes/off-system-MVP/modalConfirmation-Egress.html" %}
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+    </div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-2 govuk-!-margin-bottom-9" id="homepage-journey">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="wrapper main-cotent">
+
+            {% if data['mvp_Case_2'] == 'true' %}
+                <div class="govuk-form-group govuk-!-margin-bottom-4">
+                    <fieldset class="govuk-fieldset" aria-describedby="offCMS_Egress_files-hint">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                            <h1 class="govuk-fieldset__heading">There was a problem connecting to Egress</h1>
+                        </legend>
+                        <p>The connection to the Egress folder for <strong>Thunderstruck Traffic</strong> case has stopped working.</p>
+                    </fieldset>
+                </div>
+                <div class="govuk-form-group govuk-!-margin-bottom-0">
+                    <form method="post" action="04A-egress-files" id="" style="display: inline-block;">  
+                        <button type="submit" class="govuk-button govuk-!-margin-bottom-0" data-module="govuk-button" style="margin-top: -0.5em;">Reconnect</button>
+                    </form>
+                    <form method="post" action="02-search-results" id="" style="display: inline-block;">  
+                        <input id="egress_broken" name="egress_broken" type="text" value="true" style="display: none;">
+                        <button type="submit" class="non-button" data-module="govuk-button" style="margin-left:0.75em;">Cancel</button>
+                    </form>
+                </div>
+            {% elseif data['mvp_Case_3'] == 'true' %}
+                <div class="govuk-form-group govuk-!-margin-bottom-4">
+                    <fieldset class="govuk-fieldset" aria-describedby="offCMS_Egress_files-hint">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                            <h1 class="govuk-fieldset__heading">There was a problem connecting to the Shared Drive</h1>
+                        </legend>
+                        <p>The connection to the Shared Drive folder for <strong>Thunderstruck Office</strong> case has stopped working.</p>
+                    </fieldset>
+                </div>
+                <div class="govuk-form-group govuk-!-margin-bottom-0">
+                    <form method="post" action="05A-p-drive-files" id="" style="display: inline-block;">  
+                        <button type="submit" class="govuk-button govuk-!-margin-bottom-0" data-module="govuk-button" style="margin-top: -0.5em;">Reconnect</button>
+                    </form>
+                    <form method="post" action="02-search-results" id="" style="display: inline-block;">  
+                        <input id="shared_drive_broken" name="shared_drive_broken" type="text" value="true" style="display: none;">
+                        <button type="submit" class="non-button" data-module="govuk-button" style="margin-left:0.75em;">Cancel</button>
+                    </form>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

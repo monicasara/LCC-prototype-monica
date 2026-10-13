@@ -1,0 +1,1590 @@
+<!-- ////////////////////////////////////////////// SEARCH FILTER COLUMN - START ////////////////////////////////////////////// -->
+<div class="govuk-grid-column-one-quarter new-column" id="left-column">
+
+    <div class="caseFiles" id="caseFilesCol">
+
+        <details class="govuk-details case-overview-panel">
+            <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">Case overview details</span>
+            </summary>
+            <div class="govuk-details__text">
+                <div class="blueBoxCPS">
+                    <h2 class="govuk-heading-s">Case number:</h2>
+                    <p style="margin-bottom: 0.5em;">
+                        {% if data['searchURN'] %}
+                            <a href="" class="show-case" data-doc="PRE_CONS_D.pdf" data-count="2" onclick="return pageCounter()" data-page="9" style="color: white !important;">{{ data['searchURN'] }}/1</a>
+                        {% else %}
+                            <a href="" class="show-case" data-doc="PRE_CONS_D.pdf" data-count="2" onclick="return pageCounter()" data-page="9" style="color: white !important;">45AA209820/1</a>
+                        {% endif %}
+                    </p>
+                    <h2 class="govuk-heading-s">DOB:</h2>
+                    <p style="margin-bottom: 0.5em;">16 Jan 2005. Age: 18</p>
+                    <p><strong class="govuk-tag" style="background: white; color: #1d70b8;">Youth offender</strong></p>
+                    <h2 class="govuk-heading-s">Proposed charges</h2>
+                    <p>Section 39 Common assault 01/06/2020. Contrary to the Criminal Justice Act 1988</p>
+                    <h2 class="govuk-heading-s">Custody time limit</h2>
+                    <p>45 days</p>
+                    <h2 class="govuk-heading-s">Next hearing date</h2>
+                    <p>1 June 2024</p>
+                    <h2 class="govuk-heading-s">Custody end</h2>
+                    <p>30 May 2022</p>  
+                </div>
+            </div>
+        </details>
+
+        <button class="move-multiple-Documents govuk-button govuk-button--secondary" data-module="govuk-button" type="button" onclick="NewTab()">Case Review App <span class="icon-new new-window"></span></button>
+
+        <button class="move-multiple-Documents govuk-button govuk-button--secondary" data-module="govuk-button" type="button" onclick="location.href='https://www.figma.com/proto/Oemk95xWfmYbNzgi6grtdO/CM?page-id=595%3A6946&node-id=729-4169&viewport=-1533%2C504%2C0.3&t=y6f4KoKfmwqMAjwQ-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=729%3A4169';">Bulk UM Classification</button>
+
+        <div class="accordion">
+
+            <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">Filter documents</span>
+                </summary>
+                <div class="govuk-details__text">
+                    <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset">
+                            <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="filterDocuments-Read" name="filterDocuments" type="radio" value="Read documents"  onclick="showRead()">
+                                    <label class="govuk-label govuk-radios__label" for="filterDocuments-Read">(<strong id="read">0</strong>) Viewed</label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="filterDocuments-Unread" name="filterDocuments" type="radio" value="Unread documents" onclick="showUnread()">
+                                    <label class="govuk-label govuk-radios__label" for="filterDocuments-Unread">(<strong id="unread">24</strong>) Not viewed</label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    <input class="govuk-radios__input" id="filterDocuments-All" name="filterDocuments" type="radio" value="All documents"  onclick="showAll()" checked>
+                                    <label class="govuk-label govuk-radios__label" for="filterDocuments-All">(<strong id="all">24</strong>) All documents</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>                    
+                </div>
+            </details>
+
+            <!-- SECTION 1 - START -->
+            <div class="accordion-section section-1">
+                <div class="accordion-section-header"><h2 class="govuk-heading-s">Reviews (<span class="reviews-number">1</span>)</h2></div>
+                <div class="accordion-section-body">
+                    <a href="#" class="open-all">Open all review documents</a>
+
+                    <!-- SORT - START -->
+                    <div class="sort-documents-nav">
+                        <button class="sort-documents" id="sort-Reviews">Sort documents</button>  
+                        <div class="wrapper">                      
+                            <button onclick="return sortReviewAlphabetical()" class="sort-Alphabetically">by Alphabetical</button>
+                            <button onclick="return sortReviewDate()" class="sort-Date">by Date</button>
+                        </div>
+                    </div>
+                    <!-- SORT - END -->
+
+                    <table class="govuk-table" id="sortReviews">
+                        <thead>
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header"><span class="visuallyhidden">Review files</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="accordion-tbody-reviews">
+                            <tr class="govuk-table__row document-holder document-1 alpha-1 date-1" id="group1-doc1">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a href="#document-top" class="show-case" data-doc="MCLOVEMG3.pdf" data-document="2" onclick="return topFunction(), pageActions()" data-page="6">MCLOVE MG3</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>02 Jun 2020
+                                            <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>13:08
+                                            <button class="notes-link govuk-button has-notes" data-module="govuk-button" type="button" onClick="openNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="notes-number"></span>
+                                                <span class="visuallyhidden notes-text-content">
+                                                    <strong>Notes:</strong>
+                                                    <span class="notes-content">Redacted, reviewed, do not serve</span>
+                                                </span>
+                                            </button>
+                                        </p>
+                                    </div>
+
+<!--                                     <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="" class="move-Document">Reclassify document</button>
+                                        <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                        <button onclick="" class="unused-Document">Mark as Unused</button>
+                                    </div>
+ -->                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="save-DocumentMove govuk-button" onClick="return confirmReorder()" data-module="govuk-button" type="button">Save order to CMS</button>
+                    <!-- <button class="move-multiple-Documents govuk-button govuk-button--secondary" data-module="govuk-button" type="button">Reclassify multiple documents</button> -->
+                </div>
+            </div>
+            <!-- SECTION 1 - END -->
+
+            <!-- SECTION 2 - START -->
+            <div class="accordion-section section-2" id="hidden-section-3">
+                <div class="accordion-section-header"><h2 class="govuk-heading-s" style="">Case overview (<span class="case-overview-number">4</span>)</h2></div>
+                <div class="accordion-section-body">
+                    <a href="#" class="open-all">Open all case overview documents</a>
+                    <!-- SORT - START -->
+                    <div class="sort-documents-nav">
+                        <button class="sort-documents">Sort documents</button>  
+                        <div class="wrapper">                      
+                            <button onclick="return sortCaseAlphabetical()" class="sort-Alphabetically">by Alphabetical</button>
+                            <button onclick="return sortCaseDate()" class="sort-Date">by Date</button>
+                        </div>
+                    </div>
+                    <!-- SORT - END -->
+                    <div class="cpsDocs chargingDocs">
+                        <table class="govuk-table" id="sortCases">
+                            <thead>
+                                <tr class="govuk-table__row">
+                                    <th scope="col" class="govuk-table__header"><span class="visuallyhidden">Case overview files</span></th>
+                                </tr>
+                            </thead>
+                            <tbody id="accordion-tbody-case-overview">
+                               <tr class="govuk-table__row document-holder document-2 alpha-1 date-1" id="group2-doc1">
+                                    <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                        <div class="wrapper">
+                                            <strong class="govuk-tag loading-tag">Loading...</strong>
+                                            <strong class="govuk-tag current">Active Document</strong>
+                                            <p class="redacted-indicator">
+                                                <a href="#document-top" class="show-case" data-doc="CM01.pdf" data-document="3" onclick="return topFunction(), pageActions()" data-page="2">Case overview and officer comments</a>
+                                            </p>
+                                            <p class="error-text">There is a problem with this document</p>
+                                            <br>
+                                            <p class="date-added">
+                                                <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>02 Jun 2020
+                                                <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>17:36
+                                                <button class="notes-link govuk-button has-notes" data-module="govuk-button" type="button" onClick="openNotesModal()">
+                                                    <span class="notes-text">Notes:</span> <span class="notes-number"></span>
+                                                    <span class="visuallyhidden notes-text-content">
+                                                        <strong>Notes:</strong>
+                                                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                                                    </span>
+                                                </button>
+                                            </p>
+                                        </div>
+                                        <button class="more-options">
+                                            <span class="visuallyhidden">More options</span>
+                                        </button>
+                                        <div class="document-nav">
+                                            <button onclick="" class="move-Document">Reclassify document</button>
+                                            <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                            <button onclick="" class="unused-Document">Mark as Unused</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- DOCUMENT NOTIFICATION - 3 - START -->
+                                <tr class="govuk-table__row document-holder document-3 alpha-2 date-2" id="group2-doc2">
+                                    <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                        <div class="wrapper">
+                                            <strong class="govuk-tag loading-tag">Loading...</strong>
+                                            <strong class="govuk-tag current">Active Document</strong>
+                                            <strong class="govuk-tag govuk-tag--purple">Reclassified</strong>
+                                            <p class="redacted-indicator">
+                                                <a href="#document-top" class="show-case" data-doc="MG05MCLOVE.pdf" data-document="4" onclick="return topFunction(), pageActions()" data-page="4">MG05 MCLOVE</a>
+                                            </p>
+                                            <p class="error-text">There is a problem with this document</p>
+                                            <br>
+                                            <p class="date-added">
+                                                <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>02 Jun 2020
+                                                <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>16:11
+                                                <button class="notes-link new-notes-link govuk-button" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                    <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                    <span class="visuallyhidden notes-new-text-content"></span>
+                                                </button>
+                                            </p>
+                                        </div>
+                                        <button class="more-options">
+                                            <span class="visuallyhidden">More options</span>
+                                        </button>
+                                        <div class="document-nav">
+                                            <button onclick="" class="move-Document">Reclassify document</button>
+                                            <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                            <button onclick="" class="unused-Document">Mark as Unused</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- DOCUMENT NOTIFICATION - 3 - START -->
+
+                                <tr class="govuk-table__row document-holder document-4 alpha-3 date-3" id="group2-doc3">
+                                    <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                        <div class="wrapper">
+                                            <strong class="govuk-tag loading-tag">Loading...</strong>
+                                            <strong class="govuk-tag current">Active Document</strong>
+                                            <p class="redacted-indicator">
+                                                <a href="#document-top" class="show-case" data-doc="MG06_3June.pdf" data-document="5" onclick="return topFunction(), pageActions()" data-page="3">MG06 3 June</a>
+                                            </p>
+                                            <p class="error-text">There is a problem with this document</p>
+                                            <br>
+                                            <p class="date-added">
+                                                <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>03 Jun 2020
+                                                <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>10:14
+                                                <button class="notes-link govuk-button has-notes" data-module="govuk-button" type="button" onClick="openNotesModal()">
+                                                    <span class="notes-text">Notes:</span> <span class="notes-number"></span>
+                                                    <span class="visuallyhidden notes-text-content">
+                                                        <strong>Notes:</strong>
+                                                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                                                    </span>
+                                                </button>
+                                            </p>
+                                        </div>
+                                        <button class="more-options">
+                                            <span class="visuallyhidden">More options</span>
+                                        </button>
+                                        <div class="document-nav">
+                                            <button onclick="" class="move-Document">Reclassify document</button>
+                                            <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                            <button onclick="" class="unused-Document">Mark as Unused</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- DOCUMENT NOTIFICATION - 4 - START -->
+                                <tr class="govuk-table__row document-holder document-5 alpha-4 date-4" id="group2-doc4">
+                                    <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                        <div class="wrapper">
+                                            <strong class="govuk-tag loading-tag">Loading...</strong>
+                                            <strong class="govuk-tag current">Active Document</strong>
+                                            <strong class="govuk-tag govuk-tag--orange">Updated</strong>
+                                            <p class="redacted-indicator">
+                                                <a href="#document-top" class="show-case" data-doc="MG06_10june.pdf" data-document="6" onclick="return topFunction(), pageActions()" data-page="3">MG06 10 june</a>
+                                            </p>
+                                            <p class="error-text">There is a problem with this document</p>
+                                            <br>
+                                            <p class="date-added">
+                                                <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>10 Jun 2020
+                                                <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>08:03
+                                                <button class="notes-link new-notes-link govuk-button" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                    <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                    <span class="visuallyhidden notes-new-text-content"></span>
+                                                </button>
+                                            </p>
+                                        </div>
+                                        <button class="more-options">
+                                            <span class="visuallyhidden">More options</span>
+                                        </button>
+                                        <div class="document-nav">
+                                            <button onclick="" class="move-Document">Reclassify document</button>
+                                            <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                            <button onclick="" class="unused-Document">Mark as Unused</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- DOCUMENT NOTIFICATION - 4 - END --> 
+                                                               
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="save-DocumentMove govuk-button" onClick="return confirmReorder()" data-module="govuk-button" type="button">Save order to CMS</button>
+                    <!-- <button class="move-multiple-Documents govuk-button govuk-button--secondary" data-module="govuk-button" type="button">Reclassify multiple documents</button> -->
+                </div>
+            </div>
+            <!-- SECTION 2 - END -->
+
+            <!-- SECTION 3 - START -->
+            <div class="accordion-section section-3" id="hidden-documents">
+                {% if data['scenario-2'] == 'true' and data['docType-CheckAnswers'] %}
+                    <div class="accordion-section-header"><h2 class="govuk-heading-s">Statements (<span class="statements">7</span>)</h2></div>
+                {% else %}
+                    <div class="accordion-section-header"><h2 class="govuk-heading-s">Statements (<span class="statements">6</span>)</h2></div>
+                {% endif %}
+
+                <div class="accordion-section-body">
+                    <a href="#" class="open-all">Open all statements</a>
+                    <!-- SORT - START -->
+                    <div class="sort-documents-nav">
+                        <button class="sort-documents">Sort documents</button>  
+                        <div class="wrapper">                      
+                            <button onclick="return sortStatementsAlphabetical()" class="sort-Alphabetically">by Alphabetical</button>
+                            <button onclick="return sortStatementsDate()" class="sort-Date">by Date</button>
+                            <button onclick="return sortWitness()" class="sort-Witness">by Witness</button>
+                        </div>
+                    </div>
+                    <!-- SORT - END -->
+                    <table class="govuk-table" id="sortStatements">
+                        <thead>
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header"><span class="visuallyhidden">Statement files</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="accordion-tbody-statements">
+                            <tr class="witness-header witness-1">
+                                <th>PC 2034 Blaynee</th>
+                            </tr>
+                            <tr class="govuk-table__row document-holder document-6 alpha-3 date-1 witness-2" id="group3-doc1">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a href="#document-top" class="show-case mg-11-doc" data-doc="stmt_BLAYNEE_2034_1_JUNE_mg11.pdf" data-document="7" onclick="return topFunction(), pageActions()" data-page="3">stmt BLAYNEE 2034 1 JUNE mg11</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added statement"><span class="visuallyhidden">Statement Date</span></span>01 Jun 2020
+                                            <span class="icon-new time-added statement"><span class="visuallyhidden">Statement Time</span></span>11:22
+                                            <button class="notes-link new-notes-link govuk-button statement-notes" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-new-text-content"></span>
+                                            </button>
+                                        </p>
+<!--                                         <p class="reference">
+                                            Ref: <strong>45 AA 20098 20</strong>
+                                        </p>
+ -->                                        <p class="whitness-indicators">
+                                            <strong class="govuk-tag tooltip govuk-tag--grey">
+                                                P <span class="tooltiptext"><span class="visuallyhidden">for</span> Police</span>
+                                            </strong>
+                                       </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button>
+                                        <!-- <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button> -->
+                                        <!-- <button onclick="" class="update-Document">Update statement</button> -->
+                                        <button onclick="" class="unused-Document">Mark as Unused</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="witness-header witness-3">
+                                <th>PC 1989 Jones</th>
+                            </tr>
+
+                            <tr class="govuk-table__row document-holder document-7 alpha-4 date-2 witness-4" id="group3-doc2">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <strong class="govuk-tag tooltip govuk-tag--blue">
+                                                R <span class="tooltiptext">Redacted, Thu 04 Jun 2023 2:18pm, by "Joe_Bloggs_1999"</span>
+                                            </strong>
+                                            <a href="#document-top" class="show-case redacted-document-V1 mg-11-doc" data-doc="stmt_JONES_1989_1_JUNE_mg11.pdf" data-document="8" onclick="return topFunction(), pageActions(), redactedDocumentV1()">stmt JONES 1989 1 JUNE mg11</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added statement"><span class="visuallyhidden">Statement Date</span></span>01 Jun 2020
+                                            <span class="icon-new time-added statement"><span class="visuallyhidden">Statement Time</span></span>11:54
+                                            <button class="notes-link new-notes-link govuk-button statement-notes" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-new-text-content"></span>
+                                            </button>
+                                        </p>
+<!--                                         <p class="reference">
+                                            Ref: <strong>45 AA 20098 21</strong>
+                                        </p>
+ -->                                        
+                                        <p class="whitness-indicators">
+                                            <strong class="govuk-tag tooltip govuk-tag--grey">
+                                                H <span class="tooltiptext"><span class="visuallyhidden">for</span> Prisoner</span>
+                                            </strong>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button>
+                                        <!-- <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button> -->
+                                        <!-- <button onclick="location.href='../4-move-documents/B-statement-details';" class="update-Document">Update statement</button> -->
+                                        <button onclick="" class="unused-Document">Mark as Unused</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="witness-header witness-5">
+                                <th>Lucy Doyle</th>
+                            </tr>
+                            <tr class="govuk-table__row document-holder document-8 alpha-5 date-3 witness-6" id="group3-doc3">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a href="#document-top" class="show-case mg-11-doc" data-doc="stmt_Lucy_Doyle_MG11.pdf" data-document="9" onclick="return topFunction(), pageActions()" data-page="3">stmt Lucy Doyle MG11</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added statement"><span class="visuallyhidden">Statement Date</span></span>01 Jun 2020
+                                            <span class="icon-new time-added statement"><span class="visuallyhidden">Statement Time</span></span>12:01
+                                            <button class="notes-link govuk-button has-notes statement-notes" data-module="govuk-button" type="button" onClick="openNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="notes-number"></span>
+                                                <span class="visuallyhidden notes-text-content">
+                                                    <strong>Notes:</strong>
+                                                    <span class="notes-content">Redacted, reviewed, do not serve</span>
+                                                </span>
+                                            </button>
+                                        </p>
+<!--                                         <p class="reference">
+                                            Ref: <strong>45 AA 20098 22</strong>
+                                        </p>
+ -->                                        <p class="whitness-indicators">
+                                            <strong class="govuk-tag tooltip govuk-tag--grey">
+                                                P <span class="tooltiptext"><span class="visuallyhidden">for</span> Police</span>
+                                            </strong>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button>
+                                        <!-- <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button> -->
+                                        <!-- <button onclick="location.href='../4-move-documents/B-statement-details';" class="update-Document">Update statement</button> -->
+                                        <button onclick="" class="unused-Document">Mark as Unused</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="witness-header witness-7">
+                                <th>Shelagh McLove</th>
+                            </tr>
+                            <tr class="govuk-table__row document-holder document-9 alpha-6 date-4 witness-8" id="group3-doc4">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a href="#document-top" class="show-case mg-11-doc" data-doc="stmt_Shelagh_McLove_MG11_hand.pdf" data-document="10" onclick="return topFunction(), pageActions()" data-page="5">stmt Shelagh McLove MG11</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added statement"><span class="visuallyhidden">Statement Date</span></span>01 Jun 2020
+                                            <span class="icon-new time-added statement"><span class="visuallyhidden">Statement Time</span></span>12:36
+                                            <button class="notes-link new-notes-link govuk-button statement-notes" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-new-text-content"></span>
+                                            </button>
+                                        </p>
+<!--                                         <p class="reference">
+                                            Ref: <strong>45 AA 20098 23</strong>
+                                        </p>
+ -->                                        <p class="whitness-indicators">
+                                            <strong class="govuk-tag tooltip govuk-tag--grey">
+                                                V <span class="tooltiptext"><span class="visuallyhidden">for</span> Victim</span>
+                                            </strong>
+                                            <strong class="govuk-tag tooltip govuk-tag--grey">
+                                                L <span class="tooltiptext"><span class="visuallyhidden">for</span> Vulnerable</span>
+                                            </strong>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button>
+                                        <!-- <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button> -->
+                                        <!-- <button onclick="location.href='../4-move-documents/B-statement-details';" class="update-Document">Update statement</button> -->
+                                        <button onclick="" class="unused-Document">Mark as Unused</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row document-holder document-10 alpha-7 date-5 witness-9" id="group3-doc5">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a href="#document-top" class="show-case mg-11-doc" data-doc="Shelagh_McLove_VPS_mg11.pdf" data-document="11" onclick="return topFunction(), pageActions()" data-page="2">Shelagh McLove VPS mg11</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added statement"><span class="visuallyhidden">Statement Date</span></span>06 Jun 2020
+                                            <span class="icon-new time-added statement"><span class="visuallyhidden">Statement Time</span></span>13:11
+                                            <button class="notes-link new-notes-link govuk-button statement-notes" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-new-text-content"></span>
+                                            </button>
+                                        </p>
+<!--                                         <p class="reference">
+                                            Ref: <strong>45 AA 20098 24</strong>
+                                        </p>
+ -->                                        <p class="whitness-indicators">
+                                            <strong class="govuk-tag tooltip govuk-tag--grey">
+                                                V <span class="tooltiptext"><span class="visuallyhidden">for</span> Victim</span>
+                                            </strong>
+                                            <strong class="govuk-tag tooltip govuk-tag--grey">
+                                                L <span class="tooltiptext"><span class="visuallyhidden">for</span> Vulnerable</span>
+                                            </strong>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button>
+                                        <!-- <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button> -->
+                                        <!-- <button onclick="location.href='../4-move-documents/B-statement-details';" class="update-Document">Update statement</button> -->
+                                        <button onclick="" class="unused-Document">Mark as Unused</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- DOCUMENT NOTIFICATION - 5 - START -->
+                            <tr class="govuk-table__row hidden-section alpha-2 date-6 witness-10" id="new-document-2">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <strong class="govuk-tag govuk-tag--green">New</strong>
+                                        <p class="redacted-indicator">
+                                            <a href="#document-top" class="show-case mg-11-doc" data-doc="MG11_Shelagh_MCLOVE_retraction.pdf" data-document="12" onclick="return topFunction(), pageActions(), newDocument()" data-page="1">MG11 Shelagh MCLOVE retraction</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added statement"><span class="visuallyhidden">Statement Date</span></span>10 Jun 2020
+                                            <span class="icon-new time-added statement"><span class="visuallyhidden">Statement Time</span></span>19:18
+                                            <button class="notes-link new-notes-link govuk-button statement-notes" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-new-text-content"></span>
+                                            </button>
+                                        </p>
+<!--                                         <p class="reference">
+                                            Ref: <strong>45 AA 20098 25</strong>
+                                        </p>
+ -->                                        <p class="whitness-indicators">
+                                            <strong class="govuk-tag tooltip govuk-tag--grey">
+                                                V <span class="tooltiptext"><span class="visuallyhidden">for</span> Victim</span>
+                                            </strong>
+                                            <strong class="govuk-tag tooltip govuk-tag--grey">
+                                                L <span class="tooltiptext"><span class="visuallyhidden">for</span> Vulnerable</span>
+                                            </strong>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button>
+                                        <!-- <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button> -->
+                                        <!-- <button onclick="location.href='../4-move-documents/B-statement-details';" class="update-Document">Update statement</button> -->
+                                        <button onclick="" class="unused-Document">Mark as Unused</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- DOCUMENT NOTIFICATION - 5 - END -->
+
+                            <tr class="witness-header witness-12">
+                                <th>Geoff McLove</th>
+                            </tr>
+
+                            <!-- DOCUMENT NOTIFICATION - 1 - START -->
+                            <tr class="govuk-table__row document-holder document-11 alpha-1 date-7 witness-13" id="group3-doc6">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag govuk-tag--red">Failed</strong>
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <div>MG11 Geoff MCLOVE</div>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added statement"><span class="visuallyhidden">Statement Date</span></span>11 Jun 2020
+                                            <span class="icon-new time-added statement"><span class="visuallyhidden">Statement Time</span></span>22:53
+                                            <button class="notes-link new-notes-link govuk-button statement-notes" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-new-text-content"></span>
+                                            </button>
+                                        </p>
+<!--                                         <p class="reference">
+                                            Ref: <strong>45 AA 20098 26</strong>
+                                        </p>
+ -->                                        <p class="whitness-indicators">
+                                            <strong class="govuk-tag tooltip govuk-tag--grey">
+                                                V <span class="tooltiptext"><span class="visuallyhidden">for</span> Victim</span>
+                                            </strong>
+                                        </p>
+                                        <span class="govuk-caption-m">Only available on CMS</span>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button>
+                                        <!-- <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button> -->
+                                        <!-- <button onclick="location.href='../4-move-documents/B-statement-details';" class="update-Document">Update statement</button> -->
+                                        <button onclick="" class="unused-Document">Mark as Unused</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- DOCUMENT NOTIFICATION - 1 - END -->
+
+                            {% if data['scenario-2'] == 'true' and data['docType-CheckAnswers'] %}
+                                <tr class="govuk-table__row document-holder document-23 alpha-1 date-4 witness-11" id="group10-doc3">
+                                    <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                        <div class="wrapper">
+                                            <strong class="govuk-tag loading-tag">Loading...</strong>
+                                            <strong class="govuk-tag govuk-tag--purple" style="display:inline-block;">Reclassified</strong>
+                                            <strong class="govuk-tag current">Active Document</strong>
+                                            <p class="redacted-indicator">
+                                                <a href="" class="show-case email-document-V2 mg-11-doc" onclick="email()" data-doc="MG11_1.pdf" data-document="22" onclick="return topFunction(), pageActions()" data-page="1">
+                                                    {% if data['documentStatement-Witness'] == 'PC Blaynee' %}
+                                                        stmt PC BLAYNEE #{{ data['documentStatement-Number'] }} {{ data['documentType'] }}
+                                                    {% elseif data['documentStatement-Witness'] == 'PC Jones' %}
+                                                        stmt PC JONES #{{ data['documentStatement-Number'] }} {{ data['documentType'] }}
+                                                    {% elseif data['documentStatement-Witness'] == 'Lucy Doyle' %}
+                                                        stmt DOYLE Lucy #{{ data['documentStatement-Number'] }} {{ data['documentType'] }}
+                                                    {% elseif data['documentStatement-Witness'] == 'Shelagh Mclove' %}
+                                                        stmt MCLOVE Shelagh #{{ data['documentStatement-Number'] }} {{ data['documentType'] }}
+                                                    {% elseif data['documentStatement-Witness'] == 'Geoff Mclove' %}
+                                                        stmt MCLOVE Geoff #{{ data['documentStatement-Number'] }} {{ data['documentType'] }}
+                                                    {% endif %}
+                                                </a>
+                                            </p>
+                                            <br>
+                                            <p class="date-added">
+                                                <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>05 Jan 2021
+                                                <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>13:14
+                                                <button class="notes-link govuk-button has-notes statement-notes" data-module="govuk-button" type="button" onClick="openNotesModal()">
+                                                    <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                    <span class="visuallyhidden notes-text-content">
+                                                        <strong>Notes:</strong>
+                                                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                                                    </span>
+                                                </button>
+                                            </p>
+<!--                                             <p class="reference">
+                                                Ref: <strong>45 AA 20098 27</strong>
+                                            </p>
+ -->                                        </div>
+                                        <button class="more-options">
+                                            <span class="visuallyhidden">More options</span>
+                                        </button>
+                                        <div class="document-nav">
+                                            <form action="../4-move-documents/A-category.html" method="get">
+                                                <input id="scenario-2" name="scenario-2" type="text" value="true">
+                                                <input id="scenario" name="scenario" type="text" value="two">
+                                                <input id="answers-complete" name="answers-complete" type="text" value="false">
+                                                <button onclick="" class="move-Document">Reclassify document</button>
+                                            </form>
+                                            <!-- <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button> -->
+                                            <!-- <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button> -->
+                                            <!-- <button onclick="location.href='../4-move-documents/B-statement-details';" class="update-Document">Update statement</button> -->
+                                            <button onclick="" class="unused-Document">Mark as Unused</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% else %}
+
+                            {% endif %}
+
+                        </tbody>
+                    </table>
+                    <button class="save-DocumentMove govuk-button" onClick="return confirmReorder()" data-module="govuk-button" type="button">Save order to CMS</button>
+                    <!-- <button class="move-multiple-Documents govuk-button govuk-button--secondary" data-module="govuk-button" type="button">Reclassify multiple documents</button> -->
+                </div>
+            </div>
+            <!-- SECTION 3 - END -->
+
+            <!-- SECTION 4 - START -->
+            <div class="accordion-section section-4" id="catergory-Exhibits">
+                {% if data['scenario-3'] == 'true' and data['docType-CheckAnswers'] %}
+                    <div class="accordion-section-header"><h2 class="govuk-heading-s">Exhibits (<span class="exhibits-number">3</span>)</h2></div>
+                {% else %}
+                    <div class="accordion-section-header"><h2 class="govuk-heading-s">Exhibits (<span class="exhibits-number">2</span>)</h2></div>
+                {% endif %}
+                <div class="accordion-section-body">
+                    <a href="#" class="open-all">Open all exhibit documents</a>
+                    <!-- SORT - START -->
+                    <div class="sort-documents-nav">
+                        <button class="sort-documents" id="sort-Exhibit">Sort documents</button>  
+                        <div class="wrapper">                      
+                            <button onclick="return sortExhibitAlphabetical()" class="sort-Alphabetically">by Alphabetical</button>
+                            <button onclick="return sortExhibitDate()" class="sort-Date">by Date</button>
+                        </div>
+                    </div>
+                    <!-- SORT - END -->
+
+                    <table class="govuk-table" id="sortForensics">
+                        <tbody id="accordion-tbody-forensics">
+                            <tr class="exhibits-header">
+                                <th>Schedules</th>
+                            </tr>
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe" scope="row">No documents</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="govuk-table" id="sortExhibits">
+                        <tbody id="accordion-tbody-exhibits">
+                            <tr class="exhibits-header">
+                                <th>Items</th>
+                            </tr>
+                            <tr class="govuk-table__row document-holder document-12 alpha-2 date-2" id="group4-doc1">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <strong class="govuk-tag tooltip govuk-tag--blue">
+                                                R <span class="tooltiptext">Redacted, Thu 04 Jun 2023 2:15pm, by "user_name_1983"</span>
+                                            </strong>
+                                            <a href="#document-top" class="show-case redacted-document-V2" data-doc="MG12.pdf" class="large" data-document="13" onclick="return topFunction(), pageActions(), redactedDocumentV2()" data-page="1">MCLOVE MG12</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>12 Jun 2020
+                                            <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>22:36
+                                            <button class="notes-link govuk-button has-notes exhibit-notes" data-module="govuk-button" type="button" onClick="openNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="notes-number"></span>
+                                                <span class="visuallyhidden notes-text-content">
+                                                    <strong>Notes:</strong>
+                                                    <span class="notes-content">Redacted, reviewed, do not serve</span>
+                                                </span>
+                                            </button>
+                                        </p>
+                                        <p class="reference">
+                                            Ref: <strong>45 AA 20982</strong>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="" class="move-Document">Reclassify document</button>
+                                        <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document renameExhibit">Rename document</button>
+                                        <!-- <button onclick="location.href='../4-move-documents/C-exhibit-details';" class="update-Document">Update exhibit</button> -->
+                                        <button onclick="" class="unused-Document">Mark as Unused</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row document-holder document-13 alpha-1 date-1" id="group4-doc2">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a href="#document-top" class="show-case" data-doc="MG00.pdf" data-document="14" class="large" onclick="return topFunction(), pageActions()" data-page="1">MCLOVE MG00</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>12 Jun 2020
+                                            <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>23:58
+                                            <button class="notes-link new-notes-link govuk-button exhibit-notes" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-new-text-content"></span>
+                                            </button>
+                                        </p>
+                                        <p class="reference">
+                                            Ref: <strong>45AA0209</strong>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button>
+                                        <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document renameExhibit">Rename document</button>
+                                        <!-- <button onclick="location.href='../4-move-documents/C-exhibit-details';" class="update-Document">Update exhibit</button> -->
+                                        <button onclick="" class="unused-Document">Mark as Unused</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            {% if data['scenario-3'] == 'true' and data['docType-CheckAnswers'] %}
+                                <tr class="govuk-table__row document-holder document-24 alpha-1 date-7" id="group10-doc4">
+                                    <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                        <div class="wrapper">
+                                            <strong class="govuk-tag loading-tag">Loading...</strong>
+                                            <strong class="govuk-tag govuk-tag--purple" style="display:inline-block;">Reclassified</strong>
+                                            <strong class="govuk-tag current">Active Document</strong>
+                                            <p class="redacted-indicator">
+                                                <a href="" class="show-case email-document-V2" onclick="email()" data-doc="MG12.pdf" data-document="22" onclick="return topFunction(), pageActions()" data-page="1">
+                                                    {{ data['documentExhibit-Name'] }}
+                                                    <!-- {% if data['docType-document-name'] == 'Yes' %}
+                                                        {{ data['docType-Scenario-3-NAME'] }}
+                                                    {% else %}
+                                                        Exhibit - 1
+                                                    {% endif %} -->
+                                                </a>
+                                            </p>
+                                            <br>
+                                            <p class="date-added">
+                                                <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>25 Jun 2021
+                                                <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>21:59
+                                                <button class="notes-link govuk-button has-notes exhibit-notes" data-module="govuk-button" type="button" onClick="openNotesModal()">
+                                                    <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                    <span class="visuallyhidden notes-text-content">
+                                                        <strong>Notes:</strong>
+                                                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                                                    </span>
+                                                </button>
+                                            </p>
+                                            <p class="reference">
+                                                Ref: <strong>{{ data['documentExhibit-Reference'] }}</strong>
+                                            </p>
+                                        </div>
+                                        <button class="more-options">
+                                            <span class="visuallyhidden">More options</span>
+                                        </button>
+                                        <div class="document-nav">
+                                            <form action="../4-move-documents/A-category.html" method="get">
+                                                <input id="scenario-3" name="scenario-3" type="text" value="true">
+                                                <input id="scenario" name="scenario" type="text" value="three">
+                                                <input id="answers-complete" name="answers-complete" type="text" value="false">
+                                                <button onclick="" class="move-Document">Reclassify document</button>
+                                            </form>
+                                            <!-- <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button> -->
+                                            <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document renameExhibit">Rename document</button>
+                                            <!-- <button onclick="location.href='../4-move-documents/C-exhibit-details';" class="update-Document">Update exhibit</button> -->
+                                            <button onclick="" class="unused-Document">Mark as Unused</button>      
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% else %}
+
+                            {% endif %}
+
+                        </tbody>
+                    </table>
+                    <button class="save-DocumentMove govuk-button" onClick="return confirmReorder()" data-module="govuk-button" type="button">Save order to CMS</button>
+                    <!-- <button class="move-multiple-Documents govuk-button govuk-button--secondary" data-module="govuk-button" type="button">Reclassify multiple documents</button> -->
+                </div>
+            </div>
+            <!-- SECTION 4 - END -->
+
+            <!-- SECTION 5 - START -->
+            <div class="accordion-section section-5">
+                <div class="accordion-section-header no-documents"><h2 class="govuk-heading-s">Forensics (0)</h2></div>
+                <div class="accordion-section-body">
+                    <table class="govuk-table" id="sortForensics">
+                        <thead>
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header"><span class="visuallyhidden">Forensics files</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="accordion-tbody-forensics">
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe" scope="row">No documents</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- SECTION 5 - END -->
+
+            <!-- SECTION 6 - START -->
+            <div class="accordion-section section-6" id="hidden-section-2">
+                <div class="accordion-section-header"><h2 class="govuk-heading-s">Unused materials (<span class="unused-materials">5</span>)</h2></div>
+                <div class="accordion-section-body">
+                    <a href="#" class="open-all">Open all unusend material documents</a>
+                    <!-- SORT - START -->
+                    <div class="sort-documents-nav">
+                        <button class="sort-documents">Sort documents</button>  
+                        <div class="wrapper">                      
+                            <button onclick="return sortUnusendAlphabetical()" class="sort-Alphabetically">by Alphabetical</button>
+                            <button onclick="return sortUnusendDate()" class="sort-Date">by Date</button>
+                            <button onclick="return sortUnusendItem()" class="sort-Item-Number">by Item number</button>
+                        </div>
+                    </div>
+                    <!-- SORT - END -->
+                    <table class="govuk-table" id="sortUnused">
+                        <thead>
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header"><span class="visuallyhidden">Unused material files</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="accordion-tbody-unused-materials">
+
+                            <tr class="unused-materials-header">
+                                <th>Schedules</th>
+                            </tr>
+
+                            <tr class="govuk-table__row document-holder document-14 alpha-4 date-1" id="group6-doc1">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a href="#document-top" class="show-case" data-doc="UNUSED_1_STORM_LOG_1881_01.6.20_EDITED_2020-11-23_MCLOVE.pdf" data-document="15" onclick="return documentName()" data-page="7">UNUSED 1 - STORM LOG 1881 01.6.20 - EDITED 2020-11-23 MCLOVE</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>01 Jun 2020
+                                            <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>13:46
+                                            <button class="notes-link new-notes-link govuk-button" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-new-text-content"></span>
+                                            </button>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row document-holder document-15 alpha-3 date-2" id="group6-doc2">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a href="#document-top" class="show-case" data-doc="SDC_items_to_be_Disclosed_MCLOVE.pdf" data-document="16" onclick="return topFunction(), pageActions()" data-page="1">SDC_items to_be Disclosed MCLOVE</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>05 Jun 2020
+                                            <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>19:12
+                                            <button class="notes-link govuk-button has-notes" data-module="govuk-button" type="button" onClick="openNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="notes-number"></span>
+                                                <span class="visuallyhidden notes-text-content">
+                                                    <strong>Notes:</strong>
+                                                    <span class="notes-content">Redacted, reviewed, do not serve</span>
+                                                </span>
+                                            </button>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- DOCUMENT NOTIFICATION - 6 - START -->
+                            <tr class="govuk-table__row document-holder document-16 alpha-5 date-3" id="group6-doc3">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <strong class="govuk-tag govuk-tag--orange">Updated</strong>
+                                        <strong class="govuk-tag govuk-tag--red">Discarded</strong>
+                                        <p class="redacted-indicator">
+                                            <a href="#document-top" class="show-case" data-doc="UNUSED_6_DA_CHECKLIST_MCLOVE.pdf" data-document="17" onclick="return topFunction(), pageActions()" data-page="3">UNUSED_6 DA CHECKLIST MCLOVE</a>
+                                        </p>
+                                        <div class="hidden">UNUSED_6 DA CHECKLIST MCLOVE</div>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>05 Jun 2020
+                                            <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>19:36
+                                            <button class="notes-link new-notes-link govuk-button" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-new-text-content"></span>
+                                            </button>
+                                        </p>
+                                        <span class="govuk-caption-m govuk-!-margin-top-1">Document discarded</span>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- DOCUMENT NOTIFICATION - 6 - END -->
+
+                            <tr class="unused-materials-header">
+                                <th>Items</th>
+                            </tr>
+
+                            <tr class="govuk-table__row document-holder document-17 alpha-1 date-5" id="group6-doc4">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a class="show-case" href="MG20_5_JUNE.pdf" data-doc="MG20_5_JUNE.pdf" data-document="18" onclick="return topFunction(), pageActions()" data-page="1">MG20_5_JUNE</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>06 Jun 2020
+                                            <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>21:14
+                                            <button class="notes-link new-notes-link govuk-button" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-new-text-content"></span>
+                                            </button>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button>
+                                        <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                        <button onclick="" class="evidential-Document">Mark as Used</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row document-holder document-18 alpha-2 date-6" id="group6-doc5">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a class="show-case" href="MG20_10_JUNE.pdf" data-doc="MG20_10_JUNE.pdf" data-document="19" onclick="return topFunction(), pageActions()" data-page="1">MG20_10_JUNE</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>11 Jun 2020
+                                            <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>09:35
+                                            <button class="notes-link new-notes-link govuk-button" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-new-text-content"></span>
+                                            </button>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button>
+                                        <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                        <button onclick="" class="evidential-Document">Mark as Used</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- //////////////// NEW UNUSED DOCUMENTS - START //////////////// -->
+                            {% include "../documents/case-1-UNUSED.html" %}
+                            <!-- //////////////// NEW UNUSED DOCUMENTS - END //////////////// -->
+
+                        </tbody>
+                    </table>
+                    <button class="save-DocumentMove govuk-button" onClick="return confirmReorder()" data-module="govuk-button" type="button">Save order to CMS</button>
+                    <!-- <button class="move-multiple-Documents govuk-button govuk-button--secondary" data-module="govuk-button" type="button">Reclassify multiple documents</button> -->
+                </div>
+            </div>
+            <!-- SECTION 6 - END -->
+
+            <!-- SECTION 7 - START -->
+            <div class="accordion-section section-7" id="hidden-documents-2">
+                <div class="accordion-section-header no-documents"><h2 class="govuk-heading-s">Defendant (<span class="defendants">0</span>)</h2></div>
+                <div class="accordion-section-body">
+                    <a href="#" class="open-all">Open all defendant documents</a>
+                    <table class="govuk-table" id="sortDefendant">
+                        <thead>
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header"><span class="visuallyhidden">Unused material files</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="accordion-tbody-defendant">
+
+                            <!-- DOCUMENT NOTIFICATION - 2 - START -->
+                            <tr class="govuk-table__row hidden-section alpha-1 date-1" id="new-document-1">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <strong class="govuk-tag govuk-tag--green">New</strong>
+                                        <p class="redacted-indicator">
+                                            <a href="#document-top" class="show-case" data-doc="PRE_CONS_D.pdf" data-document="20" onclick="return topFunction(), pageActions(), newDocument()" data-page="9">PRE CONS D</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>02 Jun 2020
+                                            <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>13:56
+                                            <button class="notes-link govuk-button has-notes" data-module="govuk-button" type="button" onClick="openNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="notes-number"></span>
+                                                <span class="visuallyhidden notes-text-content">
+                                                    <strong>Notes:</strong>
+                                                    <span class="notes-content">Redacted, reviewed, do not serve</span>
+                                                </span>
+                                            </button>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button>
+                                        <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                        <button onclick="" class="unused-Document">Mark as Unused</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- DOCUMENT NOTIFICATION - 2 - END -->
+
+                            <tr class="govuk-table__row holder">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe" scope="row">No documents</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- SECTION 7 - END -->
+
+            <!-- SECTION 8 - START -->
+            <div class="accordion-section section-8">
+                <div class="accordion-section-header no-documents"><h2 class="govuk-heading-s">Court preparation (0)</h2></div>
+                <div class="accordion-section-body">
+                    <table class="govuk-table" id="sortCourt">
+                        <thead>
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header"><span class="visuallyhidden">Court preparation files</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="accordion-tbody-court-preparation">
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe" scope="row">No documents</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- SECTION 8 - END -->
+
+            <!-- SECTION 9 - START -->
+            <div class="accordion-section section-9" id="catergory-Communications">
+
+                {% if data['scenario-1'] == 'true' and data['docType-CheckAnswers'] %}
+                    <div class="accordion-section-header"><h2 class="govuk-heading-s">Communications (<span class="communications-number">3</span>)</h2></div>
+                {% else %}
+                    <div class="accordion-section-header"><h2 class="govuk-heading-s">Communications (<span class="communications-number">2</span>)</h2></div>
+                {% endif %}
+
+                <div class="accordion-section-body">
+                    <a href="#" class="open-all">Open all communication documents</a>
+                    <!-- SORT - START -->
+                    <div class="sort-documents-nav">
+                        <button class="sort-documents" id="sort-Communication">Sort documents</button>  
+                        <div class="wrapper">                      
+                            <button onclick="return sortCommunicationAlphabetical()" class="sort-Alphabetically">by Alphabetical</button>
+                            <button onclick="return sortCommunicationDate()" class="sort-Date">by Date</button>
+                        </div>
+                    </div>
+                    <!-- SORT - END -->
+                    <table class="govuk-table" id="sortCommunications">
+                        <thead>
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header">Communication files</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% if data['scenario-1'] == 'true' and data['docType-CheckAnswers'] %}
+                            <tr class="govuk-table__row document-holder document-22 alpha-1 date-3" id="group10-doc2">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag govuk-tag--purple" style="display:inline-block;">Reclassified</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a href="" class="show-case email-document-V2" onclick="email()" data-doc="defendants.pdf" data-document="22" onclick="return topFunction(), pageActions()" data-page="1">
+                                                {% if data['docType-document-name'] == 'Yes' %}
+                                                    {{ data['docType-Scenario-1-NAME'] }}
+                                                {% else %}
+                                                    Asset Rec 1
+                                                {% endif %}
+                                            </a>
+                                        </p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>21 Jan 2021
+                                            <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>12:20
+                                            <button class="notes-link govuk-button has-notes" data-module="govuk-button" type="button" onClick="openNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-text-content">
+                                                    <strong>Notes:</strong>
+                                                    <span class="notes-content">Redacted, reviewed, do not serve</span>
+                                                </span>
+                                            </button>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <form action="../4-move-documents/A-category.html" method="get">
+                                            <input id="scenario-1" name="scenario-1" type="text" value="true">
+                                            <input id="scenario" name="scenario" type="text" value="one">
+                                            <input id="answers-complete" name="answers-complete" type="text" value="false">
+                                            <button onclick="" class="move-Document">Reclassify document</button>
+                                        </form>
+                                        <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button>
+                                        <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                        <button onclick="" class="unused-Document">Mark as Unused</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% else %}
+
+                            {% endif %}
+                            
+                            {% if data['scenario-1'] == 'true' and data['docType-CheckAnswers'] %}
+
+                            {% else %}
+                                <tr class="govuk-table__row empty-table">
+                                    <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe" scope="row">No documents</td>
+                                </tr>
+                            {% endif %}
+
+                            <!-- //////////////// UNUSED DOCUMENTS - START //////////////// -->
+                            <tr class="govuk-table__row document-holder document-17 alpha-1 date-5 markedAsUnused" id="group6-doc4-B">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a class="show-case" href="MG20_5_JUNE.pdf" data-doc="MG20_5_JUNE.pdf" data-document="18" onclick="return topFunction(), pageActions()" data-page="1">MG20_5_JUNE</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>06 Jun 2020
+                                            <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>21:14
+                                            <button class="notes-link new-notes-link govuk-button" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-new-text-content"></span>
+                                            </button>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="" class="move-Document">Reclassify document</button>
+                                        <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                        <button onclick="" class="unused-Document">Mark as Unused</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row document-holder document-18 alpha-2 date-6 markedAsUnused" id="group6-doc5-B">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a class="show-case" href="MG20_10_JUNE.pdf" data-doc="MG20_10_JUNE.pdf" data-document="19" onclick="return topFunction(), pageActions()" data-page="1">MG20_10_JUNE</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>11 Jun 2020
+                                            <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>09:35
+                                            <button class="notes-link new-notes-link govuk-button" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-new-text-content"></span>
+                                            </button>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button>
+                                        <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                        <button onclick="" class="unused-Document">Mark as Unused</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- //////////////// UNUSED DOCUMENTS - END //////////////// -->
+
+                        </tbody>
+                    </table>
+                    <table class="govuk-table" id="emailTable">
+                        <thead>
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header"><span class="icon-new emails"></span>Emails</th>
+                            </tr>
+                        </thead>
+                        <tbody id="accordion-tbody-communication">
+                            <tr class="govuk-table__row document-holder document-19 alpha-2 date-1" id="group9-doc1">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a href="" class="show-case email-document" onclick="email()" data-doc="email.pdf" data-document="21" onclick="return topFunction(), pageActions()" data-page="1">VADER, 45GD0702322, 22/08/2023</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>02 Jun 2020
+                                            <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>18:56
+                                            <button class="notes-link govuk-button has-notes" data-module="govuk-button" type="button" onClick="openNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="notes-number"></span>
+                                                <span class="visuallyhidden notes-text-content">
+                                                    <strong>Notes:</strong>
+                                                    <span class="notes-content">Redacted, reviewed, do not serve</span>
+                                                </span>
+                                            </button>
+                                            <br>
+                                            <span class="icon-new sender"><span class="visuallyhidden">Sender</span></span>
+                                            From: <a href="mailto:sujitha.tharmarajah@test.gov.uk">sujitha.tharmarajah@test.gov.uk</a>
+                                            <br>
+                                            <span class="icon-new attachments"><span class="visuallyhidden">Attachments</span></span>4 attachments
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button>
+                                        <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                        <button onclick="" class="unused-Document">Mark as Unused</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row document-holder document-20 alpha-1 date-1" id="group9-doc2">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a href="" class="show-case email-document-V2" onclick="email()" data-doc="email.pdf" data-document="21" onclick="return topFunction(), pageActions()" data-page="1">SCOTT, 12564Y7EH, 02/09/2021</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>03 Jan 2021
+                                            <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>20:12
+                                            <button class="notes-link govuk-button has-notes" data-module="govuk-button" type="button" onClick="openNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-text-content">
+                                                    <strong>Notes:</strong>
+                                                    <span class="notes-content">Redacted, reviewed, do not serve</span>
+                                                </span>
+                                            </button>
+                                            <br>
+                                            <span class="icon-new sender"><span class="visuallyhidden">Sender</span></span>
+                                            From: <a href="mailto:sujitha.tharmarajah@test.gov.uk">jim.halbert@test.gov.uk</a>
+                                            <br>
+                                            <span class="icon-new attachments"><span class="visuallyhidden">Attachments</span></span> <span class="govuk-caption-m emails">Only available on CMS</span>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="location.href='../4-move-documents/A-category';" class="move-Document">Reclassify document</button>
+                                        <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                        <button onclick="" class="unused-Document">Mark as Unused</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="save-DocumentMove govuk-button" onClick="return confirmReorder()" data-module="govuk-button" type="button">Save order to CMS</button>
+                    <!-- <button class="move-multiple-Documents govuk-button govuk-button--secondary" data-module="govuk-button" type="button">Reclassify multiple documents</button> -->
+                </div>
+            </div>
+            <!-- SECTION 9 - END -->
+
+            <!-- SECTION 10 - START -->
+            <div class="accordion-section section-10" id="new-task">
+                {% if data['scenario-1'] == 'true' and data['scenario-2'] == 'true' and data['scenario-3'] == 'true' and data['docType-CheckAnswers'] %}
+                    <div class="accordion-section-header"><h2 class="govuk-heading-s">Unclassified (<span class="unclassified-number">1</span>)</h2></div>
+                {% elseif data['scenario-1'] == 'true' and data['scenario-2'] == 'true' and data['docType-CheckAnswers'] %}
+                    <div class="accordion-section-header"><h2 class="govuk-heading-s">Unclassified (<span class="unclassified-number">2</span>)</h2></div>
+                {% elseif data['scenario-1'] == 'true' and data['scenario-3'] == 'true' and data['docType-CheckAnswers'] %}
+                    <div class="accordion-section-header"><h2 class="govuk-heading-s">Unclassified (<span class="unclassified-number">2</span>)</h2></div>
+                {% elseif data['scenario-2'] == 'true' and data['scenario-3'] == 'true' and data['docType-CheckAnswers'] %}
+                    <div class="accordion-section-header"><h2 class="govuk-heading-s">Unclassified (<span class="unclassified-number">2</span>)</h2></div>
+                {% elseif data['scenario-1'] == 'true' and data['docType-CheckAnswers'] %}
+                    <div class="accordion-section-header"><h2 class="govuk-heading-s">Unclassified (<span class="unclassified-number">3</span>)</h2></div>
+                {% elseif data['scenario-2'] == 'true' and data['docType-CheckAnswers'] %}
+                    <div class="accordion-section-header"><h2 class="govuk-heading-s">Unclassified (<span class="unclassified-number">3</span>)</h2></div>
+                {% elseif data['scenario-3'] == 'true' and data['docType-CheckAnswers'] %}
+                    <div class="accordion-section-header"><h2 class="govuk-heading-s">Unclassified (<span class="unclassified-number">3</span>)</h2></div>
+                {% else %}
+                    <div class="accordion-section-header"><h2 class="govuk-heading-s">Unclassified (<span class="unclassified-number">4</span>)</h2></div>
+                {% endif %}
+
+                <div class="accordion-section-body">
+                    <a href="#" class="open-all">Open all unclassified documents</a>
+                    <!-- SORT - START -->
+                    <div class="sort-documents-nav">
+                        <button class="sort-documents" id="sort-Uncategorised">Sort documents</button>  
+                        <div class="wrapper">                      
+                            <button onclick="return sortUncategorisedAlphabetical()" class="sort-Alphabetically">by Alphabetical</button>
+                            <button onclick="return sortUncategorisedDate()" class="sort-Date">by Date</button>
+                        </div>
+                    </div>
+                    <!-- SORT - END -->
+                    <table class="govuk-table" id="sortUncategorised">
+                        <thead>
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header"><span class="visuallyhidden">Missing documents</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="accordion-tbody-uncategorised">
+                            <tr class="govuk-table__row document-holder document-21 alpha-2 date-1" id="group10-doc1">
+                                <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag loading-tag">Loading...</strong>
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a href="#document-top" class="show-case" data-doc="MISSINGDOCS.pdf" data-document="1" onclick="return topFunction(), pageActions()" data-page="1">2 Documents on CMS</a>
+                                        </p>
+                                        <p class="error-text">There is a problem with this document</p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="" class="move-Document">Classify document</button>
+                                        <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                        <!-- <button onclick="" class="unused-Document">Mark as Unused</button> -->
+                                    </div>
+                                </td>
+                            </tr>
+
+                            {% if data['scenario-1'] == 'true' and data['docType-CheckAnswers'] %}
+
+                            {% else %}
+                                <tr class="govuk-table__row document-holder document-22 alpha-1 date-2" id="group10-doc2">
+                                    <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                        <div class="wrapper">
+                                            <strong class="govuk-tag loading-tag">Loading...</strong>
+                                            <strong class="govuk-tag current">Active Document</strong>
+                                            <p class="redacted-indicator">
+                                                <a href="" class="show-case email-document-V2" onclick="email()" data-doc="defendants.pdf" data-document="22" onclick="return topFunction(), pageActions()" data-page="1">Asset Rec 1</a>
+                                            </p>
+                                            <br>
+                                            <p class="date-added">
+                                                <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>03 Jan 2021
+                                                <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>20:12
+                                                <button class="notes-link govuk-button has-notes" data-module="govuk-button" type="button" onClick="openNotesModal()">
+                                                    <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                    <span class="visuallyhidden notes-text-content">
+                                                        <strong>Notes:</strong>
+                                                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                                                    </span>
+                                                </button>
+                                            </p>
+                                        </div>
+                                        <button class="more-options">
+                                            <span class="visuallyhidden">More options</span>
+                                        </button>
+                                        <div class="document-nav">
+                                            <form action="../4-move-documents/A-category.html" method="get">
+                                                <input id="scenario-1" name="scenario-1" type="text" value="true">
+                                                <input id="scenario" name="scenario" type="text" value="one">
+                                                <input id="answers-complete" name="answers-complete" type="text" value="false">
+                                                <button onclick="" class="move-Document" id="start-scenario-1">Classify document</button>
+                                            </form>
+                                            <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                            <!-- <button onclick="" class="unused-Document">Mark as Unused</button> -->
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endif %}
+
+                            {% if data['scenario-2'] == 'true' and data['docType-CheckAnswers'] %}
+
+                            {% else %}
+                                <tr class="govuk-table__row document-holder document-23 alpha-4 date-3" id="group10-doc3">
+                                    <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                        <div class="wrapper">
+                                            <strong class="govuk-tag loading-tag">Loading...</strong>
+                                            <strong class="govuk-tag current">Active Document</strong>
+                                            <p class="redacted-indicator">
+                                                <a href="" class="show-case email-document-V2" onclick="email()" data-doc="MG11_1.pdf" data-document="22" onclick="return topFunction(), pageActions()" data-page="1">MG11 - 1</a>
+                                            </p>
+                                            <br>
+                                            <p class="date-added">
+                                                <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>05 Jan 2021
+                                                <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>13:14
+                                                <button class="notes-link govuk-button has-notes" data-module="govuk-button" type="button" onClick="openNotesModal()">
+                                                    <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                    <span class="visuallyhidden notes-text-content">
+                                                        <strong>Notes:</strong>
+                                                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                                                    </span>
+                                                </button>
+                                            </p>
+                                        </div>
+                                        <button class="more-options">
+                                            <span class="visuallyhidden">More options</span>
+                                        </button>
+                                        <div class="document-nav">
+                                            <form action="../4-move-documents/A-category.html" method="get">
+                                                <input id="scenario-2" name="scenario-2" type="text" value="true">
+                                                <input id="scenario" name="scenario" type="text" value="two">
+                                                <input id="answers-complete" name="answers-complete" type="text" value="false">
+                                                <button onclick="" class="move-Document" id="start-scenario-2">Classify document</button>
+                                            </form>
+                                            <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                            <!-- <button onclick="" class="unused-Document">Mark as Unused</button> -->
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endif %}
+
+                            {% if data['scenario-3'] == 'true' and data['docType-CheckAnswers'] %}
+
+                            {% else %}
+                                <tr class="govuk-table__row document-holder document-24 alpha-3 date-4" id="group10-doc4">
+                                    <td class="govuk-table__cell govuk-body-s wrapLongFilenamesCPS openMe unreadDocument" scope="row">
+                                        <div class="wrapper">
+                                            <strong class="govuk-tag loading-tag">Loading...</strong>
+                                            <strong class="govuk-tag current">Active Document</strong>
+                                            <p class="redacted-indicator">
+                                                <a href="" class="show-case email-document-V2" onclick="email()" data-doc="MG12.pdf" data-document="22" onclick="return topFunction(), pageActions()" data-page="1">Exhibit - 1</a>
+                                            </p>
+                                            <br>
+                                            <p class="date-added">
+                                                <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>25 Jun 2021
+                                                <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>21:59
+                                                <button class="notes-link govuk-button has-notes" data-module="govuk-button" type="button" onClick="openNotesModal()">
+                                                    <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                    <span class="visuallyhidden notes-text-content">
+                                                        <strong>Notes:</strong>
+                                                        <span class="notes-content">Redacted, reviewed, do not serve</span>
+                                                    </span>
+                                                </button>
+                                            </p>
+                                        </div>
+                                        <button class="more-options">
+                                            <span class="visuallyhidden">More options</span>
+                                        </button>
+                                        <div class="document-nav">
+                                            <form action="../4-move-documents/A-category.html" method="get">
+                                                <input id="scenario-3" name="scenario-3" type="text" value="true">
+                                                <input id="scenario" name="scenario" type="text" value="three">
+                                                <input id="answers-complete" name="answers-complete" type="text" value="false">
+                                                <button onclick="" class="move-Document" id="start-scenario-3">Classify document</button>
+                                            </form>
+                                            <button onclick="return openRenameModal(), documentOptionTitle()" class="rename-Document">Rename document</button>
+                                            <!-- <button onclick="" class="unused-Document">Mark as Unused</button> -->
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endif %}
+
+                        </tbody>
+                    </table>
+                    <button class="save-DocumentMove govuk-button" onClick="return confirmReorder()" data-module="govuk-button" type="button">Save order to CMS</button>
+                    <!-- <button class="move-multiple-Documents govuk-button govuk-button--secondary" data-module="govuk-button" type="button">Reclassify multiple documents</button> -->
+                </div>
+            </div>
+            <!-- SECTION 10 - END -->
+           
+        </div>
+
+    </div>
+
+<!--     <div class="feedback">
+        <p class="govuk-body-s">Your <a href="#">feedback (opens in a new tab)</a> will help us to improve this service.</p>    
+    </div>
+ -->
+</div>
+<!-- ////////////////////////////////////////////// SEARCH FILTER COLUMN - END ////////////////////////////////////////////// -->

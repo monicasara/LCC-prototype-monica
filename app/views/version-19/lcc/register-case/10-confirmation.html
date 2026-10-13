@@ -1,0 +1,41 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+{% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+
+{% endblock %}
+{% block content %}
+
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-panel govuk-panel--confirmation">
+          <h1 class="govuk-panel__title">
+            Case registered
+          </h1>
+          <div class="govuk-panel__body">
+            URN<br><strong>
+              {% if data['URN1'] %}
+              {{ data['URN1'] }}{{ data['URN2'] }}{{ data['URN3'] }}{{ data['URN4'] }}
+              {% else %}
+              87AA6543226
+              {% endif %}
+            </strong>
+          </div>
+        </div>
+        <p class="govuk-body">Save the URN as you will need it to find or update the case.</p>
+        <h2 class="govuk-heading-m">Next steps</h2>
+        <p class="govuk-body">You can:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><a href="" class="govuk-link">update the case on CMS Classic</a></li>
+          <li><a href="00-homepage" class="govuk-link">go to the homepage</a> to view your cases and tasks</li>
+          <li><a href="10-egress-setup" class="govuk-link">set up Egress and the Shared Drive</a></li>
+        </ul>
+
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}

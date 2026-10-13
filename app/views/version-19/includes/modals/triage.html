@@ -1,0 +1,59 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="triageModal">
+
+    <div class="das-cookie-banner x-small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-modal-dialogue__header">
+                <button aria-label="Close modal dialogue" class="govuk-button govuk-modal-dialogue__close close-triage" data-module="govuk-button" type="button" onClick="closeTriage()">×</button>
+            </div>
+
+            <!-- //////////////////////////////// CONFIRM REMOVE/ROTATE - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="confirmRemove">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="saving-panel-triage">
+                        <h2 class="govuk-heading-s">
+                            <span class="saving"></span>
+                            Navigating to CMS triage page...
+                        </h2>
+                        <p>Do not close this window</p>
+                    </div>
+
+                    <div class="success-banner-triage">
+                        <h2 class="govuk-heading-s">
+                            <span class="success"></span>
+                            Navigation to CMS triage page has been complete
+                        </h2>
+                    </div>
+
+                    <div class="redaction-wrapper triage-wrapper">
+                        <form method="" action="">
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full">
+                                    <p></p>
+                                </div>
+
+                                <div class="govuk-grid-column-full">
+                                    <p class="no-margin-bottom">Please switch your browser tab/window to CMS Classic</p>
+                                </div>
+
+                            </div>
+
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full cta-group">
+                                    <button class="non-button cancel-delete no-margin-top" data-module="govuk-button" type="button" onclick="return closeTriage()">Close</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// CONFIRM REMOVE/ROTATE - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>

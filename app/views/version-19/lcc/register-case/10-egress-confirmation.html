@@ -1,0 +1,39 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+{% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+
+{% endblock %}
+{% block content %}
+
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+          {% if data['existingEgressFolder'] == 1 %}
+            Egress case connected
+          {% else %}
+            Egress case created
+          {% endif %}
+        </h1>
+
+        <p></p>
+        {% if data['existingEgressFolder'] == 1 %}
+          <p class="govuk-body">The  Egress case {{ data['egress_file_link'] }} has been connected.</p>
+        {% else %}
+          <p class="govuk-body">A new case has been created on Egress.</p>
+        {% endif %}
+
+        <p class="govuk-body">Select Continue to manage the Shared Drive.</p>
+
+        <form action="/version-19/lcc/register-case/10-egress-confirmation" method="post" novalidate>
+          <button type="submit" class="govuk-button">Continue</button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

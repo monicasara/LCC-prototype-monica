@@ -1,0 +1,103 @@
+{% extends "layoutCPS-NEW-INDEX.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">You have added {{ data['suspectCount']}} {% if data['suspectCount'] == 1 %} suspect {% else %} suspects{% endif %}</h1>
+    <div class="govuk-form-group">
+
+      <dl class="govuk-summary-list hmrc-list-with-actions hmrc-list-with-actions--short">
+
+        {% for id in data['suspectId'] %}            
+          {% if (data['suspectType'][id] == 'Person') %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-font-weight-bold hmrc-summary-list__key">
+
+
+              <span class="icon-new user"></span> <span class="uppercase">{{data['suspectLastName'][id]}}</span>, {{data['suspectFirstName'][id]}} <span class="govuk-body">| born {{data['suspectDayBirth'][id]}} {{data['monthName'][data['suspectMonthBirth'][id]]}} {{data['suspectYearBirth'][id]}}</span>
+
+
+            </dt>
+            <dd class="govuk-summary-list__actions hmrc-summary-list__actions">
+              <ul class="govuk-summary-list__actions-list">
+                <li class="govuk-summary-list__actions-list-item">
+                  <form action="/version-19/lcc/register-case/04-edit-suspect-router" method="post" novalidate>
+                    <input type="hidden" name="edit-suspect" value="{{ id }}">
+                    <button class="govuk-link suspect" type="submit">Edit</button>
+                  </form>
+                </li>
+                <li class="govuk-summary-list__actions-list-item">
+                  <form action="/version-19/lcc/register-case/04-add-charges" method="post" novalidate>
+                    <input type="hidden" name="add-charges" value="{{ id }}">
+                    <button class="govuk-link suspect" type="submit">Add charges</button>
+                  </form>
+                </li>
+                <!-- <li class="govuk-summary-list__actions-list-item">
+                  <form action="/version-19/lcc/register-case/04-add-suspect-details" method="post" novalidate>
+                    <input type="hidden" name="add-suspect-details" value="{{ id }}">
+                    <button class="govuk-link suspect" type="submit">Add details</button>
+                  </form>
+                </li> -->
+                <li class="govuk-summary-list__actions-list-item"><a class="govuk-link" href="#"><span aria-hidden="true">Remove</span><span class="govuk-visually-hidden">Remove {{ data['suspectFirstName'][id]}} {{data['suspectLastName'][id]}}</span></a></li>
+
+              </ul>
+            </dd>
+          </div>
+          {% else %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-font-weight-bold hmrc-summary-list__key">
+              <span class="icon-new company"></span> {{ data['suspectCompanyName'][id]}}
+            </dt>
+            <dd class="govuk-summary-list__actions hmrc-summary-list__actions">
+              <ul class="govuk-summary-list__actions-list">
+                <li class="govuk-summary-list__actions-list-item"><a class="govuk-link" href="03A-add-suspect.html?id={{data['suspectId'][id]}}"><span aria-hidden="true">Edit</span><span class="govuk-visually-hidden">Edit {{ data['suspectCompanyName'][id]}}'s details</span></a></li>
+                <li class="govuk-summary-list__actions-list-item"><a class="govuk-link" href="#"><span aria-hidden="true">Remove</span><span class="govuk-visually-hidden">Remove {{ data['suspectCompanyName'][id]}}</span></a></li>
+              </ul>
+            </dd>
+          </div>
+
+          {% endif %}
+        {% endfor %}
+      </dl>
+
+    </div>
+    <form action="/version-19/lcc/register-case/04B-suspect-summary" method="post" novalidate>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="add-another-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--m">
+            Do you need to add another suspect?
+          </legend>
+          <!-- <div id="add-another-hint" class="govuk-hint">
+            You must tell us about all your directors.
+          </div> -->
+          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-another" name="add-another" type="radio" value="Yes">
+              <label class="govuk-label govuk-radios__label" for="add-another">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-another-2" name="add-another" type="radio" value="No">
+              <label class="govuk-label govuk-radios__label" for="add-another-2">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button">Continue</button>
+      <button type="button" onclick="location.href='../../../';" class="non-button margin-left" id="">Cancel</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

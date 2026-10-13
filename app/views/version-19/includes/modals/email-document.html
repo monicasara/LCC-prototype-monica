@@ -1,0 +1,93 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="emailDocumentModal">
+
+    <div class="das-cookie-banner small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-modal-dialogue__header">
+                <button aria-label="Close modal dialogue" class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeEmailModal()">×</button>
+            </div>
+
+            <!-- //////////////////////////////// REDACTION LOG - START //////////////////////////////// -->
+            <div class="govuk-grid-row" id="email-document-modal">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-l">
+                                    Email: <span class="document-title-5">###</span>                   
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="" action="">
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+
+                                <div class="govuk-error-summary" data-module="govuk-error-summary" id="Email-error-status">
+                                    <div role="alert">
+                                        <h2 class="govuk-error-summary__title">There is a problem</h2>
+                                        <div class="govuk-error-summary__body">
+                                            <ul class="govuk-list govuk-error-summary__list">
+                                                <li id="email-Recipients-error"><a href="#emailRecipients">Enter the recipients your email will be sent to</a></li>
+                                                <li id="email-Title-error"><a href="#emailTitle">Enter the title of your email</a></li>
+                                                <!-- <li id="email-Text-error"><a href="#emailText">Enter the text of your email</a></li> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- /////////////////////// FORM ITEM - 1 - START /////////////////////// -->
+                                <div class="govuk-form-group" id="emailRecipients-wrapper">
+                                    <label class="govuk-label" for="emailRecipients">Recipients</label>
+                                    <p id="emailRecipients-error" class="govuk-error-message">
+                                        <span class="govuk-visually-hidden">Error:</span> Enter the recipients your email will be sent to
+                                    </p>                                            
+                                    <input class="govuk-input" id="emailRecipients" name="emailRecipients" type="text">
+                                </div>                                    
+                                <!-- /////////////////////// FORM ITEM - 1 - END /////////////////////// -->
+
+                                <!-- /////////////////////// FORM ITEM - 2 - START /////////////////////// -->
+                                <div class="govuk-form-group" id="emailTitle-wrapper">
+                                    <label class="govuk-label" for="emailTitle">Title</label>
+                                    <p id="emailTitle-error" class="govuk-error-message">
+                                        <span class="govuk-visually-hidden">Error:</span> Enter the title of your email
+                                    </p>                                            
+                                    <input class="govuk-input govuk-!-width-one-half" id="emailTitle" name="emailTitle" type="text">
+                                </div>                                    
+                                <!-- /////////////////////// FORM ITEM - 2 - END /////////////////////// -->
+
+                                <!-- /////////////////////// FORM ITEM - 3 - START /////////////////////// -->
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label" for="emailText">Email content</label>
+<!--                                     <p id="emailText-error" class="govuk-error-message">
+                                        <span class="govuk-visually-hidden">Error:</span> Enter the text of your email
+                                    </p>                                            
+ -->                                    
+                                    <textarea class="govuk-textarea" id="emailText" name="emailText" rows="5"></textarea>
+                                </div>
+                                <!-- /////////////////////// FORM ITEM - 3 - END /////////////////////// -->
+
+                            </div>
+                        </div>
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full cta-group">
+                                <button id="error-email-button" class="govuk-button" data-module="govuk-button" type="button" onClick="">Send document</button>
+                                <button id="send-email-button" class="govuk-button" data-module="govuk-button" type="button" onClick="openEmailConfirmation(), closeEmailModal()">Send document</button>
+                                <button class="non-button" data-module="govuk-button" type="button" onClick="closeEmailModal()">Cancel</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+            <!-- //////////////////////////////// REDACTION LOG - END //////////////////////////////// -->
+        </div>
+    </div>
+</div>

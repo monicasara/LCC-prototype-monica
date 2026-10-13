@@ -1,0 +1,61 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row" id="create-case-journey">
+
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+
+            <form action="/version-19/lcc/register-case/04-add-charges-suspect" method="post" novalidate>
+
+                <div class="govuk-form-group{% if selectionError %} govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset" aria-describedby="suspect-charges-hint{% if selectionError %} suspect-charges-error{% endif %}">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <h1 class="govuk-fieldset__heading">
+                        Which suspects do you want to add charges for?
+                    </h1>
+                    </legend>
+                    <div id="suspect-charges-hint" class="govuk-hint">Select all that apply.</div>
+                    {% if selectionError %}<p id="suspect-charges-error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> {{ selectionError }}</p>{% endif %}
+                    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+
+                    {% for id in data['suspectId'] %}            
+                        {% if (data['suspectType'][id] == 'Person') %}                        
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="suspect-charges-{{data['suspectId'][id]}}" name="suspect-charges" type="checkbox" value="{{data['suspectId'][id]}}">
+                            <label class="govuk-label govuk-checkboxes__label" for="suspect-charges-{{data['suspectId'][id]}}">
+                                <span class="uppercase">{{data['suspectLastName'][id]}}</span>, {{data['suspectFirstName'][id]}} <span class="govuk-body">{% if data['suspectDayBirth'][id] %}&ndash; born {{data['suspectDayBirth'][id]}} {{data['monthName'][data['suspectMonthBirth'][id]]}} {{data['suspectYearBirth'][id]}}{% endif %}</span>
+                                {% if isYouthSuspect(id) %}
+                                    &nbsp;&nbsp;<strong class="govuk-tag">Youth</strong> 
+                                {% endif %}
+
+                            </label>
+                        </div>
+                        {% else %}                        
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="suspect-charges-{{data['suspectId'][id]}}" name="suspect-charges" type="checkbox" value="{{data['suspectId'][id]}}">
+                            <label class="govuk-label govuk-checkboxes__label" for="suspect-charges-{{data['suspectId'][id]}}">
+                                {{data['suspectCompanyName'][id]}}
+                            </label>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </fieldset>
+                </div>
+
+                {% include "../../includes/buttons.html" %}
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

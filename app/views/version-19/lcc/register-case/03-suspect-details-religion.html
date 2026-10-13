@@ -1,0 +1,117 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row" id="create-case-journey">
+
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+            {% if errorList and errorList.length %}
+            <div class="govuk-error-summary" data-module="govuk-error-summary">
+                <div role="alert">
+                    <h2 class="govuk-error-summary__title">
+                        There is a problem
+                    </h2>
+                    <div class="govuk-error-summary__body">
+                        <ul class="govuk-list govuk-error-summary__list">
+                            {% for error in errorList %}
+                            <li>
+                                <a href="{{ error.href }}">{{ error.text }}</a>
+                                {% if error.skipHref and error.skipText %}
+                                <div class="govuk-!-margin-top-3">
+                                    <a class="govuk-link" style="font-weight: normal;" href="{{ error.skipHref }}">{{ error.skipText }}</a>
+                                </div>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <form method="post" action="/version-19/lcc/register-case/03-suspect-details-religion">  
+
+                <fieldset class="govuk-fieldset">
+
+                <div class="govuk-form-group{% if errors and errors.religion %} govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <h1 class="govuk-fieldset__heading">
+                        What is <span class="uppercase">{{ data['suspect-person-last-name'] }}</span>, {{ data['suspect-person-first-name'] }}'s religion?
+                    </h1>
+                    </legend>
+                    {% if errors and errors.religion %}
+                    <span id="religion-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> {{ errors.religion }}
+                    </span>
+                    {% endif %}
+                    <div class="govuk-radios" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="religion-no-religion" name="religion" type="radio" value="No religion" {% if data['suspectReligion'][data['suspectDetailsCount']] == 'No religion' %}checked{% endif %} {% if errors and errors.religion %}aria-describedby="religion-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="religion-no-religion">
+                        No religion
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="religion-buddhist" name="religion" type="radio" value="Buddhist" {% if data['suspectReligion'][data['suspectDetailsCount']] == 'Buddhist' %}checked{% endif %} {% if errors and errors.religion %}aria-describedby="religion-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="religion-buddhist">
+                        Buddhist
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="religion-not-Christian" name="religion" type="radio" value="Christian" {% if data['suspectReligion'][data['suspectDetailsCount']] == 'Christian' %}checked{% endif %} {% if errors and errors.religion %}aria-describedby="religion-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="religion-not-Christian">
+                        Christian
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="religion-hindu" name="religion" type="radio" value="Hindu" {% if data['suspectReligion'][data['suspectDetailsCount']] == 'Hindu' %}checked{% endif %} {% if errors and errors.religion %}aria-describedby="religion-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="religion-hindu">
+                        Hindu
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="religion-jewish" name="religion" type="radio" value="Jewish" {% if data['suspectReligion'][data['suspectDetailsCount']] == 'Jewish' %}checked{% endif %} {% if errors and errors.religion %}aria-describedby="religion-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="religion-jewish">
+                        Jewish
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="religion-Muslim" name="religion" type="radio" value="Muslim" {% if data['suspectReligion'][data['suspectDetailsCount']] == 'Muslim' %}checked{% endif %} {% if errors and errors.religion %}aria-describedby="religion-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="religion-Muslim">
+                         Muslim
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="religion-Sikh" name="religion" type="radio" value="Sikh" {% if data['suspectReligion'][data['suspectDetailsCount']] == 'Sikh' %}checked{% endif %} {% if errors and errors.religion %}aria-describedby="religion-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="religion-Sikh">
+                        Sikh
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="religion-other" name="religion" type="radio" value="Other religion" {% if data['suspectReligion'][data['suspectDetailsCount']] == 'Other religion' %}checked{% endif %} {% if errors and errors.religion %}aria-describedby="religion-error"{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="religion-other">
+                        Other religion
+                        </label>
+                    </div>
+
+                </fieldset>
+                </div>
+
+                {% include "../../includes/buttons.html" %}
+
+            </form>
+
+        </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+</div>
+
+{% endblock %}

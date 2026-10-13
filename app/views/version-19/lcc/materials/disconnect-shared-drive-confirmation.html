@@ -1,0 +1,35 @@
+{% extends "layoutCPS-OFF-V11.html" %}
+
+{% block pageTitle %}
+Shared Drive disconnected – {{ serviceName }} – Prototype
+{% endblock %}
+
+{% block header %}
+{% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">
+        Shared Drive disconnected
+      </h1>
+    </div>
+
+    <p class="govuk-body govuk-!-margin-top-6">
+      You've disconnected the Shared Drive folder.
+    </p>
+
+    <p class="govuk-body">
+      You can connect a different folder if you need to.
+    </p>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="05A-p-drive-files">
+        Connect a folder
+      </a>
+    </p>
+  </div>
+</div>
+{% endblock %}

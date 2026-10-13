@@ -1,0 +1,356 @@
+<div aria-label="cookie banner" class="das-cookie-banner__wrap das-cookie-banner__modal rj-dont-display" id="MaterialsTransfer_1_Modal">
+
+    <div class="das-cookie-banner small" id="openMe">
+        <div class="das-cookie-banner__wrapper">
+
+            <div class="govuk-modal-dialogue__header">
+                <button aria-label="Close modal dialogue" class="govuk-button govuk-modal-dialogue__close" data-module="govuk-button" type="button" onClick="closeSortMaterials()">×</button>
+            </div>
+
+            <div class="govuk-grid-row" id="">
+
+                <div class="innerPanel simpleModelTwo">
+
+                    <div class="header-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <h1 class="govuk-heading-m">Transfer materials</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="redaction-wrapper modal-wrapper">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <p></p>
+
+                                <div class="govuk-form-group">
+                                    <fieldset class="govuk-fieldset">
+                                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                            <h1 class="govuk-fieldset__heading">Where would you like to transfer the files on the Shared Drive?</h1>
+                                        </legend>
+
+                                        {% if 'scd' in data['offCMS_Username'] or 'SCD' in data['offCMS_Username'] %}
+                                            <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_1" name="transfer_Folder_Destination" type="radio" value="Destination_1">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_1">1. Case Management</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_2" name="transfer_Folder_Destination" type="radio" value="Destination_2">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_2">2. Conference Hearing Notes</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_3" name="transfer_Folder_Destination" type="radio" value="Destination_3">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_3">3. Experts</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_4" name="transfer_Folder_Destination" type="radio" value="Destination_4">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_4">4. Counsel</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_5" name="transfer_Folder_Destination" type="radio" value="Destination_5">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_5">5. Correspondence</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_6" name="transfer_Folder_Destination" type="radio" value="Destination_6">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_6">6. Disclosure</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_7" name="transfer_Folder_Destination" type="radio" value="Destination_7">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_7">7. Finance</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_8" name="transfer_Folder_Destination" type="radio" value="Destination_8">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_8">8. Lawyer Working copies</label>
+                                                </div>
+                                            </div>
+                                            <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_9" name="transfer_Folder_Destination" type="radio" value="Destination_9">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_9">9. PO Working copies</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_10" name="transfer_Folder_Destination" type="radio" value="Destination_10">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_10">10. Police</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_11" name="transfer_Folder_Destination" type="radio" value="Destination_11">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_11">11. Media</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_12" name="transfer_Folder_Destination" type="radio" value="Destination_12">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_12">12. Victims & Witnesses</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_13" name="transfer_Folder_Destination" type="radio" value="Destination_13">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_13">13. DCS</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_14" name="transfer_Folder_Destination" type="radio" value="Destination_14">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_14">14. Mags Ct</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_15" name="transfer_Folder_Destination" type="radio" value="Destination_15">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_15">15. IDPC</label>
+                                                </div>
+                                            </div>
+                                        {% elseif 'ctd' in data['offCMS_Username'] or 'CTD' in data['offCMS_Username'] %}
+                                            <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_1" name="transfer_Folder_Destination" type="radio" value="Destination_1">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_1">1. Case Management</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_2" name="transfer_Folder_Destination" type="radio" value="Destination_2">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_2">2. Conference Hearing Notes</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_3" name="transfer_Folder_Destination" type="radio" value="Destination_3">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_3">3. Experts</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_4" name="transfer_Folder_Destination" type="radio" value="Destination_4">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_4">4. Counsel</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_5" name="transfer_Folder_Destination" type="radio" value="Destination_5">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_5">5. Correspondence</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_6" name="transfer_Folder_Destination" type="radio" value="Destination_6">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_6">6. Disclosure</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_7" name="transfer_Folder_Destination" type="radio" value="Destination_7">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_7">7. Finance</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_8" name="transfer_Folder_Destination" type="radio" value="Destination_8">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_8">8. Lawyer Working copies</label>
+                                                </div>
+                                            </div>
+                                            <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_9" name="transfer_Folder_Destination" type="radio" value="Destination_9">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_9">9. PO Working copies</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_10" name="transfer_Folder_Destination" type="radio" value="Destination_10">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_10">10. Police</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_11" name="transfer_Folder_Destination" type="radio" value="Destination_11">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_11">11. Media</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_12" name="transfer_Folder_Destination" type="radio" value="Destination_12">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_12">12. Victims & Witnesses</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_13" name="transfer_Folder_Destination" type="radio" value="Destination_13">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_13">13. DCS</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_14" name="transfer_Folder_Destination" type="radio" value="Destination_14">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_14">14. Mags Ct</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_15" name="transfer_Folder_Destination" type="radio" value="Destination_15">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_15">15. IDPC</label>
+                                                </div>
+                                            </div>
+                                        {% elseif 'seocid' in data['offCMS_Username'] or 'SEOCID' in data['offCMS_Username'] %}
+                                            <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_1" name="transfer_Folder_Destination" type="radio" value="Destination_1">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_1">1. Key documents</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_2" name="transfer_Folder_Destination" type="radio" value="Destination_2">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_2">2. File submissions</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_3" name="transfer_Folder_Destination" type="radio" value="Destination_3">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_3">3. Pre-charge</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_4" name="transfer_Folder_Destination" type="radio" value="Destination_4">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_4">4. Case material</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_5" name="transfer_Folder_Destination" type="radio" value="Destination_5">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_5">5. Disclosure</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_6" name="transfer_Folder_Destination" type="radio" value="Destination_6">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_6">6. CTLs</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_7" name="transfer_Folder_Destination" type="radio" value="Destination_7">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_7">7. Trial</label>
+                                                </div>
+                                            </div>
+                                            <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_8" name="transfer_Folder_Destination" type="radio" value="Destination_8">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_8">8. Miscellaneous</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_9" name="transfer_Folder_Destination" type="radio" value="Destination_9">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_9">9. Ancillary</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_10" name="transfer_Folder_Destination" type="radio" value="Destination_10">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_10">10. International</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_11" name="transfer_Folder_Destination" type="radio" value="Destination_11">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_11">11. Appeals</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_12" name="transfer_Folder_Destination" type="radio" value="Destination_12">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_12">12. Finance</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_13" name="transfer_Folder_Destination" type="radio" value="Destination_13">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_13">13. Correspondence</label>
+                                                </div>
+                                            </div>
+                                        {% elseif 'poc' in data['offCMS_Username'] or 'POC' in data['offCMS_Username'] %}
+                                            <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_1" name="transfer_Folder_Destination" type="radio" value="Destination_1">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_1">0. Need Review</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_2" name="transfer_Folder_Destination" type="radio" value="Destination_2">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_2">1. Case Management Record</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_3" name="transfer_Folder_Destination" type="radio" value="Destination_3">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_3">2. Correspondence</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_4" name="transfer_Folder_Destination" type="radio" value="Destination_4">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_4">3. Pledgings and Applications</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_5" name="transfer_Folder_Destination" type="radio" value="Destination_5">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_5">4. Counsel Advice</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_6" name="transfer_Folder_Destination" type="radio" value="Destination_6">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_6">5. CPS led searches</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_7" name="transfer_Folder_Destination" type="radio" value="Destination_7">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_7">6. Claimant Evidence</label>
+                                                </div>
+                                            </div>
+                                            <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_8" name="transfer_Folder_Destination" type="radio" value="Destination_8">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_8">7. Defendant Evidence</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_9" name="transfer_Folder_Destination" type="radio" value="Destination_9">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_9">8. Information Management</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_10" name="transfer_Folder_Destination" type="radio" value="Destination_10">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_10">9. Expert Evidence</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_11" name="transfer_Folder_Destination" type="radio" value="Destination_11">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_11">10. International</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_12" name="transfer_Folder_Destination" type="radio" value="Destination_12">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_12">11. Drafts & Misc</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_13" name="transfer_Folder_Destination" type="radio" value="Destination_13">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_13">12. Finance</label>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_1" name="transfer_Folder_Destination" type="radio" value="Destination_1">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_1">1. Key documents</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_2" name="transfer_Folder_Destination" type="radio" value="Destination_2">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_2">2. File submissions</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_3" name="transfer_Folder_Destination" type="radio" value="Destination_3">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_3">3. Pre-charge</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_4" name="transfer_Folder_Destination" type="radio" value="Destination_4">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_4">4. Case material</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_5" name="transfer_Folder_Destination" type="radio" value="Destination_5">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_5">5. Disclosure</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_6" name="transfer_Folder_Destination" type="radio" value="Destination_6">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_6">6. CTLs</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_7" name="transfer_Folder_Destination" type="radio" value="Destination_7">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_7">7. Trial</label>
+                                                </div>
+                                            </div>
+                                            <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_8" name="transfer_Folder_Destination" type="radio" value="Destination_8">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_8">8. Miscellaneous</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_9" name="transfer_Folder_Destination" type="radio" value="Destination_9">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_9">9. Ancillary</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_10" name="transfer_Folder_Destination" type="radio" value="Destination_10">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_10">10. International</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_11" name="transfer_Folder_Destination" type="radio" value="Destination_11">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_11">11. Appeals</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_12" name="transfer_Folder_Destination" type="radio" value="Destination_12">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_12">12. Finance</label>
+                                                </div>
+                                                <div class="govuk-radios__item">
+                                                    <input class="govuk-radios__input" id="transfer_Folder_Destination_13" name="transfer_Folder_Destination" type="radio" value="Destination_13">
+                                                    <label class="govuk-label govuk-radios__label" for="transfer_Folder_Destination_13">13. Correspondence</label>
+                                                </div>
+                                            </div>
+                                        {% endif %}           
+                                    </fieldset>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full cta-group">
+                                <button class="govuk-button" id="transfer_Files_to_Shared_Drive" data-module="govuk-button" type="button" onclick="return closeSortMaterials(), sortMaterials2();">Continue</button>
+                                <button class="non-button" data-module="govuk-button" type="button" onclick="return closeSortMaterials2();">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

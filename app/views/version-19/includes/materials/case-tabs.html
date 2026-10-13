@@ -1,0 +1,46 @@
+<style>
+    #new-tabs.off-cms-overview .version-18-case-tabs .govuk-tabs__list-item {
+        padding: 0;
+    }
+
+    #new-tabs.off-cms-overview .version-18-case-tabs .govuk-tabs__list-item--selected {
+        padding-right: 0 !important;
+    }
+
+    #new-tabs.off-cms-overview .version-18-case-tabs .version-18-case-tab-link {
+        color: #0b0c0c;
+        display: block;
+        padding: 10px 15px;
+        position: relative;
+        text-decoration: underline;
+    }
+
+    #new-tabs.off-cms-overview .version-18-case-tabs .govuk-tabs__list-item--selected .version-18-case-tab-link {
+        padding-right: 19px;
+    }
+
+    #new-tabs.off-cms-overview .govuk-notification-banner,
+    #new-tabs.off-cms-overview .govuk-error-summary {
+        box-sizing: border-box;
+        width: 75%;
+    }
+
+    @media (max-width: 40.0525em) {
+        #new-tabs.off-cms-overview .govuk-notification-banner,
+        #new-tabs.off-cms-overview .govuk-error-summary {
+            width: 100%;
+        }
+    }
+</style>
+
+<ul class="govuk-tabs__list version-18-case-tabs">
+    <li class="govuk-tabs__list-item{% if activePage == 'transfer-materials' %} govuk-tabs__list-item--selected{% endif %}">
+        <a class="version-18-case-tab-link" href="/version-19/lcc/materials/transfer-materials">Transfer materials</a>
+    </li>
+    <li class="govuk-tabs__list-item{% if activePage == 'manage-materials' %} govuk-tabs__list-item--selected{% endif %}">
+        <a class="version-18-case-tab-link" href="/version-19/lcc/materials/manage-materials">Manage materials</a>
+    </li>
+    <li class="govuk-tabs__list-item{% if activePage == 'activity-log' %} govuk-tabs__list-item--selected{% endif %}">
+        <a class="version-18-case-tab-link" href="/version-19/lcc/materials/activity-log">Activity log</a>
+    </li>
+</ul>

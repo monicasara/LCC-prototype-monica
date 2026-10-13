@@ -1,0 +1,53 @@
+{% extends "layoutCPS-NEW-INDEX.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="/version-19/lcc/register-case/11-shared-drive-setup" method="post" novalidate>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              How do you want to manage the Shared Drive?
+            </h1>
+          </legend>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="create-shared-drive" name="shared-drive-folder-options" type="radio" value="Create new Shared Drive folders" {% if data['newDriveFolder'] == 1 %}checked{% endif %}>
+              <label class="govuk-label govuk-radios__label" for="create-shared-drive">
+                Create new Shared Drive folders
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="connect-shared-drive" name="shared-drive-folder-options" type="radio" value="Connect Shared Drive folders" {% if data['existingDriveFolder'] == 1 %}checked{% endif %}>
+              <label class="govuk-label govuk-radios__label" for="connect-shared-drive">
+                Connect  existing Shared Drive folders to this case
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="skip-shared-drive" name="shared-drive-folder-options" type="radio" value="Do not set up Shared Drive">
+              <label class="govuk-label govuk-radios__label" for="skip-shared-drive">
+                Shared Drive folders not needed
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button">Continue</button>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,130 @@
+{% set cpsPrimaryNav = cpsPrimaryNav | default("") %}
+{% set cpsHomeHref = cpsHomeHref | default("/version-19/lcc/register-case/00-homepage") %}
+{% set cpsTasksHref = cpsTasksHref | default("/version-19/lcc/register-case/00-homepage") %}
+{% set cpsCasesHref = cpsCasesHref | default("/version-19/lcc/materials/01-search") %}
+
+<style>
+  .cps-create-case-shell {
+    background: #f3f2f1;
+    border-bottom: 1px solid #b1b4b6;
+    margin-bottom: 0;
+  }
+
+  .cps-create-case-header {
+    background: #0b0c0c;
+    border-bottom: 10px solid #1d70b8;
+  }
+
+  .cps-create-case-header__inner {
+    align-items: center;
+    display: flex;
+    height: 50px;
+  }
+
+  .cps-create-case-header__brand {
+    color: #ffffff;
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .cps-create-case-header__brand:hover,
+  .cps-create-case-header__brand:visited,
+  .cps-create-case-header__brand:focus {
+    color: #ffffff;
+  }
+
+  .cps-create-case-nav__list {
+    display: flex;
+    gap: 32px;
+    height: 50px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cps-create-case-nav__item {
+    display: flex;
+    margin: 0;
+  }
+
+  .cps-create-case-nav__link {
+    border-bottom: 0;
+    color: #1d70b8;
+    align-items: center;
+    display: inline-flex;
+    font-size: 18px;
+    font-weight: 700;
+    height: 50px;
+    padding: 0;
+    position: relative;
+    text-decoration: none;
+  }
+
+  .cps-create-case-nav__link:hover,
+  .cps-create-case-nav__link:focus,
+  .cps-create-case-nav__link:visited {
+    color: #1d70b8;
+  }
+
+  .cps-create-case-nav__link[aria-current="page"] {
+    box-shadow: inset 0 -4px 0 #1d70b8;
+  }
+
+  .govuk-main-wrapper--auto-spacing.off-cms-journey,
+  .govuk-main-wrapper--auto-spacing.search {
+    padding-top: 15px;
+  }
+
+  @media (max-width: 40.0625em) {
+    .cps-create-case-header__inner {
+      height: 50px;
+    }
+
+    .cps-create-case-header__brand {
+      font-size: 24px;
+    }
+
+    .cps-create-case-nav__list {
+      gap: 20px;
+      overflow-x: auto;
+      padding-right: 8px;
+    }
+
+    .cps-create-case-nav__link {
+      font-size: 18px;
+      height: 50px;
+      padding: 0;
+      white-space: nowrap;
+    }
+  }
+</style>
+
+<div class="cps-create-case-shell">
+  <header class="cps-create-case-header" role="banner">
+    <div class="govuk-width-container">
+      <div class="cps-create-case-header__inner">
+        <a class="cps-create-case-header__brand" href="{{ cpsHomeHref }}">CPS</a>
+      </div>
+    </div>
+  </header>
+
+  <nav aria-label="Primary" class="cps-create-case-nav">
+    <div class="govuk-width-container">
+      <ul class="cps-create-case-nav__list">
+        <li class="cps-create-case-nav__item">
+          <a class="cps-create-case-nav__link" href="{{ cpsHomeHref }}"{% if cpsPrimaryNav == "Home" %} aria-current="page"{% endif %}>Home</a>
+        </li>
+        <li class="cps-create-case-nav__item">
+          <a class="cps-create-case-nav__link" href="{{ cpsTasksHref }}"{% if cpsPrimaryNav == "Tasks" %} aria-current="page"{% endif %}>Tasks</a>
+        </li>
+        <li class="cps-create-case-nav__item">
+          <a class="cps-create-case-nav__link" href="{{ cpsCasesHref }}"{% if cpsPrimaryNav == "Cases" %} aria-current="page"{% endif %}>Cases</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

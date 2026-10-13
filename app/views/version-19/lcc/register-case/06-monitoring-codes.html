@@ -1,0 +1,173 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row" id="create-case-journey">
+
+    <div class="govuk-grid-column-two-thirds">
+        <div class="gov-pages">
+
+            <!-- <h1 class="govuk-heading-xl" style="">Add monitoring codes</h1> -->
+            <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-fieldset__heading">
+                Add monitoring codes
+            </h1>
+            </legend> -->
+            <!-- <p class="govuk-hint govuk-!-margin-bottom-6">Adding this information is optional. You can continue without adding any details.</p> -->
+
+            <form method="get" action="07-cps-staff" id="newCase_Form-E">  
+
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-fieldset__heading">
+                            Add monitoring codes
+                        </h1>
+                    </legend>
+                    {% if (data['preCharge'] | lower) == "no"  %}
+                    <div id="changedName-hint" class="govuk-hint">
+                        These are optional. You can continue without adding monitoring codes.
+                    </div>
+                    {% endif %}
+
+                    <div class="govuk-grid-row">
+
+                        
+                        <!-- Column 1 -->
+                        <div class="govuk-grid-column-one-half">
+                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+                            {% set monitoringCodesCol1 = [
+                                "Asset Recovery",
+                                "Border Security",
+                                "Case has video evidence",
+                                "Child Abuse",
+                                "Child Abuse Disclosure Programme",
+                                "CJSSS",
+                                "Community Priority Case",
+                                "Coronavirus Offences",
+                                "COVID BAIL",
+                                "COVID CTL",
+                                "Crime Against an Older Person",
+                                "Deter Young Offender",
+                                "Disability Hate Crime",
+                                "Disturbances 2011",
+                                "Domestic Violence",
+                                "Drug Confiscation",
+                                "DV Specialist Court",
+                                "Evidence Led Prosecution",
+                                "Extraordinary Event",
+                                "Fatality",
+                                "Football Hooliganism",
+                                "Forced Marriage",
+                                "GAP",
+                                "Hoax Bomb Phonecalls",
+                                "Homophobic",
+                                "Honour Crime",
+                                "Human Trafficking",
+                                "Identified Victim",
+                                "Infanticide",
+                                "Joint Enterprise",
+                                "Major Incident",
+                                "Media Interest",
+                                "Medicinal Cannabis",
+                                "Mental Health"
+
+                            ] %}
+
+                            {% for code in monitoringCodesCol1 %}
+                            {% set id = "mc-" + code | replace(" ", "") | replace("/", "") | replace("…", "") %}
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input"
+                                    id="{{ id }}"
+                                    name="newCase_MonitoringCodes"
+                                    type="checkbox"
+                                    value="{{ code }}"
+                                    {% if data['newCase_MonitoringCodes'] and code in data['newCase_MonitoringCodes'] %}checked{% endif %}>
+                                <label class="govuk-label govuk-checkboxes__label" for="{{ id }}">{{ code }}</label>
+                            </div>
+                            {% endfor %}
+
+                            </div>
+                        </div>
+
+                        <!-- Column 2 -->
+                        <div class="govuk-grid-column-one-half">
+                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+                            {% set monitoringCodesCol2 = [
+                                "MME to be played by CPS",
+                                "Multimedia Evidence",
+                                "Murder",
+                                "NACRO Survey Case",
+                                "Nationality Bar",
+                                "NGAP",
+                                "Non-Blueprint case",
+                                "Obscene publications",
+                                "Op Venetic",
+                                "Police Complaints",
+                                "Pre-Charge Decision",
+                                "Proceeds of crime statistics case",
+                                "Prohibited Weapons",
+                                "PTWI Referral",
+                                "Racist Crime",
+                                "Rape",
+                                "Real time case conversation",
+                                "Religious Crime",
+                                "Restraining order after Acquittal",
+                                "RTA Fatality",
+                                "Significant Event",
+                                "Speaking up for Justice",
+                                "Street Crime Initiative",
+                                "Transphobic",
+                                "Victim Focus",
+                                "Virtual Court",
+                                "Vulnerable/Intimidated victim",
+                                "Weight - Exceptional",
+                                "Weight - High",
+                                "Weight - Low",
+                                "Weight - Medium",
+                                "Weight - N/A",
+                                "Young Witness Initiative"
+                            ] %}
+
+                            {% for code in monitoringCodesCol2 %}
+                            {% set id = "mc-" + code | replace(" ", "") | replace("/", "") | replace("…", "") %}
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input"
+                                    id="{{ id }}"
+                                    name="newCase_MonitoringCodes"
+                                    type="checkbox"
+                                    value="{{ code }}"
+                                    {% if data['newCase_MonitoringCodes'] and code in data['newCase_MonitoringCodes'] %}checked{% endif %} {% if code == "Pre-Charge Decision" and (data['preCharge'] | lower) == "yes" %} checked {% endif %}>
+                                <label class="govuk-label govuk-checkboxes__label" for="{{ id }}">{{ code }}</label>
+                            </div>
+                            {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+
+                <div class="govuk-!-margin-top-4">&nbsp;</div>
+
+                <input id="createCase_E_Complete" name="createCase_E_Complete" type="text" value="true" style="display: none;">
+                {% include "../../includes/buttons.html" %}
+
+
+            </form>
+
+        </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+</div>
+
+{% endblock %}

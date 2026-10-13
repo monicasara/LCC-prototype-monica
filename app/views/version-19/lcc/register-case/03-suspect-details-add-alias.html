@@ -1,0 +1,85 @@
+{% extends "layoutCPS-NEW-INDEX.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V7.html" %}
+{% endblock %}
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+      {% if errorList and errorList.length %}
+      <div class="govuk-error-summary" data-module="govuk-error-summary">
+        <div role="alert">
+          <h2 class="govuk-error-summary__title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+              {% for error in errorList %}
+              <li>
+                <a href="{{ error.href }}">{{ error.text }}</a>
+                {% if error.skipHref and error.skipText %}
+                <div class="govuk-!-margin-top-3">
+                  <a class="govuk-link" style="font-weight: normal;" href="{{ error.skipHref }}">{{ error.skipText }}</a>
+                </div>
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      <form action="/version-19/lcc/register-case/03-suspect-details-add-alias" method="post" novalidate>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <!-- <span class="govuk-caption-m">Alias {{data['aliasCount'] + 1}}</span> -->
+            <h1 class="govuk-fieldset__heading">
+              What alias does <span class="uppercase">{{ data['suspect-person-last-name'] }}</span>, {{ data['suspect-person-first-name'] }} use? 
+            </h1>
+          </legend>
+          <div id="changedName-hint" class="govuk-hint">
+              You can add more aliases on the next page if needed.
+          </div>
+
+
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-!-font-weight-bold" for="alias-type-person-first-name">
+              First name (optional)
+            </label>
+          <div id="changedName-hint" class="govuk-hint">
+              If the person only has one name, enter it in the last name field.
+          </div>
+            <input class="govuk-input govuk-!-width-one-third" id="alias-first-name" name="alias-first-name" type="text" spellcheck="false" autocomplete="new-password" value="{{ data['aliasFirstName'][data['editAlias']]}}">
+          </div>
+          
+          <div class="govuk-form-group{% if errors and errors.aliasLastName %} govuk-form-group--error{% endif %}">
+            <label class="govuk-label govuk-!-font-weight-bold" for="alias-last-name">
+              Last name
+            </label>
+            {% if errors and errors.aliasLastName %}
+            <span id="alias-last-name-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> {{ errors.aliasLastName }}
+            </span>
+            {% endif %}
+            <input class="govuk-input govuk-!-width-one-third{% if errors and errors.aliasLastName %} govuk-input--error{% endif %}" id="alias-last-name" name="alias-last-name" type="text" spellcheck="false" autocomplete="new-password" value="{{ data['aliasLastName'][data['aliasCount']] or data['aliasLastName'][data['editAlias']]}}" {% if errors and errors.aliasLastName %}aria-describedby="alias-last-name-error"{% endif %}>
+          </div>
+        </fieldset>
+
+        <input type="hidden" name="id" value="{{ data['aliasId'][data['id']]}}">
+        <input type="hidden" name="update" value="{{data['id']}}">
+
+      </div>
+
+
+      {% include "../../includes/buttons.html" %}
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "layoutCPS-OFF.html" %}
+{% block header %}
+    {% include "../../includes/banner-OFF-V6.html" %}
+{% endblock %}
+{% block beforeContent %}
+    {% include "../../includes/off-system-MVP/modalConfirmation-Egress.html" %}
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+    </div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-2" id="homepage-journey">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="wrapper main-cotent">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" style="">mg11_BLAYNEE.pdf is open by another user</h1>
+            <div class="govuk-inset-text">
+                <p>The file can be overwritten when the user has finished their changes, saved the document and closed it down.</p>
+            </div>
+
+            <form method="post" action="03-case-overview#file_locked_COMPLETED" id="">  
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s"><h1 class="govuk-fieldset__heading">What would you like to do?</h1></legend>
+                        <div class="govuk-radios  govuk-radios--inline" data-module="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="locked_file_transfer__Try_again" name="locked_file_transfer" type="radio" value="Try again">
+                                <label class="govuk-label govuk-radios__label" for="locked_file_transfer__Try_again">Try again</label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="locked_file_transfer__Ignore_files" name="locked_file_transfer" type="radio" value="Ignore files">
+                                <label class="govuk-label govuk-radios__label" for="locked_file_transfer__Ignore_files">Ignore files</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <input id="file_locked_COMPLETED" name="file_locked_COMPLETED" type="text" value="true" style="display: none;">
+                <button id="" type="submit" aria-disabled="false" class="govuk-button govuk-!-margin-bottom-6" data-module="govuk-button">Continue</button>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,421 @@
+<div class="govuk-grid-column-one-quarter" id="newMaterials-column">
+
+    <div class="caseFiles" id="caseFilesCol">
+
+        <div class="accordion with-js">
+
+            <!-- SECTION 1 - START -->
+            <div class="accordion-section section-1">
+                <div class="accordion-section-header">
+                    <h2 class="govuk-heading-s">Reviews (<span class="reviews-number">1</span>)</h2>
+                    <span class="icon"></span>
+                </div>
+                <div class="accordion-section-body" style="display: none;">
+
+                    <!-- SORT - START -->
+                    <div class="sort-documents-nav">
+                        <button class="sort-documents" id="sort-Reviews">Sort documents</button>  
+                        <div class="wrapper">                      
+                            <button onclick="return sortReviewAlphabetical()" class="sort-Alphabetically">by Alphabetical</button>
+                            <button onclick="return sortReviewDate()" class="sort-Date">by Date</button>
+                        </div>
+                    </div>
+                    <!-- SORT - END -->
+
+                    <table class="govuk-table" id="sortReviews">
+                        <thead>
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header"><span class="visuallyhidden">Review files</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="accordion-tbody-reviews">
+                            <tr class="govuk-table__row document-holder document-1 alpha-1 date-1" id="group1-doc1">
+                                <td class="govuk-table__cell govuk-body-s unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a class="show-case folder_1_document document_1" onclick="">MCLOVE MG3</a>
+                                        </p>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>02 Jun 2020
+                                            <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>13:08
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="" class="edit-Document">Edit document</button>
+                                        <button onclick="" class="move-Document">Move document within Shared Drive</button>
+                                        <button onclick="" class="transfer-Document">Transfer to egress</button>
+                                        <button onclick="" class="email-Document">Forward document</button>
+                                        <button onclick="" class="rename-Document">Rename document</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- SECTION 1 - END -->
+
+            <!-- SECTION 2 - START -->
+            <div class="accordion-section section-2" id="hidden-section-3">
+                <div class="accordion-section-header">
+                    <h2 class="govuk-heading-s" style="">Case overview (<span class="case-overview-number">4</span>)</h2>
+                    <span class="icon"></span>
+                </div>
+                <div class="accordion-section-body" style="display: none;">
+                    <!-- SORT - START -->
+                    <div class="sort-documents-nav">
+                        <button class="sort-documents">Sort documents</button>  
+                        <div class="wrapper">                      
+                            <button onclick="return sortCaseAlphabetical()" class="sort-Alphabetically">by Alphabetical</button>
+                            <button onclick="return sortCaseDate()" class="sort-Date">by Date</button>
+                        </div>
+                    </div>
+                    <!-- SORT - END -->
+                    <div class="cpsDocs chargingDocs">
+                        <table class="govuk-table" id="sortCases">
+                            <thead>
+                                <tr class="govuk-table__row">
+                                    <th scope="col" class="govuk-table__header"><span class="visuallyhidden">Case overview files</span></th>
+                                </tr>
+                            </thead>
+                            <tbody id="accordion-tbody-case-overview">
+                               <tr class="govuk-table__row document-holder document-2 alpha-1 date-1" id="group2-doc1">
+                                    <td class="govuk-table__cell govuk-body-s unreadDocument" scope="row">
+                                        <div class="wrapper">
+                                            <strong class="govuk-tag current">Active Document</strong>
+                                            <p class="redacted-indicator">
+                                                <a class="show-case folder_1_document document_2" onclick="">Case overview and officer comments</a>
+                                            </p>
+                                            <br>
+                                            <p class="date-added">
+                                                <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>02 Jun 2020
+                                                <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>17:36
+                                            </p>
+                                        </div>
+                                        <button class="more-options">
+                                            <span class="visuallyhidden">More options</span>
+                                        </button>
+                                        <div class="document-nav">
+                                            <button onclick="" class="edit-Document">Edit document</button>
+                                            <button onclick="" class="move-Document">Move document within Shared Drive</button>
+                                            <button onclick="" class="transfer-Document">Transfer to egress</button>
+                                            <button onclick="" class="email-Document">Forward document</button>
+                                            <button onclick="" class="rename-Document">Rename document</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- DOCUMENT NOTIFICATION - 3 - START -->
+                                <tr class="govuk-table__row document-holder document-3 alpha-2 date-2" id="group2-doc2">
+                                    <td class="govuk-table__cell govuk-body-s unreadDocument" scope="row">
+                                        <div class="wrapper">
+                                            <strong class="govuk-tag current">Active Document</strong>
+                                            <p class="redacted-indicator">
+                                                <a class="show-case folder_1_document document_3" onclick="">MG05 MCLOVE</a>
+                                            </p>
+                                            <p class="error-text">There is a problem with this document</p>
+                                            <br>
+                                            <p class="date-added">
+                                                <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>02 Jun 2020
+                                                <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>16:11
+                                            </p>
+                                        </div>
+                                        <button class="more-options">
+                                            <span class="visuallyhidden">More options</span>
+                                        </button>
+                                        <div class="document-nav">
+                                            <button onclick="" class="edit-Document">Edit document</button>
+                                            <button onclick="" class="move-Document">Move document within Shared Drive</button>
+                                            <button onclick="" class="transfer-Document">Transfer to egress</button>
+                                            <button onclick="" class="email-Document">Forward document</button>
+                                            <button onclick="" class="rename-Document">Rename document</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- DOCUMENT NOTIFICATION - 3 - START -->
+
+                                <tr class="govuk-table__row document-holder document-4 alpha-3 date-3" id="group2-doc3">
+                                    <td class="govuk-table__cell govuk-body-s unreadDocument" scope="row">
+                                        <div class="wrapper">
+                                            <strong class="govuk-tag current">Active Document</strong>
+                                            <p class="redacted-indicator">
+                                                <a class="show-case folder_1_document document_4" onclick="">MG06 3 June</a>
+                                            </p>
+                                            <p class="error-text">There is a problem with this document</p>
+                                            <br>
+                                            <p class="date-added">
+                                                <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>03 Jun 2020
+                                                <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>10:14
+                                            </p>
+                                        </div>
+                                        <button class="more-options">
+                                            <span class="visuallyhidden">More options</span>
+                                        </button>
+                                        <div class="document-nav">
+                                            <button onclick="" class="edit-Document">Edit document</button>
+                                            <button onclick="" class="move-Document">Move document within Shared Drive</button>
+                                            <button onclick="" class="transfer-Document">Transfer to egress</button>
+                                            <button onclick="" class="email-Document">Forward document</button>
+                                            <button onclick="" class="rename-Document">Rename document</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- DOCUMENT NOTIFICATION - 4 - START -->
+                                <tr class="govuk-table__row document-holder document-5 alpha-4 date-4" id="group2-doc4">
+                                    <td class="govuk-table__cell govuk-body-s unreadDocument" scope="row">
+                                        <div class="wrapper">
+                                            <strong class="govuk-tag current">Active Document</strong>
+                                            <p class="redacted-indicator">
+                                                <a class="show-case folder_1_document document_5" onclick="">MG06 10 june</a>
+                                            </p>
+                                            <p class="error-text">There is a problem with this document</p>
+                                            <br>
+                                            <p class="date-added">
+                                                <span class="icon-new date-added"><span class="visuallyhidden">Date</span></span>10 Jun 2020
+                                                <span class="icon-new time-added"><span class="visuallyhidden">Time</span></span>08:03
+                                            </p>
+                                        </div>
+                                        <button class="more-options">
+                                            <span class="visuallyhidden">More options</span>
+                                        </button>
+                                        <div class="document-nav">
+                                            <button onclick="" class="edit-Document">Edit document</button>
+                                            <button onclick="" class="move-Document">Move document within Shared Drive</button>
+                                            <button onclick="" class="transfer-Document">Transfer to egress</button>
+                                            <button onclick="" class="email-Document">Forward document</button>
+                                            <button onclick="" class="rename-Document">Rename document</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- DOCUMENT NOTIFICATION - 4 - END --> 
+                                                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- SECTION 2 - END -->
+
+            <!-- SECTION 3 - START -->
+            <div class="accordion-section section-3" id="hidden-documents">
+                <div class="accordion-section-header">
+                    <h2 class="govuk-heading-s">Statements (<span class="statements">6</span>)</h2>
+                    <span class="icon"></span>
+                </div>
+                <div class="accordion-section-body" style="display: none;">
+                    <!-- SORT - START -->
+                    <div class="sort-documents-nav">
+                        <button class="sort-documents">Sort documents</button>  
+                        <div class="wrapper">                      
+                            <button onclick="return sortStatementsAlphabetical()" class="sort-Alphabetically">by Alphabetical</button>
+                            <button onclick="return sortStatementsDate()" class="sort-Date">by Date</button>
+                            <button onclick="return sortWitness()" class="sort-Witness">by Witness</button>
+                        </div>
+                    </div>
+                    <!-- SORT - END -->
+                    <table class="govuk-table" id="sortStatements">
+                        <thead>
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header"><span class="visuallyhidden">Statement files</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="accordion-tbody-statements">
+                            <tr class="witness-header witness-1">
+                                <th>PC 2034 Blaynee</th>
+                            </tr>
+                            <tr class="govuk-table__row document-holder document-6 alpha-3 date-1 witness-2" id="group3-doc1">
+                                <td class="govuk-table__cell govuk-body-s unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a class="show-case folder_1_document document_6" onclick="">stmt BLAYNEE 2034 1 JUNE mg11</a>
+                                        </p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added statement"><span class="visuallyhidden">Statement Date</span></span>01 Jun 2020
+                                            <span class="icon-new time-added statement"><span class="visuallyhidden">Statement Time</span></span>11:22
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="" class="edit-Document">Edit document</button>
+                                        <button onclick="" class="move-Document">Move document within Shared Drive</button>
+                                        <button onclick="" class="transfer-Document">Transfer to egress</button>
+                                        <button onclick="" class="email-Document">Forward document</button>
+                                        <button onclick="" class="rename-Document">Rename document</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="witness-header witness-3">
+                                <th>PC 1989 Jones</th>
+                            </tr>
+
+                            <tr class="govuk-table__row document-holder document-7 alpha-4 date-2 witness-4" id="group3-doc2">
+                                <td class="govuk-table__cell govuk-body-s unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a class="show-case folder_1_document document_7" onclick="">stmt JONES 1989 1 JUNE mg11</a>
+                                        </p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added statement"><span class="visuallyhidden">Statement Date</span></span>01 Jun 2020
+                                            <span class="icon-new time-added statement"><span class="visuallyhidden">Statement Time</span></span>11:54
+                                        </p>                                
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="" class="edit-Document">Edit document</button>
+                                        <button onclick="" class="move-Document">Move document within Shared Drive</button>
+                                        <button onclick="" class="transfer-Document">Transfer to egress</button>
+                                        <button onclick="" class="email-Document">Forward document</button>
+                                        <button onclick="" class="rename-Document">Rename document</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="witness-header witness-5">
+                                <th>Lucy Doyle</th>
+                            </tr>
+                            <tr class="govuk-table__row document-holder document-8 alpha-5 date-3 witness-6" id="group3-doc3">
+                                <td class="govuk-table__cell govuk-body-s unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a class="show-case folder_1_document document_8" onclick="">stmt Lucy Doyle MG11</a>
+                                        </p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added statement"><span class="visuallyhidden">Statement Date</span></span>01 Jun 2020
+                                            <span class="icon-new time-added statement"><span class="visuallyhidden">Statement Time</span></span>12:01
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="" class="edit-Document">Edit document</button>
+                                        <button onclick="" class="move-Document">Move document within Shared Drive</button>
+                                        <button onclick="" class="transfer-Document">Transfer to egress</button>
+                                        <button onclick="" class="email-Document">Forward document</button>
+                                        <button onclick="" class="rename-Document">Rename document</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="witness-header witness-7">
+                                <th>Shelagh McLove</th>
+                            </tr>
+                            <tr class="govuk-table__row document-holder document-9 alpha-6 date-4 witness-8" id="group3-doc4">
+                                <td class="govuk-table__cell govuk-body-s unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a class="show-case folder_1_document document_9" onclick="">stmt Shelagh McLove MG11</a>
+                                        </p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added statement"><span class="visuallyhidden">Statement Date</span></span>01 Jun 2020
+                                            <span class="icon-new time-added statement"><span class="visuallyhidden">Statement Time</span></span>12:36
+                                            <button class="notes-link new-notes-link govuk-button statement-notes" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-new-text-content"></span>
+                                            </button>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="" class="edit-Document">Edit document</button>
+                                        <button onclick="" class="move-Document">Move document within Shared Drive</button>
+                                        <button onclick="" class="transfer-Document">Transfer to egress</button>
+                                        <button onclick="" class="email-Document">Forward document</button>
+                                        <button onclick="" class="rename-Document">Rename document</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row document-holder document-10 alpha-7 date-5 witness-9" id="group3-doc5">
+                                <td class="govuk-table__cell govuk-body-s unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a class="show-case folder_1_document document_10" onclick="">Shelagh McLove VPS mg11</a>
+                                        </p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added statement"><span class="visuallyhidden">Statement Date</span></span>06 Jun 2020
+                                            <span class="icon-new time-added statement"><span class="visuallyhidden">Statement Time</span></span>13:11
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="" class="edit-Document">Edit document</button>
+                                        <button onclick="" class="move-Document">Move document within Shared Drive</button>
+                                        <button onclick="" class="transfer-Document">Transfer to egress</button>
+                                        <button onclick="" class="email-Document">Forward document</button>
+                                        <button onclick="" class="rename-Document">Rename document</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- DOCUMENT NOTIFICATION - 5 - START -->
+                            <tr class="govuk-table__row document-holder document-11 alpha-7 date-5 witness-9" id="group3-doc5">
+                                <td class="govuk-table__cell govuk-body-s unreadDocument" scope="row">
+                                    <div class="wrapper">
+                                        <strong class="govuk-tag current">Active Document</strong>
+                                        <p class="redacted-indicator">
+                                            <a class="show-case folder_1_document document_11" onclick="">MG11 Shelagh MCLOVE retraction</a>
+                                        </p>
+                                        <br>
+                                        <p class="date-added">
+                                            <span class="icon-new date-added statement"><span class="visuallyhidden">Statement Date</span></span>10 Jun 2020
+                                            <span class="icon-new time-added statement"><span class="visuallyhidden">Statement Time</span></span>19:18
+                                            <button class="notes-link new-notes-link govuk-button statement-notes" data-module="govuk-button" type="button" onClick="return openNewNotesModal()">
+                                                <span class="notes-text">Notes:</span> <span class="new-notes-number"></span>
+                                                <span class="visuallyhidden notes-new-text-content"></span>
+                                            </button>
+                                        </p>
+                                    </div>
+                                    <button class="more-options">
+                                        <span class="visuallyhidden">More options</span>
+                                    </button>
+                                    <div class="document-nav">
+                                        <button onclick="" class="edit-Document">Edit document</button>
+                                        <button onclick="" class="move-Document">Move document within Shared Drive</button>
+                                        <button onclick="" class="transfer-Document">Transfer to egress</button>
+                                        <button onclick="" class="email-Document">Forward document</button>
+                                        <button onclick="" class="rename-Document">Rename document</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- DOCUMENT NOTIFICATION - 5 - END -->
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- SECTION 3 - END -->
+           
+        </div>
+
+    </div>
+
+</div>
+
+<div id="" class="document_holder folder_1_Documents">
+    <div class="holder">
+        <h2 class="govuk-heading-m">View your documents</h2>
+        <p>Choose a file to start reviewing documents</p>
+    </div>
+</div>
