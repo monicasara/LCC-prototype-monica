@@ -21,8 +21,14 @@
                         Which suspects do you want to add charges for?
                     </h1>
                     </legend>
-                    <div id="suspect-charges-hint" class="govuk-hint">Select all that apply.</div>
+                    <div id="suspect-charges-hint" class="govuk-hint">Select all that apply</div>
                     {% if selectionError %}<p id="suspect-charges-error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> {{ selectionError }}</p>{% endif %}
+                    <div class="govuk-checkboxes govuk-!-margin-bottom-6" data-module="govuk-checkboxes">
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="select-all-suspects" type="checkbox" name="select-all-suspects" value="all">
+                            <label class="govuk-label govuk-checkboxes__label" for="select-all-suspects">Select all suspects</label>
+                        </div>
+                    </div>
                     <div class="govuk-checkboxes" data-module="govuk-checkboxes">
 
                     {% for id in data['suspectId'] %}            
@@ -58,4 +64,27 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+    (function () {
+        const selectAll = document.getElementById('select-all-suspects');
+        const suspects = Array.from(document.querySelectorAll('input[name="suspect-charges"]'));
+
+        selectAll.addEventListener('change', function () {
+            suspects.forEach(function (suspect) {
+                suspect.checked = selectAll.checked;
+            });
+        });
+
+        suspects.forEach(function (suspect) {
+            suspect.addEventListener('change', function () {
+                selectAll.checked = suspects.length > 0 && suspects.every(function (item) {
+                    return item.checked;
+                });
+            });
+        });
+    })();
+</script>
 {% endblock %}
